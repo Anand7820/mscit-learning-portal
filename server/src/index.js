@@ -41,13 +41,16 @@ app.use("/api/certificate", certificateRoutes);
 
 const PORT = process.env.PORT || 5000;
 
+// Start HTTP server immediately so Railway's proxy gets a response (avoids "Application failed to respond")
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
+// Connect DB and seed in background so app is reachable right away
 connectDb()
   .then(async () => {
     await ensureAdminUser();
     await ensureCourseDays();
-    app.listen(PORT, "0.0.0.0", () => {
-      console.log(`Server running on port ${PORT}`);
-    });
   })
   .catch((err) => {
     console.error("DB connection error:", err);
