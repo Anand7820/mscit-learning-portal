@@ -1,0 +1,20 @@
+{
+  "appTitle": "MS-CIT लर्निंग पोर्टल",
+  "login": "लॉगिन",
+  "signup": "साइनअप",
+  "email": "ईमेल",
+  "password": "पासवर्ड",
+  "logout": "लॉगआउट",
+  "pendingApproval": "आपले खाते मंजुरीसाठी प्रतीक्षेत आहे",
+  "completeProfile": "प्रोफाइल पूर्ण करा",
+  "dashboard": "डॅशबोर्ड",
+  "profile": "प्रोफाइल",
+  "courses": "कोर्स",
+  "adminPanel": "अ‍ॅडमिन पॅनेल",
+  "language": "भाषा",
+  "days": "दिवस",
+  "startExam": "परीक्षा सुरू करा",
+  "submitExam": "परीक्षा सबमिट करा",
+  "score": "गुण",
+  "downloadCertificate": "प्रमाणपत्र डाउनलोड करा"
+}

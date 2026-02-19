@@ -1,0 +1,20 @@
+{
+  "appTitle": "MS-CIT Learning Portal",
+  "login": "Login",
+  "signup": "Signup",
+  "email": "Email",
+  "password": "Password",
+  "logout": "Logout",
+  "pendingApproval": "Your account is pending approval",
+  "completeProfile": "Complete Profile",
+  "dashboard": "Dashboard",
+  "profile": "Profile",
+  "courses": "Courses",
+  "adminPanel": "Admin Panel",
+  "language": "Language",
+  "days": "Days",
+  "startExam": "Start Exam",
+  "submitExam": "Submit Exam",
+  "score": "Score",
+  "downloadCertificate": "Download Certificate"
+}
