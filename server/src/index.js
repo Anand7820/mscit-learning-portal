@@ -45,7 +45,7 @@ connectDb()
   .then(async () => {
     await ensureAdminUser();
     await ensureCourseDays();
-    app.listen(PORT, () => {
+    app.listen(PORT, "0.0.0.0", () => {
       console.log(`Server running on port ${PORT}`);
     });
   })
