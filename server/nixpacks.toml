@@ -1,0 +1,9 @@
+# Railway/Nixpacks build config - ensures server builds correctly
+[phases.setup]
+nixPkgs = ["nodejs_18"]
+
+[phases.install]
+cmds = ["npm install"]
+
+[start]
+cmd = "node src/index.js"
