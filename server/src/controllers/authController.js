@@ -123,31 +123,34 @@ const completeProfile = async (req, res) => {
 
     const photoFile = req.files?.photo?.[0] || req.files?.photo || req.file;
     const signatureFile = req.files?.signature?.[0] || req.files?.signature;
-    
+
     const uploadedPhotoUrl =
       photoFile?.path || photoFile?.secure_url || photoFile?.url || "";
-    const photoUrl = uploadedPhotoUrl || user.profile.photoUrl;
+    const photoUrl = uploadedPhotoUrl || user.profile?.photoUrl || "";
 
     const uploadedSignatureUrl =
       signatureFile?.path || signatureFile?.secure_url || signatureFile?.url || "";
-    const signatureUrl = uploadedSignatureUrl || user.profile.signatureUrl;
+    const signatureUrl = uploadedSignatureUrl || user.profile?.signatureUrl || "";
+
+    const ageNum = age === "" || age === undefined ? undefined : Number(age);
+    const dobDate = dob ? (isNaN(Date.parse(dob)) ? undefined : new Date(dob)) : undefined;
 
     user.profile = {
       photoUrl,
       signatureUrl,
-      name,
-      age,
-      fatherName,
-      motherName,
-      surname,
-      dob,
-      gender,
-      maritalStatus,
-      phoneNumber,
-      language,
-      address,
-      education,
-      selectedCourse
+      name: name || "",
+      age: ageNum,
+      fatherName: fatherName || "",
+      motherName: motherName || "",
+      surname: surname || "",
+      dob: dobDate,
+      gender: gender || "",
+      maritalStatus: maritalStatus || "",
+      phoneNumber: phoneNumber || "",
+      language: language || "en",
+      address: address || "",
+      education: education || "",
+      selectedCourse: selectedCourse || "MS-CIT"
     };
     user.profileCompleted = true;
     if (!user.unlockedUpTo || user.unlockedUpTo < 0) {
@@ -157,7 +160,10 @@ const completeProfile = async (req, res) => {
 
     return res.json({ message: "Profile completed", profile: user.profile });
   } catch (error) {
-    return res.status(500).json({ message: "Profile update failed" });
+    console.error("Complete profile error:", error?.message || error);
+    return res.status(500).json({
+      message: error?.message?.includes("Cloudinary") ? "Image upload failed. Check server Cloudinary config." : "Profile update failed"
+    });
   }
 };
 
