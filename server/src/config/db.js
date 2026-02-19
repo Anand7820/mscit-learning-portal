@@ -7,10 +7,7 @@ const connectDb = async () => {
     console.warn("MONGO_URI not set. Using default local MongoDB URI.");
   }
   try {
-    await mongoose.connect(mongoUri, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(mongoUri);
     console.log("MongoDB connected successfully");
   } catch (error) {
     console.error("MongoDB connection error:", error.message);
