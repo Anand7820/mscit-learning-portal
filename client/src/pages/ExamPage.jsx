@@ -13,6 +13,7 @@ const ExamPage = () => {
   const [answers, setAnswers] = useState([]);
   const [correctAnswers, setCorrectAnswers] = useState({}); // { questionIndex: correctAnswerIndex }
   const [answeredQuestions, setAnsweredQuestions] = useState(new Set()); // Track which questions have been answered
+  const [skippedQuestions, setSkippedQuestions] = useState(new Set()); // Track which questions have been skipped
   const [correctQuestions, setCorrectQuestions] = useState(new Set()); // Track which questions were answered correctly
   const [incorrectQuestions, setIncorrectQuestions] = useState(new Set()); // Track which questions were answered incorrectly
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -59,6 +60,15 @@ const ExamPage = () => {
 
   const handleAnswerSelect = async (optionIndex) => {
     if (checkingAnswer || answeredQuestions.has(currentQuestionIndex)) return;
+    
+    // Remove from skipped if it was skipped
+    if (skippedQuestions.has(currentQuestionIndex)) {
+      setSkippedQuestions((prev) => {
+        const updated = new Set(prev);
+        updated.delete(currentQuestionIndex);
+        return updated;
+      });
+    }
 
     // Update local answer immediately
     setAnswers((prev) => {
@@ -120,6 +130,15 @@ const ExamPage = () => {
       const message = err.response?.data?.message || "Submit failed";
       setError(message);
       toast.error(message);
+    }
+  };
+
+  const handleSkip = () => {
+    // Mark as skipped
+    setSkippedQuestions((prev) => new Set([...prev, currentQuestionIndex]));
+    // Move to next question
+    if (currentQuestionIndex < questions.length - 1) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
     }
   };
 
@@ -274,6 +293,19 @@ const ExamPage = () => {
           </div>
         </div>
 
+        {/* Skip Button */}
+        {!isAnswered && (
+          <div className="mb-4 text-center">
+            <button
+              onClick={handleSkip}
+              disabled={checkingAnswer}
+              className="rounded bg-yellow-500 hover:bg-yellow-600 px-4 py-2 text-white disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              Skip Question
+            </button>
+          </div>
+        )}
+
         {/* Navigation Buttons */}
         <div className="flex items-center justify-between">
           <button
@@ -294,6 +326,8 @@ const ExamPage = () => {
                 boxColor = "bg-green-500 text-white"; // Correct answer
               } else if (incorrectQuestions.has(index)) {
                 boxColor = "bg-red-500 text-white"; // Wrong answer
+              } else if (skippedQuestions.has(index)) {
+                boxColor = "bg-yellow-500 text-white"; // Skipped question
               }
               
               return (
@@ -312,10 +346,10 @@ const ExamPage = () => {
           {currentQuestionIndex === questions.length - 1 ? (
             <button
               onClick={handleFinalSubmit}
-              disabled={answeredQuestions.size < questions.length}
+              disabled={answeredQuestions.size === 0}
               className="rounded bg-green-600 px-4 py-2 text-white disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Submit Exam
+              Submit Exam ({answeredQuestions.size}/{questions.length} answered)
             </button>
           ) : (
             <button
@@ -330,7 +364,10 @@ const ExamPage = () => {
 
         {/* Progress Summary */}
         <div className="mt-6 text-center text-sm text-gray-600">
-          Answered: {answeredQuestions.size} / {questions.length}
+          <div>Answered: {answeredQuestions.size} / {questions.length}</div>
+          {skippedQuestions.size > 0 && (
+            <div className="text-yellow-600 mt-1">Skipped: {skippedQuestions.size}</div>
+          )}
         </div>
       </div>
     </StudentLayout>
