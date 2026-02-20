@@ -92,7 +92,17 @@ async function run() {
 
     await CloudModel.deleteMany({});
     if (docs.length > 0) {
-      await CloudModel.insertMany(docs, { ordered: false });
+      // For CourseDay, ensure exam.questions array is properly copied
+      if (modelName === "CourseDay") {
+        // Convert to plain objects and ensure nested arrays are preserved
+        const docsToInsert = docs.map(doc => {
+          const plain = JSON.parse(JSON.stringify(doc)); // Deep clone to ensure nested arrays preserved
+          return plain;
+        });
+        await CloudModel.insertMany(docsToInsert, { ordered: false });
+      } else {
+        await CloudModel.insertMany(docs, { ordered: false });
+      }
     }
     console.log(`  ${name}: copied to cloud.`);
   }
