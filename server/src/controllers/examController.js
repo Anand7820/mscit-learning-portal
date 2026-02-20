@@ -5,13 +5,23 @@ const { getDayAvailability } = require("../utils/courseAccess");
 const startExam = async (req, res) => {
   try {
     const dayNumber = Number(req.params.dayNumber);
-    // Force fresh read from database (no cache)
-    const day = await CourseDay.findOne({ dayNumber }).lean();
+    // Force fresh read from database (no cache) - use select to ensure we get all fields
+    const day = await CourseDay.findOne({ dayNumber })
+      .select('dayNumber exam.questions exam.durationMinutes')
+      .lean();
+    
     if (!day) {
+      console.error(`[Exam Start] Day ${dayNumber}: NOT FOUND in database`);
       return res.status(404).json({ message: `Day ${dayNumber} not found in database` });
     }
 
-    console.log(`[Exam Start] Day ${dayNumber}: Found in DB, exam.questions.length = ${day.exam?.questions?.length || 0}`);
+    const questionCount = day.exam?.questions?.length || 0;
+    console.log(`[Exam Start] Day ${dayNumber}: Found in DB`);
+    console.log(`[Exam Start] Day ${dayNumber}: exam.questions.length = ${questionCount}`);
+    
+    if (questionCount === 0) {
+      console.error(`[Exam Start] Day ${dayNumber}: exam.questions is empty or undefined!`);
+    }
 
     if (!day.exam || !day.exam.questions || day.exam.questions.length === 0) {
       return res.status(400).json({ 
