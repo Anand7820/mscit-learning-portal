@@ -13,7 +13,8 @@
     "debug:day1": "node src/scripts/debug-day1-questions.js",
     "copy:day1-questions": "node src/scripts/copy-day1-questions.js",
     "add:day1-questions": "node src/scripts/add-day1-questions.js",
-    "remove:day1-intro": "node src/scripts/remove-day1-intro.js"
+    "remove:day1-intro": "node src/scripts/remove-day1-intro.js",
+    "check:local": "node src/scripts/check-local-db.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
