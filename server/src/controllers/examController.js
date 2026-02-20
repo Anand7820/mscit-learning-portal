@@ -21,12 +21,30 @@ const startExam = async (req, res) => {
       return res.status(403).json({ message: "Exam locked" });
     }
 
-    const attempt = await ExamAttempt.create({
+    // Check if attempt already exists
+    let attempt = await ExamAttempt.findOne({
       student: req.user._id,
-      dayNumber,
-      startedAt: new Date(),
-      durationMinutes: day.exam.durationMinutes || 60
+      dayNumber
     });
+
+    if (attempt) {
+      // If already submitted, can't retake
+      if (attempt.submittedAt) {
+        return res.status(409).json({ 
+          message: `You already completed Day ${dayNumber} exam. Score: ${attempt.score}/${attempt.total}` 
+        });
+      }
+      // If exists but not submitted, allow them to continue
+      // Update startedAt to now if it's been a while (optional)
+    } else {
+      // Create new attempt only if none exists
+      attempt = await ExamAttempt.create({
+        student: req.user._id,
+        dayNumber,
+        startedAt: new Date(),
+        durationMinutes: day.exam.durationMinutes || 60
+      });
+    }
 
     const questions = day.exam.questions.map((q) => ({
       questionEn: q.questionEn,
