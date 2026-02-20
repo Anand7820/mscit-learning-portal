@@ -10,6 +10,8 @@ const startExam = async (req, res) => {
       return res.status(404).json({ message: `Day ${dayNumber} not found in database` });
     }
 
+    console.log(`[Exam Start] Day ${dayNumber}: Found in DB, exam.questions.length = ${day.exam?.questions?.length || 0}`);
+
     if (!day.exam || !day.exam.questions || day.exam.questions.length === 0) {
       return res.status(400).json({ 
         message: `Day ${dayNumber} has no exam questions. Please add questions in admin panel.` 
@@ -56,6 +58,8 @@ const startExam = async (req, res) => {
       questionMr: q.questionMr,
       options: q.options
     }));
+
+    console.log(`[Exam Start] Day ${dayNumber}: Returning ${questions.length} questions`);
 
     return res.json({
       attemptId: attempt._id,
