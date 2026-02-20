@@ -3,35 +3,48 @@ const ExamAttempt = require("../models/ExamAttempt");
 const { getDayAvailability } = require("../utils/courseAccess");
 
 const startExam = async (req, res) => {
-  const dayNumber = Number(req.params.dayNumber);
-  const day = await CourseDay.findOne({ dayNumber });
-  if (!day) {
-    return res.status(404).json({ message: "Day not found" });
+  try {
+    const dayNumber = Number(req.params.dayNumber);
+    const day = await CourseDay.findOne({ dayNumber });
+    if (!day) {
+      return res.status(404).json({ message: `Day ${dayNumber} not found in database` });
+    }
+
+    if (!day.exam || !day.exam.questions || day.exam.questions.length === 0) {
+      return res.status(400).json({ 
+        message: `Day ${dayNumber} has no exam questions. Please add questions in admin panel.` 
+      });
+    }
+
+    const availability = getDayAvailability(req.user, dayNumber);
+    if (availability.status !== "available") {
+      return res.status(403).json({ message: "Exam locked" });
+    }
+
+    const attempt = await ExamAttempt.create({
+      student: req.user._id,
+      dayNumber,
+      startedAt: new Date(),
+      durationMinutes: day.exam.durationMinutes || 60
+    });
+
+    const questions = day.exam.questions.map((q) => ({
+      questionEn: q.questionEn,
+      questionMr: q.questionMr,
+      options: q.options
+    }));
+
+    return res.json({
+      attemptId: attempt._id,
+      durationMinutes: attempt.durationMinutes,
+      questions
+    });
+  } catch (error) {
+    console.error("Start exam error:", error);
+    return res.status(500).json({ 
+      message: error.message || "Failed to start exam" 
+    });
   }
-
-  const availability = getDayAvailability(req.user, dayNumber);
-  if (availability.status !== "available") {
-    return res.status(403).json({ message: "Exam locked" });
-  }
-
-  const attempt = await ExamAttempt.create({
-    student: req.user._id,
-    dayNumber,
-    startedAt: new Date(),
-    durationMinutes: day.exam.durationMinutes
-  });
-
-  const questions = day.exam.questions.map((q) => ({
-    questionEn: q.questionEn,
-    questionMr: q.questionMr,
-    options: q.options
-  }));
-
-  return res.json({
-    attemptId: attempt._id,
-    durationMinutes: attempt.durationMinutes,
-    questions
-  });
 };
 
 const submitExam = async (req, res) => {

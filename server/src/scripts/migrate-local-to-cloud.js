@@ -62,12 +62,21 @@ async function run() {
       for (const d of docs) {
         const key = `${d.student}-${d.dayNumber}`;
         const existing = byKey.get(key);
-        if (!existing || (d.updatedAt && (!existing.updatedAt || d.updatedAt > existing.updatedAt))) {
+        if (!existing) {
           byKey.set(key, d);
+        } else {
+          const dTime = d.updatedAt ? new Date(d.updatedAt).getTime() : 0;
+          const existingTime = existing.updatedAt ? new Date(existing.updatedAt).getTime() : 0;
+          if (dTime > existingTime || (!dTime && d.submittedAt && !existing.submittedAt)) {
+            byKey.set(key, d);
+          }
         }
       }
+      const before = docs.length;
       docs = Array.from(byKey.values());
-      console.log(`  ${name}: deduplicated to ${docs.length} (unique student+dayNumber).`);
+      if (before > docs.length) {
+        console.log(`  ${name}: deduplicated ${before} → ${docs.length} (kept latest per student+dayNumber).`);
+      }
     }
 
     await CloudModel.deleteMany({});
