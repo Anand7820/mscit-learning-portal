@@ -14,7 +14,8 @@
     "copy:day1-questions": "node src/scripts/copy-day1-questions.js",
     "add:day1-questions": "node src/scripts/add-day1-questions.js",
     "remove:day1-intro": "node src/scripts/remove-day1-intro.js",
-    "check:local": "node src/scripts/check-local-db.js"
+    "check:local": "node src/scripts/check-local-db.js",
+    "update:exam-duration": "node src/scripts/update-exam-duration.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

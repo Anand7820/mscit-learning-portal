@@ -186,7 +186,7 @@ const ensureCourseDays = async () => {
         }
       ],
       exam: {
-        durationMinutes: 60,
+        durationMinutes: 30,
         questions: [
           {
             questionEn: "What is MS-CIT?",

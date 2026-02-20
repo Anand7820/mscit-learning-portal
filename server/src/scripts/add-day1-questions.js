@@ -141,7 +141,7 @@ async function addQuestions() {
     {
       $set: {
         exam: {
-          durationMinutes: 60,
+          durationMinutes: 30,
           questions: questions
         }
       }

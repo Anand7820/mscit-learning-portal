@@ -62,7 +62,7 @@ async function copy() {
     {
       $set: {
         exam: {
-          durationMinutes: localDay1.exam.durationMinutes || 60,
+          durationMinutes: localDay1.exam.durationMinutes || 30,
           questions: localDay1.exam.questions
         }
       }

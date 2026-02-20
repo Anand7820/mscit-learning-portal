@@ -35,7 +35,7 @@ const courseDaySchema = new mongoose.Schema(
     contentMr: { type: String, default: "" },
     subsections: { type: [subsectionSchema], default: [] },
     exam: {
-      durationMinutes: { type: Number, default: 60 },
+      durationMinutes: { type: Number, default: 30 },
       questions: { type: [questionSchema], default: [] }
     }
   },

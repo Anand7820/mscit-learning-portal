@@ -49,9 +49,10 @@ const startExam = async (req, res) => {
         attempt = null; // Will create new one below
       }
       // If exists but not submitted, allow them to continue with existing attempt
-      // Reset startedAt to now for fresh timer
+      // Reset startedAt to now for fresh timer and update duration to match course day
       if (attempt && !attempt.submittedAt) {
         attempt.startedAt = new Date();
+        attempt.durationMinutes = day.exam.durationMinutes || 30; // Update to current course duration
         await attempt.save();
       }
     }
@@ -62,7 +63,7 @@ const startExam = async (req, res) => {
         student: req.user._id,
         dayNumber,
         startedAt: new Date(),
-        durationMinutes: day.exam.durationMinutes || 60
+        durationMinutes: day.exam.durationMinutes || 30
       });
     }
 
@@ -74,9 +75,12 @@ const startExam = async (req, res) => {
 
     console.log(`[Exam Start] Day ${dayNumber}: Returning ${questions.length} questions`);
 
+    // Use course day's duration (always up-to-date) instead of stored attempt duration
+    const examDuration = day.exam.durationMinutes || 30;
+
     return res.json({
       attemptId: attempt._id,
-      durationMinutes: attempt.durationMinutes,
+      durationMinutes: examDuration,
       questions
     });
   } catch (error) {

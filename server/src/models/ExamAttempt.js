@@ -9,7 +9,7 @@ const examAttemptSchema = new mongoose.Schema(
     answers: { type: [Number], default: [] },
     score: { type: Number, default: 0 },
     total: { type: Number, default: 0 },
-    durationMinutes: { type: Number, default: 60 }
+    durationMinutes: { type: Number, default: 30 }
   },
   { timestamps: true }
 );
