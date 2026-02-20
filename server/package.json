@@ -11,7 +11,9 @@
     "compare:questions": "node src/scripts/compare-day-questions.js",
     "check:local-questions": "node src/scripts/check-local-questions.js",
     "debug:day1": "node src/scripts/debug-day1-questions.js",
-    "copy:day1-questions": "node src/scripts/copy-day1-questions.js"
+    "copy:day1-questions": "node src/scripts/copy-day1-questions.js",
+    "add:day1-questions": "node src/scripts/add-day1-questions.js",
+    "remove:day1-intro": "node src/scripts/remove-day1-intro.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

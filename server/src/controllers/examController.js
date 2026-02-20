@@ -128,6 +128,50 @@ const submitExam = async (req, res) => {
   });
 };
 
+const checkAnswer = async (req, res) => {
+  try {
+    const { attemptId, questionIndex, answer } = req.body;
+    
+    if (attemptId === undefined || questionIndex === undefined || answer === undefined) {
+      return res.status(400).json({ message: "Attempt ID, question index, and answer required" });
+    }
+
+    const attempt = await ExamAttempt.findOne({
+      _id: attemptId,
+      student: req.user._id
+    });
+    if (!attempt) {
+      return res.status(404).json({ message: "Attempt not found" });
+    }
+    if (attempt.submittedAt) {
+      return res.status(409).json({ message: "Exam already submitted" });
+    }
+
+    const day = await CourseDay.findOne({ dayNumber: attempt.dayNumber });
+    if (!day) {
+      return res.status(404).json({ message: "Day not found" });
+    }
+
+    const question = day.exam.questions[questionIndex];
+    if (!question) {
+      return res.status(404).json({ message: "Question not found" });
+    }
+
+    const isCorrect = answer === question.correctIndex;
+
+    return res.json({
+      isCorrect,
+      correctAnswer: question.correctIndex,
+      questionIndex
+    });
+  } catch (error) {
+    console.error("Check answer error:", error);
+    return res.status(500).json({ 
+      message: error.message || "Failed to check answer" 
+    });
+  }
+};
+
 const examHistory = async (req, res) => {
   const attempts = await ExamAttempt.find({ student: req.user._id })
     .sort({ createdAt: -1 })
@@ -135,4 +179,4 @@ const examHistory = async (req, res) => {
   return res.json(attempts);
 };
 
-module.exports = { startExam, submitExam, examHistory };
+module.exports = { startExam, submitExam, checkAnswer, examHistory };
