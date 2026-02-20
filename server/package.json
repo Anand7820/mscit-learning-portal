@@ -8,7 +8,8 @@
     "start": "node src/index.js",
     "migrate:local-to-cloud": "node src/scripts/migrate-local-to-cloud.js",
     "check:cloud": "node src/scripts/check-cloud-db.js",
-    "compare:questions": "node src/scripts/compare-day-questions.js"
+    "compare:questions": "node src/scripts/compare-day-questions.js",
+    "check:local-questions": "node src/scripts/check-local-questions.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

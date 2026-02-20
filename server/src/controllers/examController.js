@@ -28,16 +28,21 @@ const startExam = async (req, res) => {
     });
 
     if (attempt) {
-      // If already submitted, can't retake
+      // If already submitted, delete it and create a fresh attempt (allow retakes)
       if (attempt.submittedAt) {
-        return res.status(409).json({ 
-          message: `You already completed Day ${dayNumber} exam. Score: ${attempt.score}/${attempt.total}` 
-        });
+        await ExamAttempt.deleteOne({ _id: attempt._id });
+        attempt = null; // Will create new one below
       }
-      // If exists but not submitted, allow them to continue
-      // Update startedAt to now if it's been a while (optional)
-    } else {
-      // Create new attempt only if none exists
+      // If exists but not submitted, allow them to continue with existing attempt
+      // Reset startedAt to now for fresh timer
+      if (attempt && !attempt.submittedAt) {
+        attempt.startedAt = new Date();
+        await attempt.save();
+      }
+    }
+
+    // Create new attempt if none exists (or if we deleted the submitted one)
+    if (!attempt) {
       attempt = await ExamAttempt.create({
         student: req.user._id,
         dayNumber,
