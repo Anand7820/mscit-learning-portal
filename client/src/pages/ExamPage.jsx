@@ -20,9 +20,16 @@ const ExamPage = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
+    // Add timestamp to prevent caching
     api
-      .post(`/exams/${dayNumber}/start`)
+      .post(`/exams/${dayNumber}/start`, {}, {
+        headers: {
+          'Cache-Control': 'no-cache',
+          'Pragma': 'no-cache'
+        }
+      })
       .then((res) => {
+        console.log(`[ExamPage] Received ${res.data.questions?.length || 0} questions for Day ${dayNumber}`);
         setAttemptId(res.data.attemptId);
         setQuestions(res.data.questions);
         setAnswers(Array(res.data.questions.length).fill(-1));

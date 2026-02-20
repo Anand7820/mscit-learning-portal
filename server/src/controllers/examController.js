@@ -5,7 +5,8 @@ const { getDayAvailability } = require("../utils/courseAccess");
 const startExam = async (req, res) => {
   try {
     const dayNumber = Number(req.params.dayNumber);
-    const day = await CourseDay.findOne({ dayNumber });
+    // Force fresh read from database (no cache)
+    const day = await CourseDay.findOne({ dayNumber }).lean();
     if (!day) {
       return res.status(404).json({ message: `Day ${dayNumber} not found in database` });
     }
