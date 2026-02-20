@@ -19,7 +19,7 @@ const Sidebar = () => {
   }, []);
 
   return (
-    <aside className="h-full w-64 overflow-y-auto border-r bg-white p-4">
+    <aside className="min-h-0 w-64 flex-shrink-0 overflow-y-auto border-r bg-white p-4">
       <h2 className="mb-4 text-lg font-semibold">Days 1-50</h2>
       <div className="grid grid-cols-1 gap-2">
         {days.map((day) => {

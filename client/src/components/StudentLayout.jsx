@@ -4,11 +4,11 @@ import Sidebar from "./Sidebar";
 
 const StudentLayout = ({ children }) => {
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="flex h-screen flex-col bg-gray-100">
       <Navbar />
-      <div className="flex">
+      <div className="flex min-h-0 flex-1">
         <Sidebar />
-        <main className="flex-1 p-6">{children}</main>
+        <main className="min-h-0 flex-1 overflow-auto p-6">{children}</main>
       </div>
     </div>
   );
