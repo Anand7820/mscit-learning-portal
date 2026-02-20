@@ -57,6 +57,17 @@ async function run() {
     let docs = await LocalModel.find().lean();
     console.log(`  ${name}: ${docs.length} document(s) from local.`);
 
+    // Log exam question counts for CourseDay
+    if (modelName === "CourseDay" && docs.length > 0) {
+      const questionCounts = docs
+        .map(d => ({ day: d.dayNumber, qCount: d.exam?.questions?.length || 0 }))
+        .filter(d => d.qCount > 0)
+        .slice(0, 5); // Show first 5 days with questions
+      if (questionCounts.length > 0) {
+        console.log(`  Sample question counts: ${questionCounts.map(d => `Day ${d.day}: ${d.qCount}`).join(", ")}`);
+      }
+    }
+
     if (modelName === "ExamAttempt" && docs.length > 0) {
       const byKey = new Map();
       for (const d of docs) {
