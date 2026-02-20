@@ -1,5 +1,7 @@
 const CourseDay = require("../models/CourseDay");
 const ExamAttempt = require("../models/ExamAttempt");
+const User = require("../models/User");
+const bcrypt = require("bcryptjs");
 const { getDayAvailability } = require("../utils/courseAccess");
 
 const startExam = async (req, res) => {
@@ -86,9 +88,24 @@ const startExam = async (req, res) => {
 };
 
 const submitExam = async (req, res) => {
-  const { attemptId, answers } = req.body;
+  const { attemptId, answers, password } = req.body;
   if (!attemptId || !Array.isArray(answers)) {
     return res.status(400).json({ message: "Attempt ID and answers required" });
+  }
+  
+  // Verify password
+  if (!password) {
+    return res.status(400).json({ message: "Password required to submit exam" });
+  }
+  
+  const user = await User.findById(req.user._id);
+  if (!user) {
+    return res.status(404).json({ message: "User not found" });
+  }
+  
+  const isPasswordValid = await bcrypt.compare(password, user.passwordHash);
+  if (!isPasswordValid) {
+    return res.status(401).json({ message: "Incorrect password" });
   }
 
   const attempt = await ExamAttempt.findOne({
