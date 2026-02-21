@@ -33,9 +33,9 @@ const isHeadingLine = (line) => {
 };
 
 const renderContent = (content, { isSectionTwo = false } = {}) => {
-  const bodyTextClass = isSectionTwo ? "text-[13px]" : "text-[11px]";
-  const headingTextClass = isSectionTwo ? "text-[19px] font-bold" : "text-[17px] font-semibold";
-  const subheadingTextClass = isSectionTwo ? "text-[15px] font-bold" : "text-[13px] font-semibold";
+  const bodyTextClass = isSectionTwo ? "text-base" : "text-sm";       // ~16px / ~14px
+  const headingTextClass = isSectionTwo ? "text-xl font-bold" : "text-lg font-semibold";   // ~20px / ~18px
+  const subheadingTextClass = isSectionTwo ? "text-lg font-bold" : "text-base font-semibold";  // ~18px / ~16px
   return content.split("\n").map((line, index) => {
     const trimmed = line.trim();
     if (!trimmed) {
