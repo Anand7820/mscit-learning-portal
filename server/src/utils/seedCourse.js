@@ -1091,8 +1091,268 @@ const ensureCourseDays = async () => {
       { $set: { "subsections.0.videoUrl": "https://youtu.be/LlULwNT_Frg?si=9xH1_qAVH6N-xHi-" } }
     );
     await CourseDay.updateOne(
+      { dayNumber: 10 },
+      {
+        $set: {
+          "subsections.1.contentEn":
+            "Computer Class Day #10: Complete Guide to the Recycle Bin\n\nThe Recycle Bin is a crucial part of the Windows operating system that acts as a safety net for deleted items. It allows you to recover files you might have deleted by mistake.\n\n1. What is the Recycle Bin?\n\nDefinition: A folder or location that temporarily stores deleted files and folders.\n\nFunction: When you delete a file normally, it isn't erased from the hard drive immediately; it is moved to the Recycle Bin.\n\nIcon: It looks like a trash can on your Desktop.\n\n2. Managing the Recycle Bin Icon\n\nIf the Recycle Bin icon is missing from your desktop, you can bring it back:\n\nGo to Settings -> Personalization.\n\nSelect Themes from the left sidebar.\n\nOn the right, click Desktop icon settings.\n\nCheck the box for Recycle Bin and click Apply/OK.\n\n3. Restoring (Recovering) Files\n\nIf you delete something and realize you need it back:\n\nImmediate Undo: Press Ctrl + Z immediately after deleting a file to bring it back without opening the bin.\n\nManual Restore:\n\nDouble-click the Recycle Bin icon.\n\nFind the file you want.\n\nRight-click the file and select Restore. (The file will return to its original location).\n\nRestore Multiple Files: Hold Ctrl while clicking files to select several at once, or press Ctrl + A to select all, then right-click -> Restore.\n\n4. Deleting Files Permanently\n\nOnce a file is deleted from the Recycle Bin, it cannot be easily recovered.\n\nEmptying the Bin: Right-click the Recycle Bin icon on the desktop and select Empty Recycle Bin.\n\nBypassing the Bin (Shift + Delete): To delete a file permanently without it ever going to the Recycle Bin, select the file and press Shift + Delete.\n\nAutomatic Deletion Settings:\n\nRight-click Recycle Bin -> Properties.\n\nSelect \"Don't move files to the Recycle Bin. Remove files immediately when deleted.\" (Note: This is risky and usually not recommended).\n\n5. Adjusting Storage Capacity\n\nWindows allocates a specific amount of space for the Recycle Bin (e.g., 2GB or 10GB). When it gets full, Windows automatically deletes the oldest files to make room for new ones.\n\nHow to increase space:\n\nRight-click Recycle Bin -> Properties.\n\nUnder Custom size, enter the desired amount in MB (e.g., 10240 MB for 10GB).\n\nClick Apply and OK.\n\nSummary: The Recycle Bin is your primary tool for preventing data loss from accidental deletions. Knowing how to restore files and manage its storage capacity ensures your important data stays safe.",
+          "subsections.1.contentMr":
+            "Computer Class Day #10: Complete Guide to the Recycle Bin\n\nRecycle Bin हटवलेल्या फाइल्ससाठी सुरक्षा जाळी म्हणून काम करते; चुकून हटवलेल्या फाइल्स परत आणता येतात.\n\n१. Recycle Bin काय आहे: हटवलेल्या फाइल आणि फोल्डर तात्पुरते ठेवणारी फोल्डर/स्थान. सामान्य Delete केल्यावर फाइल ताबडतोब हटत नाही, Recycle Bin मध्ये जाते. आयकॉन: डेस्कटॉपवर कचरापेटी सारखा.\n\n२. आयकॉन दिसत नसल्यास: Settings -> Personalization -> Themes -> Desktop icon settings -> Recycle Bin चेक करा -> Apply/OK.\n\n३. फाइल्स परत आणणे: ताबडतोब Ctrl+Z (Undo). किंवा Recycle Bin वर डबल-क्लिक -> फाइल शोधा -> Right-click -> Restore. अनेक फाइल्स: Ctrl धरून क्लिक किंवा Ctrl+A नंतर Right-click -> Restore.\n\n४. कायम डिलीट: Recycle Bin आयकॉनवर Right-click -> Empty Recycle Bin. बिना बिनशिवाय कायम डिलीट: फाइल निवडून Shift+Delete. Properties मधून \"Remove files immediately when deleted\" (धोकादायक, सामान्यतः ठेवू नये).\n\n५. स्टोरेज: Recycle Bin -> Properties -> Custom size (MB मध्ये, उदा. 10240 MB = 10GB) -> Apply/OK. बिन भरल्यावर जुन्या फाइल्स स्वयंचलित हटतात.\n\nसारांश: चुकीच्या डिलीटपासून डेटा सुरक्षित ठेवण्यासाठी Restore आणि स्टोरेज व्यवस्थापन ओळखा."
+        }
+      }
+    );
+    await CourseDay.updateOne(
+      { dayNumber: 10 },
+      {
+        $set: {
+          "exam.questions": [
+            {
+              questionEn: "What is the primary function of the Recycle Bin in the Windows operating system?",
+              questionMr: "Windows मध्ये Recycle Bin चे मुख्य कार्य काय आहे?",
+              options: [
+                { textEn: "To permanently erase files from the hard drive immediately.", textMr: "हार्ड ड्राइव्हवरून फाइल्स ताबडतोब कायम पुसणे." },
+                { textEn: "To organize files automatically based on file type.", textMr: "फाइल प्रकारानुसार फाइल्स स्वयंचलित व्यवस्थित करणे." },
+                { textEn: "To compress files to save storage space.", textMr: "स्टोरेज वाचण्यासाठी फाइल्स कॉम्प्रेस करणे." },
+                { textEn: "To temporarily store deleted files and folders as a safety net.", textMr: "सुरक्षा जाळी म्हणून हटवलेल्या फाइल्स आणि फोल्डर तात्पुरते ठेवणे." }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "If the Recycle Bin icon is missing from your desktop, which Settings path should you follow to restore it?",
+              questionMr: "डेस्कटॉपवरून Recycle Bin आयकॉन गायब असल्यास तो परत आणण्यासाठी कोणता Settings मार्ग अनुसरण करावा?",
+              options: [
+                { textEn: "Settings -> System -> Storage", textMr: "Settings -> System -> Storage" },
+                { textEn: "Settings -> Personalization -> Themes -> Desktop icon settings", textMr: "Settings -> Personalization -> Themes -> Desktop icon settings" },
+                { textEn: "Settings -> Apps -> Default Apps", textMr: "Settings -> Apps -> Default Apps" },
+                { textEn: "Settings -> Update & Security -> Recovery", textMr: "Settings -> Update & Security -> Recovery" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "Which keyboard shortcut allows you to immediately undo a file deletion without opening the Recycle Bin?",
+              questionMr: "Recycle Bin उघडल्याशिवाय फाइल डिलीट ताबडतोब undo करण्याचा कीबोर्ड शॉर्टकट कोणता?",
+              options: [
+                { textEn: "Shift + Delete", textMr: "Shift + Delete" },
+                { textEn: "Ctrl + C", textMr: "Ctrl + C" },
+                { textEn: "Ctrl + Z", textMr: "Ctrl + Z" },
+                { textEn: "Alt + F4", textMr: "Alt + F4" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "How can you restore a specific file to its original location from the Recycle Bin?",
+              questionMr: "Recycle Bin मधून विशिष्ट फाइल मूळ स्थानावर कशी परत आणावी?",
+              options: [
+                { textEn: "Right-click the file and select 'Restore'.", textMr: "फाइलवर right-click करून 'Restore' निवडा." },
+                { textEn: "Double-click the file.", textMr: "फाइलवर डबल-क्लिक करा." },
+                { textEn: "Drag the file to the Taskbar.", textMr: "फाइल टास्कबारवर ड्रॅग करा." },
+                { textEn: "Select the file and press Delete.", textMr: "फाइल निवडून Delete दाबा." }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "What happens when you select a file and press 'Shift + Delete'?",
+              questionMr: "फाइल निवडून 'Shift + Delete' दाबल्यावर काय होते?",
+              options: [
+                { textEn: "The file is permanently deleted, bypassing the Recycle Bin.", textMr: "फाइल कायम डिलीट होते, Recycle Bin वगळता." },
+                { textEn: "The file is moved to the Recycle Bin.", textMr: "फाइल Recycle Bin मध्ये जाते." },
+                { textEn: "The file is copied to the clipboard.", textMr: "फाइल क्लिपबोर्डवर कॉपी होते." },
+                { textEn: "The file is renamed.", textMr: "फाइलचे नाव बदलते." }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "When the Recycle Bin reaches its allocated storage capacity, how does Windows handle new deleted files?",
+              questionMr: "Recycle Bin वाटप केलेली क्षमता भरल्यावर Windows नवीन हटवलेल्या फाइल्सचे काय करते?",
+              options: [
+                { textEn: "It asks you to buy more cloud storage.", textMr: "अधिक क्लाउड स्टोरेज खरेदी करण्यास सांगते." },
+                { textEn: "It archives the files into a zip folder.", textMr: "फाइल्स zip फोल्डरमध्ये आर्काइव्ह करते." },
+                { textEn: "It stops you from deleting any more files.", textMr: "आणखी फाइल्स डिलीट करण्यापासून थांबवते." },
+                { textEn: "It automatically deletes the oldest files to make room.", textMr: "जागा करण्यासाठी जुन्या फाइल्स स्वयंचलित डिलीट करते." }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "Which unit of measurement is used when setting a custom size for the Recycle Bin storage capacity?",
+              questionMr: "Recycle Bin स्टोरेज क्षमतेसाठी custom size सेट करताना कोणते माप वापरतात?",
+              options: [
+                { textEn: "Megabytes (MB)", textMr: "Megabytes (MB)" },
+                { textEn: "Gigabytes (GB)", textMr: "Gigabytes (GB)" },
+                { textEn: "Terabytes (TB)", textMr: "Terabytes (TB)" },
+                { textEn: "Kilobytes (KB)", textMr: "Kilobytes (KB)" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "What is the risk of enabling the setting 'Don't move files to the Recycle Bin'?",
+              questionMr: "'Don't move files to the Recycle Bin' सेटिंग चालू केल्याचा धोका काय आहे?",
+              options: [
+                { textEn: "Files will take up more space on the hard drive.", textMr: "फाइल्स हार्ड ड्राइव्हवर जास्त जागा घेतील." },
+                { textEn: "The Recycle Bin icon will disappear.", textMr: "Recycle Bin आयकॉन अदृश्य होईल." },
+                { textEn: "Files are removed immediately when deleted, making recovery difficult.", textMr: "डिलीट केल्यावर फाइल्स ताबडतोब काढल्या जातात, परत आणणे कठीण होते." },
+                { textEn: "You will need to enter a password for every deletion.", textMr: "प्रत्येक डिलीटसाठी पासवर्ड टाइप करावा लागेल." }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "Which key should you hold down to select multiple specific files in the Recycle Bin to restore them all at once?",
+              questionMr: "Recycle Bin मधील अनेक विशिष्ट फाइल्स एकाच वेळी परत आणण्यासाठी निवडताना कोणती कळ दाबून ठेवावी?",
+              options: [
+                { textEn: "Alt", textMr: "Alt" },
+                { textEn: "Shift", textMr: "Shift" },
+                { textEn: "Ctrl", textMr: "Ctrl" },
+                { textEn: "Tab", textMr: "Tab" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "What is the visual appearance of the Recycle Bin icon on the desktop?",
+              questionMr: "डेस्कटॉपवरील Recycle Bin आयकॉन कसा दिसतो?",
+              options: [
+                { textEn: "A magnifying glass.", textMr: "भिंग (magnifying glass)." },
+                { textEn: "A blue 'e' symbol.", textMr: "निळा 'e' चिन्ह." },
+                { textEn: "A folder with a zipper.", textMr: "झिपर असलेले फोल्डर." },
+                { textEn: "A trash can.", textMr: "कचरापेटी (trash can)." }
+              ],
+              correctIndex: 3
+            }
+          ]
+        }
+      }
+    );
+    await CourseDay.updateOne(
       { dayNumber: 11 },
       { $set: { "subsections.0.videoUrl": "https://youtu.be/Aq2zEvTJhR4?si=DrSxWZir-f3N4pg_" } }
+    );
+    await CourseDay.updateOne(
+      { dayNumber: 11 },
+      {
+        $set: {
+          "subsections.1.contentEn":
+            "Computer Class Day #11: Mastering Notepad\n\nNotepad is a basic text editor included with all versions of Microsoft Windows. It is primarily used for creating and editing \"plain text\" files.\n\n1. Introduction to Notepad\n\nWhat it is: A simple program for plain text files.\n\nLimitations: It does not support inserting pictures, creating tables, or advanced formatting (like bolding only specific words).\n\nStrength: It is lightweight and perfect for quick notes, lists, or writing simple code.\n\nHow to Open Notepad\n\nMethod 1: Press Windows + R, type notepad, and press Enter.\n\nMethod 2: Type \"Notepad\" in the Windows search bar and click open.\n\n2. Basic File Operations\n\nSave: File -> Save. Choose your folder and file name.\n\nNew File: File -> New to start a fresh document.\n\nOpen: File -> Open to load a previously saved .txt file.\n\n3. Key Text Editing Commands\n\nThese can be found under the Edit menu or used via keyboard shortcuts:\n\nUndo (Ctrl + Z): Reverses your last action (e.g., if you accidentally delete text).\n\nCut (Ctrl + X): Removes selected text and saves it to the clipboard.\n\nCopy (Ctrl + C): Duplicates selected text to the clipboard.\n\nPaste (Ctrl + V): Places text from the clipboard at the cursor's location.\n\nDelete: Select text and press the Delete or Backspace key.\n\nSelect All (Ctrl + A): Selects every character in the document.\n\n4. Useful Features\n\nWord Wrap: Go to Format -> Word Wrap.\n\nOff: Text stays on one long line until you press Enter.\n\nOn: Text automatically moves to the next line when it reaches the edge of the window.\n\nFind (Ctrl + F): Search for a specific word in your document.\n\nReplace (Ctrl + H): Search for a word and replace it with another (e.g., replacing every instance of \"School\" with \"College\").\n\nTime/Date (F5): Automatically inserts the current system time and date into your notes.\n\n5. Basic Formatting & View\n\nFont Settings: Format -> Font. Here you can change the font style (e.g., Arial), font weight (Bold/Italic), and font size for the entire document.\n\nZoom: Zoom In: Ctrl + + | Zoom Out: Ctrl + - | Reset Zoom: Ctrl + 0\n\n6. Printing a Document\n\nPage Setup: File -> Page Setup. Choose paper size (e.g., A4), orientation (Portrait or Landscape), and adjust margins.\n\nPrint: File -> Print. Select your printer, the number of copies, and click Print.\n\nSummary: Notepad is an essential tool for every computer user. While simple, its features like 'Replace' and 'Word Wrap' make it highly efficient for managing plain text documents.",
+          "subsections.1.contentMr":
+            "Computer Class Day #11: Mastering Notepad\n\nNotepad Windows मध्ये असलेला साधा plain text एडिटर; चित्रे, टेबल किंवा वैयक्तिक शब्द फॉर्मॅटिंग सपोर्ट करत नाही, पण हलका आणि नोट्स/लिस्ट/साधा कोड लिहिण्यासाठी योग्य.\n\n१. उघडणे: Windows + R -> notepad -> Enter; किंवा Search बारमध्ये \"Notepad\" टाइप करा.\n\n२. फाइल ऑपरेशन्स: File -> Save / New / Open (.txt).\n\n३. एडिट कमांड्स: Undo (Ctrl+Z), Cut (Ctrl+X), Copy (Ctrl+C), Paste (Ctrl+V), Delete/Backspace, Select All (Ctrl+A).\n\n४. उपयुक्त सुविधा: Format -> Word Wrap (On/Off). Find (Ctrl+F), Replace (Ctrl+H), Time/Date (F5).\n\n५. फॉर्मॅट आणि View: Format -> Font (स्टाइल, Bold/Italic, साइझ). Zoom: Ctrl++ / Ctrl+- / Ctrl+0.\n\n६. प्रिंट: File -> Page Setup (पेपर साइझ, orientation, margins); File -> Print.\n\nसारांश: Replace आणि Word Wrap सारख्या सुविधांमुळे Notepad plain text दस्तऐवज व्यवस्थापनासाठी कार्यक्षम आहे."
+        }
+      }
+    );
+    await CourseDay.updateOne(
+      { dayNumber: 11 },
+      {
+        $set: {
+          "exam.questions": [
+            {
+              questionEn: "What is the primary file type associated with Notepad?",
+              questionMr: "Notepad शी संबंधित मुख्य फाइल प्रकार कोणता?",
+              options: [
+                { textEn: ".xlsx (Excel Spreadsheet)", textMr: ".xlsx (Excel Spreadsheet)" },
+                { textEn: ".pdf (Portable Document Format)", textMr: ".pdf (Portable Document Format)" },
+                { textEn: ".docx (Word Document)", textMr: ".docx (Word Document)" },
+                { textEn: ".txt (Plain Text)", textMr: ".txt (Plain Text)" }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "Which feature must be enabled to ensure text automatically moves to the next line when it reaches the edge of the window?",
+              questionMr: "मजकूर विंडोच्या काठावर पोहोचल्यावर आपोआप पुढच्या ओळीवर यावा यासाठी कोणती सुविधा चालू करावी?",
+              options: [
+                { textEn: "Font Style", textMr: "Font Style" },
+                { textEn: "Page Setup", textMr: "Page Setup" },
+                { textEn: "Word Wrap", textMr: "Word Wrap" },
+                { textEn: "Status Bar", textMr: "Status Bar" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "Which keyboard shortcut is used to open the 'Replace' tool in Notepad?",
+              questionMr: "Notepad मध्ये 'Replace' साधन उघडण्यासाठी कोणता कीबोर्ड शॉर्टकट वापरतात?",
+              options: [
+                { textEn: "Ctrl + H", textMr: "Ctrl + H" },
+                { textEn: "Ctrl + S", textMr: "Ctrl + S" },
+                { textEn: "Ctrl + R", textMr: "Ctrl + R" },
+                { textEn: "Ctrl + F", textMr: "Ctrl + F" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "What is a major limitation of formatting text in Notepad?",
+              questionMr: "Notepad मध्ये मजकूर फॉर्मॅट करण्याची एक मोठी मर्यादा काय आहे?",
+              options: [
+                { textEn: "Text is always red.", textMr: "मजकूर नेहमी लाल असतो." },
+                { textEn: "You can only use the Arial font.", textMr: "फक्त Arial फॉन्ट वापरता येतो." },
+                { textEn: "Formatting changes apply to the entire document, not specific words.", textMr: "फॉर्मॅटिंग संपूर्ण दस्तऐवजावर लागू होते, विशिष्ट शब्दांवर नाही." },
+                { textEn: "You cannot change the font size at all.", textMr: "फॉन्ट साइझ अजिबात बदलता येत नाही." }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "Which function key allows you to instantly insert the current system time and date?",
+              questionMr: "सध्याची सिस्टम वेळ आणि तारीख झटपट घालण्यासाठी कोणती function key वापरतात?",
+              options: [
+                { textEn: "F11", textMr: "F11" },
+                { textEn: "F1", textMr: "F1" },
+                { textEn: "F5", textMr: "F5" },
+                { textEn: "F3", textMr: "F3" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "If you want to change the paper orientation from Portrait to Landscape before printing, where should you go?",
+              questionMr: "प्रिंट करण्यापूर्वी पेपर orientation Portrait ते Landscape बदलायची असल्यास कुठे जावे?",
+              options: [
+                { textEn: "View -> Zoom", textMr: "View -> Zoom" },
+                { textEn: "Edit -> Replace", textMr: "Edit -> Replace" },
+                { textEn: "Format -> Font", textMr: "Format -> Font" },
+                { textEn: "File -> Page Setup", textMr: "File -> Page Setup" }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "Which shortcut combination resets the Zoom level back to the default (100%)?",
+              questionMr: "Zoom लेव्हल पुन्हा डिफॉल्ट (100%) वर आणण्यासाठी कोणता शॉर्टकट वापरतात?",
+              options: [
+                { textEn: "Ctrl + A", textMr: "Ctrl + A" },
+                { textEn: "Ctrl + Z", textMr: "Ctrl + Z" },
+                { textEn: "Ctrl + 0", textMr: "Ctrl + 0" },
+                { textEn: "Ctrl + Minus", textMr: "Ctrl + Minus" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "Which of the following items can you NOT insert into a Notepad document?",
+              questionMr: "Notepad दस्तऐवजात खालीलपैकी काय घालता येत नाही?",
+              options: [
+                { textEn: "Time and Date", textMr: "Time and Date" },
+                { textEn: "Special Symbols (e.g., @, #, $)", textMr: "Special Symbols (उदा. @, #, $)" },
+                { textEn: "Letters and Numbers", textMr: "Letters and Numbers" },
+                { textEn: "Images and Tables", textMr: "Images and Tables" }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "What does the 'Undo' command (Ctrl + Z) do?",
+              questionMr: "'Undo' कमांड (Ctrl + Z) काय करते?",
+              options: [
+                { textEn: "It copies the text.", textMr: "तो मजकूर कॉपी करतो." },
+                { textEn: "It deletes the file permanently.", textMr: "तो फाइल कायम डिलीट करतो." },
+                { textEn: "It reverses your last action.", textMr: "तो तुमची शेवटची क्रिया उलटवतो." },
+                { textEn: "It saves the file.", textMr: "तो फाइल सेव्ह करतो." }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "To start a completely fresh document in Notepad, which menu option should you choose?",
+              questionMr: "Notepad मध्ये पूर्णतः नवीन दस्तऐवज सुरू करण्यासाठी कोणता मेनू पर्याय निवडावा?",
+              options: [
+                { textEn: "File -> Open", textMr: "File -> Open" },
+                { textEn: "View -> Status Bar", textMr: "View -> Status Bar" },
+                { textEn: "Edit -> Select All", textMr: "Edit -> Select All" },
+                { textEn: "File -> New", textMr: "File -> New" }
+              ],
+              correctIndex: 3
+            }
+          ]
+        }
+      }
     );
     await CourseDay.updateOne(
       { dayNumber: 12 },
