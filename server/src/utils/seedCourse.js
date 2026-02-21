@@ -1359,8 +1359,268 @@ const ensureCourseDays = async () => {
       { $set: { "subsections.0.videoUrl": "https://youtu.be/G94zWtAr9Gc?si=qY75EkhzDuOMIomS" } }
     );
     await CourseDay.updateOne(
+      { dayNumber: 12 },
+      {
+        $set: {
+          "subsections.1.contentEn":
+            "Computer Class Day #12: Microsoft Word (Part 1)\n\nThis lesson introduces Microsoft Word, specifically focusing on the 2007 version as it remains widely used in offices and learning centers. It covers the interface, basic operations, and customization options.\n\n1. Getting Started with MS Word\n\nHow to Open MS Word\n\nMethod 1 (Run Command): Press Windows + R, type winword, and press Enter.\n\nMethod 2 (Search): Type \"Microsoft Word\" in the Windows search bar and click to open.\n\nGenerating Practice Text\n\nTo practice formatting without typing a lot of content, use the built-in random text generator:\n\nType =rand() and press Enter.\n\nThis will automatically generate several paragraphs of placeholder text.\n\n2. The Office Button (Top Left Corner)\n\nThe Office Button contains the most essential file management tools:\n\nNew: Create a blank document or use a template.\n\nOpen: Access previously saved documents.\n\nSave: Update changes to the current file (Ctrl + S).\n\nSave As: Save a copy of the document with a different name or in a different format (e.g., plain text or a different Word version).\n\nPrint: Quick Print: Sends the document directly to the default printer. Print Settings: Choose specific pages (e.g., 1, 3 for page 1 and 3) and the number of copies. Print Preview: See exactly how the document will look on paper before printing.\n\nClose: Closes the current document window.\n\n3. Interface Components\n\nQuick Access Toolbar: Located at the very top. You can customize this by adding commands you use frequently (like 'New' or 'Print Preview') to save time.\n\nTitle Bar: Displays the name of the document you are currently working on.\n\nThe Ribbon: The main menu area containing:\n\nTabs: Home, Insert, Page Layout, etc.\n\nGroups: Each Tab is divided into Groups (e.g., the Home tab has the 'Font' and 'Paragraph' groups).\n\nStatus Bar (Bottom): Displays important information:\n\nPage Count: Which page you are on out of the total.\n\nWord Count: The total number of words typed.\n\nView Modes: Print Layout (standard), Full Screen Reading, Web Layout, etc.\n\nZoom Slider: Easily zoom in (+) or out (-) of the document.\n\n4. Key Differences to Remember\n\nSave vs. Save As: 'Save' updates the file you are currently in. 'Save As' allows you to create a brand new file from your current work without overwriting the original.\n\nPrint Current Page vs. All Pages: Use 'Current Page' when you only need to print the specific page where your cursor is currently resting.\n\nNext Class: Part 2 will cover the Home Tab in detail, focusing on font styling, paragraph alignment, and text formatting.",
+          "subsections.1.contentMr":
+            "Computer Class Day #12: Microsoft Word (Part 1)\n\nMS Word 2007 ची ओळख – इंटरफेस, मूलभूत ऑपरेशन्स आणि कस्टमायझेशन.\n\n१. सुरुवात: उघडणे – Windows + R -> winword -> Enter; किंवा Search मध्ये \"Microsoft Word\". सराव मजकूर: =rand() टाइप करून Enter – placeholder पैराग्राफ्स येतात.\n\n२. Office Button (वर डावीकडे): New, Open, Save (Ctrl+S), Save As, Print (Quick Print / Print Settings / Print Preview), Close.\n\n३. इंटरफेस: Quick Access Toolbar (वरच्या बाजूस, कस्टमायझ करता येते), Title Bar (दस्तऐवजाचे नाव), Ribbon (Tabs: Home, Insert, Page Layout; प्रत्येक टॅबमध्ये Groups उदा. Font, Paragraph). Status Bar (खाली): Page Count, Word Count, View Modes (Print Layout, Full Screen Reading, Web Layout), Zoom Slider.\n\n४. महत्त्वाचे फरक: Save – सध्याची फाइल अपडेट; Save As – नवीन नाव/फॉर्मॅटमध्ये कॉपी. Print – Current Page किंवा All Pages.\n\nपुढील वर्ग: Part 2 मध्ये Home Tab – फॉन्ट स्टाइलिंग, पैराग्राफ अलाइनमेंट आणि टेक्स्ट फॉर्मॅटिंग."
+        }
+      }
+    );
+    await CourseDay.updateOne(
+      { dayNumber: 12 },
+      {
+        $set: {
+          "exam.questions": [
+            {
+              questionEn: "Which Run command should you type to launch Microsoft Word directly?",
+              questionMr: "Microsoft Word थेट लॉन्च करण्यासाठी Run मध्ये कोणती कमांड टाइप करावी?",
+              options: [
+                { textEn: "winword", textMr: "winword" },
+                { textEn: "word.exe", textMr: "word.exe" },
+                { textEn: "write", textMr: "write" },
+                { textEn: "msword", textMr: "msword" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "If you want to quickly generate placeholder text to practice formatting, what command should you type and press Enter?",
+              questionMr: "फॉर्मॅटिंग सराव करण्यासाठी placeholder मजकूर झटपट तयार करण्यासाठी कोणती कमांड टाइप करून Enter द्यावा?",
+              options: [
+                { textEn: "=rand()", textMr: "=rand()" },
+                { textEn: "=lorem()", textMr: "=lorem()" },
+                { textEn: "=sample()", textMr: "=sample()" },
+                { textEn: "=text()", textMr: "=text()" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "What is the primary difference between 'Save' and 'Save As'?",
+              questionMr: "'Save' आणि 'Save As' मधील मुख्य फरक काय आहे?",
+              options: [
+                { textEn: "'Save' deletes the old file, while 'Save As' keeps it.", textMr: "'Save' जुनी फाइल डिलीट करते, 'Save As' ठेवते." },
+                { textEn: "'Save' updates the current file, while 'Save As' creates a new copy with a different name or format.", textMr: "'Save' सध्याची फाइल अपडेट करते, 'Save As' वेगळ्या नावाने/फॉर्मॅटमध्ये नवी कॉपी तयार करते." },
+                { textEn: "'Save As' is faster than 'Save'.", textMr: "'Save As' 'Save' पेक्षा वेगवान आहे." },
+                { textEn: "'Save' is for text files only, while 'Save As' is for images.", textMr: "'Save' फक्त टेक्स्ट फाइल्ससाठी, 'Save As' चित्रांसाठी." }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "Which bar located at the bottom of the Word window displays the page count and zoom slider?",
+              questionMr: "Word विंडोच्या खालच्या बाजूस कोणता बार पेज काउंट आणि zoom स्लायडर दाखवतो?",
+              options: [
+                { textEn: "Menu Bar", textMr: "Menu Bar" },
+                { textEn: "Title Bar", textMr: "Title Bar" },
+                { textEn: "Status Bar", textMr: "Status Bar" },
+                { textEn: "Scroll Bar", textMr: "Scroll Bar" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "Where would you look to find the 'Quick Access Toolbar'?",
+              questionMr: "'Quick Access Toolbar' कुठे सापडते?",
+              options: [
+                { textEn: "At the very top of the window, near the Office Button.", textMr: "विंडोच्या अगदी वरच्या बाजूस, Office Button जवळ." },
+                { textEn: "In the center of the document.", textMr: "दस्तऐवजाच्या मध्यभागी." },
+                { textEn: "Inside the Format menu.", textMr: "Format मेनूच्या आत." },
+                { textEn: "At the very bottom right of the screen.", textMr: "स्क्रीनच्या खालच्या उजव्या कोपऱ्यात." }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "Which print option should you choose if you only want to print the specific page where your cursor is currently placed?",
+              questionMr: "फक्त ज्या पृष्ठावर cursor आहे तेच पृष्ठ प्रिंट करायचे असल्यास कोणता print पर्याय निवडावा?",
+              options: [
+                { textEn: "Print Selection", textMr: "Print Selection" },
+                { textEn: "Print All Pages", textMr: "Print All Pages" },
+                { textEn: "Quick Print", textMr: "Quick Print" },
+                { textEn: "Print Current Page", textMr: "Print Current Page" }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "What is the function of 'Print Preview'?",
+              questionMr: "'Print Preview' चे कार्य काय आहे?",
+              options: [
+                { textEn: "To change the font style automatically.", textMr: "फॉन्ट स्टाइल स्वयंचलित बदलणे." },
+                { textEn: "To see exactly how the document will look on paper before printing.", textMr: "प्रिंट करण्यापूर्वी दस्तऐवज कागदावर कसा दिसेल ते बघणे." },
+                { textEn: "To send the document to the printer immediately.", textMr: "दस्तऐवज ताबडतोब प्रिंटरवर पाठवणे." },
+                { textEn: "To save the document as a PDF.", textMr: "दस्तऐवज PDF म्हणून सेव्ह करणे." }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "The main menu area in MS Word (2007 and later) that contains Tabs and Groups is called the:",
+              questionMr: "MS Word (2007 आणि नंतर) मधील Tabs आणि Groups असलेल्या मुख्य मेनू क्षेत्राला काय म्हणतात?",
+              options: [
+                { textEn: "The Ruler", textMr: "The Ruler" },
+                { textEn: "The Taskbar", textMr: "The Taskbar" },
+                { textEn: "The Grid", textMr: "The Grid" },
+                { textEn: "The Ribbon", textMr: "The Ribbon" }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "Which keyboard shortcut is used to Save the current document?",
+              questionMr: "सध्याचा दस्तऐवज सेव्ह करण्यासाठी कोणता कीबोर्ड शॉर्टकट वापरतात?",
+              options: [
+                { textEn: "Ctrl + O", textMr: "Ctrl + O" },
+                { textEn: "Ctrl + P", textMr: "Ctrl + P" },
+                { textEn: "Ctrl + S", textMr: "Ctrl + S" },
+                { textEn: "Ctrl + N", textMr: "Ctrl + N" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "What information does the Title Bar display?",
+              questionMr: "Title Bar कोणती माहिती दाखवतो?",
+              options: [
+                { textEn: "The name of the document you are working on.", textMr: "तुम्ही ज्या दस्तऐवजावर काम करत आहात त्याचे नाव." },
+                { textEn: "The zoom level.", textMr: "Zoom लेव्हल." },
+                { textEn: "The available fonts.", textMr: "उपलब्ध फॉन्ट्स." },
+                { textEn: "The number of pages in the document.", textMr: "दस्तऐवजातील पृष्ठांची संख्या." }
+              ],
+              correctIndex: 0
+            }
+          ]
+        }
+      }
+    );
+    await CourseDay.updateOne(
       { dayNumber: 13 },
       { $set: { "subsections.0.videoUrl": "https://youtu.be/pqP_RUBf-So?si=bfw9hoOoA9Z8D1y5" } }
+    );
+    await CourseDay.updateOne(
+      { dayNumber: 13 },
+      {
+        $set: {
+          "subsections.1.contentEn":
+            "Computer Class Day #13: MS Word (Part 2) - Text Editing & Home Tab\n\nThis lesson covers the fundamentals of creating and editing documents in Microsoft Word, focusing on the essential tools found in the Home Tab.\n\n1. Typing & Editing Basics\n\nStarting Out: Typing begins where the cursor (blinking vertical line) is placed.\n\nCapitalization: Use Caps Lock to type entirely in capital letters. Hold Shift + [Letter] to capitalize only a single letter.\n\nNavigation: Spacebar creates a space between words. Enter Key moves the cursor to a new line (starts a new paragraph).\n\nDeleting Text: Backspace deletes characters to the left of the cursor. Delete Key deletes characters to the right of the cursor. Pro Tip: Hold Ctrl + Backspace (or Delete) to delete entire words at once.\n\n2. Selecting Text\n\nYou must select text before applying any formatting.\n\nWord: Double-click on the word.\n\nSentence/Paragraph: Triple-click within the text.\n\nManual: Click, hold, and drag the mouse over the text.\n\nEntire Document: Press Ctrl + A (Select All).\n\n3. The Home Tab: Clipboard & Formatting\n\nClipboard Group: Cut (Ctrl + X), Copy (Ctrl + C), Paste (Ctrl + V). Format Painter copies only the formatting and applies it to another text. Undo (Ctrl + Z) & Redo (Ctrl + Y).\n\nFont Group: Font Style & Size. Bold (B), Italic (I), Underline (U). Strikethrough. Subscript & Superscript (for formulas). Change Case. Clear Formatting.\n\nParagraph Group: Alignment (Left, Center, Right, Justify). Lists (Bullets, Numbered, Multilevel). Indents. Sorting. Line Spacing. Borders & Shading.\n\n4. Styles & Editing Groups\n\nStyles: Pre-set formatting for Titles, Headings, Quotes for a consistent look.\n\nFind (Ctrl + F): Search for specific words.\n\nReplace (Ctrl + H): Find a word and replace it with something else (e.g., \"2024\" with \"2025\" everywhere).\n\nSummary: Mastery of the Home Tab is 90% of basic document creation. Practice these shortcuts and tools to become significantly faster at editing.",
+          "subsections.1.contentMr":
+            "Computer Class Day #13: MS Word (Part 2) - Text Editing & Home Tab\n\nMS Word मध्ये दस्तऐवज तयार करणे आणि संपादन; Home Tab मधील मूलभूत साधने.\n\n१. टाइपिंग आणि एडिटिंग: कर्सर जिथे आहे तिथे टाइपिंग. Caps Lock – सर्व कॅपिटल; Shift+Letter – एक अक्षर कॅपिटल. Spacebar, Enter. Backspace (डावीकडे), Delete (उजवीकडे); Ctrl+Backspace/Delete – संपूर्ण शब्द हटवते.\n\n२. मजकूर निवडणे: फॉर्मॅटिंग आधी निवड करा. डबल-क्लिक – शब्द; ट्रिपल-क्लिक – वाक्य/पैराग्राफ; ड्रॅग – मॅन्युअल; Ctrl+A – संपूर्ण दस्तऐवज.\n\n३. Home Tab: Clipboard (Cut/Copy/Paste, Format Painter, Undo/Redo). Font (स्टाइल, साइझ, B/I/U, Strikethrough, Subscript/Superscript, Change Case, Clear Formatting). Paragraph (Alignment, Lists, Indents, Sort, Line Spacing, Borders & Shading).\n\n४. Styles आणि Editing: Styles (Title, Heading, Quote). Find (Ctrl+F), Replace (Ctrl+H).\n\nसारांश: Home Tab चे नियंत्रण मूलभूत दस्तऐवज निर्मितीच्या 90% आहे; शॉर्टकट्स आणि साधनांचा सराव करा."
+        }
+      }
+    );
+    await CourseDay.updateOne(
+      { dayNumber: 13 },
+      {
+        $set: {
+          "exam.questions": [
+            {
+              questionEn: "Which action allows you to quickly select an entire paragraph or sentence in MS Word?",
+              questionMr: "MS Word मध्ये संपूर्ण पैराग्राफ किंवा वाक्य झटपट निवडण्यासाठी कोणती क्रिया करावी?",
+              options: [
+                { textEn: "Shift + Click", textMr: "Shift + Click" },
+                { textEn: "Double-click within the text", textMr: "मजकूरात डबल-क्लिक करा" },
+                { textEn: "Ctrl + Click", textMr: "Ctrl + Click" },
+                { textEn: "Triple-click within the text", textMr: "मजकूरात ट्रिपल-क्लिक करा" }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "If you want to delete an entire word to the left of your cursor without pressing Backspace multiple times, which shortcut should you use?",
+              questionMr: "Backspace अनेक वेळा दाबल्याशिवाय कर्सरच्या डावीकडील संपूर्ण शब्द हटवायचा असल्यास कोणता शॉर्टकट वापरावा?",
+              options: [
+                { textEn: "Alt + Backspace", textMr: "Alt + Backspace" },
+                { textEn: "Ctrl + Backspace", textMr: "Ctrl + Backspace" },
+                { textEn: "Ctrl + Delete", textMr: "Ctrl + Delete" },
+                { textEn: "Shift + Delete", textMr: "Shift + Delete" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "What is the primary function of the 'Format Painter' tool?",
+              questionMr: "'Format Painter' साधनाचे मुख्य कार्य काय आहे?",
+              options: [
+                { textEn: "To copy the text content and paste it elsewhere.", textMr: "मजकूर कॉपी करून दुसरीकडे पेस्ट करणे." },
+                { textEn: "To highlight text in yellow.", textMr: "मजकूर पिवळा हायलाइट करणे." },
+                { textEn: "To copy only the formatting of text and apply it to other text.", textMr: "फक्त मजकुराचे फॉर्मॅटिंग कॉपी करून दुसऱ्या मजकुरावर लावणे." },
+                { textEn: "To draw shapes and color them.", textMr: "आकार काढून रंगवणे." }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "Which keyboard shortcut opens the 'Replace' tool to find a specific word and change it to another?",
+              questionMr: "विशिष्ट शब्द शोधून दुसऱ्याने बदलण्याचे 'Replace' साधन कोणता शॉर्टकट उघडते?",
+              options: [
+                { textEn: "Ctrl + H", textMr: "Ctrl + H" },
+                { textEn: "Ctrl + R", textMr: "Ctrl + R" },
+                { textEn: "Ctrl + G", textMr: "Ctrl + G" },
+                { textEn: "Ctrl + F", textMr: "Ctrl + F" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "Which alignment option distributes text evenly between the margins, creating straight edges on both the left and right sides?",
+              questionMr: "मजकूर मार्जिन दरम्यान समान वाटून डाव्या आणि उजव्या दोन्ही बाजू सरळ करणारा alignment पर्याय कोणता?",
+              options: [
+                { textEn: "Center", textMr: "Center" },
+                { textEn: "Left Align", textMr: "Left Align" },
+                { textEn: "Justify", textMr: "Justify" },
+                { textEn: "Right Align", textMr: "Right Align" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "If you want to type a chemical formula like H2O where the '2' sits below the line, which feature should you use?",
+              questionMr: "H2O सारख्या सूत्रात '2' ओळीखाली घालायचा असल्यास कोणती सुविधा वापरावी?",
+              options: [
+                { textEn: "Superscript", textMr: "Superscript" },
+                { textEn: "Subscript", textMr: "Subscript" },
+                { textEn: "Small Caps", textMr: "Small Caps" },
+                { textEn: "Strikethrough", textMr: "Strikethrough" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "What does the 'Clear Formatting' button do?",
+              questionMr: "'Clear Formatting' बटण काय करते?",
+              options: [
+                { textEn: "It removes styles like bold and color, returning text to the default look.", textMr: "Bold, color सारखे स्टाइल काढून मजकूर डिफॉल्ट स्वरूपात आणते." },
+                { textEn: "It deletes the selected text completely.", textMr: "निवडलेला मजकूर पूर्णपणे डिलीट करते." },
+                { textEn: "It checks the document for spelling errors.", textMr: "दस्तऐवजातील स्पेलिंग तपासते." },
+                { textEn: "It changes the text color to white.", textMr: "मजकुराचा रंग पांढरा करते." }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "Which keyboard shortcut is used to 'Cut' selected text to the clipboard?",
+              questionMr: "निवडलेला मजकूर क्लिपबोर्डवर 'Cut' करण्यासाठी कोणता शॉर्टकट वापरतात?",
+              options: [
+                { textEn: "Ctrl + Z", textMr: "Ctrl + Z" },
+                { textEn: "Ctrl + X", textMr: "Ctrl + X" },
+                { textEn: "Ctrl + C", textMr: "Ctrl + C" },
+                { textEn: "Ctrl + V", textMr: "Ctrl + V" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "If you accidentally deleted a paragraph, which shortcut would immediately bring it back?",
+              questionMr: "चुकून पैराग्राफ डिलीट केल्यास तो ताबडतोब परत आणण्यासाठी कोणता शॉर्टकट वापरावा?",
+              options: [
+                { textEn: "Ctrl + Y", textMr: "Ctrl + Y" },
+                { textEn: "Ctrl + A", textMr: "Ctrl + A" },
+                { textEn: "Ctrl + S", textMr: "Ctrl + S" },
+                { textEn: "Ctrl + Z", textMr: "Ctrl + Z" }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "Which feature allows you to change text from 'lowercase' to 'UPPERCASE' without retyping it?",
+              questionMr: "मजकूर पुन्हा टाइप न करता 'lowercase' ते 'UPPERCASE' बदलण्याची सुविधा कोणती?",
+              options: [
+                { textEn: "Text Highlight Color", textMr: "Text Highlight Color" },
+                { textEn: "Font Size", textMr: "Font Size" },
+                { textEn: "Change Case", textMr: "Change Case" },
+                { textEn: "Bold", textMr: "Bold" }
+              ],
+              correctIndex: 2
+            }
+          ]
+        }
+      }
     );
     await CourseDay.updateOne(
       { dayNumber: 14 },
