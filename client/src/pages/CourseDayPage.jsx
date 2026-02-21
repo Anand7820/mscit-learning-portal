@@ -103,6 +103,7 @@ const CourseDayPage = () => {
   const { i18n } = useTranslation();
   const navigate = useNavigate();
   const contentTopRef = useRef(null);
+  const section1Ref = useRef(null);
   const [day, setDay] = useState(null);
   const [completedSections, setCompletedSections] = useState([]);
   const [error, setError] = useState("");
@@ -124,9 +125,15 @@ const CourseDayPage = () => {
       });
   }, [dayNumber]);
 
-  // Scroll to top when day content changes so user clearly sees they're on the new day
+  // When next day loads, scroll to Section 1 (first subsection) so user sees next day's Section 1
   useEffect(() => {
-    if (day?.dayNumber) {
+    if (!day?.dayNumber) return;
+    if (day.subsections?.length > 0) {
+      const timer = setTimeout(() => {
+        section1Ref.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 100);
+      return () => clearTimeout(timer);
+    } else {
       contentTopRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   }, [day?.dayNumber]);
@@ -134,7 +141,7 @@ const CourseDayPage = () => {
   const isMr = i18n.language === "mr";
   const totalSections = day?.subsections?.length || 0;
   const allSectionsCompleted =
-    totalSections > 0 && completedSections.filter(Boolean).length === totalSections;
+    totalSections === 0 || completedSections.filter(Boolean).length === totalSections;
 
   useEffect(() => {
     if (day?.subsections) {
@@ -190,7 +197,7 @@ const CourseDayPage = () => {
         </div>
         <div className="mt-4 space-y-3">
           {day.subsections.map((section, index) => (
-            <div key={index} className="rounded bg-gray-50 p-4">
+            <div key={index} ref={index === 0 ? section1Ref : null} className="rounded bg-gray-50 p-4">
               <h3 className="font-semibold">
                 {isMr ? section.titleMr : section.titleEn}
               </h3>
@@ -199,6 +206,17 @@ const CourseDayPage = () => {
                   isSectionTwo: index === 1
                 })}
               </div>
+              {section.videoUrl && (
+                <div className="mt-3 aspect-video w-full">
+                  <iframe
+                    title={`section-${index}-video`}
+                    src={getYoutubeEmbedUrl(section.videoUrl) || section.videoUrl}
+                    className="h-full w-full rounded"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+              )}
               <button
                 onClick={() =>
                   setCompletedSections((prev) => {
@@ -215,33 +233,28 @@ const CourseDayPage = () => {
               >
                 {completedSections[index] ? "Marked as Complete" : "Mark as Complete"}
               </button>
-              {section.videoUrl && (
-                <div className="mt-3 aspect-video w-full">
-                  <iframe
-                    title={`section-${index}-video`}
-                    src={getYoutubeEmbedUrl(section.videoUrl) || section.videoUrl}
-                    className="h-full w-full rounded"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                </div>
-              )}
             </div>
           ))}
         </div>
         <div className="mt-6 flex flex-wrap items-center gap-3">
+          {allSectionsCompleted ? (
+            <button
+              onClick={() => navigate(`/exams/${day.dayNumber}`)}
+              className="rounded bg-green-600 px-4 py-2 text-sm text-white hover:bg-green-700"
+            >
+              Start Exam
+            </button>
+          ) : totalSections > 0 ? (
+            <span className="rounded border border-gray-300 bg-gray-100 px-4 py-2 text-sm text-gray-500">
+              Mark Section 1 and Section 2 as complete to unlock exam
+            </span>
+          ) : null}
           <button
             onClick={() => navigate(`/courses/${Number(day.dayNumber) + 1}`)}
             disabled={totalSections > 0 && !allSectionsCompleted}
             className="rounded bg-indigo-600 px-4 py-2 text-white disabled:cursor-not-allowed disabled:opacity-60"
           >
             Proceed to Next
-          </button>
-          <button
-            onClick={() => navigate(`/exams/${day.dayNumber}`)}
-            className="rounded border px-4 py-2 text-sm"
-          >
-            Start Exam
           </button>
         </div>
       </div>
