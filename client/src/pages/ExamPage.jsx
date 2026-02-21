@@ -370,26 +370,26 @@ const ExamPage = () => {
             })}
           </div>
 
-          {currentQuestionIndex === questions.length - 1 ? (
-            <button
-              onClick={handleFinalSubmit}
-              disabled={answeredQuestions.size === 0}
-              className="rounded bg-green-600 px-4 py-2 text-white disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              Submit Exam ({answeredQuestions.size}/{questions.length} answered)
-            </button>
-          ) : (
-            <button
-              onClick={goToNext}
-              disabled={currentQuestionIndex === questions.length - 1}
-              className="rounded bg-indigo-600 px-4 py-2 text-white disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              Next
-            </button>
-          )}
+          <div className="flex items-center gap-2">
+            {currentQuestionIndex < questions.length - 1 ? (
+              <button
+                onClick={goToNext}
+                className="rounded bg-indigo-600 px-4 py-2 text-white disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Next
+              </button>
+            ) : answeredQuestions.size === questions.length && skippedQuestions.size === 0 ? (
+              <button
+                onClick={handleFinalSubmit}
+                className="rounded bg-green-600 px-4 py-2 text-white hover:bg-green-700"
+              >
+                Submit Exam
+              </button>
+            ) : null}
+          </div>
         </div>
 
-        {/* Progress Summary */}
+        {/* Progress Summary - Submit is available on last question; can submit even if some questions are skipped */}
         <div className="mt-6 text-center text-sm text-gray-600">
           <div>Answered: {answeredQuestions.size} / {questions.length}</div>
           {skippedQuestions.size > 0 && (
