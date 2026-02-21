@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import StudentLayout from "../components/StudentLayout";
@@ -102,16 +102,34 @@ const CourseDayPage = () => {
   const { dayNumber } = useParams();
   const { i18n } = useTranslation();
   const navigate = useNavigate();
+  const contentTopRef = useRef(null);
   const [day, setDay] = useState(null);
   const [completedSections, setCompletedSections] = useState([]);
   const [error, setError] = useState("");
+  const [loadingDay, setLoadingDay] = useState(null);
 
   useEffect(() => {
+    const num = Number(dayNumber);
+    setError("");
+    setLoadingDay(num);
     api
       .get(`/courses/days/${dayNumber}`)
-      .then((res) => setDay(res.data))
-      .catch((err) => setError(err.response?.data?.message || "Day locked"));
+      .then((res) => {
+        setDay(res.data);
+        setLoadingDay(null);
+      })
+      .catch((err) => {
+        setError(err.response?.data?.message || "Day locked");
+        setLoadingDay(null);
+      });
   }, [dayNumber]);
+
+  // Scroll to top when day content changes so user clearly sees they're on the new day
+  useEffect(() => {
+    if (day?.dayNumber) {
+      contentTopRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [day?.dayNumber]);
 
   const isMr = i18n.language === "mr";
   const totalSections = day?.subsections?.length || 0;
@@ -137,14 +155,25 @@ const CourseDayPage = () => {
   if (!day) {
     return (
       <StudentLayout>
-        <div className="p-6">Loading...</div>
+        <div className="p-6">
+          {loadingDay ? `Loading Day ${loadingDay}...` : "Loading..."}
+        </div>
       </StudentLayout>
     );
   }
 
+  // While switching days, show previous day with a small loading bar (no full refresh flash)
+  const isSwitchingDays = loadingDay != null && day != null && Number(day.dayNumber) !== Number(loadingDay);
+
   return (
     <StudentLayout>
-      <div className="rounded bg-white p-6 shadow">
+      <div ref={contentTopRef} className="rounded bg-white p-6 shadow">
+        {isSwitchingDays && (
+          <div className="mb-4 flex items-center gap-2 rounded bg-indigo-50 px-3 py-2 text-sm text-indigo-700">
+            <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-indigo-600 border-t-transparent" />
+            Loading Day {loadingDay}...
+          </div>
+        )}
         <h2 className="text-xl font-semibold">Day {day.dayNumber}</h2>
         {day.imageUrl && (
           <img
