@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import StudentLayout from "../components/StudentLayout";
+import CtrlShortcutsTable from "../components/CtrlShortcutsTable";
 import api from "../api/api";
 
 const getYoutubeEmbedUrl = (url) => {
@@ -202,9 +203,42 @@ const CourseDayPage = () => {
                 {isMr ? section.titleMr : section.titleEn}
               </h3>
               <div className="mt-2 space-y-2">
-                {renderContent(isMr ? section.contentMr : section.contentEn, {
-                  isSectionTwo: index === 1
-                })}
+                {Number(day.dayNumber) === 9 && index === 1 ? (
+                  <>
+                    {renderContent(
+                      (() => {
+                        const content = isMr ? section.contentMr : section.contentEn;
+                        const tableMarker = "Shortcut | Primary Function";
+                        const detailedMarker = "Detailed Explanations";
+                        if (content.includes(tableMarker) && content.includes(detailedMarker)) {
+                          return content.substring(0, content.indexOf(tableMarker)).trim();
+                        }
+                        return content;
+                      })(),
+                      { isSectionTwo: true }
+                    )}
+                    <CtrlShortcutsTable />
+                    {(() => {
+                      const content = isMr ? section.contentMr : section.contentEn;
+                      const detailedMarker = "Detailed Explanations";
+                      if (content.includes(detailedMarker)) {
+                        return (
+                          <div className="mt-4">
+                            {renderContent(
+                              content.substring(content.indexOf(detailedMarker)).trim(),
+                              { isSectionTwo: true }
+                            )}
+                          </div>
+                        );
+                      }
+                      return null;
+                    })()}
+                  </>
+                ) : (
+                  renderContent(isMr ? section.contentMr : section.contentEn, {
+                    isSectionTwo: index === 1
+                  })
+                )}
               </div>
               {section.videoUrl && (
                 <div className="mt-3 aspect-video w-full">

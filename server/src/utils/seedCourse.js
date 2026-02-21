@@ -689,12 +689,402 @@ const ensureCourseDays = async () => {
       { $set: { "subsections.0.videoUrl": "https://youtu.be/LWt0PYilMm0?si=4Rm0kXSbUgjFKkbM" } }
     );
     await CourseDay.updateOne(
+      { dayNumber: 7 },
+      {
+        $set: {
+          "subsections.1.contentEn":
+            "Computer Class Day #7: Software Management & File Transfer\n\nThese notes are based on the final class of the Basic Computer Course series by EasyTech Class. The lesson focuses on two essential skills: managing software and transferring files between devices.\n\n1. Installing & Uninstalling Software\n\nEvery software has a specific purpose. While the installation process may vary slightly between programs, the fundamental steps remain similar.\n\nHow to Install Software\n\nThere are two primary ways to get software onto your computer:\n\nA. From CD/DVD\n\nInsert the disc into the computer's disk drive.\n\nOpen File Explorer and go to This PC.\n\nOpen the disk drive.\n\nLook for the Installer File (usually ends with a .exe extension).\n\nDouble-click to start the setup.\n\nB. From the Internet (Most Common)\n\nUse a browser (like Google Chrome) to search for the software (e.g., \"Download Notepad++ for Windows\").\n\nSafety Tips:\n\nOnly download from genuine/official websites to avoid malware.\n\nCheck System Requirements: Ensure the software version matches your system architecture (32-bit vs. 64-bit).\n\nDownload the .exe installer file.\n\nOpen the folder where the file was saved and double-click the installer.\n\nGeneral Installation Steps:\n\nUser Account Control: Click \"Yes\" when prompted.\n\nLicense Agreement: Read and click \"I Agree.\"\n\nInstallation Location: Choose the folder where the software will be stored (Default is usually C:\\Program Files).\n\nComponents: Select which features you want to install (e.g., creating a desktop shortcut).\n\nFinish: Click \"Install\" and then \"Finish\" once completed.\n\nHow to Uninstall Software\n\nIf you no longer need a program, you should uninstall it to free up space.\n\nClick the Start Button and go to Settings.\n\nClick on Apps (or Apps & Features).\n\nFind the software in the list, click the three dots (or the app itself), and select Uninstall.\n\nFollow the prompts to complete the removal.\n\nAlternative: You can often right-click a program directly in the Start Menu and select \"Uninstall.\"\n\n2. File Transfer (Computer to Mobile)\n\nThe video outlines the two easiest methods for transferring photos, videos, or documents between your PC and phone.\n\nMethod A: Using a USB Data Cable (Recommended)\n\nThis is the fastest and most reliable method for large files.\n\nConnect your phone to the computer using a USB cable.\n\nOn your Phone: A notification will appear. Select \"File Transfer\" or \"MTP\" mode.\n\nOn your Computer: Open File Explorer -> This PC.\n\nYour phone will appear as a drive. Open it to see \"Internal Storage.\"\n\nMoving Files:\n\nCopy: Select the file and press Ctrl + C.\n\nCut (Move): Select the file and press Ctrl + X.\n\nPaste: Go to the destination folder and press Ctrl + V.\n\nMethod B: Using Bluetooth\n\nGood for small files when a cable isn't available, but it is much slower.\n\nSending from PC to Phone:\n\nRight-click the file you want to send.\n\nSelect Send to -> Bluetooth device.\n\nSelect your paired phone from the list and follow the prompts on the phone to \"Accept.\"\n\nReceiving on PC from Phone:\n\nGo to Settings -> Bluetooth & Devices.\n\nClick on \"Send or receive files via Bluetooth\".\n\nSelect \"Receive files\".\n\nOn your phone, select the file and \"Share\" via Bluetooth to your PC.\n\nOnce received on the PC, choose a save location and click Finish.\n\nNote: This concludes the basic computer training series. For further learning, practicing these steps on your own computer is highly recommended.",
+          "subsections.1.contentMr":
+            "Computer Class Day #7: Software Management & File Transfer\n\nसॉफ्टवेअर व्यवस्थापन आणि फाइल ट्रान्सफर.\n\n१. सॉफ्टवेअर इंस्टॉल आणि अनइंस्टॉल\n\nइंस्टॉल: (A) CD/DVD – डिस्क घाला, File Explorer -> This PC -> ड्राइव्ह उघडा, .exe इंस्टॉलर डबल-क्लिक. (B) इंटरनेट – ऑफिशियल साइटवरून डाउनलोड, 32-bit/64-bit तपासा, .exe चालवा. स्टेप्स: UAC Yes, License I Agree, Location (C:\\Program Files), Components निवडा, Install -> Finish.\n\nअनइंस्टॉल: Start -> Settings -> Apps (Apps & Features) -> अॅप शोधा -> तीन ठिपके -> Uninstall. किंवा Start मेनूमध्ये अॅपवर right-click -> Uninstall.\n\n२. फाइल ट्रान्सफर (PC ते मोबाइल)\n\nMethod A – USB केबल: फोन USB ने जोडा, फोनवर \"File Transfer\"/MTP निवडा. PC वर This PC मध्ये फोन ड्राइव्ह दिसेल, Internal Storage उघडा. Ctrl+C (Copy), Ctrl+X (Cut), Ctrl+V (Paste).\n\nMethod B – Bluetooth: लहान फाइल्ससाठी. PC ते फोन: फाइलवर right-click -> Send to -> Bluetooth device -> फोन निवडा, Accept. फोन ते PC: Settings -> Bluetooth & Devices -> Send or receive files -> Receive files; फोनवर Share via Bluetooth -> PC.\n\nटीप: बेसिक कोर्स श्रृंखला संपली; सराव करणे चांगले."
+        }
+      }
+    );
+    await CourseDay.updateOne(
+      { dayNumber: 7 },
+      {
+        $set: {
+          "exam.questions": [
+            {
+              questionEn: "When installing software from a CD or DVD, which file extension should you look for to start the setup process?",
+              questionMr: "CD किंवा DVD वरून सॉफ्टवेअर इंस्टॉल करताना सेटअप सुरू करण्यासाठी कोणते फाइल एक्सटेंशन शोधावे?",
+              options: [
+                { textEn: ".txt", textMr: ".txt" },
+                { textEn: ".exe", textMr: ".exe" },
+                { textEn: ".mp3", textMr: ".mp3" },
+                { textEn: ".jpg", textMr: ".jpg" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "Which of the following is a critical safety tip mentioned when downloading software from the internet?",
+              questionMr: "इंटरनेटवरून सॉफ्टवेअर डाउनलोड करताना कोणती महत्त्वाची सुरक्षा टीप दिली आहे?",
+              options: [
+                { textEn: "Download from any website that appears in search results.", textMr: "सर्च रिझल्टमध्ये दिसणाऱ्या कोणत्याही वेबसाइटवरून डाउनलोड करा." },
+                { textEn: "Only download from genuine/official websites.", textMr: "फक्त खऱ्या/ऑफिशियल वेबसाइटवरून डाउनलोड करा." },
+                { textEn: "Always download the smallest file size available.", textMr: "नेहमी उपलब्ध सर्वात लहान फाइल साइझ डाउनलोड करा." },
+                { textEn: "Turn off your antivirus before downloading.", textMr: "डाउनलोड करण्यापूर्वी अँटीव्हायरस बंद करा." }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "What should you check regarding System Requirements before downloading software?",
+              questionMr: "सॉफ्टवेअर डाउनलोड करण्यापूर्वी System Requirements बाबत काय तपासावे?",
+              options: [
+                { textEn: "The color scheme of the website.", textMr: "वेबसाइटची रंग योजना." },
+                { textEn: "If the software matches your system architecture (32-bit vs. 64-bit).", textMr: "सॉफ्टवेअर तुमच्या सिस्टम आर्किटेक्चरशी जुळतो का (32-bit vs. 64-bit)." },
+                { textEn: "The internet speed required for download.", textMr: "डाउनलोडसाठी लागणारा इंटरनेट वेग." },
+                { textEn: "If your monitor is 4K resolution.", textMr: "मॉनिटर 4K रिझोल्यूशनचा आहे का." }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "What is the standard default location for installing software on a Windows computer?",
+              questionMr: "Windows संगणकावर सॉफ्टवेअर इंस्टॉल करण्याचे सामान्य डिफॉल्ट स्थान काय आहे?",
+              options: [
+                { textEn: "C:\\Windows\\System32", textMr: "C:\\Windows\\System32" },
+                { textEn: "C:\\Users\\Documents", textMr: "C:\\Users\\Documents" },
+                { textEn: "C:\\Program Files", textMr: "C:\\Program Files" },
+                { textEn: "D:\\Games", textMr: "D:\\Games" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "Which method is described as the fastest and most reliable for transferring large files between a PC and a phone?",
+              questionMr: "PC आणि फोन दरम्यान मोठ्या फाइल्स ट्रान्सफर करण्यासाठी सर्वात वेगवान आणि विश्वासार्ह पद्धत कोणती?",
+              options: [
+                { textEn: "Bluetooth", textMr: "Bluetooth" },
+                { textEn: "Cloud Storage", textMr: "Cloud Storage" },
+                { textEn: "USB Data Cable", textMr: "USB Data Cable" },
+                { textEn: "Email", textMr: "Email" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "When connecting a phone via USB, which mode must be selected on the phone to access files?",
+              questionMr: "USB द्वारे फोन जोडताना फाइल्स ऍक्सेस करण्यासाठी फोनवर कोणता मोड निवडणे आवश्यक आहे?",
+              options: [
+                { textEn: "Charging Only", textMr: "Charging Only" },
+                { textEn: "MIDI Mode", textMr: "MIDI Mode" },
+                { textEn: "USB Tethering", textMr: "USB Tethering" },
+                { textEn: "File Transfer / MTP", textMr: "File Transfer / MTP" }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "If you want to move a file from your computer to your phone (removing it from the computer), which keyboard shortcut combination should you use?",
+              questionMr: "संगणकावरून फोनवर फाइल हलवायची आहे (संगणकावरून काढून). कोणता कीबोर्ड शॉर्टकट वापरावा?",
+              options: [
+                { textEn: "Ctrl + X and Ctrl + V", textMr: "Ctrl + X आणि Ctrl + V" },
+                { textEn: "Alt + F4", textMr: "Alt + F4" },
+                { textEn: "Ctrl + C and Ctrl + V", textMr: "Ctrl + C आणि Ctrl + V" },
+                { textEn: "Ctrl + Z and Ctrl + Y", textMr: "Ctrl + Z आणि Ctrl + Y" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "What is a necessary step on the computer before you can receive a file via Bluetooth from your phone?",
+              questionMr: "फोनवरून Bluetooth द्वारे फाइल प्राप्त करण्यापूर्वी संगणकावर कोणती पायरी आवश्यक आहे?",
+              options: [
+                { textEn: "Open the Calculator app.", textMr: "Calculator अॅप उघडा." },
+                { textEn: "Restart the computer.", textMr: "संगणक रीस्टार्ट करा." },
+                { textEn: "Disable the internet connection.", textMr: "इंटरनेट कनेक्शन बंद करा." },
+                { textEn: "Select 'Receive files' in Bluetooth settings.", textMr: "Bluetooth सेटिंग्जमध्ये 'Receive files' निवडा." }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "To uninstall software, where should you navigate after clicking Settings?",
+              questionMr: "सॉफ्टवेअर अनइंस्टॉल करण्यासाठी Settings क्लिक केल्यानंतर कुठे जावे?",
+              options: [
+                { textEn: "Devices > Printers", textMr: "Devices > Printers" },
+                { textEn: "Apps (or Apps & Features)", textMr: "Apps (किंवा Apps & Features)" },
+                { textEn: "System > Display", textMr: "System > Display" },
+                { textEn: "Personalization > Background", textMr: "Personalization > Background" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "What is an alternative way to uninstall a program without going through the Settings menu?",
+              questionMr: "Settings मेनूशिवाय प्रोग्राम अनइंस्टॉल करण्याचा पर्यायी मार्ग कोणता?",
+              options: [
+                { textEn: "Drag the program window to the Recycle Bin.", textMr: "प्रोग्राम विंडो Recycle Bin मध्ये ड्रॅग करा." },
+                { textEn: "Delete the desktop shortcut.", textMr: "डेस्कटॉप शॉर्टकट डिलीट करा." },
+                { textEn: "Rename the program folder.", textMr: "प्रोग्राम फोल्डरचे नाव बदला." },
+                { textEn: "Right-click the program in the Start Menu and select Uninstall.", textMr: "Start मेनूमध्ये प्रोग्रामवर right-click करून Uninstall निवडा." }
+              ],
+              correctIndex: 3
+            }
+          ]
+        }
+      }
+    );
+    await CourseDay.updateOne(
       { dayNumber: 8 },
       { $set: { "subsections.0.videoUrl": "https://youtu.be/3xyGUrfAIHU?si=_rVs_NBj1EgPSodS" } }
     );
     await CourseDay.updateOne(
+      { dayNumber: 8 },
+      {
+        $set: {
+          "subsections.1.contentEn":
+            "Computer Class Day #8: Windows Control Panel Guide\n\nThe Control Panel is a vital component of the Windows operating system that allows users to view and manipulate system settings and controls. It is the hub for managing both hardware and software configurations.\n\n1. How to Open the Control Panel\n\nThere are two primary methods to access the Control Panel:\n\nSearch Method: Type \"Control Panel\" in the Windows search bar and click open [00:01:01].\n\nRun Command: Press Windows + R, type control panel in the box, and press Enter [00:01:08].\n\n2. Viewing and Navigating Settings\n\nView Options: By default, settings are shown in Categories. You can change this to Large Icons or Small Icons using the \"View by\" dropdown in the top right corner [00:01:29].\n\nSearch Bar: Use the search bar within the Control Panel to find specific settings (e.g., searching for \"Date and Time\" to quickly adjust your clock) [00:01:38].\n\n3. Main Setting Categories\n\nSystem and Security [00:02:24]\n\nThis category handles the \"health\" and safety of your PC.\n\nSecurity and Maintenance: Check firewall status, virus protection, and resolve system issues.\n\nSystem: View your computer's RAM, processor info, and system specifications.\n\nPower Options: Manage battery settings and how your computer saves energy.\n\nFile History: Back up your data to an external drive.\n\nNetwork and Internet [00:03:18]\n\nNetwork Status: Check if you are connected to Wi-Fi/Ethernet, view signal quality, and internet speed.\n\nTroubleshooting: Use this section to fix common connection problems.\n\nHardware and Sound [00:03:53]\n\nDevices and Printers: See all hardware connected to your PC (mice, keyboards, printers). You can also add new devices here.\n\nSound: Manage audio inputs (microphones) and outputs (speakers).\n\nAutoPlay: Choose what happens when you insert a USB or disc.\n\nPrograms [00:04:30]\n\nUninstall a Program: View a list of all installed software and remove programs you no longer need.\n\nDefault Programs: Choose which browser (e.g., Chrome or Edge) opens by default when you click a link.\n\nUser Accounts [00:04:58]\n\nManage Accounts: Change your account password, change account types (Admin vs. Standard), or add/remove new users to the computer.\n\nAppearance and Personalization [00:05:26]\n\nTaskbar: Customize how the taskbar looks and behaves.\n\nEase of Access: Settings to make the computer easier to use, such as using a Screen Reader (Narrator).\n\nFile Explorer Options: Change how folders and files behave (e.g., choosing between single-click or double-click to open files) [00:05:53].\n\nClock and Region [00:06:06]\n\nDate/Time: Set the current time and time zone.\n\nRegion: Change the format for dates and currency based on your location.\n\nSummary: You do not need to memorize every single setting. The goal is to be familiar with these categories so you know where to look when you need to make a specific change to your computer's behavior.",
+          "subsections.1.contentMr":
+            "Computer Class Day #8: Windows Control Panel Guide\n\nControl Panel हार्डवेअर आणि सॉफ्टवेअर सेटिंग्ज व्यवस्थापित करण्याचे केंद्र आहे.\n\n१. Control Panel कसे उघडावे: Search बारमध्ये \"Control Panel\" टाइप करा किंवा Windows + R दाबून control panel टाइप करून Enter.\n\n२. सेटिंग्ज नेव्हिगेट करणे: View by – Categories / Large Icons / Small Icons. अंतर्गत शोध पट्टी – विशिष्ट सेटिंग्स शोधण्यासाठी (उदा. Date and Time).\n\n३. मुख्य श्रेण्या: System and Security (firewall, virus, System info, Power Options, File History); Network and Internet (Network Status, Troubleshooting); Hardware and Sound (Devices and Printers, Sound, AutoPlay); Programs (Uninstall a Program, Default Programs); User Accounts (password, Admin/Standard, नवीन वापरकर्ते); Appearance and Personalization (Taskbar, Ease of Access, File Explorer Options – single/double-click); Clock and Region (Date/Time, Region).\n\nसारांश: प्रत्येक सेटिंग मनात ठेवण्याची गरज नाही; या श्रेण्या ओळखल्यास बदल करताना कुठे बघायचे ते माहीत असते."
+        }
+      }
+    );
+    await CourseDay.updateOne(
+      { dayNumber: 8 },
+      {
+        $set: {
+          "exam.questions": [
+            {
+              questionEn: "Which keyboard shortcut combination opens the Run command box, which can be used to launch the Control Panel?",
+              questionMr: "Control Panel लॉन्च करण्यासाठी वापरले जाणारे Run कमांड बॉक्स कोणता कीबोर्ड शॉर्टकट उघडतो?",
+              options: [
+                { textEn: "Shift + Delete", textMr: "Shift + Delete" },
+                { textEn: "Windows + R", textMr: "Windows + R" },
+                { textEn: "Alt + F4", textMr: "Alt + F4" },
+                { textEn: "Ctrl + C", textMr: "Ctrl + C" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "If you cannot find a specific setting in the Category view, how can you change the layout to see all icons individually?",
+              questionMr: "Category व्ह्यूमध्ये विशिष्ट सेटिंग सापडत नसल्यास सर्व आयकॉन्स वैयक्तिकरित्या दिसण्यासाठी लेआउट कसे बदलावा?",
+              options: [
+                { textEn: "Right-click on the desktop and select Properties.", textMr: "डेस्कटॉपवर right-click करून Properties निवडा." },
+                { textEn: "Restart the computer.", textMr: "संगणक रीस्टार्ट करा." },
+                { textEn: "Uninstall the Control Panel.", textMr: "Control Panel अनइंस्टॉल करा." },
+                { textEn: "Use the 'View by' dropdown menu in the top right corner.", textMr: "वरच्या उजव्या कोपऱ्यातील 'View by' ड्रॉपडाउन मेनू वापरा." }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "Which category should you navigate to if you want to check your computer's RAM and processor information?",
+              questionMr: "संगणकाची RAM आणि प्रोसेसर माहिती तपासायची असल्यास कोणत्या श्रेणीत जावे?",
+              options: [
+                { textEn: "Programs", textMr: "Programs" },
+                { textEn: "System and Security", textMr: "System and Security" },
+                { textEn: "Hardware and Sound", textMr: "Hardware and Sound" },
+                { textEn: "Network and Internet", textMr: "Network and Internet" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "You bought a new printer. Which section in the Control Panel would you use to add it?",
+              questionMr: "नवीन प्रिंटर आणला. तो जोडण्यासाठी Control Panel मधील कोणता विभाग वापरावा?",
+              options: [
+                { textEn: "Appearance and Personalization", textMr: "Appearance and Personalization" },
+                { textEn: "Clock and Region", textMr: "Clock and Region" },
+                { textEn: "User Accounts", textMr: "User Accounts" },
+                { textEn: "Hardware and Sound", textMr: "Hardware and Sound" }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "Which section allows you to choose which web browser opens automatically when you click a link?",
+              questionMr: "लिंक क्लिक केल्यावर कोणता ब्राउझर स्वयंचलित उघडेल ते निवडण्याची परवानगी कोणता विभाग देतो?",
+              options: [
+                { textEn: "File Explorer Options", textMr: "File Explorer Options" },
+                { textEn: "Default Programs", textMr: "Default Programs" },
+                { textEn: "Power Options", textMr: "Power Options" },
+                { textEn: "Ease of Access", textMr: "Ease of Access" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "Where would you go to change your computer's login password?",
+              questionMr: "संगणकाचा लॉगिन पासवर्ड बदलण्यासाठी कुठे जावे?",
+              options: [
+                { textEn: "User Accounts", textMr: "User Accounts" },
+                { textEn: "Network and Internet", textMr: "Network and Internet" },
+                { textEn: "Programs", textMr: "Programs" },
+                { textEn: "System and Security", textMr: "System and Security" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "If you want to change the date format (e.g., from MM/DD/YYYY to DD/MM/YYYY), which category should you select?",
+              questionMr: "तारीख फॉर्मॅट बदलायचा असेल (उदा. MM/DD/YYYY ते DD/MM/YYYY) तर कोणती श्रेणी निवडावी?",
+              options: [
+                { textEn: "Clock and Region", textMr: "Clock and Region" },
+                { textEn: "Appearance and Personalization", textMr: "Appearance and Personalization" },
+                { textEn: "System and Security", textMr: "System and Security" },
+                { textEn: "Hardware and Sound", textMr: "Hardware and Sound" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "Which option under 'Appearance and Personalization' allows you to customize the behavior of the bar at the bottom of the screen?",
+              questionMr: "'Appearance and Personalization' अंतर्गत स्क्रीनच्या खालच्या बारचे वर्तन कस्टमायझ करण्याचा पर्याय कोणता?",
+              options: [
+                { textEn: "Taskbar", textMr: "Taskbar" },
+                { textEn: "Ease of Access Center", textMr: "Ease of Access Center" },
+                { textEn: "File Explorer Options", textMr: "File Explorer Options" },
+                { textEn: "Fonts", textMr: "Fonts" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "You want to uninstall a software program you no longer use. Which category do you visit?",
+              questionMr: "वापरत नसलेला सॉफ्टवेअर अनइंस्टॉल करायचा आहे. कोणत्या श्रेणीत जावे?",
+              options: [
+                { textEn: "Programs", textMr: "Programs" },
+                { textEn: "User Accounts", textMr: "User Accounts" },
+                { textEn: "System and Security", textMr: "System and Security" },
+                { textEn: "Hardware and Sound", textMr: "Hardware and Sound" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "Which feature in the Control Panel helps you resolve common computer problems, such as internet connection issues?",
+              questionMr: "Control Panel मधील कोणती सुविधा इंटरनेट कनेक्शन सारख्या सामान्य समस्या सोडवण्यात मदत करते?",
+              options: [
+                { textEn: "Troubleshooting", textMr: "Troubleshooting" },
+                { textEn: "File History", textMr: "File History" },
+                { textEn: "Device Manager", textMr: "Device Manager" },
+                { textEn: "AutoPlay", textMr: "AutoPlay" }
+              ],
+              correctIndex: 0
+            }
+          ]
+        }
+      }
+    );
+    await CourseDay.updateOne(
       { dayNumber: 9 },
       { $set: { "subsections.0.videoUrl": "https://youtu.be/dpgNDXF3jmw?si=N4-CClA6opROtXQB" } }
+    );
+    await CourseDay.updateOne(
+      { dayNumber: 9 },
+      {
+        $set: {
+          "subsections.1.contentEn":
+            "Computer Class Day #9: Ctrl A to Z Shortcut Keys\n\nKeyboard shortcuts allow you to perform tasks quickly without reaching for the mouse. This guide covers the standard \"Control\" (Ctrl) shortcuts used across Windows, Microsoft Office, and Web Browsers.\n\nThe Essential A to Z List\n\nShortcut | Primary Function (Word/General) | Other Uses (Excel/Browser)\n\nCtrl + A | Select All (text or files)\n\nCtrl + B | Bold selected text\n\nCtrl + C | Copy selected item/text\n\nCtrl + D | Font preferences (Word) | Bookmark (Browser) / Fill Down (Excel)\n\nCtrl + E | Center Align text\n\nCtrl + F | Find (search for text)\n\nCtrl + G | Go To (specific page/line)\n\nCtrl + H | Replace text | History (Browser)\n\nCtrl + I | Italicize text\n\nCtrl + J | Justify text (align both sides) | Downloads page (Browser)\n\nCtrl + K | Insert Hyperlink (add web link)\n\nCtrl + L | Left Align text\n\nCtrl + M | Indent paragraph from left\n\nCtrl + N | New Document/Window\n\nCtrl + O | Open an existing file\n\nCtrl + P | Print document/page\n\nCtrl + Q | Remove paragraph formatting | Close (Excel/PowerPoint)\n\nCtrl + R | Right Align text | Refresh page (Browser) / Fill Right (Excel)\n\nCtrl + S | Save file\n\nCtrl + T | Hanging Indent | New Tab (Browser)\n\nCtrl + U | Underline text\n\nCtrl + V | Paste (copied/cut item)\n\nCtrl + W | Close current window/tab\n\nCtrl + X | Cut (remove and move item)\n\nCtrl + Y | Redo (reverse an Undo)\n\nCtrl + Z | Undo (reverse last action)\n\nDetailed Explanations of Key Concepts\n\n1. The \"Big Three\": Cut, Copy, Paste\n\nCopy (Ctrl+C): Keeps the original text and puts a duplicate in the \"Clipboard.\"\n\nCut (Ctrl+X): Removes the original text and moves it to the \"Clipboard.\"\n\nPaste (Ctrl+V): Places whatever is in the \"Clipboard\" at the cursor's location.\n\n2. Alignment and Indentation (Word Processing)\n\nAlignment (E, L, R, J): Centers, aligns left, aligns right, or justifies text so edges are straight.\n\nIndentation (M, T): Ctrl+M moves the whole paragraph. Ctrl+T creates a \"Hanging Indent\" where only the lines after the first line are moved (common in bibliographies).\n\n3. Navigation and Browsing\n\nCtrl + N vs Ctrl + T: In a browser, N opens a whole new window, while T opens a new tab in the same window.\n\nCtrl + H vs Ctrl + J: Use H to see where you've been (History) and J to see what you've downloaded.\n\n4. Undo and Redo\n\nCtrl + Z (Undo): Your \"Time Machine.\" It reverses the very last mistake you made.\n\nCtrl + Y (Redo): If you \"Undo\" something by mistake, \"Redo\" brings it back.\n\nPro Tip: You don't need to memorize them all at once. Pick 2 or 3 that you use most often (like Save, Copy, and Paste) and start using them today!",
+          "subsections.1.contentMr":
+            "Computer Class Day #9: Ctrl A to Z Shortcut Keys\n\nकीबोर्ड शॉर्टकट्समुळे माऊस न सोडता कामे झटपट होतात. Windows, MS Office आणि ब्राउझरमध्ये वापरले जाणारे Ctrl शॉर्टकट्स.\n\nA ते Z यादी: Ctrl+A (Select All), B (Bold), C (Copy), D (Font/Bookmark/Fill Down), E (Center), F (Find), G (Go To), H (Replace/History), I (Italic), J (Justify/Downloads), K (Hyperlink), L (Left Align), M (Indent), N (New), O (Open), P (Print), Q (Remove format/Close), R (Right Align/Refresh/Fill Right), S (Save), T (Hanging Indent/New Tab), U (Underline), V (Paste), W (Close), X (Cut), Y (Redo), Z (Undo).\n\nमुख्य संकल्पना: (1) Cut/Copy/Paste – Clipboard वापर. (2) Alignment – E/L/R/J; Indent – M (पैरा), T (Hanging). (3) ब्राउझर: N=नवीन विंडो, T=नवीन टॅब; H=History, J=Downloads. (4) Undo (Z) आणि Redo (Y).\n\nटीप: एकदम सर्व लक्षात ठेवण्याची गरज नाही; Save, Copy, Paste सारखे 2–3 वापरून सुरुवात करा."
+        }
+      }
+    );
+    await CourseDay.updateOne(
+      { dayNumber: 9 },
+      {
+        $set: {
+          "exam.questions": [
+            {
+              questionEn: "Which shortcut key combination is used to select all text or files in the current window?",
+              questionMr: "सध्याच्या विंडोमधील सर्व मजकूर किंवा फाइल्स निवडण्यासाठी कोणता शॉर्टकट वापरतात?",
+              options: [
+                { textEn: "Ctrl + S", textMr: "Ctrl + S" },
+                { textEn: "Ctrl + P", textMr: "Ctrl + P" },
+                { textEn: "Ctrl + A", textMr: "Ctrl + A" },
+                { textEn: "Ctrl + X", textMr: "Ctrl + X" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "If you want to move a paragraph from one place to another (remove it from the original spot), which command should you use first?",
+              questionMr: "पैरा एका जागेवरून दुसऱ्या जागी हलवायचा आहे (मूळ जागेवरून काढून). प्रथम कोणती कमांड वापरावी?",
+              options: [
+                { textEn: "Ctrl + C (Copy)", textMr: "Ctrl + C (Copy)" },
+                { textEn: "Ctrl + X (Cut)", textMr: "Ctrl + X (Cut)" },
+                { textEn: "Ctrl + V (Paste)", textMr: "Ctrl + V (Paste)" },
+                { textEn: "Ctrl + D (Font)", textMr: "Ctrl + D (Font)" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "You made a mistake and deleted a sentence. Which shortcut acts as a 'Time Machine' to reverse this action?",
+              questionMr: "चुकून वाक्य डिलीट केले. ही क्रिया उलटवण्यासाठी 'Time Machine' म्हणून कोणता शॉर्टकट वापरतात?",
+              options: [
+                { textEn: "Ctrl + Y", textMr: "Ctrl + Y" },
+                { textEn: "Ctrl + Z", textMr: "Ctrl + Z" },
+                { textEn: "Ctrl + U", textMr: "Ctrl + U" },
+                { textEn: "Ctrl + H", textMr: "Ctrl + H" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "In a web browser, what is the specific function of Ctrl + T?",
+              questionMr: "वेब ब्राउझरमध्ये Ctrl + T चे विशिष्ट कार्य काय आहे?",
+              options: [
+                { textEn: "Opens a new tab", textMr: "नवीन टॅब उघडते" },
+                { textEn: "Opens a new window", textMr: "नवीन विंडो उघडते" },
+                { textEn: "Refreshes the page", textMr: "पृष्ठ रिफ्रेश करते" },
+                { textEn: "Creates a hanging indent", textMr: "Hanging indent तयार करते" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "Which shortcut would you use to quickly find a specific word or phrase in a large document?",
+              questionMr: "मोठ्या दस्तऐवजात विशिष्ट शब्द किंवा वाक्यांश झटपट शोधण्यासाठी कोणता शॉर्टकट वापरावा?",
+              options: [
+                { textEn: "Ctrl + O", textMr: "Ctrl + O" },
+                { textEn: "Ctrl + G", textMr: "Ctrl + G" },
+                { textEn: "Ctrl + S", textMr: "Ctrl + S" },
+                { textEn: "Ctrl + F", textMr: "Ctrl + F" }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "What does Ctrl + K do in most applications?",
+              questionMr: "बहुतेक अॅप्लिकेशनमध्ये Ctrl + K काय करते?",
+              options: [
+                { textEn: "Justifies the text", textMr: "मजकूर justify करते" },
+                { textEn: "Italicizes the text", textMr: "मजकूर italic करते" },
+                { textEn: "Closes the window", textMr: "विंडो बंद करते" },
+                { textEn: "Inserts a Hyperlink", textMr: "Hyperlink घालते" }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "If you are in a web browser and want to view your browsing history, which shortcut should you use?",
+              questionMr: "ब्राउझरमध्ये ब्राउझिंग हिस्टरी पहायची असल्यास कोणता शॉर्टकट वापरावा?",
+              options: [
+                { textEn: "Ctrl + D", textMr: "Ctrl + D" },
+                { textEn: "Ctrl + B", textMr: "Ctrl + B" },
+                { textEn: "Ctrl + J", textMr: "Ctrl + J" },
+                { textEn: "Ctrl + H", textMr: "Ctrl + H" }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "What happens when you press Ctrl + Y?",
+              questionMr: "Ctrl + Y दाबल्यावर काय होते?",
+              options: [
+                { textEn: "It undoes your last action.", textMr: "शेवटची क्रिया undo होते." },
+                { textEn: "It cuts the selected text.", textMr: "निवडलेला मजकूर cut होतो." },
+                { textEn: "It centers the text.", textMr: "मजकूर मध्यात येतो." },
+                { textEn: "It redos an action you previously undid.", textMr: "आधी undo केलेली क्रिया पुन्हा होते (redo)." }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "Which shortcut allows you to print the current page or document?",
+              questionMr: "सध्याचे पृष्ठ किंवा दस्तऐवज प्रिंट करण्याचा शॉर्टकट कोणता?",
+              options: [
+                { textEn: "Ctrl + V", textMr: "Ctrl + V" },
+                { textEn: "Ctrl + O", textMr: "Ctrl + O" },
+                { textEn: "Ctrl + P", textMr: "Ctrl + P" },
+                { textEn: "Ctrl + R", textMr: "Ctrl + R" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "Ctrl + J has two different common uses depending on the program. What are they?",
+              questionMr: "Ctrl + J ला प्रोग्रामनुसार दोन वेगवेगळे सामान्य वापर आहेत. ते कोणते?",
+              options: [
+                { textEn: "Bold text (Word) / Bookmark page (Browser)", textMr: "Bold (Word) / Bookmark (Browser)" },
+                { textEn: "Center text (Word) / New Tab (Browser)", textMr: "Center (Word) / New Tab (Browser)" },
+                { textEn: "Italicize text (Word) / History (Browser)", textMr: "Italic (Word) / History (Browser)" },
+                { textEn: "Justify text (Word) / Open Downloads (Browser)", textMr: "Justify (Word) / Downloads (Browser)" }
+              ],
+              correctIndex: 3
+            }
+          ]
+        }
+      }
     );
     await CourseDay.updateOne(
       { dayNumber: 10 },
