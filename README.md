@@ -77,6 +77,7 @@
    - **Cloudinary** is optional - leave empty if you don't need image uploads (profile photos and course images won't work)
    - Change `JWT_SECRET` to a random secure string
 
+
 4. **Start MongoDB** (if using local MongoDB):
    - **Windows**: Usually runs automatically as a service
    - **Mac/Linux**: `sudo systemctl start mongod` or check service status
