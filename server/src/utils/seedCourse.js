@@ -1627,8 +1627,268 @@ const ensureCourseDays = async () => {
       { $set: { "subsections.0.videoUrl": "https://youtu.be/mWLxz8q7ztE?si=mMnY-YX7Ph-RR0U3" } }
     );
     await CourseDay.updateOne(
+      { dayNumber: 14 },
+      {
+        $set: {
+          "subsections.1.contentEn":
+            "Computer Class Day #14: MS Word Part 3 - The Insert Tab\n\nThis guide covers the key features and tools available in the Insert Tab of Microsoft Word, as explained in the \"EasyTech Class\" tutorial. The Insert Tab is primarily used to add various elements like tables, pictures, shapes, headers, footers, and links to your document.\n\n1. Pages Group\n\nThis group helps manage the overall structure and flow of pages in your document.\n\nCover Page: Allows you to insert a pre-designed front page for your document. You can customize the title, subtitle, author name, and date.\n\nBlank Page: Inserts a completely new blank page at the current cursor position.\n\nPage Break: Ends the current page at the cursor position and moves all subsequent content to the next page.\n\n2. Tables Group\n\nUsed to organize information in rows and columns.\n\nInserting a Table: Grid Method - Hover over the grid to select the number of columns and rows. Insert Table Dialog - Manually enter the specific number of columns and rows.\n\nFormatting: Once a table is inserted, the Design and Layout tabs appear, allowing you to change table styles, colors, borders, and adjust row/column sizes.\n\n3. Illustrations Group\n\nEnables the addition of visual elements to make the document more engaging.\n\nPictures: Insert images from your computer. You can resize, crop, and apply styles or borders using the Format tab.\n\nClip Art: (In older versions) Search for and insert simple graphic illustrations and drawings.\n\nShapes: Add geometric shapes, arrows, and lines. These can be customized with colors and shadows.\n\nSmartArt: Used for visual representations of information, such as organizational charts, process cycles, or hierarchies.\n\nChart: Insert various charts (Bar, Pie, Line, etc.) to represent data visually. This often opens an Excel-like window to manage the data.\n\n4. Links Group\n\nHelps connect the document to external resources or other parts of the same file.\n\nHyperlink: Links selected text to a website, another document, or a folder. (Shortcut: Ctrl + K)\n\nBookmark: Marks a specific location in the document so you can quickly jump back to it later.\n\nCross-reference: Refers to items like headings, figures, or tables within the same document, allowing you to jump to them by clicking.\n\n5. Header & Footer Group\n\nAdd content that repeats at the top or bottom of every page.\n\nHeader: Adds text (like document title or author) at the top of every page.\n\nFooter: Adds text at the bottom of every page.\n\nPage Number: Automatically inserts page numbers at the top, bottom, or margins.\n\n6. Text Group\n\nProvides advanced text-based elements.\n\nText Box: A movable box that holds text, useful for pull quotes or specific layout needs.\n\nQuick Parts: Saves frequently used text (like addresses or company names) so they can be reinserted instantly without retyping.\n\nWordArt: Adds stylized, decorative text effects.\n\nDrop Cap: Enlarges the first letter of a paragraph (often seen in newspapers or magazines).\n\nSignature Line: Adds a formal signature placeholder at the end of a document.\n\nDate & Time: Quickly inserts the current date and time in various formats.\n\n7. Symbols Group\n\nFor specialized characters and mathematical content.\n\nEquation: Insert mathematical formulas and complex equations.\n\nSymbol: Add special characters not found on the keyboard (like copyright, registered, or Greek letters).\n\nNote: These features are based on MS Word (as demonstrated in the video). Menus may vary slightly depending on your version of Office.",
+          "subsections.1.contentMr":
+            "Computer Class Day #14: MS Word Part 3 - The Insert Tab\n\nInsert Tab मध्ये टेबल्स, चित्रे, शेप्स, हेडर, फूटर आणि लिंक्स जोडण्याची साधने.\n\n१. Pages: Cover Page (प्री-डिझाइन फ्रंट पेज), Blank Page, Page Break.\n\n२. Tables: ग्रिड किंवा Insert Table डायलॉगद्वारे row/column; Design आणि Layout टॅब्स – स्टाइल्स, रंग, बॉर्डर, आकार.\n\n३. Illustrations: Pictures (संगणकावरून, resize/crop/Format), Clip Art (जुन्या आवृत्ती), Shapes, SmartArt (ऑर्ग चार्ट, प्रक्रिया), Chart (Bar, Pie, Line – Excel सारखे डेटा).\n\n४. Links: Hyperlink (Ctrl+K), Bookmark, Cross-reference.\n\n५. Header & Footer: Header, Footer, Page Number.\n\n६. Text: Text Box, Quick Parts, WordArt, Drop Cap, Signature Line, Date & Time.\n\n७. Symbols: Equation, Symbol (©, ®, ग्रीक अक्षरे).\n\nटीप: Office आवृत्तीनुसार मेनू थोडे वेगळे असू शकतात."
+        }
+      }
+    );
+    await CourseDay.updateOne(
+      { dayNumber: 14 },
+      {
+        $set: {
+          "exam.questions": [
+            {
+              questionEn: "Which feature in the Pages group would you use to insert a pre-designed front page with placeholders for title, author, and date?",
+              questionMr: "शीर्षक, लेखक आणि तारीखसाठी placeholders असलेला प्री-डिझाइन फ्रंट पेज घालण्यासाठी Pages गटात कोणती सुविधा वापरावी?",
+              options: [
+                { textEn: "Quick Parts", textMr: "Quick Parts" },
+                { textEn: "Blank Page", textMr: "Blank Page" },
+                { textEn: "Cover Page", textMr: "Cover Page" },
+                { textEn: "Page Break", textMr: "Page Break" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "If you want to end the current page immediately and move all subsequent content to the top of the next page, which command should you use?",
+              questionMr: "सध्याचे पृष्ठ ताबडतोब संपवून पुढील सर्व मजकूर पुढच्या पृष्ठाच्या वरच्या बाजूस हलवायचा असल्यास कोणती कमांड वापरावी?",
+              options: [
+                { textEn: "Page Break", textMr: "Page Break" },
+                { textEn: "Text Box", textMr: "Text Box" },
+                { textEn: "Bookmark", textMr: "Bookmark" },
+                { textEn: "SmartArt", textMr: "SmartArt" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "When inserting a table, which two specific tabs appear to allow you to format styles and adjust row/column sizes?",
+              questionMr: "टेबल घातल्यावर स्टाइल्स फॉर्मॅट करण्यासाठी आणि row/column आकार समायोजित करण्यासाठी कोणते दोन टॅब्स दिसतात?",
+              options: [
+                { textEn: "References and Mailings", textMr: "References and Mailings" },
+                { textEn: "Design and Layout", textMr: "Design and Layout" },
+                { textEn: "View and Review", textMr: "View and Review" },
+                { textEn: "Home and Insert", textMr: "Home and Insert" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "Which tool in the Illustrations group is best suited for creating visual representations of information, such as organizational charts or process cycles?",
+              questionMr: "Illustrations गटातील कोणते साधन संघटनात्मक चार्ट किंवा प्रक्रिया चक्र सारख्या माहितीचे दृश्य प्रतिनिधित्व तयार करण्यासाठी योग्य आहे?",
+              options: [
+                { textEn: "Chart", textMr: "Chart" },
+                { textEn: "SmartArt", textMr: "SmartArt" },
+                { textEn: "Screenshot", textMr: "Screenshot" },
+                { textEn: "Shapes", textMr: "Shapes" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "What is the keyboard shortcut mentioned for creating a Hyperlink?",
+              questionMr: "Hyperlink तयार करण्यासाठी दिलेला कीबोर्ड शॉर्टकट कोणता?",
+              options: [
+                { textEn: "Ctrl + P", textMr: "Ctrl + P" },
+                { textEn: "Ctrl + K", textMr: "Ctrl + K" },
+                { textEn: "Ctrl + H", textMr: "Ctrl + H" },
+                { textEn: "Ctrl + L", textMr: "Ctrl + L" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "Which feature allows you to jump to specific headings, figures, or tables within the same document by clicking on a reference?",
+              questionMr: "संदर्भावर क्लिक करून त्याच दस्तऐवजातील विशिष्ट हेडिंग्स, आकृत्या किंवा टेबल्सवर जाण्याची सुविधा कोणती?",
+              options: [
+                { textEn: "WordArt", textMr: "WordArt" },
+                { textEn: "Cross-reference", textMr: "Cross-reference" },
+                { textEn: "Signature Line", textMr: "Signature Line" },
+                { textEn: "Hyperlink", textMr: "Hyperlink" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "You want to add the document title to the top of every page automatically. Which feature should you use?",
+              questionMr: "दस्तऐवजाचे शीर्षक प्रत्येक पृष्ठाच्या वरच्या बाजूस स्वयंचलित जोडायचे आहे. कोणती सुविधा वापरावी?",
+              options: [
+                { textEn: "Drop Cap", textMr: "Drop Cap" },
+                { textEn: "Header", textMr: "Header" },
+                { textEn: "Text Box", textMr: "Text Box" },
+                { textEn: "Footer", textMr: "Footer" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "What is the primary purpose of the 'Quick Parts' feature?",
+              questionMr: "'Quick Parts' सुविधेचा मुख्य उद्देश काय आहे?",
+              options: [
+                { textEn: "To insert mathematical equations quickly.", textMr: "गणिती समीकरणे झटपट घालणे." },
+                { textEn: "To create a quick chart from data.", textMr: "डेटावरून झटपट चार्ट तयार करणे." },
+                { textEn: "To quickly add a border to a picture.", textMr: "चित्राला झटपट बॉर्डर जोडणे." },
+                { textEn: "To save and reinsert frequently used text or properties.", textMr: "वारंवार वापरलेला मजकूर किंवा गुणधर्म सेव्ह करून पुन्हा घालणे." }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "Which text feature enlarges the first letter of a paragraph to make it decorative, often seen in newspapers?",
+              questionMr: "पैराग्राफचे पहिले अक्षर सजावटीने मोठे करणारी, वृत्तपत्रांमध्ये दिसणारी टेक्स्ट सुविधा कोणती?",
+              options: [
+                { textEn: "Drop Cap", textMr: "Drop Cap" },
+                { textEn: "Symbol", textMr: "Symbol" },
+                { textEn: "WordArt", textMr: "WordArt" },
+                { textEn: "Text Box", textMr: "Text Box" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "Which tool would you use to insert complex mathematical formulas into your document?",
+              questionMr: "दस्तऐवजात जटिल गणिती सूत्रे घालण्यासाठी कोणते साधन वापरावे?",
+              options: [
+                { textEn: "Equation", textMr: "Equation" },
+                { textEn: "Chart", textMr: "Chart" },
+                { textEn: "Symbol", textMr: "Symbol" },
+                { textEn: "SmartArt", textMr: "SmartArt" }
+              ],
+              correctIndex: 0
+            }
+          ]
+        }
+      }
+    );
+    await CourseDay.updateOne(
       { dayNumber: 15 },
       { $set: { "subsections.0.videoUrl": "https://youtu.be/EFw00omO54A?si=gy3wAq41HJvJWRBJ" } }
+    );
+    await CourseDay.updateOne(
+      { dayNumber: 15 },
+      {
+        $set: {
+          "subsections.1.contentEn":
+            "Computer Class Day #15: MS Word Part 4 - The Page Layout Tab\n\nThis guide covers the tools available in the Page Layout Tab of Microsoft Word, as explained in the \"EasyTech Class\" tutorial. This tab is essential for controlling the overall appearance, page structure, and print settings of your document.\n\n1. Themes Group\n\nThemes allow you to change the entire look of your document with one click.\n\nThemes: Changes colors, font styles, and object effects across the whole document.\n\nColors, Fonts, & Effects: You can customize a theme by choosing specific color palettes or font sets while keeping the rest of the theme intact.\n\n2. Page Setup Group (Crucial for Printing)\n\nMargins: Adjusts the white space around the text (Top, Bottom, Left, Right). Options: Normal, Narrow, Wide, or Custom Margins (set in cm).\n\nOrientation: Choose between Portrait (vertical) and Landscape (horizontal).\n\nSize: Select the paper size for your document. A4 is the most common standard for printing.\n\nColumns: Divides text into two or more columns (useful for newsletters or newspapers).\n\nBreaks: Page Break moves content to the next page. Column Break moves text to the next column. Section Breaks apply different formatting to different parts (Next Page, Continuous, Even/Odd Page).\n\nHyphenation: When a word is too long to fit at the end of a line, Word can hyphenate it to keep the text balanced.\n\n3. Page Background Group\n\nWatermark: Adds faint text (e.g. \"Confidential\") or an image behind the document.\n\nPage Color: Changes the background color of the entire page.\n\nPage Borders: Adds decorative borders around the edges of the page.\n\n4. Paragraph Group\n\nIndent: Adjust the left or right margin of a specific paragraph (in cm).\n\nSpacing (Before/After): Control space before or after a paragraph (in points).\n\n5. Arrange Group (For Images & Objects)\n\nWhen an image or shape is selected: Position (place image on page), Wrap Text (how text flows around image), Align (multiple objects), Group (join objects as one), Rotate.\n\nNote: Concepts apply to Word 2007 and modern versions (2010, 2013, 2016, 2019, Office 365).",
+          "subsections.1.contentMr":
+            "Computer Class Day #15: MS Word Part 4 - The Page Layout Tab\n\nPage Layout टॅब – दस्तऐवजाचे स्वरूप, पृष्ठ रचना आणि प्रिंट सेटिंग्ज.\n\n१. Themes: एका क्लिकमध्ये रंग, फॉन्ट स्टाइल्स आणि ऑब्जेक्ट इफेक्ट्स. Colors, Fonts, Effects द्वारे कस्टमायझ.\n\n२. Page Setup: Margins (Normal/Narrow/Wide/Custom, cm), Orientation (Portrait/Landscape), Size (A4 सामान्य), Columns, Breaks (Page/Column/Section – Next Page, Continuous, Even/Odd), Hyphenation.\n\n३. Page Background: Watermark, Page Color, Page Borders.\n\n४. Paragraph: Indent (cm), Spacing Before/After (pt).\n\n५. Arrange (चित्रे/ऑब्जेक्ट्स निवडल्यावर): Position, Wrap Text, Align, Group, Rotate.\n\nटीप: Word 2007 ते Office 365 पर्यंत संकल्पना लागू."
+        }
+      }
+    );
+    await CourseDay.updateOne(
+      { dayNumber: 15 },
+      {
+        $set: {
+          "exam.questions": [
+            {
+              questionEn: "Which feature in the Page Setup group controls the amount of white space around the top, bottom, left, and right edges of your document?",
+              questionMr: "Page Setup गटातील कोणती सुविधा दस्तऐवजाच्या वर, खाली, डावी आणि उजवी कडांभोवतीची पांढरी जागा नियंत्रित करते?",
+              options: [
+                { textEn: "Columns", textMr: "Columns" },
+                { textEn: "Size", textMr: "Size" },
+                { textEn: "Margins", textMr: "Margins" },
+                { textEn: "Orientation", textMr: "Orientation" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "You want your document to be wider than it is tall (horizontal layout). Which Page Setup option should you change?",
+              questionMr: "दस्तऐवज उंचीपेक्षा रुंद असावा (आडवे लेआउट) असे वाटत असेल तर Page Setup मधील कोणता पर्याय बदलावा?",
+              options: [
+                { textEn: "Orientation", textMr: "Orientation" },
+                { textEn: "Size", textMr: "Size" },
+                { textEn: "Margins", textMr: "Margins" },
+                { textEn: "Breaks", textMr: "Breaks" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "Which Section Break would you use if you want to change formatting (like columns) in the middle of a page without starting a new page?",
+              questionMr: "नवीन पृष्ठ न सुरू करता पृष्ठाच्या मध्यात फॉर्मॅटिंग (उदा. columns) बदलायची असल्यास कोणता Section Break वापरावा?",
+              options: [
+                { textEn: "Next Page", textMr: "Next Page" },
+                { textEn: "Page Break", textMr: "Page Break" },
+                { textEn: "Even Page", textMr: "Even Page" },
+                { textEn: "Continuous", textMr: "Continuous" }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "What is the primary purpose of the 'Watermark' feature in the Page Background group?",
+              questionMr: "Page Background गटातील 'Watermark' सुविधेचा मुख्य उद्देश काय आहे?",
+              options: [
+                { textEn: "To change the background color of the entire page.", textMr: "संपूर्ण पृष्ठाचा बॅकग्राउंड रंग बदलणे." },
+                { textEn: "To add a decorative border around the page.", textMr: "पृष्ठाभोवती सजावटीचा बॉर्डर जोडणे." },
+                { textEn: "To add faint text or images behind the content.", textMr: "मजकुराच्या मागे हलका मजकूर किंवा चित्रे जोडणे." },
+                { textEn: "To adjust paragraph indentation.", textMr: "पैराग्राफ इंडेंटेशन समायोजित करणे." }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "If you want to split your text into two vertical blocks, similar to a newspaper layout, which tool should you use?",
+              questionMr: "मजकूर वृत्तपत्र सारख्या दोन उभ्या ब्लॉक्समध्ये विभाजित करायचा असल्यास कोणते साधन वापरावे?",
+              options: [
+                { textEn: "Hyphenation", textMr: "Hyphenation" },
+                { textEn: "Line Numbers", textMr: "Line Numbers" },
+                { textEn: "Columns", textMr: "Columns" },
+                { textEn: "Orientation", textMr: "Orientation" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "Which tool allows you to change the colors, fonts, and effects of the entire document with a single click?",
+              questionMr: "एका क्लिकमध्ये संपूर्ण दस्तऐवजाचे रंग, फॉन्ट्स आणि इफेक्ट्स बदलण्याचे साधन कोणते?",
+              options: [
+                { textEn: "Themes", textMr: "Themes" },
+                { textEn: "Styles", textMr: "Styles" },
+                { textEn: "Page Color", textMr: "Page Color" },
+                { textEn: "AutoFormat", textMr: "AutoFormat" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "In the Paragraph group of the Page Layout tab, what does the 'Spacing: After' setting control?",
+              questionMr: "Page Layout टॅबच्या Paragraph गटात 'Spacing: After' सेटिंग काय नियंत्रित करते?",
+              options: [
+                { textEn: "The amount of space added below a paragraph.", textMr: "पैराग्राफ खाली जोडलेली जागा." },
+                { textEn: "The width of the page margins.", textMr: "पृष्ठ मार्जिनची रुंदी." },
+                { textEn: "The indentation of the first line.", textMr: "पहिल्या ओळीचे इंडेंटेशन." },
+                { textEn: "The space between characters in a word.", textMr: "शब्दातील अक्षरांमधील जागा." }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "Which feature helps prevent large gaps in text alignment by splitting long words at the end of a line?",
+              questionMr: "ओळीच्या शेवटी लांब शब्द विभाजित करून मजकूर अलाइनमेंटमधील मोठ्या गॅप्स टाळण्यास कोणती सुविधा मदत करते?",
+              options: [
+                { textEn: "Text Wrapping", textMr: "Text Wrapping" },
+                { textEn: "Kerning", textMr: "Kerning" },
+                { textEn: "Hyphenation", textMr: "Hyphenation" },
+                { textEn: "Justify", textMr: "Justify" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "You have inserted an image and want the text to flow tightly around its edges. Which Arrange tool do you use?",
+              questionMr: "चित्र घातले आहे आणि मजकूर त्याच्या कडांभोवती घट्ट वाहावा असे वाटते. Arrange मधील कोणते साधन वापरावे?",
+              options: [
+                { textEn: "Align", textMr: "Align" },
+                { textEn: "Wrap Text", textMr: "Wrap Text" },
+                { textEn: "Rotate", textMr: "Rotate" },
+                { textEn: "Position", textMr: "Position" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "How can you treat multiple shapes or images as a single object so they move together?",
+              questionMr: "अनेक शेप्स किंवा चित्रे एकाच ऑब्जेक्टप्रमाणे एकत्र हलवण्यासाठी काय करावे?",
+              options: [
+                { textEn: "Group", textMr: "Group" },
+                { textEn: "Anchor", textMr: "Anchor" },
+                { textEn: "Combine", textMr: "Combine" },
+                { textEn: "Link", textMr: "Link" }
+              ],
+              correctIndex: 0
+            }
+          ]
+        }
+      }
     );
     await CourseDay.updateOne(
       { dayNumber: 16 },
