@@ -45,6 +45,125 @@ const ensureCourseDays = async () => {
       }
     );
     await CourseDay.updateOne(
+      { dayNumber: 3 },
+      {
+        $set: {
+          "exam.questions": [
+            {
+              questionEn: "You need to quickly open File Explorer without using the mouse. Which keyboard shortcut should you press?",
+              questionMr: "माऊस न वापरता File Explorer झटपट उघडण्यासाठी कोणता कीबोर्ड शॉर्टकट दाबावा?",
+              options: [
+                { textEn: "Windows + E", textMr: "Windows + E" },
+                { textEn: "Ctrl + F", textMr: "Ctrl + F" },
+                { textEn: "Ctrl + E", textMr: "Ctrl + E" },
+                { textEn: "Alt + F4", textMr: "Alt + F4" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "You want to move a file from your 'Downloads' folder to your 'Documents' folder so that it no longer exists in 'Downloads'. Which command sequence is correct?",
+              questionMr: "'Downloads' फोल्डरमधील फाइल 'Documents' मध्ये हलवायची आहे जेणेकरून ती 'Downloads' मध्ये राहणार नाही. योग्य क्रम कोणता?",
+              options: [
+                { textEn: "Cut (Ctrl + X) then Paste (Ctrl + V)", textMr: "Cut (Ctrl + X) नंतर Paste (Ctrl + V)" },
+                { textEn: "Copy (Ctrl + C) then Paste (Ctrl + V)", textMr: "Copy (Ctrl + C) नंतर Paste (Ctrl + V)" },
+                { textEn: "Rename (F2) then Enter", textMr: "Rename (F2) नंतर Enter" },
+                { textEn: "Delete then Undo", textMr: "Delete नंतर Undo" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "Which specific area of the File Explorer interface allows you to navigate one level up in the folder hierarchy?",
+              questionMr: "File Explorer मध्ये फोल्डर पद्धतीत एक स्तर वर जाण्यासाठी कोणता भाग वापरता येतो?",
+              options: [
+                { textEn: "The Up Arrow button", textMr: "The Up Arrow button" },
+                { textEn: "The Refresh button", textMr: "The Refresh button" },
+                { textEn: "The Search Bar", textMr: "The Search Bar" },
+                { textEn: "The Details Pane", textMr: "The Details Pane" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "You have a file selected and want to quickly rename it without right-clicking. Which function key do you press?",
+              questionMr: "फाइल निवडलेली आहे आणि right-click न करता झटपट rename करायचे आहे. कोणती function key दाबावी?",
+              options: [
+                { textEn: "F5", textMr: "F5" },
+                { textEn: "F1", textMr: "F1" },
+                { textEn: "F2", textMr: "F2" },
+                { textEn: "F12", textMr: "F12" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "You are organizing a project and need to create a new folder immediately. What is the keyboard shortcut?",
+              questionMr: "प्रकल्प व्यवस्थित करत आहात आणि त्वरित नवीन फोल्डर तयार करायचा आहे. कीबोर्ड शॉर्टकट कोणता?",
+              options: [
+                { textEn: "Alt + New", textMr: "Alt + New" },
+                { textEn: "Ctrl + Alt + F", textMr: "Ctrl + Alt + F" },
+                { textEn: "Ctrl + N", textMr: "Ctrl + N" },
+                { textEn: "Ctrl + Shift + N", textMr: "Ctrl + Shift + N" }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "Which part of the File Explorer window shows the path of the current folder and lets you jump to a specific location by typing?",
+              questionMr: "File Explorer मध्ये सध्याच्या फोल्डरचा मार्ग कोणता भाग दाखवतो आणि टाइप करून ठिकाणावर जाता येते?",
+              options: [
+                { textEn: "The Ribbon", textMr: "The Ribbon" },
+                { textEn: "The Status Bar", textMr: "The Status Bar" },
+                { textEn: "The Navigation Pane", textMr: "The Navigation Pane" },
+                { textEn: "The Address Bar", textMr: "The Address Bar" }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "If you want to view your files with detailed information like 'Date modified' and 'Size', which tab in the Ribbon should you click?",
+              questionMr: "'Date modified' आणि 'Size' सारखी तपशीलासह फाइल्स पाहण्यासाठी Ribbon मधील कोणता टॅब क्लिक करावा?",
+              options: [
+                { textEn: "Share", textMr: "Share" },
+                { textEn: "View", textMr: "View" },
+                { textEn: "Home", textMr: "Home" },
+                { textEn: "File", textMr: "File" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "What is the primary function of the 'C: Drive' shown in 'This PC'?",
+              questionMr: "'This PC' मध्ये दिसणाऱ्या 'C: Drive' चे मुख्य कार्य काय आहे?",
+              options: [
+                { textEn: "It is solely for external backups.", textMr: "ते फक्त बाह्य बॅकअपसाठी आहे." },
+                { textEn: "It stores the Operating System and most files.", textMr: "तेथे Operating System आणि बहुतेक फाइल्स असतात." },
+                { textEn: "It is only used for playing DVDs.", textMr: "ते फक्त DVD चालवण्यासाठी वापरतात." },
+                { textEn: "It is a temporary folder that deletes files on restart.", textMr: "ते रीस्टार्टवर फाइल्स हटवणारे तात्पुरते फोल्डर आहे." }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "You want to select every single file in the current folder to move them all at once. What is the fastest way?",
+              questionMr: "सध्याच्या फोल्डरमधील सर्व फाइल्स एकाच वेळी हलवण्यासाठी निवडायच्या आहेत. सर्वात जलद मार्ग कोणता?",
+              options: [
+                { textEn: "Hold Shift and click each file one by one.", textMr: "Shift दाबून प्रत्येक फाइलवर एक एक क्लिक करा." },
+                { textEn: "Press Alt + S", textMr: "Alt + S दाबा" },
+                { textEn: "Right-click and select 'Refresh'", textMr: "Right-click करून 'Refresh' निवडा" },
+                { textEn: "Press Ctrl + A", textMr: "Ctrl + A दाबा" }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "How can you hide or show the Ribbon menu at the top of File Explorer if you want more screen space?",
+              questionMr: "अधिक स्क्रीन जागा हवी असल्यास File Explorer मधील Ribbon मेनू कसे लपवायचा/दाखवायचा?",
+              options: [
+                { textEn: "Click the 'Close' button", textMr: "'Close' बटण क्लिक करा" },
+                { textEn: "Double-click the scroll bar", textMr: "स्क्रोल बारवर डबल-क्लिक करा" },
+                { textEn: "Press Ctrl + F1", textMr: "Ctrl + F1 दाबा" },
+                { textEn: "Press Ctrl + Alt + Delete", textMr: "Ctrl + Alt + Delete दाबा" }
+              ],
+              correctIndex: 2
+            }
+          ]
+        }
+      }
+    );
+    await CourseDay.updateOne(
       { dayNumber: 4 },
       { $set: { "subsections.0.videoUrl": "https://youtu.be/FtFAAGkMLsY?si=p9iglMg5IcWFO8GW" } }
     );
