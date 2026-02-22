@@ -21,13 +21,13 @@ const Navbar = () => {
   return (
     <nav className="flex items-center justify-between bg-white px-6 py-3 shadow">
       <div
-        className="flex items-center gap-3 cursor-pointer"
+        className="flex cursor-pointer items-center"
         onClick={() => navigate(user?.role === "student" ? "/home" : "/")}
       >
         <img
-          src="https://imgs.search.brave.com/lmQJM-TWFOuTMQ1L6kmXfaMaXgi5ZdLKR4u3T5bTQZw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/d29ybGR2ZWN0b3Js/b2dvLmNvbS9sb2dv/cy9tcy1jaXQtMS5z/dmc"
-          alt="MS-CIT Logo"
-          className="h-14 w-auto object-contain"
+          src="https://cdn.worldvectorlogo.com/logos/ms-cit-1.svg"
+          alt="MS-CIT"
+          className="h-12 w-auto object-contain"
         />
       </div>
       <div className="flex items-center gap-4">
