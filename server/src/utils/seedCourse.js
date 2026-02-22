@@ -1895,20 +1895,670 @@ const ensureCourseDays = async () => {
       { $set: { "subsections.0.videoUrl": "https://youtu.be/uOCyvUoUA0c?si=sx_Dkj-SJrMnUlkJ" } }
     );
     await CourseDay.updateOne(
+      { dayNumber: 16 },
+      {
+        $set: {
+          "subsections.1.contentEn":
+            "Computer Class Day #16: MS Word Part 5 - The References Tab\n\nThe References Tab is primarily used for creating professional, academic, and research-based documents. It helps you organize content, provide credit to sources, and help readers navigate long documents.\n\n1. Table of Contents (TOC)\n\nThis feature creates a summary of the headings and sub-headings used in your document, including their page numbers.\n\nTable of Contents: Choose a style to automatically generate a table based on your Heading levels (Heading 1, 2, 3).\n\nAdd Text: If you haven't used the Home tab styles, you can manually mark text as Level 1, 2, or 3 for inclusion in the TOC.\n\nUpdate Table: If you change your headings or add more content, use this to refresh the TOC and page numbers.\n\n2. Footnotes & Endnotes\n\nUsed to provide additional explanations or references for specific words or sentences without cluttering the main body.\n\nInsert Footnote: Adds a note at the bottom of the current page.\n\nInsert Endnote: Adds a note at the very end of the document.\n\nNext Footnote: A navigation tool to jump between different notes in your file.\n\nShow Notes: Quickly scrolls the document to the footnote or endnote area.\n\n3. Citations & Bibliography\n\nCrucial for research papers to avoid plagiarism by citing your sources.\n\nInsert Citation: Add a source (Book, Website, Article, etc.). You enter details like Author, Title, Year, and Publisher.\n\nManage Sources: A central list of all sources you've ever cited, allowing you to reuse them in different parts of the document.\n\nStyle: Select the citation format (APA, MLA, Chicago, etc.).\n\nBibliography: Generates a full list of all cited sources at the end of the document with complete details.\n\n4. Captions\n\nInsert Caption: Adds a label (e.g., \"Figure 1: Keyboard\") to an image, table, or chart.\n\nInsert Table of Figures: Creates a list of all captioned images/tables with their page numbers.\n\nCross-reference: Link text to a specific figure (e.g., \"See Figure 1\") so clicking takes you to that image.\n\n5. Index\n\nMark Entry: Select a keyword and mark it as an index entry.\n\nInsert Index: Generates an alphabetical index list at the end of your document.\n\n6. Table of Authorities\n\nUsed in legal documents. Mark Citation marks legal text under a category (Cases, Statutes, etc.). Insert Table of Authorities creates a list showing which legal references appear on which pages.\n\nSummary: The References tab supports structured, professional document management beyond simple typing.",
+          "subsections.1.contentMr":
+            "Computer Class Day #16: MS Word Part 5 - The References Tab\n\nReferences टॅब व्यावसायिक, शैक्षणिक आणि संशोधन दस्तऐवजांसाठी; स्रोतांचे श्रेय, नेव्हिगेशन.\n\n१. Table of Contents (TOC): हेडिंग्सवर आधारित सारणी; Add Text (Level 1/2/3), Update Table.\n\n२. Footnotes & Endnotes: Insert Footnote (पृष्ठाच्या खाली), Insert Endnote (दस्तऐवज शेवटी), Next Footnote, Show Notes.\n\n३. Citations & Bibliography: Insert Citation (स्रोत तपशील), Manage Sources, Style (APA, MLA, Chicago), Bibliography.\n\n४. Captions: Insert Caption (Figure 1 इ.), Insert Table of Figures, Cross-reference.\n\n५. Index: Mark Entry, Insert Index (वर्णक्रमानुसार).\n\n६. Table of Authorities: कायदेशीर दस्तऐवज – Mark Citation, Insert Table of Authorities.\n\nसारांश: References टॅब संरचित, व्यावसायिक दस्तऐवज व्यवस्थापनासाठी."
+        }
+      }
+    );
+    await CourseDay.updateOne(
+      { dayNumber: 16 },
+      {
+        $set: {
+          "exam.questions": [
+            {
+              questionEn: "Which specific element does the 'Table of Contents' feature primarily rely on to automatically generate the list structure?",
+              questionMr: "'Table of Contents' सुविधा यादी स्वयंचलित तयार करण्यासाठी मुख्यतः कोणत्या घटकावर अवलंबून आहे?",
+              options: [
+                { textEn: "Footnotes", textMr: "Footnotes" },
+                { textEn: "Page Borders", textMr: "Page Borders" },
+                { textEn: "Bookmarks", textMr: "Bookmarks" },
+                { textEn: "Heading Styles", textMr: "Heading Styles" }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "What is the key difference between a Footnote and an Endnote regarding their placement?",
+              questionMr: "Footnote आणि Endnote मध्ये ठिकाणाचा मुख्य फरक काय आहे?",
+              options: [
+                { textEn: "Footnotes appear at the top of the page; Endnotes appear at the bottom.", textMr: "Footnotes पृष्ठाच्या वर; Endnotes खाली." },
+                { textEn: "Footnotes are for images only; Endnotes are for text only.", textMr: "Footnotes फक्त चित्रांसाठी; Endnotes फक्त मजकूरासाठी." },
+                { textEn: "There is no difference; they are just different names for the same feature.", textMr: "फरक नाही; समान सुविधेची वेगवेगळी नावे." },
+                { textEn: "Footnotes appear at the bottom of the page; Endnotes appear at the end of the document.", textMr: "Footnotes पृष्ठाच्या खाली; Endnotes दस्तऐवजाच्या शेवटी." }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "You have added a new chapter and changed some headings. What must you do to ensure the Table of Contents reflects these changes?",
+              questionMr: "नवीन अध्याय आणि हेडिंग बदलल्यावर Table of Contents ते बदल दाखवावी म्हणून काय करावे?",
+              options: [
+                { textEn: "Insert a new Cover Page.", textMr: "नवीन Cover Page घाला." },
+                { textEn: "Re-type the Table of Contents manually.", textMr: "Table of Contents पुन्हा हाताने टाइप करा." },
+                { textEn: "Click 'Update Table'.", textMr: "'Update Table' क्लिक करा." },
+                { textEn: "Use the 'Track Changes' feature.", textMr: "'Track Changes' वापरा." }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "Which tool would you use to create a list of all the images, charts, and tables in your document along with their page numbers?",
+              questionMr: "दस्तऐवजातील सर्व चित्रे, चार्ट्स आणि टेबल्सची यादी आणि पृष्ठ क्रमांक तयार करण्यास कोणते साधन वापरावे?",
+              options: [
+                { textEn: "Table of Authorities", textMr: "Table of Authorities" },
+                { textEn: "Index", textMr: "Index" },
+                { textEn: "Insert Table of Figures", textMr: "Insert Table of Figures" },
+                { textEn: "Bibliography", textMr: "Bibliography" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "In a legal document, which feature is used to list citations of cases, statutes, and rules?",
+              questionMr: "कायदेशीर दस्तऐवजात केसेस, कायदे आणि नियमांची उद्धरणे सूचीबद्ध करण्यास कोणती सुविधा वापरतात?",
+              options: [
+                { textEn: "SmartArt", textMr: "SmartArt" },
+                { textEn: "Cross-reference", textMr: "Cross-reference" },
+                { textEn: "Table of Figures", textMr: "Table of Figures" },
+                { textEn: "Table of Authorities", textMr: "Table of Authorities" }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "What is the primary purpose of the 'Manage Sources' feature in the Citations & Bibliography group?",
+              questionMr: "Citations & Bibliography गटातील 'Manage Sources' सुविधेचा मुख्य उद्देश काय आहे?",
+              options: [
+                { textEn: "To search the internet for new books.", textMr: "नवीन पुस्तकांसाठी इंटरनेट शोधणे." },
+                { textEn: "To automatically write the essay for you.", textMr: "निबंध स्वयंचलित लिहिणे." },
+                { textEn: "To change the font of the bibliography.", textMr: "बिब्लिओग्राफीचा फॉन्ट बदलणे." },
+                { textEn: "To create a central list of cited sources for reuse.", textMr: "पुनर्वापरासाठी उद्धृत स्रोतांची केंद्रीय यादी तयार करणे." }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "Which feature generates an alphabetical list of keywords and the page numbers where they appear, usually found at the end of a book?",
+              questionMr: "कोणती सुविधा कीवर्ड्सची वर्णक्रमानुसार यादी आणि पृष्ठ क्रमांक तयार करते, सहसा पुस्तकाच्या शेवटी?",
+              options: [
+                { textEn: "Caption", textMr: "Caption" },
+                { textEn: "Index", textMr: "Index" },
+                { textEn: "Table of Contents", textMr: "Table of Contents" },
+                { textEn: "Citation", textMr: "Citation" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "If you want to create a clickable link in your text that says 'See Figure 1' and takes the reader to that image, which tool should you use?",
+              questionMr: "'See Figure 1' असे क्लिक करण्यायोग्य लिंक तयार करून वाचकाला त्या चित्रावर नेण्यास कोणते साधन वापरावे?",
+              options: [
+                { textEn: "Cross-reference", textMr: "Cross-reference" },
+                { textEn: "Hyperlink", textMr: "Hyperlink" },
+                { textEn: "Bookmark", textMr: "Bookmark" },
+                { textEn: "Watermark", textMr: "Watermark" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "Which of the following is NOT a standard Citation Style available in MS Word?",
+              questionMr: "खालीलपैकी MS Word मध्ये उपलब्ध मानक Citation Style कोणता नाही?",
+              options: [
+                { textEn: "Twitter Thread", textMr: "Twitter Thread" },
+                { textEn: "Chicago", textMr: "Chicago" },
+                { textEn: "APA", textMr: "APA" },
+                { textEn: "MLA", textMr: "MLA" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "To add a label like 'Figure 1' below an image, which button in the Captions group should you click?",
+              questionMr: "चित्राखाली 'Figure 1' सारखे लेबल घालण्यासाठी Captions गटात कोणते बटण क्लिक करावे?",
+              options: [
+                { textEn: "Update Table", textMr: "Update Table" },
+                { textEn: "Mark Entry", textMr: "Mark Entry" },
+                { textEn: "Insert Citation", textMr: "Insert Citation" },
+                { textEn: "Insert Caption", textMr: "Insert Caption" }
+              ],
+              correctIndex: 3
+            }
+          ]
+        }
+      }
+    );
+    await CourseDay.updateOne(
       { dayNumber: 17 },
       { $set: { "subsections.0.videoUrl": "https://youtu.be/zSeZWjSUubo?si=wOBmFjyBDFfJltau" } }
+    );
+    await CourseDay.updateOne(
+      { dayNumber: 17 },
+      {
+        $set: {
+          "subsections.1.contentEn":
+            "Computer Class Day #17: MS Word Part 6 - The Mailings Tab\n\nThe Mailings Tab is used to create and send mass communications like letters, emails, envelopes, and labels. It is particularly useful for tasks like sending wedding invitations, company newsletters, or product labels.\n\n1. Create Group\n\nThis group allows you to prepare individual mailing items.\n\nEnvelopes: Used to print sender and recipient addresses directly onto a physical envelope. Delivery Address (recipient) and Return Address (yours). Options include Envelope Size (e.g. DL), Font Customization for both addresses. You can print directly or \"Add to Document\" to preview before printing.\n\nLabels: Used to create stickers for products, couriers, or school books. Enter text in the address box. Printing: Full Page (same on every label) or Single Label. Select the correct Label Vendor (e.g. Avery A4/A5) and Product Number from your label packaging so text aligns with the physical labels.\n\n2. Start Mail Merge Group (Overview)\n\nMail Merge combines a single document with a list of recipients to create multiple personalized documents at once.\n\nStart Mail Merge: Choose document type (Letters, E-mail Messages, Envelopes, etc.).\n\nSelect Recipients: Type a New List (manual), Use an Existing List (Excel/database), or Select from Outlook Contacts.\n\n3. The Mail Merge Workflow (Summary)\n\nDrafting the Document: Write the letter or email once.\n\nInserting Merge Fields: Place placeholders (e.g. <<Name>>, <<City>>) where recipient data should go.\n\nPreviewing: See how each document looks with real data.\n\nFinishing: Print all documents or send all emails at once.\n\nNote: Mail Merge saves hours when dealing with hundreds of recipients.",
+          "subsections.1.contentMr":
+            "Computer Class Day #17: MS Word Part 6 - The Mailings Tab\n\nMailings टॅब मास कम्युनिकेशन्स – पत्रे, ईमेल, लिफाफे, लेबल्स (उदा. लग्न निमंत्रणे, न्यूझलेटर).\n\n१. Create गट: Envelopes – Delivery Address, Return Address; size (DL), font; Print किंवा Add to Document. Labels – मजकूर टाइप करा; Full Page / Single Label; Label Vendor आणि Product Number (उदा. Avery) निवडा.\n\n२. Start Mail Merge: दस्तऐवज प्रकार निवडा (Letters, E-mail, Envelopes). Select Recipients – Type a New List, Use an Existing List (Excel/DB), Select from Outlook Contacts.\n\n३. Mail Merge प्रक्रिया: दस्तऐवज लिहा -> Merge Fields घाला (<<Name>>, <<City>>) -> Preview -> Finish (प्रिंट किंवा ईमेल पाठवा).\n\nटीप: शेकडो प्राप्तकर्त्यांसाठी Mail Merge खूप वेळ वाचवते."
+        }
+      }
+    );
+    await CourseDay.updateOne(
+      { dayNumber: 17 },
+      {
+        $set: {
+          "exam.questions": [
+            {
+              questionEn: "You need to send a formal letter to 500 different clients, each personalized with their name. Which feature on the Mailings tab is designed specifically for this task?",
+              questionMr: "500 वेगवेगळ्या क्लायंट्सना त्यांच्या नावाने वैयक्तिकृत औपचारिक पत्र पाठवायचे आहे. Mailings टॅबवरील कोणती सुविधा यासाठी आहे?",
+              options: [
+                { textEn: "Cross-reference", textMr: "Cross-reference" },
+                { textEn: "Envelopes", textMr: "Envelopes" },
+                { textEn: "Mail Merge", textMr: "Mail Merge" },
+                { textEn: "Labels", textMr: "Labels" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "When setting up a physical envelope in Word, where should you input your own address to ensure the mail can be sent back to you if undeliverable?",
+              questionMr: "Word मध्ये भौतिक लिफाफा सेटअप करताना पोहोचू न शकल्यास मेल परत यावी म्हणून तुमचा पत्ता कुठे टाइप करावा?",
+              options: [
+                { textEn: "Label Vendor", textMr: "Label Vendor" },
+                { textEn: "Return Address", textMr: "Return Address" },
+                { textEn: "Merge Field", textMr: "Merge Field" },
+                { textEn: "Delivery Address", textMr: "Delivery Address" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "You have purchased a packet of sticker paper to print address labels. Why is it critical to select the correct 'Label Vendor' and 'Product Number' in Word?",
+              questionMr: "पत्ता लेबल्स प्रिंट करण्यासाठी स्टिकर पेपर आणल्यावर Word मध्ये योग्य 'Label Vendor' आणि 'Product Number' निवडणे का महत्त्वाचे आहे?",
+              options: [
+                { textEn: "To add a digital signature.", textMr: "डिजिटल सही जोडणे." },
+                { textEn: "To ensure the text aligns perfectly with the physical cuts on the sticker paper.", textMr: "मजकूर स्टिकर पेपरच्या भौतिक कट्सशी परिपूर्ण संरेखित होण्यासाठी." },
+                { textEn: "To import contacts from Outlook.", textMr: "Outlook मधून संपर्क आयात करणे." },
+                { textEn: "To change the font color automatically.", textMr: "फॉन्ट रंग स्वयंचलित बदलणे." }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "In the Mail Merge workflow, what is the specific term for the placeholders like <<Name>> or <<City>> that you insert into your document?",
+              questionMr: "Mail Merge प्रक्रियेत दस्तऐवजात घातलेल्या <<Name>> किंवा <<City>> सारख्या placeholders ला काय म्हणतात?",
+              options: [
+                { textEn: "Hyperlinks", textMr: "Hyperlinks" },
+                { textEn: "SmartArt", textMr: "SmartArt" },
+                { textEn: "Watermarks", textMr: "Watermarks" },
+                { textEn: "Merge Fields", textMr: "Merge Fields" }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "If you want to print a full sheet of identical return address stickers, which option in the Labels dialog box should you choose?",
+              questionMr: "संपूर्ण शीटवर एकसारखे रिटर्न अॅड्रेस स्टिकर्स प्रिंट करायचे असल्यास Labels डायलॉगमध्ये कोणता पर्याय निवडावा?",
+              options: [
+                { textEn: "Envelope Size", textMr: "Envelope Size" },
+                { textEn: "Start Mail Merge", textMr: "Start Mail Merge" },
+                { textEn: "Full Page of the Same Label", textMr: "Full Page of the Same Label" },
+                { textEn: "Single Label", textMr: "Single Label" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "Which of the following is NOT a standard method mentioned for selecting recipients in a Mail Merge?",
+              questionMr: "Mail Merge मध्ये प्राप्तकर्ते निवडण्याची खालीलपैकी कोणती मानक पद्धत नाही?",
+              options: [
+                { textEn: "Use an Existing List", textMr: "Use an Existing List" },
+                { textEn: "Scan Business Cards via Webcam", textMr: "Scan Business Cards via Webcam" },
+                { textEn: "Type a New List", textMr: "Type a New List" },
+                { textEn: "Select from Outlook Contacts", textMr: "Select from Outlook Contacts" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "Why is the 'Preview Results' step in the Mail Merge workflow important?",
+              questionMr: "Mail Merge प्रक्रियेत 'Preview Results' पायरी का महत्त्वाची आहे?",
+              options: [
+                { textEn: "It selects the printer settings.", textMr: "तो प्रिंटर सेटिंग्स निवडतो." },
+                { textEn: "It saves the document as a PDF.", textMr: "तो दस्तऐवज PDF म्हणून सेव्ह करतो." },
+                { textEn: "It automatically corrects spelling errors.", textMr: "तो स्पेलिंग चुका स्वयंचलित दुरुस्त करतो." },
+                { textEn: "It allows you to see how the document looks with real recipient data before printing.", textMr: "प्रिंट करण्यापूर्वी वास्तविक प्राप्तकर्ता डेटासह दस्तऐवज कसा दिसतो ते बघण्यास मदत करते." }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "You are setting up an envelope but want the recipient's name to appear in a specific fancy font. Where can you change this?",
+              questionMr: "लिफाफा सेटअप करत आहात आणि प्राप्तकर्त्याचे नाव विशिष्ट फॅन्सी फॉन्टमध्ये दिसावे असे वाटते. हे कुठे बदलता येईल?",
+              options: [
+                { textEn: "By using the 'Reference' tab.", textMr: "'Reference' टॅब वापरून." },
+                { textEn: "By changing the Label Vendor.", textMr: "Label Vendor बदलून." },
+                { textEn: "In the 'Options' menu within the Envelopes dialog.", textMr: "Envelopes डायलॉगमधील 'Options' मेनूमध्ये." },
+                { textEn: "You cannot change the font on envelopes.", textMr: "लिफाफ्यावर फॉन्ट बदलता येत नाही." }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "What is the standard size used for business envelopes as mentioned in the notes, though custom sizes are available?",
+              questionMr: "नोट्सनुसार व्यावसायिक लिफाफ्यांसाठी वापरलेला मानक साइझ कोणता (कस्टम साइझ उपलब्ध असले तरी)?",
+              options: [
+                { textEn: "DL", textMr: "DL" },
+                { textEn: "A4", textMr: "A4" },
+                { textEn: "Passport", textMr: "Passport" },
+                { textEn: "Letter", textMr: "Letter" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "What is the final step in the Mail Merge workflow to generate the actual documents?",
+              questionMr: "वास्तविक दस्तऐवज तयार करण्यासाठी Mail Merge प्रक्रियेतील अंतिम पायरी कोणती?",
+              options: [
+                { textEn: "Finish & Merge", textMr: "Finish & Merge" },
+                { textEn: "Type a New List", textMr: "Type a New List" },
+                { textEn: "Select Recipients", textMr: "Select Recipients" },
+                { textEn: "Insert Merge Field", textMr: "Insert Merge Field" }
+              ],
+              correctIndex: 0
+            }
+          ]
+        }
+      }
     );
     await CourseDay.updateOne(
       { dayNumber: 18 },
       { $set: { "subsections.0.videoUrl": "https://youtu.be/vWr5CBOP-IA?si=GspY8jiwjqb5oQ_A" } }
     );
     await CourseDay.updateOne(
+      { dayNumber: 18 },
+      {
+        $set: {
+          "subsections.1.contentEn":
+            "Computer Class Day #18: MS Word - Review Tab Guide\n\nThe Review Tab in Microsoft Word is essential for proofreading, editing, and collaborating on documents. Its primary goal is to make a document professional and error-free before finalization.\n\n1. Proofing Group\n\nSpelling & Grammar (F7): Scans for typos (red underline) and grammar issues; suggests replacements. Options: Change, Change All, or Ignore.\n\nResearch: Opens a pane to search for definitions and references.\n\nThesaurus: Provides synonyms (e.g. \"Pictures\" might suggest \"Cinema\" or \"Movies\").\n\nTranslate: Translates selected text or the whole document. Translation Screen Tip shows a pop-up translation when you hover over a word.\n\nWord Count: Statistics for pages, words, characters (with/without spaces), paragraphs, and lines.\n\n2. Comments Group\n\nNew Comment: Adds a note to a word or section without changing the text.\n\nDelete: Removes selected or all comments. Previous/Next: Navigate between comments.\n\n3. Tracking Group\n\nTrack Changes: When enabled, every addition or deletion is recorded. Deletions appear in the margin or as strikethroughs; additions in a different color.\n\nDisplay for Review: Final Showing Markup (all changes visible), Final (as if all accepted), Original (before any changes).\n\nReviewing Pane: Summary window listing every change. Balloons: Changes/comments in callouts on the right margin.\n\n4. Changes Group\n\nAccept: Finalizes a change. Reject: Discards it and reverts to original. Previous/Next: Move between changes.\n\n5. Compare Group\n\nCompare: Highlights differences between two versions of the same document.\n\nCombine: Merges revisions from multiple authors into one document.\n\n6. Protect Group\n\nRestrict Editing: Formatting Restrictions (no font/style changes), Editing Restrictions (Read Only or Comments only). Enforce Protection: Set a password so only authorized users can remove restrictions.\n\nSummary: The Review Tab is for final polishing – grammar, collaboration tools, and securing content from unwanted changes.",
+          "subsections.1.contentMr":
+            "Computer Class Day #18: MS Word - Review Tab Guide\n\nReview टॅब प्रूफरीडिंग, एडिटिंग आणि सहकार्यासाठी; दस्तऐवज व्यावसायिक आणि त्रुटी-मुक्त करणे.\n\n१. Proofing: Spelling & Grammar (F7), Research, Thesaurus, Translate, Translation Screen Tip, Word Count.\n\n२. Comments: New Comment, Delete, Previous/Next.\n\n३. Tracking: Track Changes (जोडणी/हटवणी रेकॉर्ड), Display for Review (Final Showing Markup / Final / Original), Reviewing Pane, Balloons.\n\n४. Changes: Accept, Reject, Previous/Next.\n\n५. Compare: Compare (दोन आवृत्त्यांमधील फरक), Combine (अनेक लेखकांची संशोधने एकत्र).\n\n६. Protect: Restrict Editing (Formatting/Editing restrictions), Enforce Protection (पासवर्ड).\n\nसारांश: अंतिम पॉलिशिंग – व्याकरण, सहकार्य साधने आणि अवांछित बदलापासून संरक्षण."
+        }
+      }
+    );
+    await CourseDay.updateOne(
+      { dayNumber: 18 },
+      {
+        $set: {
+          "exam.questions": [
+            {
+              questionEn: "You have finished writing a report and want to ensure there are no spelling or grammatical errors before sending it. Which keyboard shortcut should you press to immediately start the check?",
+              questionMr: "अहवाल लिहून झाल्यावर पाठवण्यापूर्वी स्पेलिंग किंवा व्याकरणाच्या त्रुटी नाहीत याची खात्री करायची आहे. तपासणी ताबडतोब सुरू करण्यासाठी कोणता कीबोर्ड शॉर्टकट द्यावा?",
+              options: [
+                { textEn: "Ctrl + S", textMr: "Ctrl + S" },
+                { textEn: "F7", textMr: "F7" },
+                { textEn: "F5", textMr: "F5" },
+                { textEn: "Alt + R", textMr: "Alt + R" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "You are reviewing a student's assignment and want to suggest a change to a specific paragraph without actually altering their original text. Which feature is best suited for this?",
+              questionMr: "विद्यार्थ्याचे असाइनमेंट तपासत आहात आणि मूळ मजकूर बदलल्याशिवाय विशिष्ट परिच्छेदासाठी सुचना द्यायची आहे. यासाठी कोणती सुविधा योग्य आहे?",
+              options: [
+                { textEn: "Compare", textMr: "Compare" },
+                { textEn: "Thesaurus", textMr: "Thesaurus" },
+                { textEn: "Track Changes", textMr: "Track Changes" },
+                { textEn: "New Comment", textMr: "New Comment" }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "When 'Track Changes' is enabled, how does MS Word typically visually distinguish a deletion made by an editor?",
+              questionMr: "'Track Changes' चालू असताना एडिटरने केलेली हटवणी MS Word सामान्यतः कशी दाखवते?",
+              options: [
+                { textEn: "It underlines the text in blue.", textMr: "मजकूर निळ्या रंगात अंडरलाइन करते." },
+                { textEn: "It hides the text completely.", textMr: "मजकूर पूर्णपणे लपवते." },
+                { textEn: "It appears as a strikethrough or in the margin.", textMr: "स्ट्राइकथ्रू किंवा मार्जिनमध्ये दिसते." },
+                { textEn: "It highlights the text in yellow.", textMr: "मजकूर पिवळा हायलाइट करते." }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "You want to see exactly how your document looked before any edits were made by your colleagues. Which 'Display for Review' option should you select?",
+              questionMr: "सहकाऱ्यांनी कोणतेही संपादन करण्यापूर्वी दस्तऐवज अगदी कसा दिसत होता ते पहायचे आहे. 'Display for Review' मध्ये कोणता पर्याय निवडावा?",
+              options: [
+                { textEn: "Original", textMr: "Original" },
+                { textEn: "Final Showing Markup", textMr: "Final Showing Markup" },
+                { textEn: "Final", textMr: "Final" },
+                { textEn: "No Markup", textMr: "No Markup" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "If you are writing an essay and find that you are repeating the word 'pictures' too often, which tool in the Proofing group would help you find a suitable alternative like 'images' or 'photos'?",
+              questionMr: "निबंध लिहिताना 'pictures' शब्द वारंवार वापरत आहात; 'images' किंवा 'photos' सारखा पर्याय शोधण्यासाठी Proofing गटात कोणते साधन उपयुक्त आहे?",
+              options: [
+                { textEn: "Thesaurus", textMr: "Thesaurus" },
+                { textEn: "Translate", textMr: "Translate" },
+                { textEn: "Word Count", textMr: "Word Count" },
+                { textEn: "Research", textMr: "Research" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "You have sent a document to two different colleagues and received two different edited files back. Which feature allows you to merge their revisions into a single new document?",
+              questionMr: "दस्तऐवज दोन सहकाऱ्यांना पाठवला आणि दोन वेगवेगळ्या संपादित फाइल्स मिळाल्या. त्यांची संशोधने एकाच नवीन दस्तऐवजात एकत्र करण्याची सुविधा कोणती?",
+              options: [
+                { textEn: "Restrict Editing", textMr: "Restrict Editing" },
+                { textEn: "Combine", textMr: "Combine" },
+                { textEn: "Compare", textMr: "Compare" },
+                { textEn: "Track Changes", textMr: "Track Changes" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "In the Changes group, what happens when you click 'Accept' on a specific tracked change?",
+              questionMr: "Changes गटात विशिष्ट tracked change वर 'Accept' क्लिक केल्यावर काय होते?",
+              options: [
+                { textEn: "The change is highlighted in green.", textMr: "बदल हिरव्या रंगात हायलाइट होतो." },
+                { textEn: "A comment is added explaining the change.", textMr: "बदल स्पष्ट करणारा कॉमेंट जोडला जातो." },
+                { textEn: "The change becomes a permanent part of the document content.", textMr: "बदल दस्तऐवजाचा कायमचा भाग बनतो." },
+                { textEn: "The change is deleted and the text reverts to the original.", textMr: "बदल डिलीट होतो आणि मजकूर मूळ स्थितीत परत येतो." }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "You want to share a document for colleagues to read, but you want to ensure they cannot change the formatting styles you meticulously applied. Where would you go to set this up?",
+              questionMr: "सहकाऱ्यांना वाचण्यासाठी दस्तऐवज द्यायचा आहे पण तुम्ही लावलेले फॉर्मॅटिंग स्टाइल्स ते बदलू शकू नयेत. हे सेटअप करण्यासाठी कुठे जावे?",
+              options: [
+                { textEn: "Track Changes", textMr: "Track Changes" },
+                { textEn: "Protect Sheet", textMr: "Protect Sheet" },
+                { textEn: "Restrict Editing", textMr: "Restrict Editing" },
+                { textEn: "Mark as Final", textMr: "Mark as Final" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "The 'Reviewing Pane' is most useful when:",
+              questionMr: "'Reviewing Pane' कधी सर्वात उपयुक्त आहे?",
+              options: [
+                { textEn: "You want to add a password to the file.", textMr: "फाइलला पासवर्ड जोडायचा आहे." },
+                { textEn: "You want to check the spelling of the document.", textMr: "दस्तऐवजाची स्पेलिंग तपासायची आहे." },
+                { textEn: "You want to translate the document.", textMr: "दस्तऐवज भाषांतर करायचा आहे." },
+                { textEn: "You need to see a list of every single change made in a dense document.", textMr: "गर्दीच्या दस्तऐवजात केलेल्या प्रत्येक बदलाची यादी पहायची आहे." }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "Which of the following statistics is NOT provided by the 'Word Count' feature in the Proofing group?",
+              questionMr: "Proofing गटातील 'Word Count' सुविधा खालीलपैकी कोणती आकडेवारी देत नाही?",
+              options: [
+                { textEn: "Paragraphs", textMr: "Paragraphs" },
+                { textEn: "Characters (with spaces)", textMr: "Characters (with spaces)" },
+                { textEn: "Pages", textMr: "Pages" },
+                { textEn: "Spelling Errors", textMr: "Spelling Errors" }
+              ],
+              correctIndex: 3
+            }
+          ]
+        }
+      }
+    );
+    await CourseDay.updateOne(
       { dayNumber: 19 },
       { $set: { "subsections.0.videoUrl": "https://youtu.be/8IDxAww4EhM?si=JAGbpwEHOsuDnn8J" } }
     );
     await CourseDay.updateOne(
+      { dayNumber: 19 },
+      {
+        $set: {
+          "subsections.1.contentEn":
+            "Computer Class Day #19: MS Word - View Tab Guide\n\nThe View Tab is used to change how you see your document. While it doesn't help with creating content or formatting text, it is crucial for navigating, proofreading, and automating repetitive tasks.\n\n1. Document Views Group\n\nPrint Layout: Default view; document as it will look when printed (margins, headers, footers).\n\nFull Screen Reading: Optimized for reading; toolbars removed; view two pages or adjust text size.\n\nWeb Layout: Document as a web page; no page breaks; text wraps to window size.\n\nOutline: Outline format; good for reorganizing long documents; collapse/expand headings, drag sections.\n\nDraft: Bare-bones view for fast editing; no headers, footers, or some graphics.\n\n2. Show/Hide Group\n\nRuler: Horizontal and vertical rulers for tabs, margins, paragraph indents.\n\nGridlines: Grid background for aligning objects, images, shapes. (Gridlines do not print.)\n\nDocument Map: Side pane with headings; click to jump to a section.\n\nThumbnails: Small image of every page in a side pane; fast navigation in long documents.\n\n3. Zoom Group\n\nZoom: Dialog for specific percentage (e.g. 75%, 200%). 100% resets to actual size. One Page / Two Pages; Page Width (page width matches window).\n\n4. Window Group\n\nNew Window: Same document in a second window; edits sync. Arrange All: Tile all Word windows. Split: Two horizontal panes (e.g. view top while editing bottom). View Side by Side: Compare two documents or two windows. Switch Windows: Jump between open documents.\n\n5. Macros\n\nMacros record a series of actions and replay them with one click (e.g. table, header, signature).\n\nHow to use: Macros > Record Macro (name it) -> perform the actions -> Stop Recording. To run: Macros > View Macros -> select macro -> Run. Ideal for repetitive tasks (signatures, headers, tables).\n\nWhat's Next: Day 20 will transition from MS Word to Microsoft Excel.",
+          "subsections.1.contentMr":
+            "Computer Class Day #19: MS Word - View Tab Guide\n\nView टॅब दस्तऐवज कसा दिसतो ते बदलण्यासाठी; नेव्हिगेशन, प्रूफरीडिंग आणि पुनरावृत्ती कामे ऑटोमेट करणे.\n\n१. Document Views: Print Layout (डिफॉल्ट), Full Screen Reading, Web Layout, Outline (रचना बदलणे), Draft.\n\n२. Show/Hide: Ruler, Gridlines (प्रिंट होत नाहीत), Document Map (हेडिंग्स), Thumbnails (पृष्ठ थंबनेल्स).\n\n३. Zoom: टक्केवारी, 100%, One/Two Page, Page Width.\n\n४. Window: New Window, Arrange All, Split, View Side by Side, Switch Windows.\n\n५. Macros: क्रिया रेकॉर्ड करून एका क्लिकमध्ये पुन्हा चालवणे (Record Macro -> क्रिया करा -> Stop -> View Macros -> Run). पुनरावृत्ती कामांसाठी.\n\nपुढे: Day 20 MS Excel वर."
+        }
+      }
+    );
+    await CourseDay.updateOne(
+      { dayNumber: 19 },
+      {
+        $set: {
+          "exam.questions": [
+            {
+              questionEn: "You are working on a 50-page report and need to move 'Chapter 5' to the beginning of the document. Which Document View allows you to drag and drop entire sections easily?",
+              questionMr: "50-पृष्ठीय अहवालावर काम करत आहात आणि 'Chapter 5' दस्तऐवजाच्या सुरुवातीला हलवायचे आहे. कोणत्या Document View मध्ये संपूर्ण विभाग ड्रॅग आणि ड्रॉप करता येतात?",
+              options: [
+                { textEn: "Print Layout", textMr: "Print Layout" },
+                { textEn: "Web Layout", textMr: "Web Layout" },
+                { textEn: "Outline View", textMr: "Outline View" },
+                { textEn: "Draft View", textMr: "Draft View" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "You are inserting several images and want to ensure they are perfectly aligned with each other. Which tool in the Show/Hide group should you enable?",
+              questionMr: "अनेक चित्रे घालत आहात आणि ती एकमेकांशी परिपूर्ण संरेखित असावीत. Show/Hide गटात कोणते साधन चालू करावे?",
+              options: [
+                { textEn: "Gridlines", textMr: "Gridlines" },
+                { textEn: "Ruler", textMr: "Ruler" },
+                { textEn: "Thumbnails", textMr: "Thumbnails" },
+                { textEn: "Document Map", textMr: "Document Map" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "You need to refer to a table on Page 2 while writing the conclusion on Page 45 of the same document. Which feature allows you to see both parts of the document at once?",
+              questionMr: "त्याच दस्तऐवजात पृष्ठ 45 वर निष्कर्ष लिहिताना पृष्ठ 2 वरील टेबल बघायचा आहे. दस्तऐवजाचे दोन्ही भाग एकाच वेळी पहाण्याची सुविधा कोणती?",
+              options: [
+                { textEn: "New Window", textMr: "New Window" },
+                { textEn: "Split", textMr: "Split" },
+                { textEn: "Arrange All", textMr: "Arrange All" },
+                { textEn: "View Side by Side", textMr: "View Side by Side" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "Every Friday, you have to type the same complex disclaimer at the bottom of your reports. How can you automate this task to happen with a single click?",
+              questionMr: "प्रत्येक शुक्रवारी अहवालांच्या शेवटी समान जटिल disclaimer टाइप करावा लागतो. हे काम एका क्लिकमध्ये कसे ऑटोमेट करता येईल?",
+              options: [
+                { textEn: "Create a Macro", textMr: "Create a Macro" },
+                { textEn: "Use Track Changes", textMr: "Use Track Changes" },
+                { textEn: "Use the Thesaurus", textMr: "Use the Thesaurus" },
+                { textEn: "Enable Restrict Editing", textMr: "Enable Restrict Editing" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "You want to focus solely on reading a document without the distraction of ribbons and toolbars. Which view is best suited for this?",
+              questionMr: "रिबन्स आणि टूलबारच्या व्यत्ययाशिवाय फक्त दस्तऐवज वाचायचा आहे. यासाठी कोणता view योग्य आहे?",
+              options: [
+                { textEn: "Print Layout", textMr: "Print Layout" },
+                { textEn: "Web Layout", textMr: "Web Layout" },
+                { textEn: "Full Screen Reading", textMr: "Full Screen Reading" },
+                { textEn: "Draft View", textMr: "Draft View" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "If you are editing a document and want to quickly adjust the left indentation of a specific paragraph without opening a dialog box, what should you use?",
+              questionMr: "दस्तऐवज एडिट करताना डायलॉग बॉक्स न उघडता विशिष्ट परिच्छेदाचे डावे इंडेंटेशन झटपट समायोजित करायचे असल्यास काय वापरावे?",
+              options: [
+                { textEn: "Gridlines", textMr: "Gridlines" },
+                { textEn: "The Ruler", textMr: "The Ruler" },
+                { textEn: "The Document Map", textMr: "The Document Map" },
+                { textEn: "Zoom", textMr: "Zoom" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "Which of the following statements about 'Draft' view is true?",
+              questionMr: "'Draft' view बाबत खालीलपैकी कोणते विधान खरे आहे?",
+              options: [
+                { textEn: "It shows the document exactly as it will print.", textMr: "तो दस्तऐवज अगदी प्रिंट होईल तसा दाखवतो." },
+                { textEn: "It organizes the document into collapsible headings.", textMr: "तो दस्तऐवज कोलॅप्स करता येणाऱ्या हेडिंग्समध्ये व्यवस्थित करतो." },
+                { textEn: "It displays headers, footers, and page borders.", textMr: "तो हेडर, फूटर आणि पृष्ठ बॉर्डर दाखवतो." },
+                { textEn: "It is a bare-bones view meant for quick text editing.", textMr: "तो झटपट मजकूर एडिटिंगसाठीचा साधा view आहे." }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "You have a very long document and want to visually find a specific page that contains a large chart. Which navigation tool is fastest?",
+              questionMr: "खूप लांब दस्तऐवज आहे आणि मोठा चार्ट असलेले विशिष्ट पृष्ठ दृष्यदृष्ट्या शोधायचे आहे. सर्वात वेगवान नेव्हिगेशन साधन कोणते?",
+              options: [
+                { textEn: "Switch Windows", textMr: "Switch Windows" },
+                { textEn: "Web Layout", textMr: "Web Layout" },
+                { textEn: "Document Map", textMr: "Document Map" },
+                { textEn: "Thumbnails", textMr: "Thumbnails" }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "What happens when you click 'New Window' in the Window group?",
+              questionMr: "Window गटात 'New Window' क्लिक केल्यावर काय होते?",
+              options: [
+                { textEn: "A blank, empty document is created.", textMr: "रिकामा नवीन दस्तऐवज तयार होतो." },
+                { textEn: "The document is saved as a new file.", textMr: "दस्तऐवज नवीन फाइल म्हणून सेव्ह होतो." },
+                { textEn: "A second window opens displaying the exact same document.", textMr: "त्याच दस्तऐवजाचे दुसरे विंडो उघडते." },
+                { textEn: "The current document is closed and reopened.", textMr: "सध्याचा दस्तऐवज बंद होऊन पुन्हा उघडतो." }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "You want to create a blog post using Word and need to know how the text will wrap when viewed in a browser. Which view should you use?",
+              questionMr: "Word वापरून ब्लॉग पोस्ट तयार करायचा आहे आणि ब्राउझरमध्ये मजकूर कसा wrap होईल ते पहायचे आहे. कोणता view वापरावा?",
+              options: [
+                { textEn: "Outline View", textMr: "Outline View" },
+                { textEn: "Web Layout", textMr: "Web Layout" },
+                { textEn: "Print Layout", textMr: "Print Layout" },
+                { textEn: "Full Screen Reading", textMr: "Full Screen Reading" }
+              ],
+              correctIndex: 1
+            }
+          ]
+        }
+      }
+    );
+    await CourseDay.updateOne(
       { dayNumber: 20 },
       { $set: { "subsections.0.videoUrl": "https://youtu.be/ICQ5YmwEGPY?si=joHyQ47QAf-WrEr_" } }
+    );
+    await CourseDay.updateOne(
+      { dayNumber: 20 },
+      {
+        $set: {
+          "subsections.1.contentEn":
+            "Computer Class Day #20: Comprehensive Keyboard Guide - Keys & Functions\n\nThis document provides a detailed breakdown of a standard QWERTY keyboard. Understanding these keys allows for efficient and confident computer usage.\n\n1. Keyboard Layouts\n\nThe \"QWERTY\" layout is the most common in India and globally, named after the first six letters on the top row (Q-W-E-R-T-Y). Other layouts include QWERTZ, AZERTY, and Dvorak (less common in standard Indian computing).\n\n2. Special Shortcut & Function Keys\n\nTop Row: Many keyboards have Home/Mail, Media (Pause, Play, Volume) keys.\n\nEsc (Escape): Top-left; cancels or stops a process, exits full-screen, closes pop-ups and dialog boxes.\n\nFunction Keys (F1-F12): F1 Help; F2 Rename; F3 Search; F4 Repeat/Alt+F4 Close; F5 Refresh or Find & Replace; F6 Address bar; F7 Spelling & Grammar; F8 Boot Menu; F9 Outlook Send/Receive; F10 Menu bar; F11 Full-screen; F12 Save As.\n\n3. Control & Navigation Keys\n\nModifier Keys: Shift (upper symbol, uppercase when Caps Lock off), Ctrl and Alt (shortcuts e.g. Ctrl+C).\n\nPrint Screen (PrtSc): Captures entire screen to clipboard. Scroll Lock: In Excel, arrow keys scroll instead of moving cell. Home/End: Start or end of line (or top/bottom of page in browser). Page Up/Page Down: Scroll one screen. Insert: Overtype mode. Delete: Character right or selected file. Backspace: Character left. Tab: Spaces forward or switch between fields.\n\n4. Specialized Tool Keys\n\nRight-Click (Menu) Key: Between right Alt and Ctrl; same as mouse right-click. Enter: New line or OK for commands.\n\n5. Numeric Keypad & Indicators\n\nNum Lock ON: Keypad types numbers. OFF: Keys act as navigation (arrows, Home, End). Caps Lock ON: All letters uppercase.\n\nSummary Tip: Keys with two symbols – the top symbol is accessed via Shift.",
+          "subsections.1.contentMr":
+            "Computer Class Day #20: Comprehensive Keyboard Guide - Keys & Functions\n\nमानक QWERTY कीबोर्डचा तपशील; कार्यक्षम वापरासाठी.\n\n१. Layouts: QWERTY सर्वात सामान्य (भारत/जग); QWERTZ, AZERTY, Dvorak कमी प्रचलित.\n\n२. Esc, Function Keys (F1 Help, F2 Rename, F3 Search, F4/F5/F6… F12 Save As), टॉप रो मीडिया की.\n\n३. Modifier: Shift, Ctrl, Alt. Navigation: PrtSc, Scroll Lock (Excel), Home/End, Page Up/Down, Insert, Delete, Backspace, Tab.\n\n४. Right-Click (Menu) Key, Enter.\n\n५. Numeric Keypad: Num Lock (ON=अंक, OFF=नेव्हिगेशन). Caps Lock: अप्परकेस.\n\nटीप: दोन चिन्ह असलेल्या कळा – वरचे चिन्ह Shift दाबून."
+        }
+      }
+    );
+    await CourseDay.updateOne(
+      { dayNumber: 20 },
+      {
+        $set: {
+          "exam.questions": [
+            {
+              questionEn: "You are looking at a standard keyboard in India. By observing the first six letters on the top alphabetic row, which layout are you most likely to identify?",
+              questionMr: "भारतातील मानक कीबोर्ड पाहत आहात. वरच्या अक्षर ओळीतील पहिले सहा अक्षरे पाहून कोणता layout ओळखण्याची शक्यता सर्वात जास्त आहे?",
+              options: [
+                { textEn: "QWERTZ", textMr: "QWERTZ" },
+                { textEn: "QWERTY", textMr: "QWERTY" },
+                { textEn: "AZERTY", textMr: "AZERTY" },
+                { textEn: "DVORAK", textMr: "DVORAK" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "You have selected a file named 'New Folder' and want to quickly rename it to 'Project Docs' without using the mouse. Which function key should you press?",
+              questionMr: "'New Folder' नावाची फाइल निवडली आहे आणि माऊस न वापरता ती 'Project Docs' असे झटपट रिनेम करायची आहे. कोणती function key द्यावी?",
+              options: [
+                { textEn: "F2", textMr: "F2" },
+                { textEn: "F12", textMr: "F12" },
+                { textEn: "F5", textMr: "F5" },
+                { textEn: "F1", textMr: "F1" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "You are typing a document and notice a mistake in the text. You place your cursor before the wrong character and want to delete the character to the right of the cursor. Which key do you press?",
+              questionMr: "दस्तऐवज टाइप करताना मजकुरात चूक दिसली. कर्सर चुकीच्या अक्षराच्या आधी ठेवला आहे आणि कर्सरच्या उजवीकडील अक्षर हटवायचे आहे. कोणती कळ द्यावी?",
+              options: [
+                { textEn: "Delete", textMr: "Delete" },
+                { textEn: "End", textMr: "End" },
+                { textEn: "Insert", textMr: "Insert" },
+                { textEn: "Backspace", textMr: "Backspace" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "You are trying to type numbers using the numeric keypad on the right side of your keyboard, but the cursor keeps moving up and down instead of typing digits. What is the likely cause?",
+              questionMr: "कीबोर्डच्या उजव्या बाजूचा न्यूमेरिक कीपॅड वापरून अंक टाइप करत आहात, पण अंक येण्याऐवजी कर्सर वर-खाली होतो. संभावित कारण काय?",
+              options: [
+                { textEn: "Num Lock is OFF", textMr: "Num Lock बंद आहे" },
+                { textEn: "Ctrl key is stuck", textMr: "Ctrl कळ अडकली आहे" },
+                { textEn: "Caps Lock is ON", textMr: "Caps Lock चालू आहे" },
+                { textEn: "Scroll Lock is ON", textMr: "Scroll Lock चालू आहे" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "You are working in Microsoft Excel and want to save your current workbook with a new name. Which function key opens the 'Save As' dialog directly?",
+              questionMr: "Microsoft Excel मध्ये काम करत आहात आणि सध्याचे वर्कबुक नवीन नावाने सेव्ह करायचे आहे. 'Save As' डायलॉग थेट कोणती function key उघडते?",
+              options: [
+                { textEn: "F12", textMr: "F12" },
+                { textEn: "F8", textMr: "F8" },
+                { textEn: "F10", textMr: "F10" },
+                { textEn: "F1", textMr: "F1" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "Which key combination is widely used to immediately close the currently active window or application?",
+              questionMr: "सध्याची सक्रिय विंडो किंवा अॅप्लिकेशन ताबडतोब बंद करण्यासाठी कोणता की संयोजन मोठ्या प्रमाणात वापरतात?",
+              options: [
+                { textEn: "Alt + Tab", textMr: "Alt + Tab" },
+                { textEn: "Ctrl + C", textMr: "Ctrl + C" },
+                { textEn: "Alt + F4", textMr: "Alt + F4" },
+                { textEn: "Shift + Delete", textMr: "Shift + Delete" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "You are browsing a very long webpage and want to jump instantly to the very top of the page. Which navigation key should you press?",
+              questionMr: "खूप लांब वेबपेज ब्राउझ करत आहात आणि पृष्ठाच्या अगदी वरच्या बाजूस ताबडतोब जायचे आहे. कोणती navigation कळ द्यावी?",
+              options: [
+                { textEn: "End", textMr: "End" },
+                { textEn: "Home", textMr: "Home" },
+                { textEn: "Page Up", textMr: "Page Up" },
+                { textEn: "Insert", textMr: "Insert" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "What is the primary function of the 'Print Screen' (PrtSc) key?",
+              questionMr: "'Print Screen' (PrtSc) कळेचे मुख्य कार्य काय आहे?",
+              options: [
+                { textEn: "It sends the current document to the printer.", textMr: "तो सध्याचा दस्तऐवज प्रिंटरवर पाठवतो." },
+                { textEn: "It locks the screen layout.", textMr: "तो स्क्रीन लेआउट लॉक करतो." },
+                { textEn: "It clears the screen.", textMr: "तो स्क्रीन साफ करतो." },
+                { textEn: "It captures an image of the entire screen to the clipboard.", textMr: "तो संपूर्ण स्क्रीनची प्रतिमा क्लिपबोर्डवर कॅप्चर करतो." }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "You want to access the right-click context menu for a selected item, but your mouse is broken. Which key on the keyboard performs this function?",
+              questionMr: "निवडलेल्या आयटमसाठी right-click context मेनू उघडायचा आहे, पण माऊस बिघडला आहे. कीबोर्डवरील कोणती कळ हे कार्य करते?",
+              options: [
+                { textEn: "The Windows Key", textMr: "The Windows Key" },
+                { textEn: "The Tab Key", textMr: "The Tab Key" },
+                { textEn: "The Alt Key", textMr: "The Alt Key" },
+                { textEn: "The Menu Key (Application Key)", textMr: "The Menu Key (Application Key)" }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "If you are typing in Word and realize you are replacing existing text with new text as you type instead of inserting it, which key did you accidentally press?",
+              questionMr: "Word मध्ये टाइप करताना समजले की नवीन टाइप केल्याने अस्तित्वातील मजकूर बदलतो, घातला जात नाही. चुकून कोणती कळ दाबली असेल?",
+              options: [
+                { textEn: "Num Lock", textMr: "Num Lock" },
+                { textEn: "Caps Lock", textMr: "Caps Lock" },
+                { textEn: "Insert", textMr: "Insert" },
+                { textEn: "Scroll Lock", textMr: "Scroll Lock" }
+              ],
+              correctIndex: 2
+            }
+          ]
+        }
+      }
     );
     await CourseDay.updateOne(
       { dayNumber: 21 },
