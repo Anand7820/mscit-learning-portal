@@ -1,6 +1,7 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
+const ExamAttempt = require("../models/ExamAttempt");
 
 const generateToken = (user) => {
   return jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, {
@@ -169,18 +170,26 @@ const completeProfile = async (req, res) => {
 
 const me = async (req, res) => {
   const user = req.user;
+  let completedExamDays = [];
+  if (user.role === "student") {
+    const submitted = await ExamAttempt.find(
+      { student: user._id, submittedAt: { $exists: true, $ne: null } }
+    ).select("dayNumber").lean();
+    completedExamDays = [...new Set(submitted.map((a) => a.dayNumber))].sort((a, b) => a - b);
+  }
   return res.json({
     id: user._id,
     role: user.role,
     status: user.status,
     profileCompleted: user.profileCompleted,
     profile: user.profile,
-      feesPaid: user.feesPaid,
-      feesPart1Paid: user.feesPart1Paid,
-      feesPart2Paid: user.feesPart2Paid,
-      needsSecondFee: user.needsSecondFee,
+    feesPaid: user.feesPaid,
+    feesPart1Paid: user.feesPart1Paid,
+    feesPart2Paid: user.feesPart2Paid,
+    needsSecondFee: user.needsSecondFee,
     unlockedUpTo: user.unlockedUpTo,
-    manualUnlockedDays: user.manualUnlockedDays
+    manualUnlockedDays: user.manualUnlockedDays,
+    completedExamDays
   });
 };
 

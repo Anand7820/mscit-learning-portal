@@ -4,7 +4,7 @@ import api from "../api/api";
 
 const Sidebar = () => {
   const [days, setDays] = useState([]);
-  const [unlockedUpTo, setUnlockedUpTo] = useState(0);
+  const [completedExamDays, setCompletedExamDays] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -15,12 +15,12 @@ const Sidebar = () => {
       .catch(() => setDays([]));
   }, []);
 
-  // Refetch progress when user navigates (e.g. to next day) so day 1 completion stays visible
+  // Refetch progress when user navigates so completed days (exam submitted) stay correct
   useEffect(() => {
     api
       .get("/auth/me")
-      .then((res) => setUnlockedUpTo(res.data.unlockedUpTo || 0))
-      .catch(() => setUnlockedUpTo(0));
+      .then((res) => setCompletedExamDays(res.data.completedExamDays || []))
+      .catch(() => setCompletedExamDays([]));
   }, [location.pathname]);
 
   return (
@@ -28,7 +28,7 @@ const Sidebar = () => {
       <h2 className="mb-4 text-lg font-semibold">Days 1-50</h2>
       <div className="grid grid-cols-1 gap-2">
         {days.map((day) => {
-          const isCompleted = day.dayNumber <= unlockedUpTo;
+          const isCompleted = completedExamDays.includes(day.dayNumber);
           const isAvailable = day.status === "available";
           return (
             <button
