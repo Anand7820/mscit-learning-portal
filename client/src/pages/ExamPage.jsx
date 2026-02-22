@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import StudentLayout from "../components/StudentLayout";
 import api from "../api/api";
 
 const ExamPage = () => {
   const { dayNumber } = useParams();
+  const navigate = useNavigate();
   const { i18n } = useTranslation();
   const [attemptId, setAttemptId] = useState("");
   const [questions, setQuestions] = useState([]);
@@ -215,6 +216,14 @@ const ExamPage = () => {
             <p className="text-lg mt-2 text-green-600">
               {Math.round((result.score / result.total) * 100)}% Correct
             </p>
+          </div>
+          <div className="mt-6">
+            <button
+              onClick={() => navigate(`/courses/${Number(dayNumber) + 1}`)}
+              className="rounded bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-700"
+            >
+              Proceed to Next
+            </button>
           </div>
         </div>
       </StudentLayout>

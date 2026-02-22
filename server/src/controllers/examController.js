@@ -142,6 +142,21 @@ const submitExam = async (req, res) => {
   attempt.submittedAt = new Date();
   await attempt.save();
 
+  // Advance progress so sidebar day colors update when user clicks "Proceed to Next"
+  const currentUnlocked = user.unlockedUpTo || 0;
+  const nextDay = attempt.dayNumber + 1;
+  if (nextDay > currentUnlocked) {
+    user.unlockedUpTo = nextDay;
+    const now = new Date();
+    const month = String(now.getMonth() + 1).padStart(2, "0");
+    const d = String(now.getDate()).padStart(2, "0");
+    user.lastUnlockDate = `${now.getFullYear()}-${month}-${d}`;
+    if (nextDay === 30) {
+      user.needsSecondFee = true;
+    }
+    await user.save();
+  }
+
   return res.json({
     score,
     total,

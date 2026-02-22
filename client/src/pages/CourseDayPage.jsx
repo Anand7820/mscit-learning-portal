@@ -284,13 +284,6 @@ const CourseDayPage = () => {
               Mark Section 1 and Section 2 as complete to unlock exam
             </span>
           ) : null}
-          <button
-            onClick={() => navigate(`/courses/${Number(day.dayNumber) + 1}`)}
-            disabled={totalSections > 0 && !allSectionsCompleted}
-            className="rounded bg-indigo-600 px-4 py-2 text-white disabled:cursor-not-allowed disabled:opacity-60"
-          >
-            Proceed to Next
-          </button>
         </div>
         <p className="mt-4 text-sm text-gray-600">
           Your certificate is on the{" "}
