@@ -42,6 +42,16 @@ const userSchema = new mongoose.Schema(
     lastAccessAt: { type: Date },
     lastUnlockDate: { type: String, default: "" },
     manualUnlockedDays: { type: [Number], default: [] },
+    // Persist "Mark as Complete" per day so completion does not reset when navigating to next day
+    sectionCompletionByDay: {
+      type: [
+        {
+          dayNumber: { type: Number, required: true },
+          completedSections: [Boolean]
+        }
+      ],
+      default: []
+    },
     batch: { type: mongoose.Schema.Types.ObjectId, ref: "Batch", default: null }
   },
   { timestamps: true }

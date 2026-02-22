@@ -32,7 +32,14 @@ const Navbar = () => {
       </div>
       <div className="flex items-center gap-4">
         {user?.role === "student" && (
-          <button
+          <>
+            <button
+              onClick={() => navigate("/dashboard")}
+              className="rounded border border-indigo-600 px-3 py-2 text-sm font-medium text-indigo-600 hover:bg-indigo-50"
+            >
+              {t("dashboard")} / Certificate
+            </button>
+            <button
             onClick={() => navigate("/profile")}
             className="flex items-center gap-3 rounded bg-gray-100 px-3 py-2"
           >
@@ -55,6 +62,7 @@ const Navbar = () => {
               <p className="text-xs text-gray-500">{user.profile?.selectedCourse}</p>
             </div>
           </button>
+          </>
         )}
         <select
           className="rounded border px-2 py-1 text-sm"

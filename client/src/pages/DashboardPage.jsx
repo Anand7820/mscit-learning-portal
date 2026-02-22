@@ -39,7 +39,7 @@ const DashboardPage = () => {
             </a>
           ) : (
             <p className="mt-3 text-sm text-gray-600">
-              Certificate will be available after 15 days of exam completion.
+              {certificate?.reason || "Complete the Day 20 exam to get your certificate."}
             </p>
           )}
         </div>

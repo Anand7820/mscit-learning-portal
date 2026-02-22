@@ -1,22 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import api from "../api/api";
 
 const Sidebar = () => {
   const [days, setDays] = useState([]);
   const [unlockedUpTo, setUnlockedUpTo] = useState(0);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     api
       .get("/courses/days")
       .then((res) => setDays(res.data))
       .catch(() => setDays([]));
+  }, []);
+
+  // Refetch progress when user navigates (e.g. to next day) so day 1 completion stays visible
+  useEffect(() => {
     api
       .get("/auth/me")
       .then((res) => setUnlockedUpTo(res.data.unlockedUpTo || 0))
       .catch(() => setUnlockedUpTo(0));
-  }, []);
+  }, [location.pathname]);
 
   return (
     <aside className="min-h-0 w-64 flex-shrink-0 overflow-y-auto border-r bg-white p-4">

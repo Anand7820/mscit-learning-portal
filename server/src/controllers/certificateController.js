@@ -2,50 +2,44 @@ const PDFDocument = require("pdfkit");
 const Certificate = require("../models/Certificate");
 const ExamAttempt = require("../models/ExamAttempt");
 
-const FIFTEEN_DAYS_MS = 15 * 24 * 60 * 60 * 1000;
+// Certificate is available as soon as the student completes Day 20 (submitted Day 20 exam)
+const CERTIFICATE_DAY = 20;
 
 const getEligibility = async (req, res) => {
-  const latestAttempt = await ExamAttempt.findOne({
+  const day20Attempt = await ExamAttempt.findOne({
     student: req.user._id,
+    dayNumber: CERTIFICATE_DAY,
     submittedAt: { $exists: true, $ne: null }
-  }).sort({ submittedAt: -1 });
+  });
 
-  if (!latestAttempt) {
-    return res.json({ eligible: false, reason: "No exam completed yet" });
-  }
-
-  const eligibleAt = new Date(latestAttempt.submittedAt.getTime() + FIFTEEN_DAYS_MS);
-  const eligible = Date.now() >= eligibleAt.getTime();
-  return res.json({ eligible, eligibleAt });
+  const eligible = !!day20Attempt;
+  return res.json({ eligible, reason: eligible ? null : "Complete Day 20 exam to get your certificate" });
 };
 
 const downloadCertificate = async (req, res) => {
-  const latestAttempt = await ExamAttempt.findOne({
+  const day20Attempt = await ExamAttempt.findOne({
     student: req.user._id,
+    dayNumber: CERTIFICATE_DAY,
     submittedAt: { $exists: true, $ne: null }
-  }).sort({ submittedAt: -1 });
+  });
 
-  if (!latestAttempt) {
-    return res.status(400).json({ message: "No exam completed yet" });
-  }
-
-  const eligibleAt = new Date(latestAttempt.submittedAt.getTime() + FIFTEEN_DAYS_MS);
-  if (Date.now() < eligibleAt.getTime()) {
+  if (!day20Attempt) {
     return res.status(403).json({
-      message: "Certificate not available yet",
-      eligibleAt
+      message: "Complete Day 20 exam to get your certificate"
     });
   }
 
   let certificate = await Certificate.findOne({ student: req.user._id });
   if (!certificate) {
     const uniqueId = `CERT-${Date.now().toString(36).toUpperCase()}`;
+    const verificationCode = `VC${Date.now().toString(36).toUpperCase().slice(-6)}`;
     certificate = await Certificate.create({
       student: req.user._id,
       certificateId: uniqueId,
+      verificationCode,
       issuedAt: new Date(),
       courseName: req.user.profile?.selectedCourse || "MS-CIT",
-      examAttempt: latestAttempt._id
+      examAttempt: day20Attempt._id
     });
   }
 
@@ -63,6 +57,9 @@ const downloadCertificate = async (req, res) => {
   doc.text(`Course Name: ${certificate.courseName}`);
   doc.text(`Date: ${certificate.issuedAt.toDateString()}`);
   doc.text(`Certificate ID: ${certificate.certificateId}`);
+  if (certificate.verificationCode) {
+    doc.fontSize(10).text(`Verification code: ${certificate.verificationCode}`, { opacity: 0.8 });
+  }
   doc.moveDown();
   doc.fontSize(12).text("Congratulations on completing the course!", {
     align: "center"

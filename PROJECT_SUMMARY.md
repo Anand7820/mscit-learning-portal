@@ -14,7 +14,7 @@ The **MS-CIT Learning Portal** is a comprehensive web-based learning management 
 - **Course Access**: 50-day structured course content with bilingual support (English/Marathi)
 - **Exam System**: Timed exams for each course day with automatic submission
 - **Progress Tracking**: Visual progress indicators showing completed days
-- **Certificate Generation**: Automatic PDF certificate after 15 days of exam completion
+- **Certificate Generation**: PDF certificate available as soon as the student completes the Day 20 exam
 - **Dashboard**: View exam history and certificate status
 
 ### Admin Features

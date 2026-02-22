@@ -117,8 +117,15 @@ const CourseDayPage = () => {
     api
       .get(`/courses/days/${dayNumber}`)
       .then((res) => {
-        setDay(res.data);
+        const data = res.data;
+        setDay(data);
         setLoadingDay(null);
+        // Restore saved section completion so day 1 completion does not disappear when returning from day 2
+        if (data.subsections?.length && Array.isArray(data.completedSections) && data.completedSections.length === data.subsections.length) {
+          setCompletedSections(data.completedSections);
+        } else if (data.subsections?.length) {
+          setCompletedSections(Array(data.subsections.length).fill(false));
+        }
       })
       .catch((err) => {
         setError(err.response?.data?.message || "Day locked");
@@ -144,11 +151,6 @@ const CourseDayPage = () => {
   const allSectionsCompleted =
     totalSections === 0 || completedSections.filter(Boolean).length === totalSections;
 
-  useEffect(() => {
-    if (day?.subsections) {
-      setCompletedSections(Array(day.subsections.length).fill(false));
-    }
-  }, [day]);
 
   if (error) {
     return (
@@ -252,13 +254,12 @@ const CourseDayPage = () => {
                 </div>
               )}
               <button
-                onClick={() =>
-                  setCompletedSections((prev) => {
-                    const next = [...prev];
-                    next[index] = !next[index];
-                    return next;
-                  })
-                }
+                onClick={() => {
+                  const next = [...completedSections];
+                  next[index] = !next[index];
+                  setCompletedSections(next);
+                  api.put(`/courses/days/${day.dayNumber}/sections`, { completedSections: next }).catch(() => {});
+                }}
                 className={`mt-3 rounded px-3 py-2 text-sm font-semibold ${
                   completedSections[index]
                     ? "bg-blue-600 text-white"
@@ -291,6 +292,17 @@ const CourseDayPage = () => {
             Proceed to Next
           </button>
         </div>
+        <p className="mt-4 text-sm text-gray-600">
+          Your certificate is on the{" "}
+          <button
+            type="button"
+            onClick={() => navigate("/dashboard")}
+            className="font-medium text-indigo-600 underline hover:no-underline"
+          >
+            Dashboard
+          </button>
+          . It is available as soon as you complete the Day 20 exam.
+        </p>
       </div>
     </StudentLayout>
   );
