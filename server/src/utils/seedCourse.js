@@ -2581,6 +2581,606 @@ const ensureCourseDays = async () => {
         }
       }
     );
+    // Day 22: MS Excel Basics – Section 1 (video), Section 2 (notes). Use full subsections array so "Section 2" appears.
+    const day22Section2ContentEn =
+      "MS Excel Basics: Rows, Columns, and Beyond\n\n1. How to Open MS Excel\n\nThere are three primary ways to open Excel:\n\nSearch Box: Type \"Excel\" in the Windows search bar. [00:01:40]\n\nOffice App: Open the Microsoft Office suite app and select Excel. [00:02:15]\n\nRun Command: Press Windows + R, type excel, and hit Enter. [00:02:57]\n\n2. Dashboard Overview\n\nWhen you first open Excel, you see:\n\nHome: View recent files and basic options. [00:03:24]\n\nNew: Start a \"Blank Workbook\" or use pre-made Templates for specific tasks. [00:03:59]\n\nOpen: Access existing files saved on your computer. [00:04:30]\n\n3. Interface Components\n\nThe Ribbon: The top panel containing all tools, divided into tabs (Home, Insert, etc.) and groups (Font, Alignment). [00:05:15]\n\nName Box: Shows the address of the active cell (e.g., A1). [00:06:24]\n\nFormula Bar: Used to enter or view data and formulas within a cell. [00:06:34]\n\n4. Understanding Rows, Columns, and Cells\n\nColumns: Vertical sections identified by letters (A, B, C...). There are 16,384 columns (ending at XFD). [00:07:44]\n\nRows: Horizontal sections identified by numbers (1, 2, 3...). There are 1,048,576 rows. [00:11:15]\n\nCell: The intersection of a row and a column. The smallest unit for data entry. [00:07:37]\n\nCell Address: A combination of the Column Letter and Row Number (e.g., C4 means Column C, Row 4). [00:13:16]\n\n5. Navigation and Zooming\n\nNavigation Shortcuts: Use Ctrl + Arrow Keys to jump to the very end of the sheet (Right, Left, Up, or Down). [00:10:47]\n\nZooming Methods:\n- Slider in the bottom right corner. [00:08:25]\n- Click the percentage number next to the slider to set a specific zoom. [00:08:42]\n- Shortcut: Hold Ctrl and use the Mouse Scroll Wheel. [00:09:25]\n\n6. Basic Formulas and Ranges\n\nFormulas: Every formula must start with an equals sign (=). For example, =60+40. [00:14:36]\n\nData vs. Formula: A cell may show \"100,\" but the Formula Bar will show the underlying calculation if a formula was used. [00:16:09]\n\nRange: A collection of selected cells, written as StartCell:EndCell (e.g., C3:E6). [00:17:58]\n\n7. Sheet Management\n\nAdding Sheets: Click the + icon or use Shift + F11. [00:18:43]\n\nRenaming: Right-click the sheet tab -> Rename. Tip: Use underscores instead of spaces for advanced compatibility. [00:20:16]\n\nTab Color: Right-click -> Tab Color to organize sheets visually. [00:21:13]\n\nHiding/Unhiding: Right-click a sheet to Hide it; Right-click any visible sheet to Unhide. [00:22:08]\n\nProtection: You can right-click a sheet and select \"Protect Sheet\" to add a password. [00:21:40]";
+    const day22Section2ContentMr =
+      "MS Excel मूलभूत: पंक्ती, स्तंभ आणि अधिक\n\n१. MS Excel कसे उघडावे\n\nतीन मुख्य मार्ग: Windows शोध पट्टीत \"Excel\" टाइप करा [00:01:40]; Microsoft Office अॅप उघडून Excel निवडा [00:02:15]; Windows + R दाबून excel टाइप करून Enter [00:02:57].\n\n२. डॅशबोर्ड: Home (अलीकडील फाइल्स), New (Blank Workbook/टेम्पलेट्स), Open (अस्तित्वातील फाइल). [00:03:24–00:04:30]\n\n३. इंटरफेस: Ribbon (टॅब्स आणि गट), Name Box (सक्रिय सेल पत्ता उदा. A1), Formula Bar (डेटा/सूत्र प्रवेश). [00:05:15–00:06:34]\n\n४. पंक्ती, स्तंभ आणि सेल: स्तंभ अक्षरांनी (A,B,C… 16,384); पंक्ती संख्यांनी (1,2,3… 1,048,576); सेल = पंक्ती आणि स्तंभ छेदन; सेल पत्ता उदा. C4. [00:07:37–00:13:16]\n\n५. नेव्हिगेशन आणि झूम: Ctrl + Arrow Keys शीटच्या शेवटापर्यंत; झूम – खालच्या उजव्या स्लायडर, टक्केवारी क्लिक, किंवा Ctrl + माऊस स्क्रोल. [00:08:25–00:10:47]\n\n६. सूत्रे आणि रेंज: सूत्र = चिन्हाने सुरू (उदा. =60+40); सेल मूल्य vs Formula Bar; रेंज StartCell:EndCell (उदा. C3:E6). [00:14:36–00:17:58]\n\n७. शीट व्यवस्थापन: + किंवा Shift+F11 नवीन शीट; रिनेम (Right-click -> Rename, अंडरस्कोर वापरा); Tab Color; Hide/Unhide; Protect Sheet (पासवर्ड). [00:18:43–00:22:08]";
+    await CourseDay.updateOne(
+      { dayNumber: 22 },
+      {
+        $set: {
+          contentEn: "",
+          contentMr: "",
+          subsections: [
+            {
+              titleEn: "Section 1",
+              titleMr: "भाग १",
+              contentEn: "",
+              contentMr: "",
+              videoUrl: "https://youtu.be/dt8g0uAy0cE?si=3qnlX5kFXXfryR16"
+            },
+            {
+              titleEn: "Section 2",
+              titleMr: "भाग २",
+              contentEn: day22Section2ContentEn,
+              contentMr: day22Section2ContentMr,
+              videoUrl: ""
+            }
+          ]
+        }
+      }
+    );
+    await CourseDay.updateOne(
+      { dayNumber: 22 },
+      {
+        $set: {
+          "exam.durationMinutes": 30,
+          "exam.questions": [
+            {
+              questionEn: "Which keyboard shortcut combination opens the Run command dialog to launch Excel?",
+              questionMr: "Excel लॉन्च करण्यासाठी Run कमांड डायलॉग कोणता कीबोर्ड शॉर्टकट उघडतो?",
+              options: [
+                { textEn: "Ctrl + R", textMr: "Ctrl + R" },
+                { textEn: "Alt + E", textMr: "Alt + E" },
+                { textEn: "Windows + R", textMr: "Windows + R" },
+                { textEn: "Shift + Enter", textMr: "Shift + Enter" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "Which component of the Excel interface displays the specific address (e.g., A1) of the currently selected cell?",
+              questionMr: "सध्याच्या निवडलेल्या सेलचा पत्ता (उदा. A1) Excel इंटरफेसचा कोणता घटक दाखवतो?",
+              options: [
+                { textEn: "Ribbon", textMr: "Ribbon" },
+                { textEn: "Sheet Tab", textMr: "Sheet Tab" },
+                { textEn: "Name Box", textMr: "Name Box" },
+                { textEn: "Formula Bar", textMr: "Formula Bar" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "What is the correct syntax to represent a cell range starting at C3 and ending at E6?",
+              questionMr: "C3 ते E6 पर्यंतची सेल रेंज दर्शवण्याचा योग्य सिंटॅक्स कोणता?",
+              options: [
+                { textEn: "C3-E6", textMr: "C3-E6" },
+                { textEn: "C3:E6", textMr: "C3:E6" },
+                { textEn: "C3,E6", textMr: "C3,E6" },
+                { textEn: "C3;E6", textMr: "C3;E6" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "How are columns identified in an Excel worksheet?",
+              questionMr: "Excel वर्कशीटमध्ये स्तंभ कसे ओळखले जातात?",
+              options: [
+                { textEn: "By Symbols (!, @, #...)", textMr: "चिन्हांनी (!, @, #...)" },
+                { textEn: "By Letters (A, B, C...)", textMr: "अक्षरांनी (A, B, C...)" },
+                { textEn: "By Roman Numerals (I, II, III...)", textMr: "रोमन अंकांनी (I, II, III...)" },
+                { textEn: "By Numbers (1, 2, 3...)", textMr: "संख्यांनी (1, 2, 3...)" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "Which symbol must strictly be typed first to begin any formula in Excel?",
+              questionMr: "Excel मध्ये कोणतेही सूत्र सुरू करण्यासाठी प्रथम कोणते चिन्ह टाइप करावे लागते?",
+              options: [
+                { textEn: "> (Greater Than)", textMr: "> (Greater Than)" },
+                { textEn: "= (Equals)", textMr: "= (Equals)" },
+                { textEn: "# (Hash)", textMr: "# (Hash)" },
+                { textEn: "+ (Plus)", textMr: "+ (Plus)" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "If you are in cell A1, which shortcut would instantly move your selection to the very last occupied cell (or the end of the sheet) in that direction?",
+              questionMr: "तुम्ही सेल A1 मध्ये असल्यास, त्या दिशेने शेवटच्या भरलेल्या सेल (किंवा शीटच्या शेवटी) झटपट जाण्यासाठी कोणता शॉर्टकट वापरावा?",
+              options: [
+                { textEn: "Shift + Arrow Key", textMr: "Shift + Arrow Key" },
+                { textEn: "Tab", textMr: "Tab" },
+                { textEn: "Ctrl + Arrow Key", textMr: "Ctrl + Arrow Key" },
+                { textEn: "Alt + Arrow Key", textMr: "Alt + Arrow Key" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "What is the correct cell address for the intersection of Column D and Row 5?",
+              questionMr: "स्तंभ D आणि पंक्ती 5 च्या छेदनबिंदूचा योग्य सेल पत्ता कोणता?",
+              options: [
+                { textEn: "D:5", textMr: "D:5" },
+                { textEn: "5D", textMr: "5D" },
+                { textEn: "Row5ColD", textMr: "Row5ColD" },
+                { textEn: "D5", textMr: "D5" }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "Which action allows you to zoom in and out of the worksheet using the mouse?",
+              questionMr: "माऊस वापरून वर्कशीट झूम इन आणि आउट करण्याची क्रिया कोणती?",
+              options: [
+                { textEn: "Hold Alt + Scroll Wheel", textMr: "Alt + Scroll Wheel दाबून ठेवा" },
+                { textEn: "Double Click Scroll Wheel", textMr: "Scroll Wheel वर डबल क्लिक करा" },
+                { textEn: "Hold Shift + Scroll Wheel", textMr: "Shift + Scroll Wheel दाबून ठेवा" },
+                { textEn: "Hold Ctrl + Scroll Wheel", textMr: "Ctrl + Scroll Wheel दाबून ठेवा" }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "How many total rows are available in a modern Excel worksheet?",
+              questionMr: "आधुनिक Excel वर्कशीटमध्ये एकूण किती पंक्ती उपलब्ध आहेत?",
+              options: [
+                { textEn: "Unlimited", textMr: "अमर्यादित" },
+                { textEn: "1,048,576", textMr: "1,048,576" },
+                { textEn: "16,384", textMr: "16,384" },
+                { textEn: "65,536", textMr: "65,536" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "Which of the following is a valid way to rename a worksheet tab?",
+              questionMr: "वर्कशीट टॅबचे नाव बदलण्याचा योग्य मार्ग खालीलपैकी कोणता?",
+              options: [
+                { textEn: "Press Ctrl + S", textMr: "Ctrl + S दाबा" },
+                { textEn: "Type the new name in the Formula Bar", textMr: "Formula Bar मध्ये नवीन नाव टाइप करा" },
+                { textEn: "Click the 'New' button on the dashboard", textMr: "डॅशबोर्डवर 'New' बटण क्लिक करा" },
+                { textEn: "Right-click the Sheet Tab and select 'Rename'", textMr: "Sheet Tab वर Right-click करून 'Rename' निवडा" }
+              ],
+              correctIndex: 3
+            }
+          ]
+        }
+      }
+    );
+    // Day 23: MS Excel Basic Formulas & Functions – Section 1 (video), Section 2 (notes)
+    const day23Section2ContentEn =
+      "Computer Class Day 23: MS Excel Basic Formulas & Functions\n\n1. Formulas vs. Functions\n\nThe video distinguishes between two types of calculations in Excel:\n\nFormulas: User-defined calculations (e.g., =A1+B1).\n\nFunctions (Pre-defined Formulas): Built-in Excel tools used for complex tasks (e.g., =SUM(), =POWER()). [00:02:46]\n\n2. Basic Arithmetic Operations\n\nTo activate any calculation, you must start with the = sign. [00:04:22]\n\nAddition (+)\nMethod: Type =, select the first cell, type +, select the second cell, and press Enter.\nExample: =C3+D3 [00:04:35]\n\nSubtraction (-)\nMethod: Type =, select the higher value cell, type -, select the value to subtract, and press Enter.\nExample: =A1-B1 [00:06:09]\n\nMultiplication (*)\nMethod: Use the asterisk symbol (*) as the multiplication operator.\nExample: =E5*F5 [00:08:12]\n\nDivision (/)\nMethod: Use the forward slash (/) as the division operator.\nExample: =A1/B1 [00:09:15]\n\n3. Advanced Basic Functions\n\nSquare Root (SQRT)\nTo find the square root of a number, use the SQRT function.\nSyntax: =SQRT(number_or_cell)\nExample: =SQRT(16) results in 4. [00:11:20]\n\nPower (POWER)\nTo calculate a number raised to a specific power (e.g., 10^2).\nSyntax: =POWER(number, power)\nExample: =POWER(10, 2) results in 100. [00:12:11]\n\n4. Calculating Within a Cell\n\nYou don't always need to reference other cells. You can perform \"calculator-style\" math directly inside a single cell by typing the values after the equals sign.\nExample: Typing =1000/10 in a cell will display 100. [00:10:28]\n\n5. Summary Table of Operators\n\nOperation | Operator | Excel Example\nAddition | + | =A1+B1\nSubtraction | - | =A1-B1\nMultiplication | * | =A1*B1\nDivision | / | =A1/B1\nSquare Root | SQRT | =SQRT(A1)\nPower | POWER | =POWER(A1, 2)";
+    const day23Section2ContentMr =
+      "Computer Class Day 23: MS Excel Basic Formulas & Functions\n\n१. Formulas vs. Functions\n\nFormulas: वापरकर्ता-परिभाषित गणना (उदा. =A1+B1).\nFunctions: अंगभूत Excel साधने (उदा. =SUM(), =POWER()). [00:02:46]\n\n२. मूलभूत अंकगणित: = चिन्हाने सुरू करा. [00:04:22]\n\nबेरीज (+): =, पहिला सेल, +, दुसरा सेल, Enter. उदा. =C3+D3 [00:04:35]\nवजाबाकी (-): =, मोठ्या मूल्याचा सेल, -, वजा करायचा सेल. उदा. =A1-B1 [00:06:09]\nगुणाकार (*): * चिन्ह. उदा. =E5*F5 [00:08:12]\nभागाकार (/): / चिन्ह. उदा. =A1/B1 [00:09:15]\n\n३. SQRT: =SQRT(संख्या किंवा सेल). उदा. =SQRT(16) → 4 [00:11:20]\nPOWER: =POWER(संख्या, घात). उदा. =POWER(10, 2) → 100 [00:12:11]\n\n४. एकाच सेलमध्ये गणना: =1000/10 सारखे टाइप करून परिणाम मिळवता येतो. [00:10:28]\n\n५. ऑपरेटर सारणी: बेरीज +, वजाबाकी -, गुणाकार *, भागाकार /, SQRT, POWER.";
+    await CourseDay.updateOne(
+      { dayNumber: 23 },
+      {
+        $set: {
+          contentEn: "",
+          contentMr: "",
+          subsections: [
+            {
+              titleEn: "Section 1",
+              titleMr: "भाग १",
+              contentEn: "",
+              contentMr: "",
+              videoUrl: "https://youtu.be/dyl91P37P1Y?si=MzEvDrztgm6uaZDp"
+            },
+            {
+              titleEn: "Section 2",
+              titleMr: "भाग २",
+              contentEn: day23Section2ContentEn,
+              contentMr: day23Section2ContentMr,
+              videoUrl: ""
+            }
+          ]
+        }
+      }
+    );
+    await CourseDay.updateOne(
+      { dayNumber: 23 },
+      {
+        $set: {
+          "exam.durationMinutes": 30,
+          "exam.questions": [
+            {
+              questionEn: "Which character must always be typed first to activate a calculation or formula in an Excel cell?",
+              questionMr: "Excel सेलमध्ये गणना किंवा सूत्र सक्रिय करण्यासाठी प्रथम कोणते चिन्ह टाइप करावे लागते?",
+              options: [
+                { textEn: ": (Colon)", textMr: ": (Colon)" },
+                { textEn: "= (Equals)", textMr: "= (Equals)" },
+                { textEn: "+ (Plus)", textMr: "+ (Plus)" },
+                { textEn: "# (Hash)", textMr: "# (Hash)" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "What is the specific difference between a 'Formula' and a 'Function' in Excel?",
+              questionMr: "Excel मध्ये 'Formula' आणि 'Function' मध्ये विशिष्ट फरक काय आहे?",
+              options: [
+                { textEn: "Formulas are user-defined calculations, while Functions are pre-defined built-in tools.", textMr: "Formulas वापरकर्ता-परिभाषित गणना आहेत, तर Functions पूर्व-परिभाषित अंगभूत साधने आहेत." },
+                { textEn: "There is no difference; the terms are interchangeable.", textMr: "फरक नाही; शब्द परस्पर बदलण्यायोग्य आहेत." },
+                { textEn: "Formulas are for text only, while Functions are for numbers.", textMr: "Formulas फक्त मजकूरासाठी, Functions संख्यांसाठी." },
+                { textEn: "Functions must start with an equals sign, but Formulas do not.", textMr: "Functions = चिन्हाने सुरू होतात, पण Formulas नाहीत." }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "Which symbol is used as the multiplication operator in Excel?",
+              questionMr: "Excel मध्ये गुणाकार ऑपरेटर म्हणून कोणते चिन्ह वापरतात?",
+              options: [
+                { textEn: "×", textMr: "×" },
+                { textEn: "%", textMr: "%" },
+                { textEn: "* (Asterisk)", textMr: "* (Asterisk)" },
+                { textEn: "x", textMr: "x" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "What would be the result of the formula \"=POWER(10, 2)\"?",
+              questionMr: "सूत्र \"=POWER(10, 2)\" चा परिणाम काय असेल?",
+              options: [
+                { textEn: "20", textMr: "20" },
+                { textEn: "12", textMr: "12" },
+                { textEn: "5", textMr: "5" },
+                { textEn: "100", textMr: "100" }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "Which function would you use to find the square root of the number 16?",
+              questionMr: "१६ चे वर्गमूळ काढण्यासाठी कोणती function वापरावी?",
+              options: [
+                { textEn: "=SQR(16)", textMr: "=SQR(16)" },
+                { textEn: "=ROOT(16)", textMr: "=ROOT(16)" },
+                { textEn: "=SQRT(16)", textMr: "=SQRT(16)" },
+                { textEn: "=SR(16)", textMr: "=SR(16)" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "If you type \"=1000/10\" directly into a cell, what will be displayed?",
+              questionMr: "सेलमध्ये थेट \"=1000/10\" टाइप केल्यास काय दिसेल?",
+              options: [
+                { textEn: "100", textMr: "100" },
+                { textEn: "1000", textMr: "1000" },
+                { textEn: "Error", textMr: "Error" },
+                { textEn: "=1000/10", textMr: "=1000/10" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "Which symbol is used for division in Excel formulas?",
+              questionMr: "Excel सूत्रांमध्ये भागाकारासाठी कोणते चिन्ह वापरतात?",
+              options: [
+                { textEn: "\\ (Backslash)", textMr: "\\ (Backslash)" },
+                { textEn: "÷ (Division Sign)", textMr: "÷ (Division Sign)" },
+                { textEn: "/ (Forward Slash)", textMr: "/ (Forward Slash)" },
+                { textEn: "| (Pipe)", textMr: "| (Pipe)" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "What is the correct syntax to subtract the value in cell B1 from the value in cell A1?",
+              questionMr: "सेल A1 मधील मूल्यातून सेल B1 मधील मूल्य वजा करण्याचा योग्य सिंटॅक्स कोणता?",
+              options: [
+                { textEn: "A1-B1", textMr: "A1-B1" },
+                { textEn: "=SUBTRACT(A1, B1)", textMr: "=SUBTRACT(A1, B1)" },
+                { textEn: "=A1:B1", textMr: "=A1:B1" },
+                { textEn: "=A1-B1", textMr: "=A1-B1" }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "In the formula \"=POWER(5, 3)\", what does the number '3' represent?",
+              questionMr: "सूत्र \"=POWER(5, 3)\" मध्ये '3' काय दर्शवते?",
+              options: [
+                { textEn: "The exponent (power)", textMr: "घातांक (power)" },
+                { textEn: "The square root", textMr: "वर्गमूळ" },
+                { textEn: "The number of cells to add", textMr: "जोडायच्या सेलची संख्या" },
+                { textEn: "The number to be multiplied", textMr: "गुणाकार करायची संख्या" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "Which of the following formulas correctly adds the values in cells C3 and D3?",
+              questionMr: "सेल C3 आणि D3 मधील मूल्ये योग्यरित्या जोडणारे सूत्र खालीलपैकी कोणते?",
+              options: [
+                { textEn: "=ADD(C3, D3)", textMr: "=ADD(C3, D3)" },
+                { textEn: "=C3+D3", textMr: "=C3+D3" },
+                { textEn: "SUM(C3:D3)", textMr: "SUM(C3:D3)" },
+                { textEn: "C3+D3=", textMr: "C3+D3=" }
+              ],
+              correctIndex: 1
+            }
+          ]
+        }
+      }
+    );
+    // Day 24: Excel Structure – Rows, Columns, and Cell Merging – Section 1 (video), Section 2 (notes)
+    const day24Section2ContentEn =
+      "Computer Class Day 24: Excel Structure- Rows, Columns, and Cell Merging\n\n1. Adjusting Decimal Places\n\nBefore structural changes, the video demonstrates how to format numbers for better readability.\n\nIncrease/Decrease Decimals: Under the Home tab, in the Number group, there are two icons (one with a left arrow, one with a right arrow) to add or remove decimal points.\n\n[00:01:48]\n\nConsistency: It is recommended to keep decimal places consistent across a column for a cleaner look.\n\n[00:02:20]\n\n2. Inserting Rows and Columns\n\nMethod 1: Header Right-Click (Full Row/Column)\n\nSelect: Click on the row number (e.g., 3) or column letter (e.g., C) where you want the new space.\n\nRight-Click: Press the right mouse button on the header.\n\nInsert: Click \"Insert.\" A new column will appear to the left of your selection, or a new row will appear above it.\n\n[00:02:40]\n\nMethod 2: Cell Right-Click (Advanced Options)\n\nRight-click on a single cell.\n\nSelect Insert.\n\nA dialog box appears with four choices:\n\n[00:03:52]\n\nShift cells right: Moves only the data in that row to the right.\n\nShift cells down: Moves data in that column down.\n\nEntire row: Inserts a full row.\n\nEntire column: Inserts a full column.\n\n3. Merge & Center Feature\n\nThis is used to combine multiple cells into one, often for titles or headings.\n\n[00:05:18]\n\nMerge & Center: Select a range of cells (e.g., A1 to D1), then click the Merge & Center button in the Alignment group. This turns the range into one large cell and centers the text.\n\n[00:06:24]\n\nUnmerge Cells: To reverse the action, select the merged cell and click the \"Unmerge Cells\" option from the Merge & Center dropdown menu.\n\n[00:08:18]\n\nMerge Across: Merges cells in the same row into one larger cell without centering.\n\n[00:08:48]\n\n4. Deleting Sheets: A Cautionary Note\n\nIrreversible Action: When you right-click a sheet tab (at the bottom) and select Delete, you cannot use the \"Undo\" (Ctrl+Z) function to bring it back. Always be careful before deleting entire worksheets.\n\n[00:04:51]\n\n5. Visual Formatting Tip\n\nTo make a heading stand out (like \"Class 10th Data\"), use Merge & Center and then apply a background color (Fill Color) to the large merged cell.\n\n[00:07:03]";
+    const day24Section2ContentMr =
+      "Computer Class Day 24: Excel Structure – Rows, Columns, and Cell Merging\n\n१. दशांश ठिकाणे समायोजित करणे\n\nHome टॅब, Number गटात दोन आयकॉन्स (डावा/उजवा अॅरो) – दशांश बिंदू वाढवणे किंवा कमी करणे. [00:01:48] स्तंभात एकसारखे दशांश ठेवण्याची शिफारस. [00:02:20]\n\n२. पंक्ती आणि स्तंभ घालणे\n\nपद्धत १: हेडरवर Right-Click – पंक्ती क्रमांक (उदा. 3) किंवा स्तंभ अक्षर (उदा. C) वर क्लिक करून Insert. नवीन स्तंभ निवडीच्या डावीकडे किंवा नवीन पंक्ती वर दिसते. [00:02:40]\n\nपद्धत २: सेलवर Right-Click -> Insert – डायलॉगमध्ये: Shift cells right, Shift cells down, Entire row, Entire column. [00:03:52]\n\n३. Merge & Center\n\nअनेक सेल एकत्र करणे (शीर्षकांसाठी). रेंज निवडा (उदा. A1 ते D1), Alignment गटात Merge & Center. Unmerge: Merge & Center ड्रॉपडाउनमधून Unmerge Cells. Merge Across: समान पंक्तीतील सेल्स एकत्र, सेंटरिंगशिवाय. [00:05:18–00:08:48]\n\n४. शीट हटवणे: सावधानता – शीट टॅबवर Right-click -> Delete केल्यावर Undo (Ctrl+Z) काम करत नाही. [00:04:51]\n\n५. व्हिज्युअल फॉर्मॅटिंग: हेडिंग उठावदार करण्यासाठी Merge & Center नंतर Fill Color लावा. [00:07:03]";
+    await CourseDay.updateOne(
+      { dayNumber: 24 },
+      {
+        $set: {
+          contentEn: "",
+          contentMr: "",
+          subsections: [
+            {
+              titleEn: "Section 1",
+              titleMr: "भाग १",
+              contentEn: "",
+              contentMr: "",
+              videoUrl: "https://youtu.be/Qb5AqDIlkog?si=-pIR4B-QcqYa716d"
+            },
+            {
+              titleEn: "Section 2",
+              titleMr: "भाग २",
+              contentEn: day24Section2ContentEn,
+              contentMr: day24Section2ContentMr,
+              videoUrl: ""
+            }
+          ]
+        }
+      }
+    );
+    await CourseDay.updateOne(
+      { dayNumber: 24 },
+      {
+        $set: {
+          "exam.durationMinutes": 30,
+          "exam.questions": [
+            {
+              questionEn: "When you insert a new column using the header right-click method, where does the new column appear relative to your selection?",
+              questionMr: "हेडर राइट-क्लिक पद्धतीने नवीन स्तंभ घातल्यावर, निवडीच्या संदर्भात नवीन स्तंभ कोठे दिसतो?",
+              options: [
+                { textEn: "To the right of the selected column", textMr: "निवडलेल्या स्तंभाच्या उजवीकडे" },
+                { textEn: "At the end of the worksheet", textMr: "वर्कशीटच्या शेवटी" },
+                { textEn: "At the beginning of the worksheet (Column A)", textMr: "वर्कशीटच्या सुरुवातीला (Column A)" },
+                { textEn: "To the left of the selected column", textMr: "निवडलेल्या स्तंभाच्या डावीकडे" }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "Which specific action in Excel is permanent and cannot be reversed using the 'Undo' (Ctrl + Z) function?",
+              questionMr: "Excel मध्ये कोणती क्रिया कायमची आहे आणि 'Undo' (Ctrl + Z) ने उलटवता येत नाही?",
+              options: [
+                { textEn: "Deleting an entire worksheet tab", textMr: "संपूर्ण वर्कशीट टॅब हटवणे" },
+                { textEn: "Clearing cell content", textMr: "सेल मजकूर साफ करणे" },
+                { textEn: "Merging cells", textMr: "सेल एकत्र करणे" },
+                { textEn: "Deleting a row", textMr: "पंक्ती हटवणे" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "What is the primary difference between 'Merge & Center' and 'Merge Across'?",
+              questionMr: "'Merge & Center' आणि 'Merge Across' मध्ये मुख्य फरक काय आहे?",
+              options: [
+                { textEn: "Merge Across combines cells vertically; Merge & Center combines them horizontally.", textMr: "Merge Across उभ्या एकत्र करते; Merge & Center आडवे." },
+                { textEn: "Merge Across allows you to keep data from all cells; Merge & Center does not.", textMr: "Merge Across सर्व सेलचा डेटा ठेवू देते; Merge & Center नाही." },
+                { textEn: "Merge & Center aligns text to the middle; Merge Across keeps default alignment.", textMr: "Merge & Center मजकूर मध्यात संरेखित करते; Merge Across डीफॉल्ट संरेखन ठेवते." },
+                { textEn: "Merge & Center is permanent; Merge Across is temporary.", textMr: "Merge & Center कायमचे; Merge Across तात्पुरते." }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "Which formula correctly calculates the square root of the value in cell A1?",
+              questionMr: "सेल A1 मधील मूल्याचे वर्गमूळ योग्यरित्या कोणते सूत्र काढते?",
+              options: [
+                { textEn: "=SQRT(A1)", textMr: "=SQRT(A1)" },
+                { textEn: "=A1/2", textMr: "=A1/2" },
+                { textEn: "=ROOT(A1)", textMr: "=ROOT(A1)" },
+                { textEn: "=POWER(A1, 2)", textMr: "=POWER(A1, 2)" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "How many rows does a standard modern Excel worksheet contain?",
+              questionMr: "आधुनिक Excel वर्कशीटमध्ये एकूण किती पंक्ती असतात?",
+              options: [
+                { textEn: "65,536", textMr: "65,536" },
+                { textEn: "10,000", textMr: "10,000" },
+                { textEn: "1,048,576", textMr: "1,048,576" },
+                { textEn: "16,384", textMr: "16,384" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "Which interface component displays the address of the currently active cell (e.g., 'B5')?",
+              questionMr: "सध्याच्या सक्रिय सेलचा पत्ता (उदा. 'B5') कोणता घटक दाखवतो?",
+              options: [
+                { textEn: "Formula Bar", textMr: "Formula Bar" },
+                { textEn: "Ribbon", textMr: "Ribbon" },
+                { textEn: "Name Box", textMr: "Name Box" },
+                { textEn: "Status Bar", textMr: "Status Bar" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "What is the correct syntax to multiply cell A1 by cell B1?",
+              questionMr: "सेल A1 ला सेल B1 ने गुणण्याचा योग्य सिंटॅक्स कोणता?",
+              options: [
+                { textEn: "=A1 x B1", textMr: "=A1 x B1" },
+                { textEn: "=MULTIPLY(A1, B1)", textMr: "=MULTIPLY(A1, B1)" },
+                { textEn: "=A1 * B1", textMr: "=A1 * B1" },
+                { textEn: "A1 * B1", textMr: "A1 * B1" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "Which shortcut combination allows you to Zoom in and out of the worksheet using the mouse?",
+              questionMr: "माऊस वापरून वर्कशीट झूम इन/आउट करण्यासाठी कोणता शॉर्टकट वापरावा?",
+              options: [
+                { textEn: "Shift + Scroll Wheel", textMr: "Shift + Scroll Wheel" },
+                { textEn: "Ctrl + Scroll Wheel", textMr: "Ctrl + Scroll Wheel" },
+                { textEn: "Tab + Scroll Wheel", textMr: "Tab + Scroll Wheel" },
+                { textEn: "Alt + Scroll Wheel", textMr: "Alt + Scroll Wheel" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "What would be the result of the formula \"=POWER(10, 3)\"?",
+              questionMr: "सूत्र \"=POWER(10, 3)\" चा परिणाम काय असेल?",
+              options: [
+                { textEn: "13", textMr: "13" },
+                { textEn: "3.33", textMr: "3.33" },
+                { textEn: "1000", textMr: "1000" },
+                { textEn: "30", textMr: "30" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "If you want to move an entire row of data down to create space between Row 2 and Row 3, which option in the Insert dialog box should you choose?",
+              questionMr: "पंक्ती 2 आणि 3 मध्ये जागा करण्यासाठी संपूर्ण पंक्ती खाली सरकवायची असेल तर Insert डायलॉगमध्ये कोणता पर्याय निवडावा?",
+              options: [
+                { textEn: "Shift cells right", textMr: "Shift cells right" },
+                { textEn: "Entire column", textMr: "Entire column" },
+                { textEn: "Shift cells up", textMr: "Shift cells up" },
+                { textEn: "Entire row", textMr: "Entire row" }
+              ],
+              correctIndex: 3
+            }
+          ]
+        }
+      }
+    );
+    // Day 25: MS Excel Professional Data Entry Basics – Section 1 (video), Section 2 (notes)
+    const day25Section2ContentEn =
+      "Computer Class Day 25: MS Excel Professional Data Entry Basics\n\n1. Efficient Navigation\n\nNext Cell: Instead of using the mouse, use the Right Arrow Key or Tab to move to the next cell to the right. [00:02:47]\n\nPrevious Cell: Use the Left Arrow Key or Shift + Tab.\n\nMoving Down: Press Enter to move to the cell below.\n\n2. Auto-Fitting Column Width\n\nIf your text is too long for a cell (e.g., \"Name of the Student\"), you can automatically adjust the column width.\n\nManual Method: Hover between the column headers (e.g., between A and B) until the cursor turns into a double arrow, then double-click. [00:06:03]\n\nKeyboard Shortcut (AutoFit): Select the range or the entire sheet, then press these keys in sequence (not together):\n\nAlt → H (Home) → O (Format) → I (AutoFit Column Width). [00:06:23]\n\n3. Creating Serial Numbers (AutoFill)\n\nDon't type every number manually. Use these \"AutoFill\" methods:\n\nSequence Method: Type 1 in the first cell and 2 in the second. Select both cells, then click and drag the small green square (Fill Handle) at the bottom-right corner of the selection downwards. [00:08:30]\n\nControl Key Method: Type 1. Hold the Ctrl key and drag the Fill Handle downwards. Important: Release the mouse button before releasing the Ctrl key. [00:10:43]\n\nPattern Recognition: If you type 1 and 5, then drag, Excel will continue the pattern (9, 13, 17, etc.). [00:09:40]\n\n4. Rapid Data Entry in a Selection\n\nTo enter data into a specific area without constantly moving the cursor:\n\nSelect the entire range where you want to enter data. [00:11:42]\n\nStart typing. When you press Enter, the cursor automatically moves to the next cell within your selection.\n\nOnce it reaches the bottom of the first column in your selection, pressing Enter will automatically jump the cursor to the top of the next column. [00:12:05]\n\n5. Summary of Shortcuts\n\nAction | Shortcut / Method\nMove to Right Cell | Tab or Right Arrow\nMove to Cell Below | Enter\nAutoFit Column Width | Alt + H + O + I\nAutoFill Numbers | Select 1 and 2 → Drag Fill Handle\nQuick Fill Selection | Highlight Range → Type → Enter";
+    const day25Section2ContentMr =
+      "Computer Class Day 25: MS Excel Professional Data Entry Basics\n\n१. कार्यक्षम नेव्हिगेशन\n\nपुढचा सेल: माऊस ऐवजी Right Arrow किंवा Tab – उजवीकडचा सेल. [00:02:47] मागचा सेल: Left Arrow किंवा Shift + Tab. खाली जाणे: Enter.\n\n२. स्तंभ रुंदी ऑटो-फिट\n\nमजकूर लांब असेल तर: स्तंभ हेडर्स दरम्यान (उदा. A आणि B) कर्सर डबल अॅरो होईपर्यंत हॉवर करून डबल-क्लिक. [00:06:03] कीबोर्ड शॉर्टकट: रेंज किंवा संपूर्ण शीट निवडा, नंतर क्रमाने दाबा: Alt → H → O → I (AutoFit Column Width). [00:06:23]\n\n३. क्रमांक तयार करणे (AutoFill)\n\nSequence: पहिल्या सेलमध्ये 1, दुसऱ्यात 2 टाइप करा; दोन्ही निवडा, निवडीच्या खालच्या उजव्या कोपऱ्यातील Fill Handle खाली ड्रॅग करा. [00:08:30] Ctrl पद्धत: 1 टाइप करा, Ctrl दाबून Fill Handle खाली ड्रॅग; प्रथम माऊस सोडा, नंतर Ctrl. [00:10:43] पॅटर्न: 1 आणि 5 टाइप करून ड्रॅग केल्यास Excel पॅटर्न चालू ठेवते (9, 13, 17…). [00:09:40]\n\n४. निवडीत झटपट डेटा प्रवेश\n\nरेंज निवडा [00:11:42]; टाइप करा आणि Enter – कर्सर निवडीतील पुढच्या सेलवर जातो; पहिल्या स्तंभाच्या तळाशी पोहोचल्यावर Enter दिल्यास पुढच्या स्तंभाच्या वरच्या सेलवर जातो. [00:12:05]\n\n५. शॉर्टकट सारांश: उजवीकडे – Tab/Right Arrow; खाली – Enter; AutoFit – Alt+H+O+I; AutoFill – 1,2 निवडून Fill Handle ड्रॅग; Quick Fill – रेंज हायलाइट करून टाइप आणि Enter.";
+    await CourseDay.updateOne(
+      { dayNumber: 25 },
+      {
+        $set: {
+          contentEn: "",
+          contentMr: "",
+          subsections: [
+            {
+              titleEn: "Section 1",
+              titleMr: "भाग १",
+              contentEn: "",
+              contentMr: "",
+              videoUrl: "https://youtu.be/z-1BJw6iebg?si=ZrC1LaH8M8yDB8i6"
+            },
+            {
+              titleEn: "Section 2",
+              titleMr: "भाग २",
+              contentEn: day25Section2ContentEn,
+              contentMr: day25Section2ContentMr,
+              videoUrl: ""
+            }
+          ]
+        }
+      }
+    );
+    await CourseDay.updateOne(
+      { dayNumber: 25 },
+      {
+        $set: {
+          "exam.durationMinutes": 30,
+          "exam.questions": [
+            {
+              questionEn: "Which key would you press to move to the next cell to the right instead of using the mouse?",
+              questionMr: "माऊस न वापरता पुढच्या उजव्या सेलवर जाण्यासाठी कोणती कळ दाबावी?",
+              options: [
+                { textEn: "Enter", textMr: "Enter" },
+                { textEn: "Esc", textMr: "Esc" },
+                { textEn: "Tab", textMr: "Tab" },
+                { textEn: "Alt", textMr: "Alt" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "What happens when you press 'Enter' after typing data into a cell?",
+              questionMr: "सेलमध्ये डेटा टाइप केल्यावर 'Enter' दाबल्यास काय होते?",
+              options: [
+                { textEn: "The cursor moves to the cell below.", textMr: "कर्सर खालच्या सेलवर जातो." },
+                { textEn: "The cursor moves to the cell to the right.", textMr: "कर्सर उजव्या सेलवर जातो." },
+                { textEn: "The cursor moves to the previous cell.", textMr: "कर्सर मागच्या सेलवर जातो." },
+                { textEn: "The cursor stays in the same cell.", textMr: "कर्सर त्याच सेलमध्ये राहतो." }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "Which shortcut allows you to navigate to the previous cell?",
+              questionMr: "मागच्या सेलवर जाण्यासाठी कोणता शॉर्टकट वापरावा?",
+              options: [
+                { textEn: "Shift + Tab", textMr: "Shift + Tab" },
+                { textEn: "Alt + Enter", textMr: "Alt + Enter" },
+                { textEn: "Ctrl + Space", textMr: "Ctrl + Space" },
+                { textEn: "Ctrl + Tab", textMr: "Ctrl + Tab" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "How can you manually auto-fit a column to match the width of its longest text using the mouse?",
+              questionMr: "माऊस वापरून स्तंभाची रुंदी सर्वात लांब मजकुराशी जुळवण्यासाठी काय करावे?",
+              options: [
+                { textEn: "Right-click the cell and select 'Format'", textMr: "सेलवर Right-click करून 'Format' निवडा" },
+                { textEn: "Double-click inside the cell", textMr: "सेलच्या आत डबल-क्लिक करा" },
+                { textEn: "Double-click the boundary between column headers", textMr: "स्तंभ हेडर्स दरम्यानच्या सीमेवर डबल-क्लिक करा" },
+                { textEn: "Click and drag the row number", textMr: "पंक्ती क्रमांकावर क्लिक करून ड्रॅग करा" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "What is the correct key sequence to AutoFit Column Width using the keyboard?",
+              questionMr: "कीबोर्ड वापरून AutoFit Column Width साठी योग्य कळ क्रम कोणता?",
+              options: [
+                { textEn: "Alt + F4", textMr: "Alt + F4" },
+                { textEn: "Ctrl + Alt + Del", textMr: "Ctrl + Alt + Del" },
+                { textEn: "Ctrl + Shift + F", textMr: "Ctrl + Shift + F" },
+                { textEn: "Alt -> H -> O -> I", textMr: "Alt -> H -> O -> I" }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "To create a sequential list (1, 2, 3...) using the Fill Handle without holding any keys, what must you do first?",
+              questionMr: "कोणतीही कळ दाबून ठेवल्याशिवाय Fill Handle वापरून क्रम (1, 2, 3...) तयार करण्यापूर्वी काय करावे?",
+              options: [
+                { textEn: "Type '1' and press Tab.", textMr: "'1' टाइप करून Tab दाबा." },
+                { textEn: "Select an empty column and press Enter.", textMr: "रिकामा स्तंभ निवडा आणि Enter दाबा." },
+                { textEn: "Type '1' in the first cell and '2' in the second, then select both.", textMr: "पहिल्या सेलमध्ये '1' आणि दुसऱ्यात '2' टाइप करा, नंतर दोन्ही निवडा." },
+                { textEn: "Type '1' in the first cell and immediately drag.", textMr: "पहिल्या सेलमध्ये '1' टाइप करून त्वरित ड्रॅग करा." }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "If you only type '1' in a cell, which key must you hold while dragging the Fill Handle to create a sequence (1, 2, 3...)?",
+              questionMr: "फक्त '1' टाइप केल्यास क्रम (1, 2, 3...) तयार करण्यासाठी Fill Handle ड्रॅग करताना कोणती कळ दाबून ठेवावी?",
+              options: [
+                { textEn: "Tab", textMr: "Tab" },
+                { textEn: "Ctrl", textMr: "Ctrl" },
+                { textEn: "Shift", textMr: "Shift" },
+                { textEn: "Alt", textMr: "Alt" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "If you enter '1' in the first cell and '5' in the second, then drag the Fill Handle, what will the next numbers be?",
+              questionMr: "पहिल्या सेलमध्ये '1' आणि दुसऱ्यात '5' टाइप करून Fill Handle ड्रॅग केल्यास पुढचे क्रमांक काय असतील?",
+              options: [
+                { textEn: "9, 13, 17...", textMr: "9, 13, 17..." },
+                { textEn: "6, 7, 8...", textMr: "6, 7, 8..." },
+                { textEn: "1, 5, 1, 5...", textMr: "1, 5, 1, 5..." },
+                { textEn: "2, 3, 4..", textMr: "2, 3, 4.." }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "What is the first step to perform 'Rapid Data Entry' in a specific block of cells?",
+              questionMr: "'Rapid Data Entry' करण्याचा पहिला पाऊल कोणता?",
+              options: [
+                { textEn: "Press Ctrl + A.", textMr: "Ctrl + A दाबा." },
+                { textEn: "Select the entire range where you want to enter data.", textMr: "ज्या रेंजमध्ये डेटा प्रवेश करायचा ती संपूर्ण रेंज निवडा." },
+                { textEn: "Turn on Scroll Lock.", textMr: "Scroll Lock चालू करा." },
+                { textEn: "Start typing in the first cell immediately.", textMr: "पहिल्या सेलमध्ये त्वरित टाइप करणे सुरू करा." }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "In a selected range for Rapid Data Entry, what happens when you reach the bottom of a column and press Enter?",
+              questionMr: "Rapid Data Entry साठी निवडलेल्या रेंजमध्ये स्तंभाच्या तळाशी पोहोचल्यावर Enter दाबल्यास काय होते?",
+              options: [
+                { textEn: "The cursor automatically jumps to the top of the next column in the selection.", textMr: "कर्सर निवडीतील पुढच्या स्तंभाच्या वरच्या सेलवर आपोआप जातो." },
+                { textEn: "The data is deleted.", textMr: "डेटा हटतो." },
+                { textEn: "The selection is cancelled.", textMr: "निवड रद्द होते." },
+                { textEn: "The cursor moves to the cell directly below, outside the selection.", textMr: "कर्सर निवडीबाहेर थेट खालच्या सेलवर जातो." }
+              ],
+              correctIndex: 0
+            }
+          ]
+        }
+      }
+    );
     await CourseDay.updateMany(
       { dayNumber: { $ne: 21 } },
       { $set: { "subsections.0.contentEn": "", "subsections.0.contentMr": "" } }
@@ -2632,6 +3232,14 @@ const ensureCourseDays = async () => {
                                               ? "https://youtu.be/ICQ5YmwEGPY?si=joHyQ47QAf-WrEr_"
                                               : i === 21
                                                 ? "https://youtu.be/Ha2P3sVkUhw?si=NgX-bT6UUUWF-Ri6"
+                                                : i === 22
+                                                  ? "https://youtu.be/dt8g0uAy0cE?si=3qnlX5kFXXfryR16"
+                                                  : i === 23
+                                                    ? "https://youtu.be/dyl91P37P1Y?si=MzEvDrztgm6uaZDp"
+                                                    : i === 24
+                                                      ? "https://youtu.be/Qb5AqDIlkog?si=-pIR4B-QcqYa716d"
+                                                      : i === 25
+                                                        ? "https://youtu.be/z-1BJw6iebg?si=ZrC1LaH8M8yDB8i6"
             : "";
     const sectionTwoContentEn =
       i === 2

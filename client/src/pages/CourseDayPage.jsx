@@ -3,6 +3,8 @@ import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import StudentLayout from "../components/StudentLayout";
 import CtrlShortcutsTable from "../components/CtrlShortcutsTable";
+import ExcelOperatorsTable from "../components/ExcelOperatorsTable";
+import ExcelShortcutsTable from "../components/ExcelShortcutsTable";
 import api from "../api/api";
 
 const getYoutubeEmbedUrl = (url) => {
@@ -257,6 +259,36 @@ const CourseDayPage = () => {
                       }
                       return null;
                     })()}
+                  </>
+                ) : Number(day.dayNumber) === 23 && index === 1 ? (
+                  <>
+                    {renderContent(
+                      (() => {
+                        const content = isMr ? section.contentMr : section.contentEn;
+                        const tableMarker = "5. Summary Table of Operators";
+                        if (content.includes(tableMarker)) {
+                          return content.substring(0, content.indexOf(tableMarker)).trim();
+                        }
+                        return content;
+                      })(),
+                      { isSectionTwo: true }
+                    )}
+                    <ExcelOperatorsTable />
+                  </>
+                ) : Number(day.dayNumber) === 25 && index === 1 ? (
+                  <>
+                    {renderContent(
+                      (() => {
+                        const content = isMr ? section.contentMr : section.contentEn;
+                        const tableMarker = "5. Summary of Shortcuts";
+                        if (content.includes(tableMarker)) {
+                          return content.substring(0, content.indexOf(tableMarker)).trim();
+                        }
+                        return content;
+                      })(),
+                      { isSectionTwo: true }
+                    )}
+                    <ExcelShortcutsTable />
                   </>
                 ) : (
                   renderContent(isMr ? section.contentMr : section.contentEn, {
