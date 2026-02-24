@@ -111,38 +111,70 @@ const CourseDayPage = () => {
   const [error, setError] = useState("");
   const [loadingDay, setLoadingDay] = useState(null);
   const SECTION2_READING_SECONDS = 180; // 3 min
-  const [section2TimeLeft, setSection2TimeLeft] = useState(null); // null = not applicable or not started, number = seconds left
+  const [section2TimeLeft, setSection2TimeLeft] = useState(null); // null = not started, number = seconds left
   const [section2TimerDone, setSection2TimerDone] = useState(false);
-  const [section2TimerStarted, setSection2TimerStarted] = useState(false); // true when countdown interval is running
+  const [section2TimerActive, setSection2TimerActive] = useState(false); // true = interval is running
+
+  const getSection2TimerKeys = (dayNum) => ({
+    doneKey: `section2TimerDone_${dayNum}`,
+    startKey: `section2TimerStart_${dayNum}`
+  });
+
+  const computeSection2Remaining = (startedAtMs) => {
+    const elapsed = Math.floor((Date.now() - startedAtMs) / 1000);
+    return Math.max(0, SECTION2_READING_SECONDS - elapsed);
+  };
 
   useEffect(() => {
     const num = Number(dayNumber);
     setError("");
     setLoadingDay(num);
+    setSection2TimerActive(false); // reset when changing day
     api
       .get(`/courses/days/${dayNumber}`)
       .then((res) => {
         const data = res.data;
         setDay(data);
         setLoadingDay(null);
-        // Restore saved section completion so day 1 completion does not disappear when returning from day 2
         if (data.subsections?.length && Array.isArray(data.completedSections) && data.completedSections.length === data.subsections.length) {
           setCompletedSections(data.completedSections);
         } else if (data.subsections?.length) {
           setCompletedSections(Array(data.subsections.length).fill(false));
         }
-        // Section 2 reading timer: only start after Section 1 is complete. Check if already done for this day.
+        // Section 2 timer: restore from localStorage for this day only
         if (data.subsections?.length > 1) {
-          const key = `section2TimerDone_${data.dayNumber}`;
-          const done = localStorage.getItem(key) === "true";
-          setSection2TimerDone(done);
-          setSection2TimerStarted(done); // no interval needed if already done
-          // Don't start timer on load; wait until Section 1 is marked complete (see effect below)
-          setSection2TimeLeft(done ? 0 : null);
+          const dayNum = Number(data.dayNumber);
+          const { doneKey, startKey } = getSection2TimerKeys(dayNum);
+          const done = localStorage.getItem(doneKey) === "true";
+          if (done) {
+            setSection2TimerDone(true);
+            setSection2TimeLeft(0);
+            setSection2TimerActive(false);
+          } else {
+            const startedAtMs = Number(localStorage.getItem(startKey));
+            if (Number.isFinite(startedAtMs) && startedAtMs > 0) {
+              const remaining = computeSection2Remaining(startedAtMs);
+              if (remaining <= 0) {
+                localStorage.setItem(doneKey, "true");
+                localStorage.removeItem(startKey);
+                setSection2TimerDone(true);
+                setSection2TimeLeft(0);
+                setSection2TimerActive(false);
+              } else {
+                setSection2TimeLeft(remaining);
+                setSection2TimerDone(false);
+                setSection2TimerActive(true); // resume countdown
+              }
+            } else {
+              setSection2TimeLeft(null);
+              setSection2TimerDone(false);
+              setSection2TimerActive(false);
+            }
+          }
         } else {
           setSection2TimeLeft(null);
           setSection2TimerDone(true);
-          setSection2TimerStarted(true);
+          setSection2TimerActive(false);
         }
       })
       .catch((err) => {
@@ -169,34 +201,27 @@ const CourseDayPage = () => {
     return () => clearTimeout(timer);
   }, [day?.dayNumber, day?.subsections?.length, location.hash]);
 
-  // Start Section 2 reading timer only after Section 1 is marked complete
+  // Section 2: run countdown interval only when section2TimerActive is true (started on this day)
   useEffect(() => {
+    if (!section2TimerActive || section2TimerDone) return;
     if (!day?.subsections?.length || day.subsections.length < 2) return;
-    if (section2TimerDone) return;
-    if (section2TimeLeft != null) return; // already started or done
-    if (completedSections[0]) {
-      setSection2TimeLeft(SECTION2_READING_SECONDS);
-      setSection2TimerStarted(true); // trigger countdown effect to start the interval
-    }
-  }, [day?.subsections?.length, completedSections[0], section2TimerDone, section2TimeLeft]);
+    const dayNum = Number(day.dayNumber);
+    const { doneKey, startKey } = getSection2TimerKeys(dayNum);
 
-  // Section 2: 3-minute reading timer countdown (runs when section2TimerStarted becomes true)
-  useEffect(() => {
-    if (!section2TimerStarted || section2TimerDone || !day?.dayNumber) return;
-    if (section2TimeLeft != null && section2TimeLeft <= 0) return;
     const id = setInterval(() => {
       setSection2TimeLeft((prev) => {
         if (prev == null || prev <= 1) {
-          const key = `section2TimerDone_${day.dayNumber}`;
-          localStorage.setItem(key, "true");
+          localStorage.setItem(doneKey, "true");
+          localStorage.removeItem(startKey);
           setSection2TimerDone(true);
+          setSection2TimerActive(false);
           return 0;
         }
         return prev - 1;
       });
     }, 1000);
     return () => clearInterval(id);
-  }, [day?.dayNumber, section2TimerDone, section2TimerStarted]); // run when timer is "started" so interval begins
+  }, [section2TimerActive, section2TimerDone, day?.dayNumber, day?.subsections?.length]);
 
   const isMr = i18n.language === "mr";
   const totalSections = day?.subsections?.length || 0;
@@ -321,6 +346,17 @@ const CourseDayPage = () => {
                   const next = [...completedSections];
                   next[index] = !next[index];
                   setCompletedSections(next);
+                  // When marking Section 1 complete, start the 3-min reading timer for Section 2 (this day only)
+                  if (index === 0 && next[0] && day.subsections?.length > 1) {
+                    const dayNum = Number(day.dayNumber);
+                    const { startKey, doneKey } = getSection2TimerKeys(dayNum);
+                    if (localStorage.getItem(doneKey) !== "true") {
+                      localStorage.setItem(startKey, String(Date.now()));
+                      setSection2TimeLeft(SECTION2_READING_SECONDS);
+                      setSection2TimerDone(false);
+                      setSection2TimerActive(true);
+                    }
+                  }
                   api.put(`/courses/days/${day.dayNumber}/sections`, { completedSections: next }).then(() => {
                     window.dispatchEvent(new Event("section-completion-changed"));
                   }).catch(() => {});
