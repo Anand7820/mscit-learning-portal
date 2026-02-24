@@ -110,26 +110,11 @@ const CourseDayPage = () => {
   const [completedSections, setCompletedSections] = useState([]);
   const [error, setError] = useState("");
   const [loadingDay, setLoadingDay] = useState(null);
-  const SECTION2_READING_SECONDS = 180; // 3 min
-  const [section2TimeLeft, setSection2TimeLeft] = useState(null); // null = not started, number = seconds left
-  const [section2TimerDone, setSection2TimerDone] = useState(false);
-  const [section2TimerActive, setSection2TimerActive] = useState(false); // true = interval is running
-
-  const getSection2TimerKeys = (dayNum) => ({
-    doneKey: `section2TimerDone_${dayNum}`,
-    startKey: `section2TimerStart_${dayNum}`
-  });
-
-  const computeSection2Remaining = (startedAtMs) => {
-    const elapsed = Math.floor((Date.now() - startedAtMs) / 1000);
-    return Math.max(0, SECTION2_READING_SECONDS - elapsed);
-  };
 
   useEffect(() => {
     const num = Number(dayNumber);
     setError("");
     setLoadingDay(num);
-    setSection2TimerActive(false); // reset when changing day
     api
       .get(`/courses/days/${dayNumber}`)
       .then((res) => {
@@ -140,41 +125,6 @@ const CourseDayPage = () => {
           setCompletedSections(data.completedSections);
         } else if (data.subsections?.length) {
           setCompletedSections(Array(data.subsections.length).fill(false));
-        }
-        // Section 2 timer: restore from localStorage for this day only
-        if (data.subsections?.length > 1) {
-          const dayNum = Number(data.dayNumber);
-          const { doneKey, startKey } = getSection2TimerKeys(dayNum);
-          const done = localStorage.getItem(doneKey) === "true";
-          if (done) {
-            setSection2TimerDone(true);
-            setSection2TimeLeft(0);
-            setSection2TimerActive(false);
-          } else {
-            const startedAtMs = Number(localStorage.getItem(startKey));
-            if (Number.isFinite(startedAtMs) && startedAtMs > 0) {
-              const remaining = computeSection2Remaining(startedAtMs);
-              if (remaining <= 0) {
-                localStorage.setItem(doneKey, "true");
-                localStorage.removeItem(startKey);
-                setSection2TimerDone(true);
-                setSection2TimeLeft(0);
-                setSection2TimerActive(false);
-              } else {
-                setSection2TimeLeft(remaining);
-                setSection2TimerDone(false);
-                setSection2TimerActive(true); // resume countdown
-              }
-            } else {
-              setSection2TimeLeft(null);
-              setSection2TimerDone(false);
-              setSection2TimerActive(false);
-            }
-          }
-        } else {
-          setSection2TimeLeft(null);
-          setSection2TimerDone(true);
-          setSection2TimerActive(false);
         }
       })
       .catch((err) => {
@@ -200,28 +150,6 @@ const CourseDayPage = () => {
     }, 100);
     return () => clearTimeout(timer);
   }, [day?.dayNumber, day?.subsections?.length, location.hash]);
-
-  // Section 2: run countdown interval only when section2TimerActive is true (started on this day)
-  useEffect(() => {
-    if (!section2TimerActive || section2TimerDone) return;
-    if (!day?.subsections?.length || day.subsections.length < 2) return;
-    const dayNum = Number(day.dayNumber);
-    const { doneKey, startKey } = getSection2TimerKeys(dayNum);
-
-    const id = setInterval(() => {
-      setSection2TimeLeft((prev) => {
-        if (prev == null || prev <= 1) {
-          localStorage.setItem(doneKey, "true");
-          localStorage.removeItem(startKey);
-          setSection2TimerDone(true);
-          setSection2TimerActive(false);
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-    return () => clearInterval(id);
-  }, [section2TimerActive, section2TimerDone, day?.dayNumber, day?.subsections?.length]);
 
   const isMr = i18n.language === "mr";
   const totalSections = day?.subsections?.length || 0;
@@ -293,18 +221,7 @@ const CourseDayPage = () => {
           {renderContent(isMr ? day.contentMr : day.contentEn)}
         </div>
         <div className="mt-4 space-y-3">
-          {day.subsections.map((section, index) => {
-          const isSection2 = index === 1;
-          const section2TimerRunning = isSection2 && section2TimeLeft != null && section2TimeLeft > 0 && !section2TimerDone;
-          const section2CanMarkComplete = !isSection2 || section2TimerDone;
-          const section2ButtonLabel = isSection2 && !completedSections[0] && !section2TimerDone
-            ? "Complete Section 1 first"
-            : isSection2 && section2TimerRunning
-              ? `${Math.floor((section2TimeLeft ?? 0) / 60)}:${String((section2TimeLeft ?? 0) % 60).padStart(2, "0")}`
-              : completedSections[index]
-                ? "Marked as Complete"
-                : "Mark as Complete";
-          return (
+          {day.subsections.map((section, index) => (
             <div key={index} id={`section-${index}`} ref={index === 0 ? section1Ref : null} className="rounded bg-gray-50 p-4">
               <h3 className="font-semibold">
                 {isMr ? section.titleMr : section.titleEn}
@@ -363,35 +280,18 @@ const CourseDayPage = () => {
                   const next = [...completedSections];
                   next[index] = !next[index];
                   setCompletedSections(next);
-                  // When marking Section 1 complete, start the 3-min reading timer for Section 2 (this day only)
-                  if (index === 0 && next[0] && day.subsections?.length > 1) {
-                    const dayNum = Number(day.dayNumber);
-                    const { startKey, doneKey } = getSection2TimerKeys(dayNum);
-                    if (localStorage.getItem(doneKey) !== "true") {
-                      localStorage.setItem(startKey, String(Date.now()));
-                      setSection2TimeLeft(SECTION2_READING_SECONDS);
-                      setSection2TimerDone(false);
-                      setSection2TimerActive(true);
-                    }
-                  }
                   api.put(`/courses/days/${day.dayNumber}/sections`, { completedSections: next }).then(() => {
                     window.dispatchEvent(new Event("section-completion-changed"));
                   }).catch(() => {});
                 }}
-                disabled={!section2CanMarkComplete}
-                className={`mt-3 rounded px-3 py-2 text-sm font-semibold tabular-nums ${
-                  completedSections[index]
-                    ? "bg-blue-600 text-white"
-                    : section2TimerRunning
-                      ? "bg-amber-100 text-amber-800 border border-amber-400"
-                      : "bg-white text-blue-600 border"
-                } ${!section2CanMarkComplete ? "cursor-not-allowed opacity-60" : ""}`}
+                className={`mt-3 rounded px-3 py-2 text-sm font-semibold ${
+                  completedSections[index] ? "bg-blue-600 text-white" : "bg-white text-blue-600 border"
+                }`}
               >
-                {section2ButtonLabel}
+                {completedSections[index] ? "Marked as Complete" : "Mark as Complete"}
               </button>
             </div>
-          );
-        })}
+          ))}
         </div>
         <div className="mt-6 flex flex-wrap items-center gap-3">
           {allSectionsCompleted ? (
