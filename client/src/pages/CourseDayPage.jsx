@@ -285,17 +285,6 @@ const CourseDayPage = () => {
             </span>
           ) : null}
         </div>
-        <p className="mt-4 text-sm text-gray-600">
-          Your certificate is on the{" "}
-          <button
-            type="button"
-            onClick={() => navigate("/dashboard")}
-            className="font-medium text-indigo-600 underline hover:no-underline"
-          >
-            Dashboard
-          </button>
-          . It is available as soon as you complete the Day 20 exam.
-        </p>
       </div>
     </StudentLayout>
   );
