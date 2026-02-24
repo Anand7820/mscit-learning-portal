@@ -142,10 +142,11 @@ const submitExam = async (req, res) => {
   attempt.submittedAt = new Date();
   await attempt.save();
 
-  // Advance progress so sidebar day colors update when user clicks "Proceed to Next"
+  // Advance progress only when score > 40 (passing threshold)
+  const PASS_THRESHOLD = 40;
   const currentUnlocked = user.unlockedUpTo || 0;
   const nextDay = attempt.dayNumber + 1;
-  if (nextDay > currentUnlocked) {
+  if (score > PASS_THRESHOLD && nextDay > currentUnlocked) {
     user.unlockedUpTo = nextDay;
     const now = new Date();
     const month = String(now.getMonth() + 1).padStart(2, "0");

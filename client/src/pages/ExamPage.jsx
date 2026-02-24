@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import toast from "react-hot-toast";
 import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -9,6 +9,8 @@ const ExamPage = () => {
   const { dayNumber } = useParams();
   const navigate = useNavigate();
   const { i18n } = useTranslation();
+  const questionStripRef = useRef(null);
+  const questionButtonRefs = useRef([]);
   const [attemptId, setAttemptId] = useState("");
   const [questions, setQuestions] = useState([]);
   const [answers, setAnswers] = useState([]);
@@ -188,6 +190,14 @@ const ExamPage = () => {
     }
   };
 
+  // Scroll question strip so current question is visible
+  useEffect(() => {
+    const el = questionButtonRefs.current[currentQuestionIndex];
+    if (el && questionStripRef.current) {
+      el.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+    }
+  }, [currentQuestionIndex]);
+
   const isMr = i18n.language === "mr";
   const currentQuestion = questions[currentQuestionIndex];
   const currentAnswer = answers[currentQuestionIndex];
@@ -205,7 +215,7 @@ const ExamPage = () => {
   }
 
   if (result) {
-    const passed = result.score >= 7;
+    const passed = result.score > 40;
     return (
       <StudentLayout>
         <div className="rounded bg-white p-6 shadow">
@@ -219,7 +229,7 @@ const ExamPage = () => {
             </p>
             {!passed && (
               <p className="mt-3 text-sm font-medium text-amber-800">
-                You need at least 7 to pass. Please retake the exam.
+                You need a score greater than 40 to pass. Please retake the exam.
               </p>
             )}
           </div>
@@ -257,69 +267,53 @@ const ExamPage = () => {
 
   return (
     <StudentLayout>
-      <div className="rounded bg-white p-6 shadow">
-        <div className="flex items-center justify-between mb-6">
+      <div className="rounded bg-white p-6 shadow max-w-4xl mx-auto">
+        <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl font-semibold">Day {dayNumber} Exam</h2>
-          <div className="rounded bg-gray-100 px-3 py-1 text-sm">
-            Time Left: {Math.floor(remaining / 60)}:{String(remaining % 60).padStart(2, "0")}
+          <div className="rounded bg-gray-100 px-3 py-1.5 text-sm font-medium tabular-nums">
+            Time: {Math.floor(remaining / 60)}:{String(remaining % 60).padStart(2, "0")}
           </div>
         </div>
 
-        {/* Question Progress */}
-        <div className="mb-4">
-          <p className="text-sm text-gray-600">
-            Question {currentQuestionIndex + 1} of {questions.length}
-          </p>
-          <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
-            <div
-              className="bg-indigo-600 h-2 rounded-full transition-all"
-              style={{ width: `${((currentQuestionIndex + 1) / questions.length) * 100}%` }}
-            />
+        {/* Green "✓ Correct" banner */}
+        {isAnswered && correctAnswer !== undefined && currentAnswer === correctAnswer && (
+          <div className="mb-4 rounded-lg bg-green-600 text-white px-4 py-3 text-center font-semibold flex items-center justify-center gap-2">
+            <span>✓</span>
+            <span>Correct</span>
           </div>
-        </div>
+        )}
 
-        {/* Current Question */}
+        {/* Current Question - clean card layout */}
         <div className="mb-6">
-          <div className={`rounded border-2 p-4 ${
-            isAnswered
-              ? currentAnswer === correctAnswer
-                ? "border-green-500 bg-green-50"
-                : "border-red-500 bg-red-50"
-              : "border-gray-300"
-          }`}>
-            <p className="font-semibold text-lg mb-4">
-              {isMr ? currentQuestion.questionMr : currentQuestion.questionEn}
-            </p>
+          <p className="font-semibold text-lg text-gray-900 mb-4">
+            {isMr ? currentQuestion.questionMr : currentQuestion.questionEn}
+          </p>
             <div className="space-y-3">
               {currentQuestion.options.map((opt, oIndex) => {
                 const isSelected = currentAnswer === oIndex;
                 const isCorrect = oIndex === correctAnswer;
                 const showFeedback = isAnswered;
 
-                let bgColor = "bg-white";
-                let borderColor = "border-gray-300";
-                let textColor = "text-gray-800";
-
+                let borderClass = "border-gray-200";
+                let bgClass = "bg-white";
                 if (showFeedback) {
                   if (isCorrect) {
-                    bgColor = "bg-green-100";
-                    borderColor = "border-green-500";
-                    textColor = "text-green-800";
+                    borderClass = "border-green-500";
+                    bgClass = "bg-white";
                   } else if (isSelected && !isCorrect) {
-                    bgColor = "bg-red-100";
-                    borderColor = "border-red-500";
-                    textColor = "text-red-800";
+                    borderClass = "border-red-300";
+                    bgClass = "bg-red-50";
                   }
                 } else if (isSelected) {
-                  bgColor = "bg-indigo-50";
-                  borderColor = "border-indigo-500";
+                  borderClass = "border-green-400";
+                  bgClass = "bg-white";
                 }
 
                 return (
                   <label
                     key={oIndex}
-                    className={`flex items-center gap-3 p-3 rounded border-2 cursor-pointer transition-all ${bgColor} ${borderColor} ${textColor} ${
-                      isAnswered ? "cursor-default" : "hover:bg-indigo-50"
+                    className={`flex items-center gap-3 p-4 rounded-lg border-2 cursor-pointer transition-all ${bgClass} ${borderClass} ${
+                      isAnswered ? "cursor-default" : "hover:border-gray-300 hover:bg-gray-50"
                     }`}
                   >
                     <input
@@ -330,94 +324,77 @@ const ExamPage = () => {
                       disabled={isAnswered || checkingAnswer}
                       className="w-4 h-4"
                     />
-                    <span className="flex-1">{isMr ? opt.textMr : opt.textEn}</span>
+                    <span className="flex-1 text-gray-800">{isMr ? opt.textMr : opt.textEn}</span>
                     {showFeedback && isCorrect && (
-                      <span className="text-green-600 font-semibold">✓ Correct</span>
+                      <span className="text-green-600 font-semibold shrink-0">✓ Correct</span>
                     )}
                     {showFeedback && isSelected && !isCorrect && (
-                      <span className="text-red-600 font-semibold">✗ Wrong</span>
+                      <span className="text-red-600 font-semibold shrink-0">✗ Wrong</span>
                     )}
                   </label>
                 );
               })}
             </div>
-          </div>
         </div>
 
-        {/* Skip Button */}
+        {/* Skip */}
         {!isAnswered && (
-          <div className="mb-4 text-center">
+          <div className="mb-6 text-center">
             <button
               onClick={handleSkip}
               disabled={checkingAnswer}
-              className="rounded bg-yellow-500 hover:bg-yellow-600 px-4 py-2 text-white disabled:opacity-50 disabled:cursor-not-allowed"
+              className="rounded bg-amber-500 hover:bg-amber-600 px-4 py-2 text-white text-sm font-medium disabled:opacity-50"
             >
-              Skip Question
+              Skip
             </button>
           </div>
         )}
 
-        {/* Navigation Buttons */}
-        <div className="flex items-center justify-between">
-          <button
-            onClick={goToPrevious}
-            disabled={currentQuestionIndex === 0}
-            className="rounded bg-gray-500 px-4 py-2 text-white disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            Previous
-          </button>
-
-          <div className="flex gap-2">
+        {/* Question strip + Prev/Next */}
+        <div className="border-t border-gray-200 pt-4">
+          <div ref={questionStripRef} className="overflow-x-auto pb-2 scroll-smooth">
+            <div className="flex gap-1.5 justify-start min-w-max">
             {questions.map((_, index) => {
-              let boxColor = "bg-gray-200 text-gray-700"; // Unanswered
-              
-              if (index === currentQuestionIndex) {
-                boxColor = "bg-indigo-600 text-white"; // Current question
-              } else if (correctQuestions.has(index)) {
-                boxColor = "bg-green-500 text-white"; // Correct answer
-              } else if (incorrectQuestions.has(index)) {
-                boxColor = "bg-red-500 text-white"; // Wrong answer
-              } else if (skippedQuestions.has(index)) {
-                boxColor = "bg-yellow-500 text-white"; // Skipped question
-              }
-              
+              let boxClass = "bg-gray-100 text-gray-700 border border-gray-200";
+              if (index === currentQuestionIndex) boxClass = "bg-indigo-600 text-white border-indigo-600";
+              else if (correctQuestions.has(index)) boxClass = "bg-green-500 text-white border-green-500";
+              else if (incorrectQuestions.has(index)) boxClass = "bg-red-500 text-white border-red-500";
+              else if (skippedQuestions.has(index)) boxClass = "bg-amber-400 text-white border-amber-400";
+              else if (answeredQuestions.has(index)) boxClass = "bg-gray-200 text-gray-800 border-gray-300";
               return (
                 <button
                   key={index}
+                  ref={(el) => { questionButtonRefs.current[index] = el; }}
+                  type="button"
                   onClick={() => goToQuestion(index)}
-                  className={`w-8 h-8 rounded text-sm font-semibold ${boxColor}`}
+                  className={`w-9 h-9 rounded text-sm font-semibold border shrink-0 flex items-center justify-center ${boxClass} hover:opacity-90`}
                   title={`Question ${index + 1}`}
                 >
                   {index + 1}
                 </button>
               );
             })}
+            </div>
           </div>
-
-          <div className="flex items-center gap-2">
-            {currentQuestionIndex < questions.length - 1 ? (
-              <button
-                onClick={goToNext}
-                className="rounded bg-indigo-600 px-4 py-2 text-white disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                Next
-              </button>
-            ) : answeredQuestions.size === questions.length && skippedQuestions.size === 0 ? (
-              <button
-                onClick={handleFinalSubmit}
-                className="rounded bg-green-600 px-4 py-2 text-white hover:bg-green-700"
-              >
-                Submit Exam
-              </button>
-            ) : null}
-          </div>
+          <p className="text-center text-sm text-gray-600 mt-3">Answered: {answeredQuestions.size} / {questions.length}</p>
         </div>
 
-        {/* Progress Summary - Submit is available on last question; can submit even if some questions are skipped */}
-        <div className="mt-6 text-center text-sm text-gray-600">
-          <div>Answered: {answeredQuestions.size} / {questions.length}</div>
-          {skippedQuestions.size > 0 && (
-            <div className="text-yellow-600 mt-1">Skipped: {skippedQuestions.size}</div>
+        <div className="flex items-center justify-between mt-4">
+          <button
+            onClick={goToPrevious}
+            disabled={currentQuestionIndex === 0}
+            className="rounded bg-gray-200 text-gray-800 px-4 py-2 text-sm font-medium hover:bg-gray-300 disabled:opacity-50"
+          >
+            Previous
+          </button>
+          {currentQuestionIndex < questions.length - 1 ? (
+            <button onClick={goToNext} className="rounded bg-indigo-600 text-white px-4 py-2 text-sm font-medium hover:bg-indigo-700">
+              Next
+            </button>
+          ) : (
+            <button onClick={() => setShowPasswordModal(true)} className="rounded bg-green-600 text-white px-4 py-2 text-sm font-medium hover:bg-green-700">
+              Submit Exam
+            </button>
           )}
         </div>
       </div>

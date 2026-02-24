@@ -2560,12 +2560,29 @@ const ensureCourseDays = async () => {
         }
       }
     );
+    // Day 21: exam only (no video/content) — 100 questions from past 20 days
+    const days1to20 = await CourseDay.find({ dayNumber: { $gte: 1, $lte: 20 } })
+      .select("exam.questions")
+      .lean();
+    const allQuestions = days1to20.flatMap((d) => d.exam?.questions || []);
+    const shuffle = (arr) => arr.slice().sort(() => Math.random() - 0.5);
+    const questions100 = shuffle(allQuestions).slice(0, 100);
     await CourseDay.updateOne(
       { dayNumber: 21 },
-      { $set: { "subsections.0.videoUrl": "https://youtu.be/Ha2P3sVkUhw?si=NgX-bT6UUUWF-Ri6" } }
+      {
+        $set: {
+          contentEn: "Day 21 is exam only. No video or content—100 questions from Days 1–20.",
+          contentMr: "दिवस २१ फक्त परीक्षा. व्हिडिओ किंवा मजकूर नाही—दिवस १ ते २० मधून १०० प्रश्न.",
+          imageUrl: "",
+          videoUrl: "",
+          subsections: [],
+          "exam.durationMinutes": 100,
+          "exam.questions": questions100
+        }
+      }
     );
     await CourseDay.updateMany(
-      {},
+      { dayNumber: { $ne: 21 } },
       { $set: { "subsections.0.contentEn": "", "subsections.0.contentMr": "" } }
     );
     return;

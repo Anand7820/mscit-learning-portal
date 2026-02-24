@@ -251,6 +251,7 @@ const CourseDayPage = () => {
 
   // While switching days, show previous day with a small loading bar (no full refresh flash)
   const isSwitchingDays = loadingDay != null && day != null && Number(day.dayNumber) !== Number(loadingDay);
+  const isExamOnlyDay = Number(day.dayNumber) === 21 && (!day.subsections || day.subsections.length === 0);
 
   return (
     <StudentLayout>
@@ -262,6 +263,22 @@ const CourseDayPage = () => {
           </div>
         )}
         <h2 className="text-xl font-semibold">Day {day.dayNumber}</h2>
+        {isExamOnlyDay ? (
+          <div className="mt-6 rounded-lg border-2 border-amber-200 bg-amber-50 p-6 text-center">
+            <p className="text-lg font-medium text-gray-800">
+              {isMr
+                ? "या दिवसावर फक्त परीक्षा आहे. व्हिडिओ किंवा मजकूर नाही—मागील २० दिवसांतील १०० प्रश्न."
+                : "This day is exam only. No video or content—100 questions from the past 20 days."}
+            </p>
+            <button
+              onClick={() => navigate(`/exams/${day.dayNumber}`)}
+              className="mt-6 rounded bg-green-600 px-6 py-3 text-base font-semibold text-white hover:bg-green-700"
+            >
+              Start Exam
+            </button>
+          </div>
+        ) : (
+          <>
         {day.imageUrl && (
           <img
             src={day.imageUrl}
@@ -390,6 +407,8 @@ const CourseDayPage = () => {
             </span>
           ) : null}
         </div>
+          </>
+        )}
       </div>
     </StudentLayout>
   );
