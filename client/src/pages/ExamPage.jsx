@@ -205,25 +205,40 @@ const ExamPage = () => {
   }
 
   if (result) {
+    const passed = result.score >= 7;
     return (
       <StudentLayout>
         <div className="rounded bg-white p-6 shadow">
           <h2 className="text-2xl font-semibold mb-4">Exam Completed!</h2>
-          <div className="rounded bg-green-100 p-6 text-center">
-            <p className="text-3xl font-bold text-green-700">
+          <div className={`rounded p-6 text-center ${passed ? "bg-green-100" : "bg-amber-100"}`}>
+            <p className={`text-3xl font-bold ${passed ? "text-green-700" : "text-amber-800"}`}>
               Score: {result.score}/{result.total}
             </p>
-            <p className="text-lg mt-2 text-green-600">
+            <p className={`text-lg mt-2 ${passed ? "text-green-600" : "text-amber-700"}`}>
               {Math.round((result.score / result.total) * 100)}% Correct
             </p>
+            {!passed && (
+              <p className="mt-3 text-sm font-medium text-amber-800">
+                You need at least 7 to pass. Please retake the exam.
+              </p>
+            )}
           </div>
-          <div className="mt-6">
-            <button
-              onClick={() => navigate(`/courses/${Number(dayNumber) + 1}`)}
-              className="rounded bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-700"
-            >
-              Proceed to Next
-            </button>
+          <div className="mt-6 flex gap-3">
+            {passed ? (
+              <button
+                onClick={() => navigate(`/courses/${Number(dayNumber) + 1}`)}
+                className="rounded bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-700"
+              >
+                Proceed to Next
+              </button>
+            ) : (
+              <button
+                onClick={() => navigate(`/courses/${dayNumber}`)}
+                className="rounded bg-amber-600 px-4 py-2 text-white hover:bg-amber-700"
+              >
+                Retake Exam
+              </button>
+            )}
           </div>
         </div>
       </StudentLayout>

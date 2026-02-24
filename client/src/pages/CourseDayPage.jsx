@@ -110,6 +110,10 @@ const CourseDayPage = () => {
   const [completedSections, setCompletedSections] = useState([]);
   const [error, setError] = useState("");
   const [loadingDay, setLoadingDay] = useState(null);
+  const SECTION2_READING_SECONDS = 180; // 3 min
+  const [section2TimeLeft, setSection2TimeLeft] = useState(null); // null = not applicable or not started, number = seconds left
+  const [section2TimerDone, setSection2TimerDone] = useState(false);
+  const [section2TimerStarted, setSection2TimerStarted] = useState(false); // true when countdown interval is running
 
   useEffect(() => {
     const num = Number(dayNumber);
@@ -126,6 +130,19 @@ const CourseDayPage = () => {
           setCompletedSections(data.completedSections);
         } else if (data.subsections?.length) {
           setCompletedSections(Array(data.subsections.length).fill(false));
+        }
+        // Section 2 reading timer: only start after Section 1 is complete. Check if already done for this day.
+        if (data.subsections?.length > 1) {
+          const key = `section2TimerDone_${data.dayNumber}`;
+          const done = localStorage.getItem(key) === "true";
+          setSection2TimerDone(done);
+          setSection2TimerStarted(done); // no interval needed if already done
+          // Don't start timer on load; wait until Section 1 is marked complete (see effect below)
+          setSection2TimeLeft(done ? 0 : null);
+        } else {
+          setSection2TimeLeft(null);
+          setSection2TimerDone(true);
+          setSection2TimerStarted(true);
         }
       })
       .catch((err) => {
@@ -151,6 +168,35 @@ const CourseDayPage = () => {
     }, 100);
     return () => clearTimeout(timer);
   }, [day?.dayNumber, day?.subsections?.length, location.hash]);
+
+  // Start Section 2 reading timer only after Section 1 is marked complete
+  useEffect(() => {
+    if (!day?.subsections?.length || day.subsections.length < 2) return;
+    if (section2TimerDone) return;
+    if (section2TimeLeft != null) return; // already started or done
+    if (completedSections[0]) {
+      setSection2TimeLeft(SECTION2_READING_SECONDS);
+      setSection2TimerStarted(true); // trigger countdown effect to start the interval
+    }
+  }, [day?.subsections?.length, completedSections[0], section2TimerDone, section2TimeLeft]);
+
+  // Section 2: 3-minute reading timer countdown (runs when section2TimerStarted becomes true)
+  useEffect(() => {
+    if (!section2TimerStarted || section2TimerDone || !day?.dayNumber) return;
+    if (section2TimeLeft != null && section2TimeLeft <= 0) return;
+    const id = setInterval(() => {
+      setSection2TimeLeft((prev) => {
+        if (prev == null || prev <= 1) {
+          const key = `section2TimerDone_${day.dayNumber}`;
+          localStorage.setItem(key, "true");
+          setSection2TimerDone(true);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+    return () => clearInterval(id);
+  }, [day?.dayNumber, section2TimerDone, section2TimerStarted]); // run when timer is "started" so interval begins
 
   const isMr = i18n.language === "mr";
   const totalSections = day?.subsections?.length || 0;
@@ -205,7 +251,18 @@ const CourseDayPage = () => {
           {renderContent(isMr ? day.contentMr : day.contentEn)}
         </div>
         <div className="mt-4 space-y-3">
-          {day.subsections.map((section, index) => (
+          {day.subsections.map((section, index) => {
+          const isSection2 = index === 1;
+          const section2TimerRunning = isSection2 && section2TimeLeft != null && section2TimeLeft > 0 && !section2TimerDone;
+          const section2CanMarkComplete = !isSection2 || section2TimerDone;
+          const section2ButtonLabel = isSection2 && !completedSections[0] && !section2TimerDone
+            ? "Complete Section 1 first"
+            : isSection2 && section2TimerRunning
+              ? `${Math.floor((section2TimeLeft ?? 0) / 60)}:${String((section2TimeLeft ?? 0) % 60).padStart(2, "0")}`
+              : completedSections[index]
+                ? "Marked as Complete"
+                : "Mark as Complete";
+          return (
             <div key={index} id={`section-${index}`} ref={index === 0 ? section1Ref : null} className="rounded bg-gray-50 p-4">
               <h3 className="font-semibold">
                 {isMr ? section.titleMr : section.titleEn}
@@ -268,16 +325,20 @@ const CourseDayPage = () => {
                     window.dispatchEvent(new Event("section-completion-changed"));
                   }).catch(() => {});
                 }}
-                className={`mt-3 rounded px-3 py-2 text-sm font-semibold ${
+                disabled={!section2CanMarkComplete}
+                className={`mt-3 rounded px-3 py-2 text-sm font-semibold tabular-nums ${
                   completedSections[index]
                     ? "bg-blue-600 text-white"
-                    : "bg-white text-blue-600 border"
-                }`}
+                    : section2TimerRunning
+                      ? "bg-amber-100 text-amber-800 border border-amber-400"
+                      : "bg-white text-blue-600 border"
+                } ${!section2CanMarkComplete ? "cursor-not-allowed opacity-60" : ""}`}
               >
-                {completedSections[index] ? "Marked as Complete" : "Mark as Complete"}
+                {section2ButtonLabel}
               </button>
             </div>
-          ))}
+          );
+        })}
         </div>
         <div className="mt-6 flex flex-wrap items-center gap-3">
           {allSectionsCompleted ? (
