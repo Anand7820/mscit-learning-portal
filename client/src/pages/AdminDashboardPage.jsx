@@ -423,7 +423,7 @@ const AdminDashboardPage = () => {
                                         e.stopPropagation();
                                         handleFeesPart1(student._id);
                                       }}
-                                      className="rounded bg-indigo-600 px-2 py-1 text-xs text-white"
+                                      className={`rounded px-2 py-1 text-xs text-white ${student.feesPart1Paid ? "bg-green-600" : "bg-gray-900"}`}
                                     >
                                       Fees 1
                                     </button>
@@ -432,7 +432,7 @@ const AdminDashboardPage = () => {
                                         e.stopPropagation();
                                         handleFeesPart2(student._id);
                                       }}
-                                      className="rounded bg-green-600 px-2 py-1 text-xs text-white"
+                                      className={`rounded px-2 py-1 text-xs text-white ${student.feesPart2Paid ? "bg-green-600" : "bg-gray-900"}`}
                                     >
                                       Fees 2
                                     </button>
@@ -441,7 +441,7 @@ const AdminDashboardPage = () => {
                                         e.stopPropagation();
                                         handleFeesPaid(student._id);
                                       }}
-                                      className="rounded bg-gray-700 px-2 py-1 text-xs text-white"
+                                      className={`rounded px-2 py-1 text-xs text-white ${student.feesPaid ? "bg-green-600" : "bg-gray-900"}`}
                                     >
                                       All Paid
                                     </button>
@@ -691,19 +691,19 @@ const AdminDashboardPage = () => {
                   <div className="flex flex-wrap gap-2">
                     <button
                       onClick={() => handleFeesPart1(student._id)}
-                      className="rounded bg-indigo-600 px-2 py-1 text-xs text-white"
+                      className={`rounded px-2 py-1 text-xs text-white ${student.feesPart1Paid ? "bg-green-600" : "bg-gray-900"}`}
                     >
                       Fees 1
                     </button>
                     <button
                       onClick={() => handleFeesPart2(student._id)}
-                      className="rounded bg-green-600 px-2 py-1 text-xs text-white"
+                      className={`rounded px-2 py-1 text-xs text-white ${student.feesPart2Paid ? "bg-green-600" : "bg-gray-900"}`}
                     >
                       Fees 2
                     </button>
                     <button
                       onClick={() => handleFeesPaid(student._id)}
-                      className="rounded bg-gray-700 px-2 py-1 text-xs text-white"
+                      className={`rounded px-2 py-1 text-xs text-white ${student.feesPaid ? "bg-green-600" : "bg-gray-900"}`}
                     >
                       All Paid
                     </button>
