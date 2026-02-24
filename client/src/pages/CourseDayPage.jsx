@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import StudentLayout from "../components/StudentLayout";
 import CtrlShortcutsTable from "../components/CtrlShortcutsTable";
@@ -103,6 +103,7 @@ const CourseDayPage = () => {
   const { dayNumber } = useParams();
   const { i18n } = useTranslation();
   const navigate = useNavigate();
+  const location = useLocation();
   const contentTopRef = useRef(null);
   const section1Ref = useRef(null);
   const [day, setDay] = useState(null);
@@ -133,18 +134,23 @@ const CourseDayPage = () => {
       });
   }, [dayNumber]);
 
-  // When next day loads, scroll to Section 1 (first subsection) so user sees next day's Section 1
+  // When day loads, scroll to hash (e.g. #section-1) or to Section 1 / top
   useEffect(() => {
     if (!day?.dayNumber) return;
-    if (day.subsections?.length > 0) {
-      const timer = setTimeout(() => {
+    const timer = setTimeout(() => {
+      const hash = window.location.hash;
+      const sectionMatch = hash && hash.match(/^#section-(\d+)$/);
+      const sectionIndex = sectionMatch ? parseInt(sectionMatch[1], 10) : null;
+      if (sectionIndex != null && day.subsections?.[sectionIndex]) {
+        document.getElementById(`section-${sectionIndex}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else if (day.subsections?.length > 0) {
         section1Ref.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-      }, 100);
-      return () => clearTimeout(timer);
-    } else {
-      contentTopRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  }, [day?.dayNumber]);
+      } else {
+        contentTopRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }, 100);
+    return () => clearTimeout(timer);
+  }, [day?.dayNumber, day?.subsections?.length, location.hash]);
 
   const isMr = i18n.language === "mr";
   const totalSections = day?.subsections?.length || 0;
@@ -200,7 +206,7 @@ const CourseDayPage = () => {
         </div>
         <div className="mt-4 space-y-3">
           {day.subsections.map((section, index) => (
-            <div key={index} ref={index === 0 ? section1Ref : null} className="rounded bg-gray-50 p-4">
+            <div key={index} id={`section-${index}`} ref={index === 0 ? section1Ref : null} className="rounded bg-gray-50 p-4">
               <h3 className="font-semibold">
                 {isMr ? section.titleMr : section.titleEn}
               </h3>
@@ -258,7 +264,9 @@ const CourseDayPage = () => {
                   const next = [...completedSections];
                   next[index] = !next[index];
                   setCompletedSections(next);
-                  api.put(`/courses/days/${day.dayNumber}/sections`, { completedSections: next }).catch(() => {});
+                  api.put(`/courses/days/${day.dayNumber}/sections`, { completedSections: next }).then(() => {
+                    window.dispatchEvent(new Event("section-completion-changed"));
+                  }).catch(() => {});
                 }}
                 className={`mt-3 rounded px-3 py-2 text-sm font-semibold ${
                   completedSections[index]

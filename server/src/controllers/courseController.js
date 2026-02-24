@@ -2,15 +2,25 @@ const CourseDay = require("../models/CourseDay");
 const { getDayAvailability } = require("../utils/courseAccess");
 
 const listDays = async (req, res) => {
-  const days = await CourseDay.find().select("dayNumber");
+  const days = await CourseDay.find().select("dayNumber subsections.titleEn subsections.titleMr");
+  const sectionCompletionByDay = req.user?.sectionCompletionByDay || [];
   const result = days
     .sort((a, b) => a.dayNumber - b.dayNumber)
     .map((day) => {
       const availability = getDayAvailability(req.user, day.dayNumber);
+      const sections = (day.subsections || []).map((s, i) => ({
+        index: i,
+        titleEn: s.titleEn || `Section ${i + 1}`,
+        titleMr: s.titleMr || `Section ${i + 1}`
+      }));
+      const dayProgress = sectionCompletionByDay.find((p) => p.dayNumber === day.dayNumber);
+      const completedSections = dayProgress?.completedSections || [];
       return {
         dayNumber: day.dayNumber,
         status: availability.status,
-        nextUnlockAt: availability.nextUnlockAt || null
+        nextUnlockAt: availability.nextUnlockAt || null,
+        sections,
+        completedSections
       };
     });
   return res.json(result);
