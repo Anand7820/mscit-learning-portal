@@ -4,11 +4,21 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import StudentLayout from "../components/StudentLayout";
 import api from "../api/api";
+import { useAuth } from "../context/AuthContext";
+
+// Passing score: score > 40 to pass (i.e. score ≤ 40 is fail)
+const PASSING_SCORE = 40;
+
+const getInitials = (name) => {
+  if (!name || typeof name !== "string") return "?";
+  return name.trim().split(/\s+/).map((n) => n[0]).join("").toUpperCase().slice(0, 2);
+};
 
 const ExamPage = () => {
   const { dayNumber } = useParams();
   const navigate = useNavigate();
   const { i18n } = useTranslation();
+  const { user } = useAuth();
   const questionStripRef = useRef(null);
   const questionButtonRefs = useRef([]);
   const [attemptId, setAttemptId] = useState("");
@@ -215,7 +225,135 @@ const ExamPage = () => {
   }
 
   if (result) {
-    const passed = result.score > 40;
+    const passed = result.score > PASSING_SCORE;
+    const isDay21 = dayNumber === "21";
+    const isMr = i18n.language === "mr";
+
+    if (isDay21 && passed) {
+      const name = user?.profile?.name || "Student";
+      const photoUrl = user?.profile?.photoUrl;
+      const confettiColors = [
+        "#f59e0b", "#10b981", "#6366f1", "#ec4899", "#eab308", "#14b8a6",
+        "#f97316", "#8b5cf6", "#ef4444", "#22c55e"
+      ];
+      const confettiPieces = Array.from({ length: 50 }, (_, i) => ({
+        color: confettiColors[i % confettiColors.length],
+        left: (i * 5.7) % 100,
+        delay: (i * 0.2) % 4,
+        size: 6 + (i % 5),
+        isStrip: i % 3 === 0
+      }));
+      return (
+        <StudentLayout>
+          <div
+            className="relative min-h-[60vh] overflow-hidden rounded-2xl border-4 p-8 animate-border-rainbow"
+            style={{
+              background: "linear-gradient(135deg, #fef3c7 0%, #fff 25%, #d1fae5 50%, #fff 75%, #fef3c7 100%)",
+              backgroundSize: "400% 400%",
+              animation: "bg-shift 8s ease infinite"
+            }}
+          >
+            {/* Falling confetti - squares + strips */}
+            <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-2xl">
+              {confettiPieces.map((c, i) =>
+                c.isStrip ? (
+                  <div
+                    key={`s-${i}`}
+                    className="animate-confetti-strip"
+                    style={{
+                      left: `${c.left}%`,
+                      backgroundColor: c.color,
+                      animationDelay: `${c.delay}s`
+                    }}
+                  />
+                ) : (
+                  <div
+                    key={i}
+                    className="animate-confetti-fall"
+                    style={{
+                      left: `${c.left}%`,
+                      backgroundColor: c.color,
+                      width: c.size,
+                      height: c.size,
+                      animationDelay: `${c.delay}s`
+                    }}
+                  />
+                )
+              )}
+            </div>
+            <div className="relative max-w-lg mx-auto text-center">
+              <p className="text-5xl mb-2 animate-emoji-crazy" aria-hidden="true">🎉</p>
+              <h2 className="text-2xl md:text-3xl font-extrabold mb-1 animate-crazy-pop-in animate-text-rainbow">
+                {isMr ? "अभिनंदन! तुम्ही दिवस २१ परीक्षा उत्तीर्ण झाला!" : "Congratulations! You passed Day 21!"}
+              </h2>
+              <p className="text-lg font-bold text-amber-700 mb-6 animate-wiggle">
+                {isMr ? "🎉 खूप छान! तुमचे अभिनंदन! 🎉" : "🎉 You did something amazing! 🎉"}
+              </p>
+              <div className="flex justify-center mb-6" style={{ perspective: "400px" }}>
+                <div className="relative flex items-center justify-center" style={{ width: 180, height: 180 }}>
+                  {/* Spinning ring */}
+                  <div
+                    className="absolute inset-0 rounded-full border-4 border-dashed border-amber-400/60 animate-spin-ring"
+                    style={{ width: 160, height: 160, margin: "auto" }}
+                  />
+                  <div
+                    className="absolute rounded-full border-4 border-transparent animate-spin-ring"
+                    style={{
+                      width: 170,
+                      height: 170,
+                      margin: "auto",
+                      borderTopColor: "#ec4899",
+                      borderRightColor: "#6366f1",
+                      borderBottomColor: "#10b981",
+                      borderLeftColor: "#eab308"
+                    }}
+                  />
+                  {/* Badge with 3D glow */}
+                  <div className="relative w-28 h-28 rounded-full ring-4 ring-amber-400/80 ring-offset-2 ring-offset-white overflow-hidden bg-gradient-to-br from-amber-200 to-amber-400 animate-badge-crazy">
+                    {photoUrl ? (
+                      <img src={photoUrl} alt={name} className="w-full h-full object-cover" />
+                    ) : (
+                      <span className="flex items-center justify-center w-full h-full text-3xl font-bold text-amber-800">
+                        {getInitials(name)}
+                      </span>
+                    )}
+                  </div>
+                  {/* Orbiting stars */}
+                  <span
+                    className="absolute text-2xl animate-orbit-star-1"
+                    style={{ top: "50%", left: "50%", marginTop: -14, marginLeft: -14 }}
+                    aria-hidden="true"
+                  >
+                    ⭐
+                  </span>
+                  <span
+                    className="absolute text-2xl animate-orbit-star-2"
+                    style={{ top: "50%", left: "50%", marginTop: -14, marginLeft: -14 }}
+                    aria-hidden="true"
+                  >
+                    ✨
+                  </span>
+                </div>
+              </div>
+              <p className="text-xl font-semibold text-gray-800 mb-1">{name}</p>
+              <p className="text-2xl font-bold text-green-700 mb-6 animate-score-pop">
+                Score: {result.score}/{result.total} ({Math.round((result.score / result.total) * 100)}%)
+              </p>
+              <p className="text-gray-600 mb-6">
+                {isMr ? "तुम्ही २० दिवसांचा अभ्यास परीक्षेत उत्तीर्ण झाला. पुढच्या पायरीसाठी शुभेच्छा!" : "You've completed the 20-day recap exam. Well done!"}
+              </p>
+              <button
+                onClick={() => navigate("/courses/22")}
+                className="btn-shimmer relative overflow-hidden rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 px-8 py-4 text-lg font-bold text-white animate-btn-neon hover:scale-110 transition-transform duration-300"
+              >
+                <span className="relative z-10">{isMr ? "पुढे जा" : "Proceed to Next"}</span>
+              </button>
+            </div>
+          </div>
+        </StudentLayout>
+      );
+    }
+
     return (
       <StudentLayout>
         <div className="rounded bg-white p-6 shadow">
@@ -229,7 +367,7 @@ const ExamPage = () => {
             </p>
             {!passed && (
               <p className="mt-3 text-sm font-medium text-amber-800">
-                You need a score greater than 40 to pass. Please retake the exam.
+                You need a score greater than {PASSING_SCORE} to pass. Please retake the exam.
               </p>
             )}
           </div>
