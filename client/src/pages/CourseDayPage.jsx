@@ -5,6 +5,9 @@ import StudentLayout from "../components/StudentLayout";
 import CtrlShortcutsTable from "../components/CtrlShortcutsTable";
 import ExcelOperatorsTable from "../components/ExcelOperatorsTable";
 import ExcelShortcutsTable from "../components/ExcelShortcutsTable";
+import ExcelStatisticalFunctionsTable from "../components/ExcelStatisticalFunctionsTable";
+import HighlightCellRulesTable from "../components/HighlightCellRulesTable";
+import PowerPointKeyFeaturesTable from "../components/PowerPointKeyFeaturesTable";
 import api from "../api/api";
 
 // Default practical steps when not set in DB – Day 1: clear "how to" steps (can have 10+ steps)
@@ -324,6 +327,81 @@ const CourseDayPage = () => {
                       { isSectionTwo: true }
                     )}
                     <ExcelShortcutsTable />
+                  </>
+                ) : Number(day.dayNumber) === 26 && index === 1 ? (
+                  <>
+                    {renderContent(
+                      (() => {
+                        const content = isMr ? section.contentMr : section.contentEn;
+                        const tableMarker = "Common functions used for data analysis in tables:";
+                        if (content.includes(tableMarker)) {
+                          return content.substring(0, content.indexOf(tableMarker)).trim();
+                        }
+                        return content;
+                      })(),
+                      { isSectionTwo: true }
+                    )}
+                    <ExcelStatisticalFunctionsTable />
+                    {(() => {
+                      const content = isMr ? section.contentMr : section.contentEn;
+                      const afterMarker = "Pro Tip:";
+                      if (content.includes(afterMarker)) {
+                        return (
+                          <div className="mt-4">
+                            {renderContent(
+                              content.substring(content.indexOf(afterMarker)).trim(),
+                              { isSectionTwo: true }
+                            )}
+                          </div>
+                        );
+                      }
+                      return null;
+                    })()}
+                  </>
+                ) : Number(day.dayNumber) === 27 && index === 1 ? (
+                  <>
+                    {renderContent(
+                      (() => {
+                        const content = isMr ? section.contentMr : section.contentEn;
+                        const tableMarker = "Greater Than:";
+                        if (content.includes(tableMarker)) {
+                          return content.substring(0, content.indexOf(tableMarker)).trim();
+                        }
+                        return content;
+                      })(),
+                      { isSectionTwo: true }
+                    )}
+                    <HighlightCellRulesTable />
+                    {(() => {
+                      const content = isMr ? section.contentMr : section.contentEn;
+                      const afterMarker = "3. Top/Bottom Rules";
+                      if (content.includes(afterMarker)) {
+                        return (
+                          <div className="mt-4">
+                            {renderContent(
+                              content.substring(content.indexOf(afterMarker)).trim(),
+                              { isSectionTwo: true }
+                            )}
+                          </div>
+                        );
+                      }
+                      return null;
+                    })()}
+                  </>
+                ) : Number(day.dayNumber) === 29 && index === 1 ? (
+                  <>
+                    {renderContent(
+                      (() => {
+                        const content = isMr ? section.contentMr : section.contentEn;
+                        const tableMarker = "4. Summary Table of Key Features";
+                        if (content.includes(tableMarker)) {
+                          return content.substring(0, content.indexOf(tableMarker)).trim();
+                        }
+                        return content;
+                      })(),
+                      { isSectionTwo: true }
+                    )}
+                    <PowerPointKeyFeaturesTable />
                   </>
                 ) : (
                   renderContent(isMr ? section.contentMr : section.contentEn, {

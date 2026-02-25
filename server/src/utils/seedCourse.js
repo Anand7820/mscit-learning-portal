@@ -3181,6 +3181,756 @@ const ensureCourseDays = async () => {
         }
       }
     );
+    // Day 26: How to Apply Formulas in Tabular Format – Section 1 (video placeholder), Section 2 (notes)
+    const day26Section2ContentEn =
+      "Computer Class Day 26: How to Apply Formulas in Tabular Format in Excel\n\n1. Introduction to Functions vs. Formulas\n\nThe video distinguishes between \"Functions\" and \"Formulas\":\n\nFunctions: In-built Excel commands like SUM(), MAX(), MIN().\n\nFormulas: Custom expressions created by the user, such as =(A1/B1)*100.\n\n2. Summation (Calculating Total Marks) [00:02:18]\n\nThe instructor demonstrates three ways to calculate a total across a row:\n\nA. Using AutoSum\n\nGo to the Home tab.\n\nClick the Sum (Σ) button in the ribbon.\n\nExcel automatically selects the adjacent range. Press Enter.\n\nB. Manual Cell Addition\n\nType = and click on individual cells separated by plus signs: =C2+D2+E2+F2+G2.\n\nNote: This is tedious for large datasets.\n\nC. Using the SUM Function\n\nType =SUM(.\n\nSelect the range of cells (e.g., from Physics to Chemistry).\n\nClose the bracket and press Enter.\n\nD. Keyboard Shortcut [00:05:52]\n\nSelect the cell where you want the total.\n\nPress Alt + = on your keyboard.\n\n3. Statistical Functions [00:07:18]\n\nCommon functions used for data analysis in tables:\n\nTask | Function | Description\nMaximum | =MAX(range) | Finds the highest value in the selected range.\nMinimum | =MIN(range) | Finds the lowest value in the selected range.\nCount | =COUNT(range) | Counts how many numeric entries are in the range.\nAverage | =AVERAGE(range) | Calculates the mean of the selected numbers.\n\nPro Tip: When using the AutoSum dropdown for these functions, Excel might occasionally include the \"Total\" column in its automatic range. Always double-check and manually re-select the correct data range (e.g., only the subject marks) before hitting Enter [00:07:35].\n\n4. Calculating Percentage [00:11:17]\n\nSince Excel does not have a specific \"Percentage\" function, you must create a manual formula:\n\nLogic: (Obtained Marks / Total Possible Marks) * 100\n\nExcel Formula: = (H2 / 500) * 100 (assuming H2 is the Total and there are 5 subjects of 100 marks each).\n\nOrder of Operations: Excel follows BODMAS. It will divide first, then multiply. You can use brackets (H2/500)*100 for better readability [00:12:57].\n\n5. Efficiency Tips: Applying Formulas to the Whole Column [00:04:38]\n\nOnce a formula is applied to the first row, you don't need to type it for others:\n\nDrag and Drop: Click the small green square (Fill Handle) at the bottom-right of the cell and drag it down.\n\nDouble-Click: Double-click the Fill Handle to instantly fill the formula down to the last row of your data.\n\n6. Key Takeaways\n\nAlways start a formula or function with an equals sign (=).\n\nCell references (like C2) are better than hard-coding numbers because the result updates automatically if the data changes.\n\nThe Formula Bar is useful for viewing and editing long or complex formulas [00:04:12].\n\nNext Video Teaser: The instructor mentions that the next lesson will cover logical conditions (e.g., Pass/Fail results using the IF function).";
+    const day26Section2ContentMr =
+      "Computer Class Day 26: How to Apply Formulas in Tabular Format in Excel\n\n१. Functions vs. Formulas\n\nFunctions: अंगभूत Excel कमांड्स – SUM(), MAX(), MIN().\nFormulas: वापरकर्ता तयार केलेले सूत्र, उदा. =(A1/B1)*100.\n\n२. बेरीज (Total Marks) [00:02:18]\n\nAutoSum: Home टॅब → Sum (Σ) बटण → Enter. Manual: =C2+D2+E2+... SUM: =SUM(रेंज). शॉर्टकट: Alt + = [00:05:52].\n\n३. Statistical Functions [00:07:18]\n\nसारणी विश्लेषणासाठी: Maximum =MAX(रेंज), Minimum =MIN(रेंज), Count =COUNT(रेंज), Average =AVERAGE(रेंज).\n\nPro Tip: AutoSum ड्रॉपडाउन कधीकधी Total स्तंभ समाविष्ट करतो; Enter दाबण्यापूर्वी फक्त विषय गुणांची रेंज पुन्हा निवडा [00:07:35].\n\n४. टक्केवारी [00:11:17]\n\nसूत्र: (मिळालेले गुण / एकूण शक्य गुण) * 100. उदा. =(H2/500)*100. BODMAS अनुसरण. [00:12:57]\n\n५. संपूर्ण स्तंभात सूत्र लावणे [00:04:38]\n\nFill Handle खाली ड्रॅग करा किंवा Fill Handle वर डबल-क्लिक.\n\n६. महत्त्वाचे: सूत्र/फंक्शन = ने सुरू; सेल संदर्भ वापरा; Formula Bar लांब सूत्र पाहण्यासाठी उपयुक्त [00:04:12]. पुढे: IF फंक्शन (Pass/Fail).";
+    await CourseDay.updateOne(
+      { dayNumber: 26 },
+      {
+        $set: {
+          contentEn: "",
+          contentMr: "",
+          subsections: [
+            {
+              titleEn: "Section 1",
+              titleMr: "भाग १",
+              contentEn: "",
+              contentMr: "",
+              videoUrl: "https://youtu.be/xZa8XWty_4o?si=bWXpSyOG2pNyX6u6"
+            },
+            {
+              titleEn: "Section 2",
+              titleMr: "भाग २",
+              contentEn: day26Section2ContentEn,
+              contentMr: day26Section2ContentMr,
+              videoUrl: ""
+            }
+          ]
+        }
+      }
+    );
+    await CourseDay.updateOne(
+      { dayNumber: 26 },
+      {
+        $set: {
+          "exam.durationMinutes": 30,
+          "exam.questions": [
+            {
+              questionEn: "Which character must every Excel formula or function start with?",
+              questionMr: "प्रत्येक Excel सूत्र किंवा फंक्शन कोणत्या चिन्हाने सुरू होणे आवश्यक आहे?",
+              options: [
+                { textEn: "+ (Plus)", textMr: "+ (Plus)" },
+                { textEn: "= (Equals)", textMr: "= (Equals)" },
+                { textEn: "- (Minus)", textMr: "- (Minus)" },
+                { textEn: "SUM", textMr: "SUM" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "What is the keyboard shortcut to automatically apply the SUM function to a selected cell?",
+              questionMr: "निवडलेल्या सेलमध्ये SUM फंक्शन स्वयं लावण्यासाठी कोणता कीबोर्ड शॉर्टकट वापरावा?",
+              options: [
+                { textEn: "Ctrl + F", textMr: "Ctrl + F" },
+                { textEn: "Alt + =", textMr: "Alt + =" },
+                { textEn: "Shift + +", textMr: "Shift + +" },
+                { textEn: "Ctrl + S", textMr: "Ctrl + S" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "Which function would you use to find the highest score in a list of student marks?",
+              questionMr: "विद्यार्थी गुणांच्या यादीत सर्वोच्च गुण शोधण्यासाठी कोणते फंक्शन वापरावे?",
+              options: [
+                { textEn: "=CEILING()", textMr: "=CEILING()" },
+                { textEn: "=MAX()", textMr: "=MAX()" },
+                { textEn: "=TOP()", textMr: "=TOP()" },
+                { textEn: "=HIGH()", textMr: "=HIGH()" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "You want to calculate the percentage for a student. The obtained marks are in cell H2 and the total possible marks are 500. Which formula is correct?",
+              questionMr: "विद्यार्थ्याची टक्केवारी काढायची आहे. मिळालेले गुण सेल H2 मध्ये आणि एकूण शक्य गुण 500. योग्य सूत्र कोणते?",
+              options: [
+                { textEn: "=H2 * 500 / 100", textMr: "=H2 * 500 / 100" },
+                { textEn: "=500 / H2 * 100", textMr: "=500 / H2 * 100" },
+                { textEn: "=(H2 / 500) * 100", textMr: "=(H2 / 500) * 100" },
+                { textEn: "=PERCENT(H2, 500)", textMr: "=PERCENT(H2, 500)" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "What is the most efficient way to apply a formula from the top cell of a column to all the rows below it?",
+              questionMr: "स्तंभातील वरच्या सेलचे सूत्र खालच्या सर्व पंक्तींना लावण्याचा सर्वात कार्यक्षम मार्ग कोणता?",
+              options: [
+                { textEn: "Double-click the Fill Handle", textMr: "Fill Handle वर डबल-क्लिक करा" },
+                { textEn: "Use the Cut command", textMr: "Cut कमांड वापरा" },
+                { textEn: "Copy and Paste Special > Values", textMr: "Copy आणि Paste Special > Values" },
+                { textEn: "Retype the formula in every cell", textMr: "प्रत्येक सेलमध्ये सूत्र पुन्हा टाइप करा" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "Why is it better to use cell references (e.g., =A1+B1) instead of hard-coded numbers (e.g., =10+20)?",
+              questionMr: "हार्ड-कोडेड संख्यांऐवजी सेल संदर्भ (उदा. =A1+B1) वापरणे चांगले का?",
+              options: [
+                { textEn: "It is required to save the file", textMr: "फाइल सेव्ह करण्यासाठी आवश्यक आहे" },
+                { textEn: "It looks more professional", textMr: "अधिक व्यावसायिक दिसते" },
+                { textEn: "It prevents the file from being printed", textMr: "फाइल प्रिंट होण्यापासून रोखते" },
+                { textEn: "The result updates automatically if the input data changes", textMr: "इनपुट डेटा बदलल्यास परिणाम आपोआप अपडेट होतो" }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "What potential issue should you check for when using AutoSum to calculate the Average of several subjects?",
+              questionMr: "अनेक विषयांची सरासरी काढण्यासाठी AutoSum वापरताना कोणती संभाव्य समस्या तपासावी?",
+              options: [
+                { textEn: "Excel will always give an error message", textMr: "Excel नेहमी एरर देईल" },
+                { textEn: "It will delete the data in the cells", textMr: "सेलमधील डेटा हटेल" },
+                { textEn: "Excel might include the 'Total' column in the range", textMr: "Excel रेंजमध्ये 'Total' स्तंभ समाविष्ट करू शकतो" },
+                { textEn: "Excel might format the cell as text", textMr: "Excel सेल टेक्स्ट म्हणून फॉर्मॅट करू शकतो" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "Which function counts how many cells in a range contain numeric values?",
+              questionMr: "रेंजमध्ये किती सेलमध्ये संख्यात्मक मूल्ये आहेत हे कोणते फंक्शन मोजते?",
+              options: [
+                { textEn: "=SUM()", textMr: "=SUM()" },
+                { textEn: "=COUNT()", textMr: "=COUNT()" },
+                { textEn: "=NUMBER()", textMr: "=NUMBER()" },
+                { textEn: "=CALC()", textMr: "=CALC()" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "According to the notes, what is the 'Order of Operations' Excel follows when calculating percentages?",
+              questionMr: "टक्केवारी काढताना Excel कोणता 'Order of Operations' अनुसरण करतो?",
+              options: [
+                { textEn: "It always multiplies first", textMr: "प्रथम नेहमी गुणाकार" },
+                { textEn: "BODMAS", textMr: "BODMAS" },
+                { textEn: "Left to Right regardless of operator", textMr: "ऑपरेटरकडे दुर्लक्ष करून डावीकडून उजवीकडे" },
+                { textEn: "Addition then Subtraction", textMr: "प्रथम बेरीज नंतर वजाबाकी" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "What is the difference between a Function and a Formula in the context of this video?",
+              questionMr: "या व्हिडिओच्या संदर्भात Function आणि Formula मध्ये फरक काय आहे?",
+              options: [
+                { textEn: "Functions are in-built commands; Formulas are user-created expressions", textMr: "Functions अंगभूत कमांड्स; Formulas वापरकर्ता तयार केलेली अभिव्यक्ती" },
+                { textEn: "There is no difference", textMr: "फरक नाही" },
+                { textEn: "Formulas are faster than Functions", textMr: "Formulas Functions पेक्षा वेगवान आहेत" },
+                { textEn: "Formulas are for text, Functions are for numbers", textMr: "Formulas मजकूरासाठी, Functions संख्यांसाठी" }
+              ],
+              correctIndex: 0
+            }
+          ]
+        }
+      }
+    );
+    // Day 27: Conditional Formatting in Excel – Section 1 (video placeholder), Section 2 (notes)
+    const day27Section2ContentEn =
+      "Computer Class Day 27: Conditional Formatting in Excel\n\n1. What is Conditional Formatting? [00:01:34]\n\nConditional formatting allows you to automatically apply formatting—such as colors, icons, and data bars—to one or more cells based on the cell value. It helps in:\n\nVisualizing data trends.\n\nIdentifying specific data points (e.g., failing marks or top performers).\n\nAnalyzing large datasets quickly.\n\n2. Highlight Cell Rules [00:02:06]\n\nThis feature highlights cells that meet specific mathematical or text-based criteria.\n\nGreater Than: Highlights cells with values higher than a specified number (e.g., marking passing students).\n\nLess Than: Highlights cells with values lower than a specified number (e.g., identifying students who scored below 35).\n\nBetween: Highlights values within a specific range (e.g., scores between 40 and 60).\n\nEqual To: Highlights cells that match a specific value exactly.\n\nText that Contains: Useful for finding specific names or strings (e.g., finding everyone with the surname \"Sharma\" in a voter list) [00:09:54].\n\nDuplicate Values: Extremely useful for data cleaning, such as identifying if an Aadhar card number or Email ID has been entered twice [00:08:22].\n\n3. Top/Bottom Rules [00:10:48]\n\nIdeal for identifying the \"best\" and \"worst\" performers in a dataset.\n\nTop 10 Items / Top 10%: Highlights the highest values.\n\nBottom 10 Items / Bottom 10%: Highlights the lowest values.\n\nAbove/Below Average: Automatically calculates the average of the range and highlights cells accordingly.\n\n4. Visualizing Data with Bars and Scales [00:12:21]\n\nData Bars: Adds a colored bar inside the cell. The length of the bar represents the value in the cell (similar to a mini bar chart) [00:12:33].\n\nColor Scales: Applies a two or three-color gradient to a range of cells. The color shade represents where the value falls (e.g., Green for high, Red for low) [00:13:32].\n\n5. Icon Sets [00:14:18]\n\nIcons (like arrows, traffic lights, or star ratings) are added to cells to represent the data's status.\n\nDirectional Arrows: Show if a value is high, medium, or low.\n\nShapes/Indicators: Traffic lights (Red/Yellow/Green).\n\nRatings: Mobile signal bars or star ratings [00:16:06].\n\nPro Tip: Hiding Numbers to Show Only Icons [00:15:09]\n\nYou can display only the icons without the numbers:\n\nGo to Format Cells (Ctrl + 1).\n\nGo to Custom.\n\nIn the 'Type' box, enter three semicolons: ;;;\n\nThe numbers will become invisible, leaving only the conditional formatting icons.\n\n6. Managing and Clearing Rules [00:03:11]\n\nClear Rules: You can choose to clear rules from \"Selected Cells\" or the \"Entire Sheet\" [00:04:40].\n\nManage Rules: Allows you to see all rules applied to a range, change their order of priority, or edit the criteria.\n\n7. Formatting Options\n\nWhen applying a rule, you can choose:\n\nPre-defined formats (e.g., Light Red Fill with Dark Red Text).\n\nCustom Format: Allows you to choose specific borders, font colors, and fill patterns [00:07:14].\n\nSummary: Conditional formatting is a powerful tool for making data \"speak.\" Whether you are looking for duplicates or identifying top students, these visual cues make Excel reports much more professional and easier to read.";
+    const day27Section2ContentMr =
+      "Computer Class Day 27: Conditional Formatting in Excel\n\n१. Conditional Formatting म्हणजे काय? [00:01:34]\n\nसेल मूल्यावर आधारित रंग, आयकॉन्स, डेटा बार यासारखे फॉर्मॅटिंग स्वयं लागू होते. डेटा ट्रेंड्स दाखवणे, विशिष्ट बिंदू ओळखणे (उत्तीर्ण/अनुत्तीर्ण), मोठ्या डेटासेटचे विश्लेषण.\n\n२. Highlight Cell Rules [00:02:06]\n\nगणितीय किंवा मजकूर निकष पूर्ण करणाऱ्या सेल हायलाइट होतात.\n\nGreater Than: निर्दिष्ट संख्येपेक्षा जास्त मूल्ये (उत्तीर्ण विद्यार्थी). Less Than: कमी (उदा. 35 पेक्षा कमी). Between: दिलेल्या रेंजमध्ये (40–60). Equal To: अगदी जुळणारे मूल्य. Text that Contains: विशिष्ट मजकूर (उदा. \"Sharma\") [00:09:54]. Duplicate Values: डेटा सफाई – आधार क्रमांक/ईमेल दुसऱ्यांदा [00:08:22].\n\n३. Top/Bottom Rules [00:10:48]\n\nTop 10 Items/%, Bottom 10 Items/%, Above/Below Average.\n\n४. Data Bars आणि Color Scales [00:12:21]\n\nData Bars: सेलमध्ये बार; लांबी मूल्य दर्शवते [00:12:33]. Color Scales: दोन/तीन रंग ग्रेडियंट; उच्च=हिरवा, निम्न=लाल [00:13:32].\n\n५. Icon Sets [00:14:18]\n\nअॅरो, ट्रॅफिक लाइट्स, स्टार रेटिंग. Pro Tip: फक्त आयकॉन दाखवणे – Format Cells (Ctrl+1) → Custom → Type: ;;; [00:15:09].\n\n६. Clear Rules / Manage Rules [00:03:11]\n\nSelected Cells किंवा Entire Sheet; नियमांचा क्रम बदलणे [00:04:40].\n\n७. Pre-defined किंवा Custom Format [00:07:14]. सारांश: डेटा स्पष्ट दाखवण्यासाठी शक्तिशाली साधन.";
+    await CourseDay.updateOne(
+      { dayNumber: 27 },
+      {
+        $set: {
+          contentEn: "",
+          contentMr: "",
+          subsections: [
+            {
+              titleEn: "Section 1",
+              titleMr: "भाग १",
+              contentEn: "",
+              contentMr: "",
+              videoUrl: "https://youtu.be/XWztQ4YeULw?si=j81-G8j7B_Lv4-Hs"
+            },
+            {
+              titleEn: "Section 2",
+              titleMr: "भाग २",
+              contentEn: day27Section2ContentEn,
+              contentMr: day27Section2ContentMr,
+              videoUrl: ""
+            }
+          ]
+        }
+      }
+    );
+    await CourseDay.updateOne(
+      { dayNumber: 27 },
+      {
+        $set: {
+          "exam.durationMinutes": 30,
+          "exam.questions": [
+            {
+              questionEn: "Which of the following best describes the primary purpose of Conditional Formatting in Excel?",
+              questionMr: "Excel मध्ये Conditional Formatting चा मुख्य उद्देश खालीलपैकी कोणता सर्वोत्तम वर्णन करतो?",
+              options: [
+                { textEn: "To permanently delete data that does not meet specific criteria", textMr: "विशिष्ट निकष पूर्ण न करणारा डेटा कायमचा हटवणे" },
+                { textEn: "To sort data in ascending or descending order", textMr: "डेटा चढत्या किंवा उतरत्या क्रमाने लावणे" },
+                { textEn: "To automatically apply formatting like colors or icons based on the cell's value", textMr: "सेल मूल्यावर आधारित रंग किंवा आयकॉन्स स्वयं लागू करणे" },
+                { textEn: "To change the cell value based on a formula", textMr: "सूत्रावर आधारित सेल मूल्य बदलणे" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "You have a list of voters and want to highlight every cell that includes the surname \"Sharma\". Which Highlight Cell Rule should you use?",
+              questionMr: "मतदार यादीत \"Sharma\" आडनाव असलेले प्रत्येक सेल हायलाइट करायचे आहे. कोणता Highlight Cell Rule वापरावा?",
+              options: [
+                { textEn: "Duplicate Values", textMr: "Duplicate Values" },
+                { textEn: "Text that Contains", textMr: "Text that Contains" },
+                { textEn: "Equal To", textMr: "Equal To" },
+                { textEn: "Between", textMr: "Between" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "You are cleaning a dataset and suspect that some Aadhar card numbers have been entered twice. Which rule would instantly reveal these errors?",
+              questionMr: "डेटासेट साफ करत आहात आणि काही आधार क्रमांक दोनदा टाइप झाले असण्याची शंका आहे. ही चुका ताबडतोब कोणता नियम दाखवेल?",
+              options: [
+                { textEn: "Greater Than", textMr: "Greater Than" },
+                { textEn: "Top 10 Items", textMr: "Top 10 Items" },
+                { textEn: "Duplicate Values", textMr: "Duplicate Values" },
+                { textEn: "Data Bars", textMr: "Data Bars" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "Which visual tool adds a colored bar inside the cell, where the length of the bar is proportional to the cell's value?",
+              questionMr: "कोणते साधन सेलमध्ये रंगीत बार जोडते, जिथे बारची लांबी सेल मूल्याच्या प्रमाणात असते?",
+              options: [
+                { textEn: "Icon Sets", textMr: "Icon Sets" },
+                { textEn: "Color Scales", textMr: "Color Scales" },
+                { textEn: "Data Bars", textMr: "Data Bars" },
+                { textEn: "Highlight Cell Rules", textMr: "Highlight Cell Rules" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "If you want to quickly identify the students performing in the bottom 10% of the class, which category of rules should you use?",
+              questionMr: "वर्गातील खालच्या 10% विद्यार्थ्यांना ओळखण्यासाठी कोणत्या नियमांचा वापर करावा?",
+              options: [
+                { textEn: "Data Bars", textMr: "Data Bars" },
+                { textEn: "Top/Bottom Rules", textMr: "Top/Bottom Rules" },
+                { textEn: "Highlight Cell Rules", textMr: "Highlight Cell Rules" },
+                { textEn: "Icon Sets", textMr: "Icon Sets" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "According to the 'Pro Tip' in the notes, which custom format code will hide the numbers in a cell, leaving only the Conditional Formatting icons visible?",
+              questionMr: "नोट्समधील 'Pro Tip' नुसार, सेलमधील संख्या लपवून फक्त Conditional Formatting आयकॉन्स दिसण्यासाठी कोणता कस्टम फॉर्मॅट कोड वापरावा?",
+              options: [
+                { textEn: "(blank)", textMr: "(रिक्त)" },
+                { textEn: "000", textMr: "000" },
+                { textEn: ";;;", textMr: ";;;" },
+                { textEn: "Hidden", textMr: "Hidden" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "You applied a 'Greater Than 50' rule to a column. Later, you want to remove this rule only from that specific column, not the whole sheet. Which option should you choose?",
+              questionMr: "तुम्ही एका स्तंभावर 'Greater Than 50' नियम लावला. नंतर फक्त त्या स्तंभातून हा नियम काढायचा आहे, संपूर्ण शीटवरून नाही. कोणता पर्याय निवडावा?",
+              options: [
+                { textEn: "Delete Column", textMr: "Delete Column" },
+                { textEn: "Clear Rules from Selected Cells", textMr: "Clear Rules from Selected Cells" },
+                { textEn: "Manage Rules > Edit Rule", textMr: "Manage Rules > Edit Rule" },
+                { textEn: "Clear Rules from Entire Sheet", textMr: "Clear Rules from Entire Sheet" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "Which of the following is NOT a standard option when choosing a 'Color Scale'?",
+              questionMr: "Color Scale निवडताना खालीलपैकी कोणता मानक पर्याय नाही?",
+              options: [
+                { textEn: "3-Color Scale", textMr: "3-Color Scale" },
+                { textEn: "2-Color Scale", textMr: "2-Color Scale" },
+                { textEn: "Rainbow Text Animation", textMr: "Rainbow Text Animation" },
+                { textEn: "Green - Yellow - Red Scale", textMr: "Green - Yellow - Red Scale" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "What happens if you use the 'Above Average' rule on a set of student marks?",
+              questionMr: "विद्यार्थी गुणांवर 'Above Average' नियम वापरल्यास काय होते?",
+              options: [
+                { textEn: "It highlights any student with marks above 50.", textMr: "50 पेक्षा जास्त गुण असलेल्या विद्यार्थ्यांना हायलाइट करते." },
+                { textEn: "It automatically calculates the average of the selected range and highlights cells greater than that value.", textMr: "निवडलेल्या रेंजची सरासरी काढते आणि त्यापेक्षा जास्त मूल्याचे सेल हायलाइट करते." },
+                { textEn: "It changes the font of all cells to bold.", textMr: "सर्व सेलचा फॉंट बोल्ड करते." },
+                { textEn: "It highlights the top 10 students in the list.", textMr: "यादीतील टॉप 10 विद्यार्थ्यांना हायलाइट करते." }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "When creating a Custom Format for a rule, which of the following attributes can you modify?",
+              questionMr: "नियमासाठी Custom Format तयार करताना खालीलपैकी कोणते गुणधर्म बदलता येतात?",
+              options: [
+                { textEn: "Font color, Border style, and Fill pattern", textMr: "Font color, Border style आणि Fill pattern" },
+                { textEn: "The actual text content (e.g., changing 'Fail' to 'Pass')", textMr: "वास्तविक मजकूर (उदा. 'Fail' ला 'Pass' करणे)" },
+                { textEn: "Font size and Font family (e.g., changing Arial to Times New Roman)", textMr: "Font size आणि Font family (उदा. Arial → Times New Roman)" },
+                { textEn: "Cell width and height", textMr: "Cell width आणि height" }
+              ],
+              correctIndex: 0
+            }
+          ]
+        }
+      }
+    );
+    // Day 28: IF, AND, OR Functions – Section 1 (video), Section 2 (notes)
+    const day28Section2ContentEn =
+      "Computer Class Day 28: IF, AND, OR Functions in Excel\n\n1. Introduction to Logical Functions\n\nLogical functions allow Excel to make decisions based on specific conditions. This is essential for tasks like automating student results, categorizing data, or calculating commissions.\n\n2. The Basic IF Function [00:04:53]\n\nThe IF function checks a single condition and returns one value if true and another if false.\n\nSyntax: =IF(logical_test, value_if_true, value_if_false)\n\nExample (Pass/Fail):\n=IF(H2 >= 33, \"Pass\", \"Fail\")\n\nKey Rules:\n\nText values (like \"Pass\" or \"Fail\") must be enclosed in double quotes (\" \").\n\nArguments are separated by commas (,). [00:07:04]\n\nDouble quotes are required; using two single quotes will cause an error. [00:07:52]\n\n3. IF with AND (Multiple Mandatory Conditions) [00:11:54]\n\nUse AND inside an IF when all conditions must be met for the result to be \"True.\"\n\nScenario: A student must pass every single subject (e.g., score > 33 in Math, English, and Science) to pass the exam.\n\nSyntax: =IF(AND(condition1, condition2, ...), \"Pass\", \"Fail\")\n\nExample: =IF(AND(C2>=33, D2>=33, E2>=33, F2>=33, G2>=33), \"Pass\", \"Fail\")\n\nLogic: If even one subject score is below 33, the AND function returns FALSE, and the student \"Fails.\" [00:18:28]\n\n4. IF with OR (Any One Condition) [00:19:19]\n\nUse OR when the result should be \"True\" if any one of the conditions is met.\n\nSyntax: =IF(OR(condition1, condition2, ...), \"Value_if_Any_True\", \"Value_if_None_True\")\n\nExample (Identifying Failures):\n=IF(OR(C2<33, D2<33, E2<33), \"Fail\", \"Pass\")\n\nLogic: If a student scores less than 33 in any of the subjects, they are marked as \"Fail.\" [00:24:34]\n\n5. Nested IF (The Grading System) [00:25:21]\n\nA \"Nested IF\" is when you put an IF function inside another IF function. This is used for multiple possible outcomes (like Grades A+, A, B, C, F).\n\nScenario: Grading based on percentage.\n\nLogic Flow:\n\nFirst, check if the student failed any subjects (using a reference to the Pass/Fail column).\n\nIf passed, check if Percentage >= 75% -> A+\n\nOtherwise, check if Percentage >= 60% -> A\n\nOtherwise, check if Percentage >= 45% -> B\n\nOtherwise, check if Percentage >= 33% -> C\n\nElse -> Fail\n\nFormula Example:\n=IF(N2=\"Fail\", \"F\", IF(M2>=75, \"A+\", IF(M2>=60, \"A\", IF(M2>=45, \"B\", \"C\"))))\n\nPro Tip: You don't need to manually close all the brackets at the end; Excel will often suggest the correct correction when you press Enter. [00:34:51]\n\n6. Practical Tips & Common Errors\n\nSpace Error: Never put a space between the function name and the bracket (e.g., use IF( not IF (). [00:33:08]\n\nEfficiency: Once the formula is written for the first row, use the Fill Handle (double-click the bottom right corner of the cell) to apply it to all students. [00:33:42]\n\nData Integrity: A student might have a high overall percentage but still fail if they failed an individual subject. Nested IFs help capture this accurately. [00:35:45]\n\nSummary: Mastery of IF, AND, and OR allows you to build complex automated systems in Excel that go beyond simple arithmetic.";
+    const day28Section2ContentMr =
+      "Computer Class Day 28: IF, AND, OR Functions in Excel\n\n१. Logical Functions परिचय\n\nविशिष्ट अटींवर आधारित Excel निर्णय घेऊ शकतो – विद्यार्थी निकाल, वर्गीकरण, कमिशन यासारखे काम.\n\n२. मूलभूत IF फंक्शन [00:04:53]\n\nSyntax: =IF(logical_test, value_if_true, value_if_false). उदा. =IF(H2>=33, \"Pass\", \"Fail\"). मजकूर दुहेरी अवतरणात (\" \"); अर्ग्युमेंट्स कॉमाने विभक्त; दुहेरी अवतरणच गरजेचे [00:07:04, 00:07:52].\n\n३. IF सह AND (सर्व अटी पूर्ण) [00:11:54]\n\nसर्व अटी पूर्ण झाल्यावरच True. =IF(AND(C2>=33, D2>=33, E2>=33, F2>=33, G2>=33), \"Pass\", \"Fail\"). एकही विषय 33 पेक्षा कमी असेल तर Fail [00:18:28].\n\n४. IF सह OR (एक अट पूर्ण) [00:19:19]\n\nकोणतीही एक अट पूर्ण झाली तर True. =IF(OR(C2<33, D2<33, E2<33), \"Fail\", \"Pass\"). कोणत्याही विषयात 33 पेक्षा कमी तर Fail [00:24:34].\n\n५. Nested IF (ग्रेडिंग) [00:25:21]\n\nIF आत IF – अनेक परिणाम (A+, A, B, C, F). प्रथम Fail column पहा; नंतर टक्केवारी >=75 -> A+, >=60 -> A, >=45 -> B, >=33 -> C, else F. उदा. =IF(N2=\"Fail\", \"F\", IF(M2>=75, \"A+\", IF(M2>=60, \"A\", IF(M2>=45, \"B\", \"C\")))). Pro Tip: कंस बंद करण्यासाठी Enter दाबल्यावर Excel सुचवू शकतो [00:34:51].\n\n६. टिप्स: IF आणि कंस दरम्यान स्पेस ठेवू नका (IF( नाही IF () [00:33:08]. Fill Handle ने सर्व पंक्तींना लावा [00:33:42]. उच्च टक्केवारी असूनही एखाद्या विषयात नापास असले तर Nested IF योग्य ग्रेड देतो [00:35:45]. सारांश: IF, AND, OR ने जटिल ऑटोमेशन शक्य.";
+    await CourseDay.updateOne(
+      { dayNumber: 28 },
+      {
+        $set: {
+          contentEn: "",
+          contentMr: "",
+          subsections: [
+            {
+              titleEn: "Section 1",
+              titleMr: "भाग १",
+              contentEn: "",
+              contentMr: "",
+              videoUrl: "https://youtu.be/DD7W8L2c8xA?si=L8pcQSmRqwolIetc"
+            },
+            {
+              titleEn: "Section 2",
+              titleMr: "भाग २",
+              contentEn: day28Section2ContentEn,
+              contentMr: day28Section2ContentMr,
+              videoUrl: ""
+            }
+          ]
+        }
+      }
+    );
+    await CourseDay.updateOne(
+      { dayNumber: 28 },
+      {
+        $set: {
+          "exam.durationMinutes": 30,
+          "exam.questions": [
+            {
+              questionEn: "What is the primary purpose of the IF function in Excel?",
+              questionMr: "Excel मध्ये IF फंक्शनचा मुख्य उद्देश काय आहे?",
+              options: [
+                { textEn: "To add up a range of numbers based on a condition", textMr: "अटीवर आधारित संख्यांची बेरीज करणे" },
+                { textEn: "To check a specific condition and return one value if true and another if false", textMr: "विशिष्ट अट तपासून सत्य असेल तर एक मूल्य आणि असत्य असेल तर दुसरे मूल्य परत करणे" },
+                { textEn: "To find the average of numbers that meet specific criteria", textMr: "विशिष्ट निकष पूर्ण करणाऱ्या संख्यांची सरासरी काढणे" },
+                { textEn: "To count the number of cells that are not empty", textMr: "रिकामी नसलेल्या सेलची संख्या मोजणे" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "Which of the following represents the correct syntax for a basic IF formula?",
+              questionMr: "मूलभूत IF सूत्राचा योग्य सिंटॅक्स खालीलपैकी कोणता?",
+              options: [
+                { textEn: "=IF(value_if_true, value_if_false, logical_test)", textMr: "=IF(value_if_true, value_if_false, logical_test)" },
+                { textEn: "=IF(logical_test, value_if_true)", textMr: "=IF(logical_test, value_if_true)" },
+                { textEn: "=IF(logical_test, value_if_true, value_if_false)", textMr: "=IF(logical_test, value_if_true, value_if_false)" },
+                { textEn: "=IF(logical_test : value_if_true : value_if_false)", textMr: "=IF(logical_test : value_if_true : value_if_false)" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "How must text values, such as \"Pass\" or \"Fail\", be written inside an IF function argument?",
+              questionMr: "IF फंक्शन अर्ग्युमेंटमध्ये \"Pass\" किंवा \"Fail\" सारखे मजकूर कसे लिहावे?",
+              options: [
+                { textEn: "Without any quotes (Pass)", textMr: "अवतरणाशिवाय (Pass)" },
+                { textEn: "In double quotes (\"Pass\")", textMr: "दुहेरी अवतरणात (\"Pass\")" },
+                { textEn: "In brackets ([Pass])", textMr: "कंसात ([Pass])" },
+                { textEn: "In single quotes ('Pass')", textMr: "एकच अवतरणात ('Pass')" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "When using the AND function inside an IF statement (e.g., =IF(AND(A1>33, B1>33), ...)), when does the function return TRUE?",
+              questionMr: "IF मध्ये AND वापरताना (उदा. =IF(AND(A1>33, B1>33), ...)) फंक्शन कधी TRUE परत करते?",
+              options: [
+                { textEn: "If none of the conditions are met", textMr: "कोणतीही अट पूर्ण झाली नाही तर" },
+                { textEn: "Only if ALL conditions are met", textMr: "फक्त सर्व अटी पूर्ण झाल्यावर" },
+                { textEn: "If at least one of the conditions is met", textMr: "किमान एक अट पूर्ण झाल्यावर" },
+                { textEn: "If the first condition is met, regardless of the others", textMr: "पहिली अट पूर्ण झाल्यावर, इतरांकडे दुर्लक्ष करून" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "You want to identify students who failed. If a student scores less than 33 in ANY one subject, they fail. Which function should be used inside the IF?",
+              questionMr: "नापास विद्यार्थी ओळखायचे आहेत. कोणत्याही एका विषयात 33 पेक्षा कमी गुण मिळाल्यास नापास. IF मध्ये कोणते फंक्शन वापरावे?",
+              options: [
+                { textEn: "SUM", textMr: "SUM" },
+                { textEn: "MAX", textMr: "MAX" },
+                { textEn: "AND", textMr: "AND" },
+                { textEn: "OR", textMr: "OR" }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "What is a \"Nested IF\" function used for?",
+              questionMr: "\"Nested IF\" फंक्शन कशासाठी वापरतात?",
+              options: [
+                { textEn: "To format cells with colors", textMr: "सेल रंगाने फॉर्मॅट करणे" },
+                { textEn: "To handle scenarios with multiple possible outcomes (like Grades A, B, C, F)", textMr: "अनेक शक्य परिणाम असलेले परिदृश्य (उदा. ग्रेड A, B, C, F) हाताळणे" },
+                { textEn: "To calculate the sum of multiple cells", textMr: "अनेक सेलची बेरीज काढणे" },
+                { textEn: "To combine text from two cells", textMr: "दोन सेलचा मजकूर एकत्र करणे" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "Which of the following formulas contains a common syntax error mentioned in the notes?",
+              questionMr: "नोट्समध्ये उल्लेखलेला सामान्य सिंटॅक्स एरर खालीलपैकी कोणत्या सूत्रात आहे?",
+              options: [
+                { textEn: "=IF (A1>10,\"Yes\",\"No\")", textMr: "=IF (A1>10,\"Yes\",\"No\")" },
+                { textEn: "=IF(A1>10,\"Yes\",\"No\")", textMr: "=IF(A1>10,\"Yes\",\"No\")" },
+                { textEn: "=IF(A1>10, \"Yes\", \"No\")", textMr: "=IF(A1>10, \"Yes\", \"No\")" },
+                { textEn: "=IF(A1>10,\"Yes\",\"No\")", textMr: "=IF(A1>10,\"Yes\",\"No\")" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "According to the notes, what is the most efficient way to apply a formula to an entire column after writing it once?",
+              questionMr: "सूत्र एकदा लिहिल्यावर संपूर्ण स्तंभात लावण्याचा सर्वात कार्यक्षम मार्ग नोट्सनुसार कोणता?",
+              options: [
+                { textEn: "Double-click the Fill Handle", textMr: "Fill Handle वर डबल-क्लिक करा" },
+                { textEn: "Take a screenshot", textMr: "स्क्रीनशॉट घ्या" },
+                { textEn: "Copy and paste individually", textMr: "वैयक्तिकरित्या Copy आणि Paste करा" },
+                { textEn: "Retype it in every cell", textMr: "प्रत्येक सेलमध्ये पुन्हा टाइप करा" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "In a Nested IF used for grading, why is the order of conditions important?",
+              questionMr: "ग्रेडिंगसाठी वापरलेल्या Nested IF मध्ये अटींचा क्रम महत्त्वाचा का आहे?",
+              options: [
+                { textEn: "You must always start with the lowest number", textMr: "नेहमी सर्वात कमी संख्येपासून सुरू करावे" },
+                { textEn: "Excel stops at the first TRUE condition it finds", textMr: "Excel जी पहिली TRUE अट आढळते तिथे थांबते" },
+                { textEn: "It isn't important; Excel sorts them automatically", textMr: "महत्त्वाचे नाही; Excel स्वयं क्रमवारी लावतो" },
+                { textEn: "The last IF must always be empty", textMr: "शेवटचा IF नेहमी रिकामा असावा" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "What happens if you use two single quotes (' ') instead of one double quote (\" \") in a formula?",
+              questionMr: "सूत्रात एका दुहेरी अवतरणाऐवजी दोन एकच अवतरण (' ') वापरल्यास काय होते?",
+              options: [
+                { textEn: "It makes the text bold", textMr: "मजकूर बोल्ड होतो" },
+                { textEn: "It creates a comment", textMr: "कमेंट तयार होते" },
+                { textEn: "It causes an error", textMr: "एरर येते" },
+                { textEn: "It works perfectly fine", textMr: "बरोबर काम करते" }
+              ],
+              correctIndex: 2
+            }
+          ]
+        }
+      }
+    );
+    // Day 29: MS PowerPoint Introduction – Section 1 (video placeholder), Section 2 (notes)
+    const day29Section2ContentEn =
+      "Computer Class Day 29: MS PowerPoint Introduction Notes\n\nThis document provides a comprehensive summary of the introductory tutorial for Microsoft PowerPoint, covering its purpose, how to access it, and an overview of its interface.\n\n1. Introduction to Microsoft PowerPoint\n\nDefinition: MS PowerPoint is a presentation software developed by Microsoft. It is part of the MS Office suite (which includes Word, Excel, etc.).\n\nPrimary Uses: Creating professional presentations. Designing slide shows for business or educational purposes. Creating simple animation videos.\n\nInstallation: It does not need to be installed separately if you already have MS Office installed on your computer.\n\n2. Methods to Open PowerPoint\n\nThe tutorial outlines four main ways to launch the application:\n\nStart Menu: Click the Start button -> All Apps/Programs -> MS Office Folder -> Microsoft PowerPoint. [00:02:30]\n\nSearch Bar: Click the Search icon/bar and type \"PowerPoint\" or \"Microsoft PowerPoint.\" [00:03:00]\n\nRun Command (Short-cut): Press Windows + R on the keyboard, type powerpnt (exactly as written, without spaces), and press Enter. [00:03:13]\n\nDesktop Shortcut: Right-click on the Desktop -> New -> Microsoft PowerPoint Presentation. [00:03:46]\n\n3. Understanding the User Interface (UI)\n\nThe video breaks down the PowerPoint window into several key sections: [00:04:34]\n\nA. Title Bar (Top)\n\nShows the name of the current file (e.g., \"Presentation1\" or the saved file name).\n\nContains Window Controls: Minimize, Maximize/Restore, and Close buttons.\n\nB. Quick Access Toolbar (Top Left)\n\nContains frequently used shortcuts like Save, Undo, and Redo.\n\nIt can be customized to add more buttons like \"Print Preview\" or \"Email.\" [00:06:40]\n\nC. Office Button (File Menu)\n\nLocated in the top-left corner, it contains essential file management options: [00:07:37]\n\nNew: Create a new presentation.\n\nOpen: Open an existing file.\n\nSave: Save changes to the current file.\n\nSave As: Save a copy of the file with a different name or in a different location.\n\nPrint: Includes Print settings and Print Preview (to see how the slide looks before printing).\n\nPrepare/Send/Publish: Advanced options for security, emailing, or publishing to a server.\n\nClose: Closes the current file.\n\nD. The Ribbon and Tabs\n\nLocated below the Title Bar.\n\nOrganized into Tabs: Home, Insert, Design, Animations, Slide Show, Review, and View.\n\nEach tab contains a specific set of tools and options related to that category. [00:11:19]\n\nE. Navigation Panel (Left Side)\n\nDisplays thumbnail previews of all the slides in your presentation.\n\nAllows you to quickly switch between slides or see the overall flow. [00:12:09]\n\nF. Slide Area (Center)\n\nThe main workspace where you design your content. It is often referred to as the \"Page.\" [00:12:35]\n\nG. Notes Area (Bottom)\n\nA space below the slide area where you can type speaker notes for each specific slide. [00:12:56]\n\nH. Status Bar (Very Bottom)\n\nShows information like the total number of slides, the theme name, and the language. [00:13:07]\n\nIncludes View Buttons: Normal View, Slide Sorter, and Slide Show.\n\nIncludes the Zoom Slider to make the slide appear larger or smaller on the screen.\n\n4. Summary Table of Key Features\n\nComponent | Function\nRun Command | powerpnt\nQuick Access | Save, Undo, Redo (Customizable)\nSave As | Used to change file name or location\nStatus Bar | Shows slide count and zoom levels\nNotes Area | For adding speaker-specific information";
+    const day29Section2ContentMr =
+      "Computer Class Day 29: MS PowerPoint Introduction Notes\n\n१. Microsoft PowerPoint परिचय\n\nMS PowerPoint हे Microsoft चे प्रेझेंटेशन सॉफ्टवेअर; MS Office सूटचा भाग (Word, Excel सारखे). वापर: व्यावसायिक प्रेझेंटेशन्स, स्लाइड शो, साधे अॅनिमेशन व्हिडिओ. MS Office असेल तर वेगळे इंस्टॉल करण्याची गरज नाही.\n\n२. PowerPoint उघडण्याच्या पद्धती\n\nStart Menu -> All Apps -> MS Office Folder -> Microsoft PowerPoint [00:02:30]. Search Bar मध्ये \"PowerPoint\" टाइप [00:03:00]. Run: Windows + R, powerpnt (अगदी असेच, स्पेसशिवाय), Enter [00:03:13]. Desktop Shortcut: Right-click Desktop -> New -> Microsoft PowerPoint Presentation [00:03:46].\n\n३. User Interface (UI)\n\n[00:04:34] Title Bar – फाइल नाव, Minimize/Maximize/Close. Quick Access Toolbar – Save, Undo, Redo; कस्टमायझ करता येते [00:06:40]. Office Button (File Menu) – New, Open, Save, Save As, Print, Prepare/Send/Publish, Close [00:07:37]. Ribbon आणि Tabs – Home, Insert, Design, Animations, Slide Show, Review, View [00:11:19]. Navigation Panel – सर्व स्लाइड्सचे थंबनेल [00:12:09]. Slide Area – मुख्य कामाची जागा (\"Page\") [00:12:35]. Notes Area – स्पीकर नोट्स [00:12:56]. Status Bar – स्लाइड संख्या, थीम, भाषा; View बटणे; Zoom Slider [00:13:07].\n\n४. Summary Table of Key Features\n\nComponent | Function\nRun Command | powerpnt\nQuick Access | Save, Undo, Redo (Customizable)\nSave As | Used to change file name or location\nStatus Bar | Shows slide count and zoom levels\nNotes Area | For adding speaker-specific information";
+    await CourseDay.updateOne(
+      { dayNumber: 29 },
+      {
+        $set: {
+          contentEn: "",
+          contentMr: "",
+          subsections: [
+            {
+              titleEn: "Section 1",
+              titleMr: "भाग १",
+              contentEn: "",
+              contentMr: "",
+              videoUrl: "https://youtu.be/Yoq-nL2W2Gk?si=X0QJsvK58hgVL5eh"
+            },
+            {
+              titleEn: "Section 2",
+              titleMr: "भाग २",
+              contentEn: day29Section2ContentEn,
+              contentMr: day29Section2ContentMr,
+              videoUrl: ""
+            }
+          ]
+        }
+      }
+    );
+    await CourseDay.updateOne(
+      { dayNumber: 29 },
+      {
+        $set: {
+          "exam.durationMinutes": 30,
+          "exam.questions": [
+            {
+              questionEn: "Which specific command must be typed into the Run dialog box (Windows + R) to launch Microsoft PowerPoint?",
+              questionMr: "Microsoft PowerPoint लॉन्च करण्यासाठी Run डायलॉग (Windows + R) मध्ये कोणती कमांड टाइप करावी?",
+              options: [
+                { textEn: "microsoft powerpoint", textMr: "microsoft powerpoint" },
+                { textEn: "powerpoint", textMr: "powerpoint" },
+                { textEn: "powerpnt", textMr: "powerpnt" },
+                { textEn: "ppt", textMr: "ppt" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "Where is the Zoom Slider located within the PowerPoint interface?",
+              questionMr: "PowerPoint इंटरफेसमध्ये Zoom Slider कोठे असतो?",
+              options: [
+                { textEn: "Status Bar", textMr: "Status Bar" },
+                { textEn: "Quick Access Toolbar", textMr: "Quick Access Toolbar" },
+                { textEn: "Title Bar", textMr: "Title Bar" },
+                { textEn: "Navigation Panel", textMr: "Navigation Panel" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "Which section of the interface is primarily used to display thumbnail previews of all slides for easy switching?",
+              questionMr: "सर्व स्लाइड्सचे थंबनेल प्रिव्ह्यू सोप्या स्विचिंगसाठी कोणता भाग दाखवतो?",
+              options: [
+                { textEn: "Navigation Panel", textMr: "Navigation Panel" },
+                { textEn: "Notes Area", textMr: "Notes Area" },
+                { textEn: "Slide Area", textMr: "Slide Area" },
+                { textEn: "Ribbon", textMr: "Ribbon" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "What is the primary function of the Notes Area located below the Slide Area?",
+              questionMr: "Slide Area खाली असलेल्या Notes Area चे मुख्य कार्य काय आहे?",
+              options: [
+                { textEn: "To display the file name", textMr: "फाइल नाव दाखवणे" },
+                { textEn: "To show the slide count", textMr: "स्लाइड संख्या दाखवणे" },
+                { textEn: "To type speaker notes", textMr: "स्पीकर नोट्स टाइप करणे" },
+                { textEn: "To change the slide layout", textMr: "स्लाइड लेआउट बदलणे" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "Which three commands are found by default on the Quick Access Toolbar?",
+              questionMr: "Quick Access Toolbar वर डीफॉल्ट कोणती तीन कमांड्स असतात?",
+              options: [
+                { textEn: "New, Open, Close", textMr: "New, Open, Close" },
+                { textEn: "Bold, Italic, Underline", textMr: "Bold, Italic, Underline" },
+                { textEn: "Save, Undo, Redo", textMr: "Save, Undo, Redo" },
+                { textEn: "Cut, Copy, Paste", textMr: "Cut, Copy, Paste" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "If you want to create a new PowerPoint file from the Desktop without opening the Start menu, what is the correct action?",
+              questionMr: "Start मेनू न उघडता डेस्कटॉपवरून नवीन PowerPoint फाइल तयार करायची असेल तर योग्य क्रिया कोणती?",
+              options: [
+                { textEn: "Double-click the Recycle Bin", textMr: "Recycle Bin वर डबल-क्लिक करा" },
+                { textEn: "Press Windows + D", textMr: "Windows + D दाबा" },
+                { textEn: "Right-click Desktop > New > Microsoft PowerPoint Presentation", textMr: "Right-click Desktop > New > Microsoft PowerPoint Presentation" },
+                { textEn: "Left-click Desktop > Properties", textMr: "Left-click Desktop > Properties" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "Which interface element displays the name of the current file, such as 'Presentation1'?",
+              questionMr: "वर्तमान फाइलचे नाव (उदा. 'Presentation1') कोणता घटक दाखवतो?",
+              options: [
+                { textEn: "Office Button", textMr: "Office Button" },
+                { textEn: "Ribbon", textMr: "Ribbon" },
+                { textEn: "Title Bar", textMr: "Title Bar" },
+                { textEn: "Status Bar", textMr: "Status Bar" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "The 'Ribbon' is organized into which of the following categories?",
+              questionMr: "'Ribbon' खालीलपैकी कोणत्या श्रेणींमध्ये आयोजित आहे?",
+              options: [
+                { textEn: "Files", textMr: "Files" },
+                { textEn: "Lists", textMr: "Lists" },
+                { textEn: "Tabs", textMr: "Tabs" },
+                { textEn: "Menus", textMr: "Menus" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "Which of the following is NOT listed as a primary use of MS PowerPoint in the notes?",
+              questionMr: "नोट्सनुसार MS PowerPoint चा मुख्य वापर खालीलपैकी कोणता नाही?",
+              options: [
+                { textEn: "Designing slide shows for business", textMr: "व्यवसायासाठी स्लाइड शो डिझाइन करणे" },
+                { textEn: "Creating professional presentations", textMr: "व्यावसायिक प्रेझेंटेशन्स तयार करणे" },
+                { textEn: "Performing complex data calculations", textMr: "जटिल डेटा गणना करणे" },
+                { textEn: "Creating simple animation videos", textMr: "साधे अॅनिमेशन व्हिडिओ तयार करणे" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "Where would you click to find options for 'Save As', 'Print Preview', and 'Publish'?",
+              questionMr: "'Save As', 'Print Preview' आणि 'Publish' पर्याय कोठे सापडतात?",
+              options: [
+                { textEn: "The Slide Area", textMr: "The Slide Area" },
+                { textEn: "The View Tab", textMr: "The View Tab" },
+                { textEn: "The Office Button / File Menu", textMr: "The Office Button / File Menu" },
+                { textEn: "The Animation Tab", textMr: "The Animation Tab" }
+              ],
+              correctIndex: 2
+            }
+          ]
+        }
+      }
+    );
+    // Day 30: MS PowerPoint Home Tab Guide – Section 1 (video placeholder), Section 2 (notes)
+    const day30Section2ContentEn =
+      "Computer Class Day 30: MS PowerPoint Home Tab Guide\n\nThis document covers the comprehensive tutorial on the Home Tab in Microsoft PowerPoint, as explained in Part 2 of the series.\n\n1. Opening PowerPoint\n\nShortcut: Press Windows + R, type powerpnt, and press Enter. [00:00:55]\n\n2. Clipboard Group\n\nThis group handles basic text and object manipulation. [00:01:59]\n\nCut/Copy/Paste: standard tools to move or duplicate text, images, and shapes.\n\nFormat Painter: Copies the formatting (font, color, size, etc.) of a selected text or object and applies it to another.\n\nUsage: Select formatted text -> Click Format Painter -> Select target text. [00:03:31]\n\n3. Slides Group\n\nManage the structure of your presentation here. [00:04:37]\n\nNew Slide: Inserts a new slide. You can choose different layouts by clicking the arrow below the button.\n\nLayout: Changes the structure of the current slide (e.g., Title Only, Two Content). [00:05:17]\n\nReset: Restores the positions and formatting of the slide placeholders to their default settings. [00:05:32]\n\nDelete: Removes the selected slide from the presentation. [00:05:53]\n\n4. Font Group\n\nUsed for detailed text styling. [00:06:21]\n\nFont Style & Size: Change the appearance and size of the text.\n\nBold (B), Italic (I), Underline (U): Standard emphasis tools.\n\nText Shadow (S): Adds a subtle shadow behind text for a professional look. [00:10:23]\n\nCharacter Spacing (AV): Adjusts the space between letters (Tighter, Normal, Loose). [00:10:50]\n\nChange Case (Aa): Quickly switch between Uppercase, Lowercase, Sentence Case, etc. [00:11:37]\n\nClear All Formatting: Removes all styles and returns text to default. [00:08:14]\n\nFont Color: Changes the color of the selected text. [00:12:30]\n\n5. Paragraph Group\n\nControls the alignment and organization of text. [00:13:07]\n\nBullets & Numbering: Create organized lists. [00:13:25]\n\nIndents: Increase or decrease the space between the text and the border of the text box.\n\nLine Spacing: Adjust the vertical space between lines of text. [00:14:28]\n\nAlignment: Left, Center, Right: Standard horizontal positioning.\n\nJustify: Aligns text to both left and right margins. [00:16:35]\n\nColumns: Splits text within a text box into two or more columns. [00:17:21]\n\nText Direction: Rotates text (Horizontal, 90°, 270°, Stacked). [00:18:14]\n\nAlign Text: Vertically aligns text within a text box (Top, Middle, Bottom). [00:19:33]\n\nConvert to SmartArt: Turns a plain list into a professional graphic/diagram. [00:20:13]\n\n6. Drawing Group\n\nTools for creating and styling visual elements. [00:22:53]\n\nShapes: Insert various shapes like rectangles, arrows, and circles.\n\nArrange: Order: Bring Forward/Send Backward to layer objects.\n\nGroup: Combine multiple objects into one. [00:24:35]\n\nRotate: Rotate or flip shapes and images. [00:25:51]\n\nQuick Styles: Apply pre-designed color and border combinations to shapes. [00:26:19]\n\nShape Fill: Change the internal color of a shape (can include Pictures or Textures). [00:26:34]\n\nShape Outline: Change the color and thickness of a shape's border. [00:27:00]\n\nShape Effects: Add 3D rotation, Glow, Reflection, or Bevel effects. [00:27:14]\n\n7. Editing Group\n\nFind: Search for specific words within the slides. [00:28:10]\n\nReplace: Find a specific word and swap it with another throughout the document. [00:28:52]\n\nSelect: Select All: Selects every object on the slide.\n\nSelection Pane: Shows a list of all objects on the current slide, allowing you to hide or reorder them easily. [00:30:05]";
+    const day30Section2ContentMr =
+      "Computer Class Day 30: MS PowerPoint Home Tab Guide\n\nHome Tab वर संपूर्ण ट्यूटोरियल – Part 2.\n\n१. PowerPoint उघडणे: Windows + R, powerpnt, Enter [00:00:55].\n\n२. Clipboard Group [00:01:59]\n\nCut/Copy/Paste, Format Painter – निवडलेल्या मजकुराचे फॉर्मॅटिंग दुसऱ्या मजकुरावर लावणे. निवड -> Format Painter -> लक्ष्य मजकूर निवडा [00:03:31].\n\n३. Slides Group [00:04:37]\n\nNew Slide, Layout (Title Only, Two Content) [00:05:17], Reset [00:05:32], Delete [00:05:53].\n\n४. Font Group [00:06:21]\n\nFont Style & Size, Bold/Italic/Underline, Text Shadow (S) [00:10:23], Character Spacing (AV) [00:10:50], Change Case (Aa) [00:11:37], Clear All Formatting [00:08:14], Font Color [00:12:30].\n\n५. Paragraph Group [00:13:07]\n\nBullets & Numbering [00:13:25], Indents, Line Spacing [00:14:28], Alignment (Left/Center/Right/Justify) [00:16:35], Columns [00:17:21], Text Direction [00:18:14], Align Text (Top/Middle/Bottom) [00:19:33], Convert to SmartArt [00:20:13].\n\n६. Drawing Group [00:22:53]\n\nShapes, Arrange (Order, Group [00:24:35]), Rotate [00:25:51], Quick Styles [00:26:19], Shape Fill [00:26:34], Shape Outline [00:27:00], Shape Effects [00:27:14].\n\n७. Editing Group\n\nFind [00:28:10], Replace [00:28:52], Select All, Selection Pane [00:30:05].";
+    await CourseDay.updateOne(
+      { dayNumber: 30 },
+      {
+        $set: {
+          contentEn: "",
+          contentMr: "",
+          subsections: [
+            {
+              titleEn: "Section 1",
+              titleMr: "भाग १",
+              contentEn: "",
+              contentMr: "",
+              videoUrl: "https://youtu.be/5FHGhJnZxXw?si=u0DXnXYrX6i365IE"
+            },
+            {
+              titleEn: "Section 2",
+              titleMr: "भाग २",
+              contentEn: day30Section2ContentEn,
+              contentMr: day30Section2ContentMr,
+              videoUrl: ""
+            }
+          ]
+        }
+      }
+    );
+    await CourseDay.updateOne(
+      { dayNumber: 30 },
+      {
+        $set: {
+          "exam.durationMinutes": 30,
+          "exam.questions": [
+            {
+              questionEn: "You have customized the font, color, and size of a title and want to apply the exact same styling to a subtitle on another slide. Which tool is most efficient for this?",
+              questionMr: "तुम्ही एका शीर्षकाचे फॉंट, रंग आणि साइझ कस्टमायझ केले आणि दुसऱ्या स्लाइडवरील उपशीर्षकावर तेच स्टाइलिंग लावायचे आहे. यासाठी सर्वात कार्यक्षम साधन कोणते?",
+              options: [
+                { textEn: "Duplicate Slide", textMr: "Duplicate Slide" },
+                { textEn: "Styles Pane", textMr: "Styles Pane" },
+                { textEn: "Format Painter", textMr: "Format Painter" },
+                { textEn: "Copy and Paste", textMr: "Copy and Paste" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "If you have manually moved and resized the text placeholders on a slide and want to return them to their original default positions defined by the template, which button should you click?",
+              questionMr: "स्लाइडवरील टेक्स्ट प्लेसहोल्डर्स हाताने हलवले आणि साइझ बदलले असल्यास, टेम्पलेटनुसार मूळ डीफॉल्ट स्थानावर आणण्यासाठी कोणते बटण क्लिक करावे?",
+              options: [
+                { textEn: "Clear All Formatting", textMr: "Clear All Formatting" },
+                { textEn: "Reset", textMr: "Reset" },
+                { textEn: "Layout", textMr: "Layout" },
+                { textEn: "New Slide", textMr: "New Slide" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "Which feature in the Paragraph group allows you to distribute text evenly between the left and right margins, giving the text block clean edges on both sides?",
+              questionMr: "Paragraph गटातील कोणती सुविधा मजकूर डाव्या आणि उजव्या मार्जिन दरम्यान समान रीतीने वितरित करते?",
+              options: [
+                { textEn: "Justify", textMr: "Justify" },
+                { textEn: "Center Align", textMr: "Center Align" },
+                { textEn: "Distributed", textMr: "Distributed" },
+                { textEn: "Left Align", textMr: "Left Align" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "You have a plain bulleted list of process steps. What is the quickest way to transform this text into a professional graphic diagram?",
+              questionMr: "प्रक्रिया चरणांची साधी बुलेटेड यादी आहे. या मजकुराचे व्यावसायिक ग्राफिक डायग्राममध्ये रूपांतर करण्याचा सर्वात जलद मार्ग कोणता?",
+              options: [
+                { textEn: "Insert Shapes", textMr: "Insert Shapes" },
+                { textEn: "Group", textMr: "Group" },
+                { textEn: "Convert to SmartArt", textMr: "Convert to SmartArt" },
+                { textEn: "Text Direction", textMr: "Text Direction" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "Which tool in the Font group would you use to change 'powerpoint presentation' to 'POWERPOINT PRESENTATION' without retyping the text?",
+              questionMr: "मजकूर पुन्हा टाइप न करता 'powerpoint presentation' ला 'POWERPOINT PRESENTATION' करण्यासाठी Font गटातील कोणते साधन वापरावे?",
+              options: [
+                { textEn: "Font Size", textMr: "Font Size" },
+                { textEn: "Change Case", textMr: "Change Case" },
+                { textEn: "Character Spacing", textMr: "Character Spacing" },
+                { textEn: "Bold", textMr: "Bold" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "You want to hide a specific shape on your slide temporarily to edit what is behind it, without deleting it. Which pane allows you to do this?",
+              questionMr: "स्लाइडवरील एक आकार हटवून त्यामागील गोष्टी संपादित करायच्या आहेत; आकार हटवू नये. कोणता पेन यासाठी वापरावा?",
+              options: [
+                { textEn: "Animation Pane", textMr: "Animation Pane" },
+                { textEn: "Selection Pane", textMr: "Selection Pane" },
+                { textEn: "Format Pane", textMr: "Format Pane" },
+                { textEn: "Notes Pane", textMr: "Notes Pane" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "In the Drawing group, which option would you use to combine multiple separate shapes so they can be moved or resized as a single unit?",
+              questionMr: "Drawing गटात अनेक वेगवेगळे आकार एकत्र करून एकाच युनिटप्रमाणे हलवणे किंवा साइझ बदलणे कोणत्या पर्यायाने करता येते?",
+              options: [
+                { textEn: "Align", textMr: "Align" },
+                { textEn: "Rotate", textMr: "Rotate" },
+                { textEn: "Order", textMr: "Order" },
+                { textEn: "Group", textMr: "Group" }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "What is the function of the 'Character Spacing' tool (AV icon) in the Font group?",
+              questionMr: "Font गटातील 'Character Spacing' (AV आयकॉन) साधनाचे कार्य काय आहे?",
+              options: [
+                { textEn: "It changes the vertical space between lines of text.", textMr: "मजकुराच्या ओळींमधील उभी जागा बदलते." },
+                { textEn: "It adds a shadow behind the text.", textMr: "मजकुरामागे सावली जोडते." },
+                { textEn: "It highlights the text with a background color.", textMr: "मजकुराला बॅकग्राउंड रंगाने हायलाइट करते." },
+                { textEn: "It adjusts the horizontal space between individual letters.", textMr: "वैयक्तिक अक्षरांमधील आडवी जागा समायोजित करते." }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "If you need to change every occurrence of the word 'Client' to 'Customer' throughout your entire presentation, which tool is most effective?",
+              questionMr: "संपूर्ण प्रेझेंटेशनमध्ये 'Client' शब्दाची प्रत्येक वेळ 'Customer' ने बदलायची असेल तर कोणते साधन सर्वात प्रभावी आहे?",
+              options: [
+                { textEn: "Find", textMr: "Find" },
+                { textEn: "Rename", textMr: "Rename" },
+                { textEn: "Select All", textMr: "Select All" },
+                { textEn: "Replace", textMr: "Replace" }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "The 'Text Direction' tool in the Paragraph group allows you to do which of the following?",
+              questionMr: "Paragraph गटातील 'Text Direction' साधनाने खालीलपैकी काय करता येते?",
+              options: [
+                { textEn: "Rotate text to vertical (90 degrees) or stacked orientations.", textMr: "मजकूर उभा (90 अंश) किंवा स्टॅक्ड ओरिएंटेशनमध्ये फिरवणे." },
+                { textEn: "Move text from the left margin to the right margin.", textMr: "मजकूर डाव्या मार्जिनवरून उजव्या मार्जिनवर नेणे." },
+                { textEn: "Change the language of the text.", textMr: "मजकुराची भाषा बदलणे." },
+                { textEn: "Convert text into a 3D shape.", textMr: "मजकुराचे 3D आकारात रूपांतर करणे." }
+              ],
+              correctIndex: 0
+            }
+          ]
+        }
+      }
+    );
     await CourseDay.updateMany(
       { dayNumber: { $ne: 21 } },
       { $set: { "subsections.0.contentEn": "", "subsections.0.contentMr": "" } }
@@ -3240,6 +3990,16 @@ const ensureCourseDays = async () => {
                                                       ? "https://youtu.be/Qb5AqDIlkog?si=-pIR4B-QcqYa716d"
                                                       : i === 25
                                                         ? "https://youtu.be/z-1BJw6iebg?si=ZrC1LaH8M8yDB8i6"
+                                                        : i === 26
+                                                          ? "https://youtu.be/xZa8XWty_4o?si=bWXpSyOG2pNyX6u6"
+                                                          : i === 27
+                                                            ? "https://youtu.be/XWztQ4YeULw?si=j81-G8j7B_Lv4-Hs"
+                                                            : i === 28
+                                                              ? "https://youtu.be/DD7W8L2c8xA?si=L8pcQSmRqwolIetc"
+                                                              : i === 29
+                                                                ? "https://youtu.be/Yoq-nL2W2Gk?si=X0QJsvK58hgVL5eh"
+                                                                : i === 30
+                                                                  ? "https://youtu.be/5FHGhJnZxXw?si=u0DXnXYrX6i365IE"
             : "";
     const sectionTwoContentEn =
       i === 2
