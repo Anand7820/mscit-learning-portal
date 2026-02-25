@@ -7,12 +7,19 @@ import ExcelOperatorsTable from "../components/ExcelOperatorsTable";
 import ExcelShortcutsTable from "../components/ExcelShortcutsTable";
 import api from "../api/api";
 
-// Default practical steps when not set in DB (Day 1 example: what was learned that day)
+// Default practical steps when not set in DB – Day 1: clear "how to" steps (can have 10+ steps)
 const DEFAULT_PRACTICAL_STEPS_BY_DAY = {
   1: [
-    { stepNumber: 1, textEn: "Go to the Windows icon (Start)", textMr: "विंडोज आयकॉन (Start) वर जा" },
-    { stepNumber: 2, textEn: "Click on the power button", textMr: "पॉवर बटणावर क्लिक करा" },
-    { stepNumber: 3, textEn: "Shutdown the PC", textMr: "PC बंद करा" }
+    { stepNumber: 1, textEn: "Connect the UPS power cord to the wall socket and switch it on.", textMr: "UPS चा प्लग वॉल सॉकेटला लावा आणि स्विच ऑन करा." },
+    { stepNumber: 2, textEn: "Press the Power button on the front of the UPS.", textMr: "UPS च्या समोरच्या पॉवर बटणावर दाबा." },
+    { stepNumber: 3, textEn: "Press the Power button on the computer cabinet (CPU).", textMr: "संगणक कॅबिनेट (CPU) वरच्या पॉवर बटणावर दाबा." },
+    { stepNumber: 4, textEn: "Turn on the Monitor using its power button.", textMr: "मॉनिटरच्या पॉवर बटणाने मॉनिटर चालू करा." },
+    { stepNumber: 5, textEn: "Wait for the desktop (home screen) to appear after booting.", textMr: "बूटिंग संपेपर्यंत डेस्कटॉप (होम स्क्रीन) दिसेपर्यंत थांबा." },
+    { stepNumber: 6, textEn: "Click the Windows icon (Start button) at the bottom-left of the screen.", textMr: "स्क्रीनच्या खालच्या डाव्या कोपऱ्यात विंडोज आयकॉन (Start बटण) वर क्लिक करा." },
+    { stepNumber: 7, textEn: "In the Start menu, click the Power icon.", textMr: "Start मेनूमध्ये Power आयकॉनवर क्लिक करा." },
+    { stepNumber: 8, textEn: "Click 'Shut down' to turn off the computer completely.", textMr: "संगणक पूर्ण बंद करण्यासाठी 'Shut down' वर क्लिक करा." },
+    { stepNumber: 9, textEn: "Click the Search box next to the Start button.", textMr: "Start बटणाजवळच्या Search बॉक्सवर क्लिक करा." },
+    { stepNumber: 10, textEn: "Type the name of an app (e.g. Notepad) and press Enter to open it.", textMr: "अॅपचे नाव टाइप करा (उदा. Notepad) आणि उघडण्यासाठी Enter दाबा." }
   ]
 };
 
@@ -139,11 +146,15 @@ const CourseDayPage = () => {
         } else if (data.subsections?.length) {
           setCompletedSections(Array(data.subsections.length).fill(false));
         }
-        const steps = data.practicalSteps?.length ? data.practicalSteps : DEFAULT_PRACTICAL_STEPS_BY_DAY[num] || [];
-        if (Array.isArray(data.practicalCompletedSteps) && data.practicalCompletedSteps.length === steps.length) {
-          setPracticalCompletedSteps(data.practicalCompletedSteps);
+        const defaultForDay = DEFAULT_PRACTICAL_STEPS_BY_DAY[num];
+        const steps = (defaultForDay?.length) ? defaultForDay : (data.practicalSteps || []);
+        const saved = data.practicalCompletedSteps;
+        if (Array.isArray(saved) && saved.length === steps.length) {
+          setPracticalCompletedSteps(saved);
         } else {
-          setPracticalCompletedSteps(Array(steps.length).fill(false));
+          const completed = Array(steps.length).fill(false);
+          if (Array.isArray(saved)) saved.forEach((v, i) => { if (i < steps.length) completed[i] = v; });
+          setPracticalCompletedSteps(completed);
         }
       })
       .catch((err) => {
@@ -174,6 +185,13 @@ const CourseDayPage = () => {
   const totalSections = day?.subsections?.length || 0;
   const allSectionsCompleted =
     totalSections === 0 || completedSections.filter(Boolean).length === totalSections;
+
+  const defaultStepsForDay = day ? DEFAULT_PRACTICAL_STEPS_BY_DAY[Number(day.dayNumber)] : [];
+  const practicalStepsList = (defaultStepsForDay?.length) ? defaultStepsForDay : (day?.practicalSteps || []);
+  const allPracticalStepsComplete =
+    practicalStepsList.length === 0 ||
+    (practicalCompletedSteps.length === practicalStepsList.length && practicalCompletedSteps.every(Boolean));
+  const examUnlocked = allSectionsCompleted && allPracticalStepsComplete;
 
 
   if (error) {
@@ -343,18 +361,6 @@ const CourseDayPage = () => {
           ))}
         </div>
         <div className="mt-6 flex flex-wrap items-center gap-3">
-          {allSectionsCompleted ? (
-            <button
-              onClick={() => navigate(`/exams/${day.dayNumber}`)}
-              className="rounded bg-green-600 px-4 py-2 text-sm text-white hover:bg-green-700"
-            >
-              Start Exam
-            </button>
-          ) : totalSections > 0 ? (
-            <span className="rounded border border-gray-300 bg-gray-100 px-4 py-2 text-sm text-gray-500">
-              Mark Section 1 and Section 2 as complete to unlock exam
-            </span>
-          ) : null}
           <button
             type="button"
             onClick={() => setShowPracticalModal(true)}
@@ -362,9 +368,25 @@ const CourseDayPage = () => {
           >
             Practical
           </button>
+          {examUnlocked ? (
+            <button
+              onClick={() => navigate(`/exams/${day.dayNumber}`)}
+              className="rounded bg-green-600 px-4 py-2 text-sm text-white hover:bg-green-700"
+            >
+              Start Exam
+            </button>
+          ) : totalSections > 0 || practicalStepsList.length > 0 ? (
+            <span className="rounded border border-gray-300 bg-gray-100 px-4 py-2 text-sm text-gray-500">
+              {!allSectionsCompleted
+                ? (isMr ? "प्रथम Section 1 आणि Section 2 पूर्ण करा, नंतर Practical पूर्ण करा, त्यानंतर परीक्षा अनलॉक होईल." : "Complete Section 1 and Section 2, then complete Practical to unlock exam.")
+                : (isMr ? "परीक्षा अनलॉक करण्यासाठी सर्व Practical पायऱ्या पूर्ण करा." : "Complete all Practical steps to unlock exam.")}
+            </span>
+          ) : null}
         </div>
         {showPracticalModal && (() => {
-          const stepsList = day.practicalSteps?.length ? day.practicalSteps : DEFAULT_PRACTICAL_STEPS_BY_DAY[Number(day.dayNumber)] || [];
+          const dayNum = Number(day.dayNumber);
+          const defaultForDay = DEFAULT_PRACTICAL_STEPS_BY_DAY[dayNum];
+          const stepsList = (defaultForDay?.length) ? defaultForDay : (day.practicalSteps?.length ? day.practicalSteps : []);
           return (
             <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" onClick={() => setShowPracticalModal(false)}>
               <div className="max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-lg bg-white p-6 shadow-xl" onClick={(e) => e.stopPropagation()}>
