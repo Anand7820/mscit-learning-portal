@@ -52,6 +52,15 @@ const userSchema = new mongoose.Schema(
       ],
       default: []
     },
+    practicalCompletionByDay: {
+      type: [
+        {
+          dayNumber: { type: Number, required: true },
+          completedSteps: [Boolean]
+        }
+      ],
+      default: []
+    },
     batch: { type: mongoose.Schema.Types.ObjectId, ref: "Batch", default: null }
   },
   { timestamps: true }

@@ -7,6 +7,15 @@ import ExcelOperatorsTable from "../components/ExcelOperatorsTable";
 import ExcelShortcutsTable from "../components/ExcelShortcutsTable";
 import api from "../api/api";
 
+// Default practical steps when not set in DB (Day 1 example: what was learned that day)
+const DEFAULT_PRACTICAL_STEPS_BY_DAY = {
+  1: [
+    { stepNumber: 1, textEn: "Go to the Windows icon (Start)", textMr: "विंडोज आयकॉन (Start) वर जा" },
+    { stepNumber: 2, textEn: "Click on the power button", textMr: "पॉवर बटणावर क्लिक करा" },
+    { stepNumber: 3, textEn: "Shutdown the PC", textMr: "PC बंद करा" }
+  ]
+};
+
 const getYoutubeEmbedUrl = (url) => {
   if (!url) return "";
   if (url.includes("youtu.be/")) {
@@ -110,6 +119,8 @@ const CourseDayPage = () => {
   const section1Ref = useRef(null);
   const [day, setDay] = useState(null);
   const [completedSections, setCompletedSections] = useState([]);
+  const [practicalCompletedSteps, setPracticalCompletedSteps] = useState([]);
+  const [showPracticalModal, setShowPracticalModal] = useState(false);
   const [error, setError] = useState("");
   const [loadingDay, setLoadingDay] = useState(null);
 
@@ -127,6 +138,12 @@ const CourseDayPage = () => {
           setCompletedSections(data.completedSections);
         } else if (data.subsections?.length) {
           setCompletedSections(Array(data.subsections.length).fill(false));
+        }
+        const steps = data.practicalSteps?.length ? data.practicalSteps : DEFAULT_PRACTICAL_STEPS_BY_DAY[num] || [];
+        if (Array.isArray(data.practicalCompletedSteps) && data.practicalCompletedSteps.length === steps.length) {
+          setPracticalCompletedSteps(data.practicalCompletedSteps);
+        } else {
+          setPracticalCompletedSteps(Array(steps.length).fill(false));
         }
       })
       .catch((err) => {
@@ -338,7 +355,67 @@ const CourseDayPage = () => {
               Mark Section 1 and Section 2 as complete to unlock exam
             </span>
           ) : null}
+          <button
+            type="button"
+            onClick={() => setShowPracticalModal(true)}
+            className="rounded bg-amber-500 px-4 py-2 text-sm font-medium text-white hover:bg-amber-600"
+          >
+            Practical
+          </button>
         </div>
+        {showPracticalModal && (() => {
+          const stepsList = day.practicalSteps?.length ? day.practicalSteps : DEFAULT_PRACTICAL_STEPS_BY_DAY[Number(day.dayNumber)] || [];
+          return (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" onClick={() => setShowPracticalModal(false)}>
+              <div className="max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-lg bg-white p-6 shadow-xl" onClick={(e) => e.stopPropagation()}>
+                <h3 className="text-xl font-semibold text-gray-900">Day {day.dayNumber} – Practical</h3>
+                <p className="mt-1 text-sm text-gray-600">Complete each step on your PC, then click the step to mark it done.</p>
+                {stepsList.length === 0 ? (
+                  <p className="mt-4 text-gray-500">No practical steps for this day yet.</p>
+                ) : (
+                  <ul className="mt-4 space-y-3">
+                    {stepsList.map((step, index) => {
+                      const completed = practicalCompletedSteps[index] === true;
+                      return (
+                        <li key={step.stepNumber}>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              const next = [...practicalCompletedSteps];
+                              if (next.length <= index) {
+                                while (next.length <= index) next.push(false);
+                              }
+                              next[index] = !next[index];
+                              setPracticalCompletedSteps(next);
+                              api.put(`/courses/days/${day.dayNumber}/practical-completion`, { completedSteps: next }).catch(() => {});
+                            }}
+                            className={`flex w-full items-center gap-3 rounded-lg border-2 px-4 py-3 text-left text-sm transition ${
+                              completed
+                                ? "border-green-500 bg-green-50 text-green-800"
+                                : "border-gray-200 bg-white text-gray-800 hover:border-amber-300 hover:bg-amber-50"
+                            }`}
+                          >
+                            <span className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full font-semibold ${completed ? "bg-green-500 text-white" : "bg-gray-200 text-gray-600"}`}>
+                              {completed ? "✓" : step.stepNumber}
+                            </span>
+                            <span>{isMr && step.textMr ? step.textMr : step.textEn}</span>
+                          </button>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                )}
+                <button
+                  type="button"
+                  onClick={() => setShowPracticalModal(false)}
+                  className="mt-6 w-full rounded bg-gray-200 px-4 py-2 text-sm font-medium text-gray-800 hover:bg-gray-300"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          );
+        })()}
           </>
         )}
       </div>

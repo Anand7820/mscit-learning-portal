@@ -26,6 +26,15 @@ const questionSchema = new mongoose.Schema(
   { _id: false }
 );
 
+const practicalStepSchema = new mongoose.Schema(
+  {
+    stepNumber: { type: Number, required: true },
+    textEn: { type: String, default: "" },
+    textMr: { type: String, default: "" }
+  },
+  { _id: false }
+);
+
 const courseDaySchema = new mongoose.Schema(
   {
     dayNumber: { type: Number, unique: true, required: true, min: 1, max: 50 },
@@ -34,6 +43,7 @@ const courseDaySchema = new mongoose.Schema(
     contentEn: { type: String, default: "" },
     contentMr: { type: String, default: "" },
     subsections: { type: [subsectionSchema], default: [] },
+    practicalSteps: { type: [practicalStepSchema], default: [] },
     exam: {
       durationMinutes: { type: Number, default: 30 },
       questions: { type: [questionSchema], default: [] }

@@ -1,5 +1,6 @@
 const CourseDay = require("../models/CourseDay");
 const { getDayAvailability } = require("../utils/courseAccess");
+const { extractPracticalStepsFromSection2 } = require("../utils/extractPracticalSteps");
 
 const listDays = async (req, res) => {
   const days = await CourseDay.find().select("dayNumber subsections.titleEn subsections.titleMr");
@@ -58,7 +59,27 @@ const getDay = async (req, res) => {
   const dayProgress = req.user.sectionCompletionByDay?.find((p) => p.dayNumber === dayNumber);
   const completedSections = dayProgress?.completedSections ?? null;
 
-  return res.json({ ...day.toObject(), completedSections });
+  // Include practical steps and user's completion for this day
+  const practicalProgress = req.user.practicalCompletionByDay?.find((p) => p.dayNumber === dayNumber);
+  const practicalCompletedSteps = practicalProgress?.completedSteps ?? null;
+
+  // If no stored practicalSteps, derive 2-6 steps from Section 2 content so every day has practicals
+  let practicalSteps = (day.practicalSteps && day.practicalSteps.length > 0)
+    ? day.practicalSteps
+    : [];
+  if (practicalSteps.length === 0 && day.subsections && day.subsections[1]) {
+    const section2 = day.subsections[1];
+    const contentEn = section2.contentEn || "";
+    const contentMr = section2.contentMr || "";
+    practicalSteps = extractPracticalStepsFromSection2(contentEn, contentMr);
+  }
+
+  return res.json({
+    ...day.toObject(),
+    completedSections,
+    practicalSteps,
+    practicalCompletedSteps
+  });
 };
 
 const saveSectionCompletion = async (req, res) => {
@@ -80,4 +101,23 @@ const saveSectionCompletion = async (req, res) => {
   return res.json({ ok: true });
 };
 
-module.exports = { listDays, getDay, saveSectionCompletion };
+const savePracticalCompletion = async (req, res) => {
+  const dayNumber = Number(req.params.dayNumber);
+  const { completedSteps } = req.body;
+  if (!Array.isArray(completedSteps)) {
+    return res.status(400).json({ message: "completedSteps must be an array" });
+  }
+
+  const user = req.user;
+  if (!user.practicalCompletionByDay) user.practicalCompletionByDay = [];
+  const existing = user.practicalCompletionByDay.find((p) => p.dayNumber === dayNumber);
+  if (existing) {
+    existing.completedSteps = completedSteps;
+  } else {
+    user.practicalCompletionByDay.push({ dayNumber, completedSteps });
+  }
+  await user.save();
+  return res.json({ ok: true });
+};
+
+module.exports = { listDays, getDay, saveSectionCompletion, savePracticalCompletion };
