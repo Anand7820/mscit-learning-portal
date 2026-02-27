@@ -427,7 +427,8 @@ const CourseDayPage = () => {
           <button
             type="button"
             onClick={() => {
-              const url = `${window.location.origin}/courses/${day.dayNumber}/practical-popup`;
+              const lang = i18n.language || "en";
+              const url = `${window.location.origin}/courses/${day.dayNumber}/practical-popup?lang=${encodeURIComponent(lang)}`;
               const w = window.open(url, `PracticalDay${day.dayNumber}`, "width=380,height=700,scrollbars=yes,resizable=yes,left=100,top=100");
               if (!w) setShowPracticalModal(true);
             }}
@@ -506,9 +507,9 @@ const CourseDayPage = () => {
                   <button
                     type="button"
                     onClick={() => setShowPracticalModal(false)}
-                    className="w-full rounded-lg bg-gray-200 px-3 py-2 text-sm font-medium text-gray-800 hover:bg-gray-300"
+                    className="w-full rounded-lg bg-green-600 px-3 py-2 text-sm font-medium text-white hover:bg-green-700"
                   >
-                    Close
+                    {isMr ? "सबमिट" : "Submit"}
                   </button>
                 </div>
               </div>

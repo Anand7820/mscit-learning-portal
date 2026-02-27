@@ -17,6 +17,19 @@ const PracticalPopupPage = () => {
   const [completedSteps, setCompletedSteps] = useState([]);
 
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const lang = params.get("lang");
+    if (lang === "en" || lang === "mr") {
+      try {
+        window.localStorage.setItem("lang", lang);
+      } catch (_) {
+        // ignore
+      }
+      i18n.changeLanguage(lang);
+    }
+  }, [i18n]);
+
+  useEffect(() => {
     const num = Number(dayNumber);
     if (!dayNumber) return;
     api
@@ -57,14 +70,35 @@ const PracticalPopupPage = () => {
       <div className="mx-auto max-w-[340px] rounded-xl border border-gray-200 bg-white shadow-lg">
         <div className="flex items-center justify-between border-b border-gray-100 p-3">
           <h1 className="text-base font-semibold text-gray-900">Day {dayNumber} – Practical</h1>
-          <button
-            type="button"
-            onClick={() => window.close()}
-            className="rounded p-1.5 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
-            aria-label="Close"
-          >
-            ✕
-          </button>
+          <div className="flex items-center gap-2">
+            <select
+              className="rounded border border-gray-200 px-2 py-1 text-xs text-gray-700"
+              value={i18n.language}
+              onChange={(e) => {
+                const lang = e.target.value;
+                try {
+                  window.localStorage.setItem("lang", lang);
+                } catch (_) {
+                  // ignore
+                }
+                i18n.changeLanguage(lang);
+                const params = new URLSearchParams(window.location.search);
+                params.set("lang", lang);
+                window.history.replaceState(null, "", `${window.location.pathname}?${params.toString()}`);
+              }}
+            >
+              <option value="en">English</option>
+              <option value="mr">मराठी</option>
+            </select>
+            <button
+              type="button"
+              onClick={() => window.close()}
+              className="rounded p-1.5 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+              aria-label="Close"
+            >
+              ✕
+            </button>
+          </div>
         </div>
         <p className="px-3 pt-2 text-xs text-gray-600">
           {isMr
@@ -112,9 +146,9 @@ const PracticalPopupPage = () => {
           <button
             type="button"
             onClick={() => window.close()}
-            className="w-full rounded-lg bg-gray-200 px-3 py-2 text-sm font-medium text-gray-800 hover:bg-gray-300"
+            className="w-full rounded-lg bg-green-600 px-3 py-2 text-sm font-medium text-white hover:bg-green-700"
           >
-            Close
+            {isMr ? "सबमिट" : "Submit"}
           </button>
         </div>
       </div>

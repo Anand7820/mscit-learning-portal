@@ -1,6 +1,1091 @@
 const CourseDay = require("../models/CourseDay");
 
+const day33SectionTwoContentEn = `Computer Class Day 33: MS PowerPoint Animation Tab
+
+This document provides detailed notes on the Animation (and Transition) features in MS PowerPoint based on the Part-5 tutorial by GULAB GURU.
+
+1. Introduction to Animations
+
+The Animation Tab is often considered the "soul" of a presentation as it controls how the audience experiences the flow of information.
+
+[00:00:19]
+
+2. Slide Transitions
+
+Transitions are effects that occur when moving from one slide to the next.
+
+Applying a Transition: Select a slide and click on any transition effect in the gallery.
+
+[00:04:11]
+
+Removing a Transition: Select the slide and choose "No Transition."
+
+[00:06:23]
+
+Preview: Click the "Preview" button to see how the transition looks before presenting.
+
+[00:04:20]
+
+Transition Settings:
+
+[00:07:45]
+
+Transition Sound: Add sound effects (like applause, wind, or camera clicks) that play during the transition.
+
+Transition Speed: Set the speed of the effect to Slow, Medium, or Fast.
+
+[00:08:40]
+
+Apply to All: Use this to make all slides in your presentation use the same transition, sound, and speed settings.
+
+[00:09:16]
+
+3. Advance Slide Settings
+
+This group determines how you move to the next slide during a presentation.
+
+[00:10:34]
+
+On Mouse Click: The next slide only appears when you click the mouse or press a key.
+
+Automatically After: The slide advances automatically after a specific number of seconds/minutes.
+
+Tip: To make a "video-like" photo slideshow, uncheck "On Mouse Click," set a time (e.g., 2 seconds), and click Apply to All.
+
+[00:12:04]
+
+4. Custom Animations (For Text & Objects)
+
+Unlike transitions (which apply to the whole slide), Custom Animations apply to specific elements like text boxes, images, or shapes.
+
+[00:14:05]
+
+A. The Four Types of Effects
+
+[00:15:54]
+
+Entrance: Controls how the object "enters" the slide (e.g., Fly In, Fade, Zoom).
+
+Emphasis: Changes the object while it is on the slide to draw attention (e.g., Change Font Color, Grow/Shrink, Spin).
+
+[00:20:41]
+
+Exit: Controls how the object "leaves" the slide (e.g., Fly Out, Disappear).
+
+[00:22:03]
+
+Motion Paths: Moves the object along a specific pre-defined or custom-drawn path.
+
+[00:22:55]
+
+B. Managing Animations
+
+Add Effect: Select an object, click "Add Effect," and choose from the categories above.
+
+[00:15:54]
+
+Animation Pane: The side window that lists all animations on the current slide in order. You can reorder or remove them here.
+
+[00:18:09]
+
+Speed & Timing: For each animation, you can set the speed (Very Slow to Very Fast) and when it starts (On Click, With Previous, or After Previous).
+
+[00:18:30]
+
+C. Motion Path Customization
+
+[00:27:30]
+
+Preset Paths: Circles, Spirals, Springs, etc.
+
+Draw Custom Path: Use the "Curve" or "Freeform" tool to draw exactly where you want an object to move.
+
+[00:29:20]
+
+Path Editing: You can drag the points of a path to change its shape or destination.
+
+[00:28:30]
+
+5. Adding Sounds to Animations
+
+You can add specific sounds to individual text or image animations:
+
+Right-click the animation in the Custom Animation pane.
+
+Select Effect Options.
+
+Choose a sound from the "Sound" dropdown menu.
+
+[00:23:32]
+
+Key Shortcuts
+
+Start Slideshow: F5
+
+[00:06:38]
+
+Exit Slideshow: Esc
+
+[00:07:05]
+
+Open PPT: Win + R -> powerpnt`;
+
+const day33SectionTwoContentMr = `Computer Class Day 33: MS PowerPoint Animation Tab (मराठी)
+
+या धड्यात MS PowerPoint मधील Animation आणि Transition टॅबचे सविस्तर स्पष्टीकरण आहे (GULAB GURU – Part‑5 वर आधारित).
+
+1. Animations ची ओळख
+
+Animation Tab प्रेझेंटेशनचा "प्राण" मानला जातो. प्रेक्षकांना मजकूर, चित्रे आणि कल्पना कशा क्रमाने आणि कशा स्टाईलमध्ये दिसतील हे इथे ठरते. [00:00:19]
+
+2. Slide Transitions
+
+Transition म्हणजे एका स्लाइडवरून पुढच्या स्लाइडवर जाताना दिसणारा इफेक्ट.
+
+Transition लावणे: स्लाइड निवडा → Transition गॅलरीमधून कोणताही इफेक्ट क्लिक करा. [00:04:11]
+
+Transition काढणे: स्लाइड निवडा → "No Transition" निवडा. [00:06:23]
+
+Preview: 'Preview' बटणावर क्लिक करून तो इफेक्ट कसा दिसेल ते बघा. [00:04:20]
+
+Transition Settings: [00:07:45]
+
+- Transition Sound: स्लाइड बदलताना टाळ्या, वारा, कॅमेरा क्लिक असे साऊंड लावू शकता.
+- Transition Speed: Slow / Medium / Fast वेग निवडा. [00:08:40]
+- Apply to All: निवडलेला Transition, Sound आणि Speed सर्व स्लाइडसना एकाच वेळी लागू करतो. [00:09:16]
+
+3. Advance Slide Settings
+
+प्रेझेंटेशन दरम्यान पुढच्या स्लाइडवर कसे जायचे हे या गटातून ठरवता येते. [00:10:34]
+
+- On Mouse Click: माऊस क्लिक किंवा की दाबल्यावरच पुढची स्लाइड येते.
+- Automatically After: दिलेल्या सेकंद/मिनिटांनंतर स्लाइड आपोआप पुढे जाते.
+
+Tip: फोटो स्लाइडशो "व्हिडिओ" सारखा चालवायचा असल्यास 'On Mouse Click' चे चिन्ह काढा, उदा. 2 सेकंद वेळ द्या आणि 'Apply to All' करा. [00:12:04]
+
+4. Custom Animations (Text आणि Objects साठी)
+
+Transition पूर्ण स्लाइडवर लागू होतो; Custom Animation मात्र विशिष्ट ऑब्जेक्टवर (टेक्स्ट बॉक्स, चित्र, shape इ.) लागू होतो. [00:14:05]
+
+A. चार मुख्य इफेक्ट प्रकार [00:15:54]
+
+- Entrance: ऑब्जेक्ट स्लाइडवर कसा "येईल" (Fly In, Fade, Zoom इ.).
+- Emphasis: आधीपासून दिसत असलेल्या ऑब्जेक्टवर लक्ष वेधण्यासाठी बदल (रंग बदल, Grow/Shrink, Spin इ.). [00:20:41]
+- Exit: ऑब्जेक्ट स्लाइडवरून कसा "जाईल" (Fly Out, Disappear इ.). [00:22:03]
+- Motion Paths: ऑब्जेक्ट ठरावीक Path ने फिरवणे (रेडी‑मेड किंवा स्वतः काढलेला). [00:22:55]
+
+B. Animations Management
+
+- Add Effect: ऑब्जेक्ट निवडा → 'Add Effect' → योग्य श्रेणी आणि इफेक्ट निवडा. [00:15:54]
+- Animation Pane: बाजूला दिसणाऱ्या पॅनमध्ये त्या स्लाइडवरील सर्व Animations क्रमाने दिसतात; इथेच क्रम बदलू किंवा इफेक्ट काढू शकतो. [00:18:09]
+- Speed & Timing: प्रत्येक Animation साठी वेग (Very Slow ते Very Fast) आणि Start सेटिंग (On Click / With Previous / After Previous) ठरवू शकता. [00:18:30]
+
+C. Motion Paths चे कस्टमायझेशन [00:27:30]
+
+- Preset Paths: Circle, Spiral, Spring इ. तयार Paths.
+- Draw Custom Path: Curve किंवा Freeform वापरून हवा तसा मार्ग काढा. [00:29:20]
+- Path Editing: Path वरच्या points ड्रॅग करून मार्ग किंवा शेवटचे ठिकाण बदलू शकता. [00:28:30]
+
+5. Animations सोबत Sound लावणे [00:23:32]
+
+एखाद्या टेक्स्ट किंवा चित्राच्या Animation ला विशिष्ट Sound लावण्यासाठी:
+- Animation Pane मध्ये त्या Animation वर Right‑Click करा.
+- 'Effect Options' निवडा.
+- 'Sound' ड्रॉपडाऊन मधून हवा तो Sound निवडा.
+
+Key Shortcuts (महत्वाचे शॉर्टकट)
+
+- Start Slideshow (सुरुवातीपासून): F5 [00:06:38]
+- Exit Slideshow: Esc [00:07:05]
+- PowerPoint उघडणे: Win + R → powerpnt`;
+
+const day34SectionTwoContentEn = `Computer Class Day 34: MS PowerPoint Slide Show Tab 
+
+This document provides detailed notes on the features of the Slide Show Tab in MS PowerPoint, as explained in the Part-6 tutorial by GULAB GURU.
+
+1. Start Slide Show Group
+
+This group controls how you initiate the presentation for your audience.
+
+From Beginning (Shortcut: F5): Starts the presentation from the very first slide, regardless of which slide you are currently editing. 
+
+$$00:01:51$$
+
+From Current Slide (Shortcut: Shift + F5): Starts the presentation from the slide you have currently selected. This is useful for testing specific parts of your deck. 
+
+$$00:03:00$$
+
+Custom Slide Show: Allows you to create a specific sequence of slides. 
+
+$$00:04:09$$
+
+Example: If you have 10 slides but only want to show slides 1, 3, and 5 to a specific audience, you can create a "Custom Show" with just those slides.
+
+2. Set Up Group
+
+These tools help you configure how the presentation behaves and which slides are visible.
+
+Set Up Slide Show: Opens a dialog box for advanced configurations: 
+
+$$00:06:40$$
+
+Loop continuously until 'Esc': The presentation will restart from the beginning automatically after the last slide until you press the Escape key.
+
+Show Type: Choose between "Full Screen" or "Windowed" (Individual Window) mode.
+
+Show Slides: Select a range (e.g., show only slides 1 to 4).
+
+Hide Slide: Allows you to keep a slide in your file but skip it during the actual presentation. Hidden slides appear "dimmed" in the sidebar with a slash through the slide number. 
+
+$$00:09:50$$
+
+Rehearse Timings: A practice mode that records how long you spend on each slide. 
+
+$$00:11:35$$
+
+PowerPoint tracks the time spent per slide and total time.
+
+Upon exiting, you can save these timings to have the presentation advance automatically based on your rehearsal.
+
+Record Narration: Use this to record your voice/audio directly into the presentation. 
+
+$$00:15:12$$
+
+Use Rehearsed Timings: A checkbox that enables or disables the automatic slide advancement you recorded during your rehearsal. 
+
+$$00:14:05$$
+
+3. Monitors Group
+
+Settings for how the presentation is displayed on external screens or projectors. 
+
+$$00:15:40$$
+
+Resolution: You can set the screen resolution (e.g., 1080p). It is generally recommended to keep this at "Use Current Resolution" for the best compatibility.
+
+Presenter View: (Mentioned as related to monitor setup) Allows the speaker to see notes and upcoming slides on one screen while the audience sees only the current slide on the projector.
+
+Key Shortcuts Summary
+
+F5: Start from the beginning.
+
+Shift + F5: Start from the current slide.
+
+Esc: Exit the slide show.`;
+
+const day35SectionTwoContentEn = `Computer Class Day 35: MS PowerPoint Review Tab
+
+This document provides detailed notes on the features of the Review Tab in MS PowerPoint, as explained in the Part-7 tutorial by GULAB GURU.
+
+1. Proofing Group
+
+These tools help ensure your presentation is professional and error-free.
+
+Spelling (Shortcut: F7): [00:00:42]
+
+Automatically detects misspelled words (indicated by a red zigzag line).
+
+Options:
+
+Change/Change All: Replaces the error with a suggested correct spelling.
+
+Ignore/Ignore All: Removes the warning if you know the spelling is correct (common for names).
+
+Add to Dictionary: Adds the word to the internal dictionary so it is never marked as an error again. [00:04:33]
+
+Research: Search for definitions or information related to a selected word (requires internet). [00:06:12]
+
+Thesaurus: Find synonyms (words with similar meanings) for a selected word. [00:07:07]
+
+2. Language & Translation
+
+Translate: [00:07:31]
+
+Translates words, sentences, or entire paragraphs into different languages (e.g., English to Hindi).
+
+Note: An internet connection is required for this feature to work. [00:09:00]
+
+Language: Set the default proofing language for the spelling checker. [00:09:13]
+
+3. Comments Group
+
+Used for collaboration and feedback during the review process. [00:09:51]
+
+New Comment: Add a sticky note to a specific slide or object to provide feedback. [00:10:51]
+
+Edit Comment: Modify an existing note.
+
+Delete: Remove the selected comment or all comments in the presentation. [00:13:08]
+
+Previous/Next: Quickly navigate through the comments in the deck. [00:13:20]
+
+Show/Hide Markup: Toggle the visibility of the comment icons on the slides. [00:13:51]
+
+4. Protect Group (Security)
+
+Protect Presentation: [00:14:18]
+
+Restrict permissions using digital rights or passwords.
+
+How to Add a Password (via Save As): [00:15:19]
+
+Go to Save As.
+
+Click the Tools button near the Save button.
+
+Select General Options.
+
+Set a "Password to open" and/or a "Password to modify".
+
+Re-enter passwords to confirm and save.
+
+Read-Only Mode: If a user knows the "Open" password but not the "Modify" password, they can open the file as "Read-Only" to view it without making changes. [00:16:55]
+
+Important Takeaways
+
+Collaboration: Comments are essential when multiple people are working on the same file.
+
+Accuracy: Always run a Spelling check before finalizing a presentation.
+
+Security: Use the "General Options" under Save As to password-protect sensitive data.`;
+
+const day35SectionTwoContentMr = `Computer Class Day 35: MS PowerPoint Review Tab (मराठी)
+
+या धड्यात MS PowerPoint मधील Review टॅबचे फीचर्स समजावले आहेत (GULAB GURU – Part‑7 वर आधारित).
+
+1. Proofing Group
+
+या गटातील साधने प्रेझेंटेशन प्रोफेशनल आणि चुका‑मुक्त ठेवण्यासाठी मदत करतात.
+
+Spelling (Shortcut: F7) [00:00:42]
+
+- चुकीचे शब्द ओळखून त्यांच्या खाली लाल झिगझॅग रेषा दाखवते.
+
+मुख्य पर्याय:
+
+- Change / Change All: चुकीचा शब्द सुचवलेल्या योग्य शब्दाने बदलतो.
+- Ignore / Ignore All: नावांसारख्या शब्दांचे स्पेलिंग योग्य असेल तर इशारा काढून टाकतो.
+- Add to Dictionary: निवडलेला शब्द इंटरनल डिक्शनरीत कायमचा जोडतो; पुढे तो चुकीचा म्हणून दाखवला जात नाही. [00:04:33]
+
+Research: निवडलेल्या शब्दाबद्दल अर्थ/माहिती शोधण्यासाठी (इंटरनेट लागते). [00:06:12]
+
+Thesaurus: निवडलेल्या शब्दासाठी समानार्थी (Synonyms) शब्द शोधतो. [00:07:07]
+
+2. Language आणि Translation
+
+Translate [00:07:31]
+
+- शब्द, वाक्य किंवा पूर्ण परिच्छेद दुसऱ्या भाषेत (उदा. English → Hindi) अनुवाद करतो.
+- हे फीचर वापरण्यासाठी इंटरनेट कनेक्शन आवश्यक आहे. [00:09:00]
+
+Language: Spelling Checker कोणत्या भाषेचा वापर करेल (Proofing Language) ते सेट करते. [00:09:13]
+
+3. Comments Group
+
+एकाच प्रेझेंटेशनवर अनेक लोक काम करत असताना प्रतिक्रिया देण्यासाठी हा गट वापरतात. [00:09:51]
+
+- New Comment: कोणत्याही स्लाइडवर किंवा ऑब्जेक्टवर स्टिकी‑नोट सारखा कमेंट लावता येतो. [00:10:51]
+- Edit Comment: आधीचा कमेंट बदलणे.
+- Delete: निवडलेला कमेंट किंवा सर्व कमेंट्स काढून टाकणे. [00:13:08]
+- Previous / Next: प्रेझेंटेशनमधील वेगवेगळ्या कमेंट्समध्ये पटकन पुढे‑मागे जाणे. [00:13:20]
+- Show/Hide Markup: स्लाइडवर दिसणारे कमेंट आयकॉन्स दाखवणे किंवा लपवणे. [00:13:51]
+
+4. Protect Group (Security)
+
+Protect Presentation [00:14:18]
+
+- फाइलवर पासवर्ड किंवा Rights वापरून परवानग्या मर्यादित करता येतात.
+
+Save As मधून Password कसा लावायचा? [00:15:19]
+
+1) Save As डायलॉग उघडा.
+2) Save बटणाजवळील Tools बटण क्लिक करा.
+3) General Options निवडा.
+4) "Password to open" आणि/किंवा "Password to modify" टाइप करा.
+5) पासवर्ड पुन्हा टाइप करून कन्फर्म करा आणि फाइल सेव्ह करा.
+
+Read‑Only Mode: ज्या युजरकडे फक्त "Open" पासवर्ड आहे पण "Modify" पासवर्ड नाही, तो फाइल Read‑Only मोडमध्ये उघडून बघू शकतो पण बदल करू शकत नाही. [00:16:55]
+
+महत्त्वाचे निष्कर्ष (Important Takeaways)
+
+- Collaboration: एकाच फाइलवर टीममध्ये काम करताना Comments खूप उपयोगी ठरतात.
+- Accuracy: प्रेझेंटेशन फायनल करण्यापूर्वी नेहमी Spelling Check (F7) चालवा.
+- Security: संवेदनशील डेटा असलेल्या प्रेझेंटेशनसाठी Save As → Tools → General Options मधून पासवर्ड लावणे सुरक्षित आहे.`;
+
+const day34SlideShowNotesEn = `This document provides detailed notes on the features of the Slide Show Tab in MS PowerPoint, as explained in the Part-6 tutorial by GULAB GURU.
+
+1. Start Slide Show Group
+
+This group controls how you initiate the presentation for your audience.
+
+From Beginning (Shortcut: F5): Starts the presentation from the very first slide, regardless of which slide you are currently editing. [00:01:51]
+
+From Current Slide (Shortcut: Shift + F5): Starts the presentation from the slide you have currently selected. This is useful for testing specific parts of your deck. [00:03:00]
+
+Custom Slide Show: Allows you to create a specific sequence of slides. [00:04:09]
+
+Example: If you have 10 slides but only want to show slides 1, 3, and 5 to a specific audience, you can create a "Custom Show" with just those slides.
+
+2. Set Up Group
+
+These tools help you configure how the presentation behaves and which slides are visible.
+
+Set Up Slide Show: Opens a dialog box for advanced configurations: [00:06:40]
+
+Loop continuously until 'Esc': The presentation will restart from the beginning automatically after the last slide until you press the Escape key.
+
+Show Type: Choose between "Full Screen" or "Windowed" (Individual Window) mode.
+
+Show Slides: Select a range (e.g., show only slides 1 to 4).
+
+Hide Slide: Allows you to keep a slide in your file but skip it during the actual presentation. Hidden slides appear "dimmed" in the sidebar with a slash through the slide number. [00:09:50]
+
+Rehearse Timings: A practice mode that records how long you spend on each slide. [00:11:35]
+
+PowerPoint tracks the time spent per slide and total time.
+
+Upon exiting, you can save these timings to have the presentation advance automatically based on your rehearsal.
+
+Record Narration: Use this to record your voice/audio directly into the presentation. [00:15:12]
+
+Use Rehearsed Timings: A checkbox that enables or disables the automatic slide advancement you recorded during your rehearsal. [00:14:05]
+
+3. Monitors Group
+
+Settings for how the presentation is displayed on external screens or projectors. [00:15:40]
+
+Resolution: You can set the screen resolution (e.g., 1080p). It is generally recommended to keep this at "Use Current Resolution" for the best compatibility.
+
+Presenter View: (Mentioned as related to monitor setup) Allows the speaker to see notes and upcoming slides on one screen while the audience sees only the current slide on the projector.
+
+Key Shortcuts Summary
+
+F5: Start from the beginning.
+
+Shift + F5: Start from the current slide.
+
+Esc: Exit the slide show.`;
+
+const day34SectionTwoContentMr = `Computer Class Day 34: MS PowerPoint Slide Show Tab (मराठी)
+
+या धड्यात MS PowerPoint मधील Slide Show टॅबचे फीचर्स समजावले आहेत (GULAB GURU – Part‑6 वर आधारित).
+
+1. Start Slide Show गट
+
+हा गट प्रेझेंटेशन प्रेक्षकांसमोर कसे सुरू करायचे ते नियंत्रित करतो.
+
+- From Beginning (Shortcut: F5): कोणतीही स्लाइड एडिट होत असली तरी स्लाइड नंबर 1 पासून प्रेझेंटेशन सुरू होते. [00:01:51]
+- From Current Slide (Shortcut: Shift + F5): सध्या निवडलेल्या स्लाइडपासूनच स्लाइडशो सुरू करतो – विशिष्ट भाग तपासण्यासाठी खूप उपयोगी. [00:03:00]
+- Custom Slide Show: निवडक स्लाइड्सचा स्वतंत्र शो तयार करता येतो. [00:04:09]
+
+उदा.: 20 स्लाइड्स असताना फक्त 1, 5 आणि 10 नंबरच्या स्लाइड्स दाखवायच्या असतील तर या स्लाइड्सचा एक Custom Show तयार करा.
+
+2. Set Up गट
+
+प्रेझेंटेशन कसे वागेल, कोणत्या स्लाइड्स दाखवायच्या/लपवायच्या हे सेट करण्यासाठी हा गट वापरला जातो.
+
+- Set Up Slide Show: अॅडव्हान्स सेटिंग्स साठी डायलॉग बॉक्स उघडतो. [00:06:40]
+- Loop continuously until 'Esc': शेवटची स्लाइड संपल्यानंतर प्रेझेंटेशन पुन्हा आपोआप पहिल्या स्लाइडपासून सुरू होते; Esc दाबेपर्यंत हे चालू राहते.
+- Show Type: Full Screen (पूर्ण स्क्रीन) किंवा Windowed (वेगळ्या विंडोमध्ये) मोड निवडा.
+- Show Slides: फक्त काही स्लाइड्स दाखवायच्या असतील तर त्यांच्या रेंज (उदा. 1 ते 4) निवडा.
+- Hide Slide: स्लाइड फाइलमध्ये ठेवूनही प्रेझेंटेशनदरम्यान ती स्किप करता येते. हिडन स्लाइड थंबनेलवर नंबरच्या जवळ स्लॅश आणि हलके (dimmed) दिसते. [00:09:50]
+
+- Rehearse Timings: सराव मोड; प्रत्येक स्लाइडवर तुम्ही किती वेळ थांबलात ते रेकॉर्ड होते. [00:11:35]
+  - PowerPoint प्रति‑स्लाइड वेळ आणि एकूण वेळ नोंदवतो.
+  - बाहेर पडल्यानंतर हे Timings सेव्ह केले तर स्लाइड्स सरावातील वेळेनुसार आपोआप पुढे सरकतात.
+
+- Record Narration: तुमचा आवाज/कॉमेंटरी थेट प्रेझेंटेशनमध्ये रेकॉर्ड करण्यासाठी. [00:15:12]
+- Use Rehearsed Timings: हे चेकबॉक्स ऑन असल्यावर Rehearse Timings मधील वेळेनुसार स्लाइड्स Auto Advance होतात; ऑफ केल्यावर परत Manual क्लिकनेच पुढे जातात. [00:14:05]
+
+3. Monitors गट
+
+बाह्य स्क्रीन, प्रोजेक्टर इत्यादीवर प्रेझेंटेशन कसे दिसेल हे इथे सेट केले जाते. [00:15:40]
+
+- Resolution: स्क्रीन रिझॉल्यूशन (उदा. 1080p) ठरवते. साधारणपणे 'Use Current Resolution' ठेवणे सर्वात compatible ठरते.
+- Presenter View: ट्रेनर/स्पीकरला त्यांच्या मॉनिटरवर Notes आणि पुढची स्लाइड दिसते, तर प्रेक्षकांना फक्त सध्याची स्लाइड प्रोजेक्टरवर दिसते.
+
+Key Shortcuts सारांश
+
+- F5: सुरुवातीपासून स्लाइडशो सुरू.
+- Shift + F5: सध्याच्या स्लाइडपासून स्लाइडशो सुरू.
+- Esc: स्लाइडशो बंद करून एडिटिंग व्यू मध्ये परत येण्यासाठी.`;
+
+const day33ExamQuestions = [
+  {
+    questionEn:
+      "What is the primary difference between a 'Slide Transition' and a 'Custom Animation'?",
+    questionMr:
+      "What is the primary difference between a 'Slide Transition' and a 'Custom Animation'?",
+    options: [
+      {
+        textEn:
+          "Custom Animations happen between slides, while Transitions happen on click.",
+        textMr:
+          "Custom Animations happen between slides, while Transitions happen on click."
+      },
+      {
+        textEn:
+          "Transitions apply to the entire slide appearing, while Custom Animations apply to specific objects like text or images.",
+        textMr:
+          "Transitions apply to the entire slide appearing, while Custom Animations apply to specific objects like text or images."
+      },
+      {
+        textEn:
+          "Transitions are only for text, while Custom Animations are for images.",
+        textMr:
+          "Transitions are only for text, while Custom Animations are for images."
+      },
+      {
+        textEn:
+          "Transitions can have sound, but Custom Animations cannot.",
+        textMr:
+          "Transitions can have sound, but Custom Animations cannot."
+      }
+    ],
+    correctIndex: 1
+  },
+  {
+    questionEn:
+      "You have selected a 'Fade' transition for your first slide. How can you quickly apply this same effect, speed, and sound to every single slide in your presentation?",
+    questionMr:
+      "You have selected a 'Fade' transition for your first slide. How can you quickly apply this same effect, speed, and sound to every single slide in your presentation?",
+    options: [
+      {
+        textEn: "Use the 'Format Painter' tool.",
+        textMr: "Use the 'Format Painter' tool."
+      },
+      {
+        textEn: "Manually select each slide and click 'Fade'.",
+        textMr: "Manually select each slide and click 'Fade'."
+      },
+      {
+        textEn:
+          "Click the 'Apply to All' button in the Transition to This Slide group.",
+        textMr:
+          "Click the 'Apply to All' button in the Transition to This Slide group."
+      },
+      {
+        textEn: "Press Ctrl + A and then F5.",
+        textMr: "Press Ctrl + A and then F5."
+      }
+    ],
+    correctIndex: 2
+  },
+  {
+    questionEn:
+      "If you want to create a photo slideshow that plays automatically like a video without you pressing any keys, which setting must you adjust?",
+    questionMr:
+      "If you want to create a photo slideshow that plays automatically like a video without you pressing any keys, which setting must you adjust?",
+    options: [
+      {
+        textEn: "Uncheck 'On Mouse Click' and check 'Automatically After'.",
+        textMr: "Uncheck 'On Mouse Click' and check 'Automatically After'."
+      },
+      {
+        textEn: "Set the Transition Speed to 'Slow'.",
+        textMr: "Set the Transition Speed to 'Slow'."
+      },
+      {
+        textEn: "Choose a 'Motion Path' for the slide.",
+        textMr: "Choose a 'Motion Path' for the slide."
+      },
+      {
+        textEn: "Use the 'Rehearse Timings' feature only.",
+        textMr: "Use the 'Rehearse Timings' feature only."
+      }
+    ],
+    correctIndex: 0
+  },
+  {
+    questionEn:
+      "Which of the four Custom Animation types is designed to draw attention to an object that is already visible on the slide (e.g., making it spin or change color)?",
+    questionMr:
+      "Which of the four Custom Animation types is designed to draw attention to an object that is already visible on the slide (e.g., making it spin or change color)?",
+    options: [
+      { textEn: "Motion Path", textMr: "Motion Path" },
+      { textEn: "Exit", textMr: "Exit" },
+      { textEn: "Emphasis", textMr: "Emphasis" },
+      { textEn: "Entrance", textMr: "Entrance" }
+    ],
+    correctIndex: 2
+  },
+  {
+    questionEn:
+      "Where can you view a list of all animations on the current slide, reorder them, and adjust their timing?",
+    questionMr:
+      "Where can you view a list of all animations on the current slide, reorder them, and adjust their timing?",
+    options: [
+      { textEn: "The Design Tab", textMr: "The Design Tab" },
+      { textEn: "The Animation Pane", textMr: "The Animation Pane" },
+      { textEn: "The Slide Sorter View", textMr: "The Slide Sorter View" },
+      { textEn: "The Quick Access Toolbar", textMr: "The Quick Access Toolbar" }
+    ],
+    correctIndex: 1
+  },
+  {
+    questionEn:
+      "You want an image to move in a specific, irregular pattern that isn't a straight line or circle. Which tool should you use?",
+    questionMr:
+      "You want an image to move in a specific, irregular pattern that isn't a straight line or circle. Which tool should you use?",
+    options: [
+      { textEn: "Emphasis -> Spin", textMr: "Emphasis -> Spin" },
+      { textEn: "Entrance -> Fly In", textMr: "Entrance -> Fly In" },
+      {
+        textEn: "Draw Custom Path -> Curve/Freeform",
+        textMr: "Draw Custom Path -> Curve/Freeform"
+      },
+      { textEn: "Transition -> Morph", textMr: "Transition -> Morph" }
+    ],
+    correctIndex: 2
+  },
+  {
+    questionEn:
+      "How do you add a sound effect (like a 'Whoosh') to a specific text animation (e.g., when a bullet point flies in)?",
+    questionMr:
+      "How do you add a sound effect (like a 'Whoosh') to a specific text animation (e.g., when a bullet point flies in)?",
+    options: [
+      {
+        textEn: "It is not possible to add sound to custom animations.",
+        textMr: "It is not possible to add sound to custom animations."
+      },
+      { textEn: "Change the Transition Sound.", textMr: "Change the Transition Sound." },
+      { textEn: "Insert -> Sound", textMr: "Insert -> Sound" },
+      {
+        textEn:
+          "Right-click the animation in the Animation Pane and select 'Effect Options'.",
+        textMr:
+          "Right-click the animation in the Animation Pane and select 'Effect Options'."
+      }
+    ],
+    correctIndex: 3
+  },
+  {
+    questionEn:
+      "Which key would you press to immediately stop a running slideshow and return to the editing view?",
+    questionMr:
+      "Which key would you press to immediately stop a running slideshow and return to the editing view?",
+    options: [
+      { textEn: "F5", textMr: "F5" },
+      { textEn: "Spacebar", textMr: "Spacebar" },
+      { textEn: "Enter", textMr: "Enter" },
+      { textEn: "Esc", textMr: "Esc" }
+    ],
+    correctIndex: 3
+  },
+  {
+    questionEn:
+      "What does the 'Preview' button in the Animation tab allow you to do?",
+    questionMr:
+      "What does the 'Preview' button in the Animation tab allow you to do?",
+    options: [
+      {
+        textEn:
+          "See how the animations and transitions will look on the current slide without starting the full show.",
+        textMr:
+          "See how the animations and transitions will look on the current slide without starting the full show."
+      },
+      {
+        textEn: "Save the presentation automatically.",
+        textMr: "Save the presentation automatically."
+      },
+      {
+        textEn: "View all slides in a grid.",
+        textMr: "View all slides in a grid."
+      },
+      {
+        textEn: "Print a draft of the slides.",
+        textMr: "Print a draft of the slides."
+      }
+    ],
+    correctIndex: 0
+  },
+  {
+    questionEn:
+      "If you want two animations to happen at the exact same time (e.g., text fades in while a picture spins), which Start setting should you use?",
+    questionMr:
+      "If you want two animations to happen at the exact same time (e.g., text fades in while a picture spins), which Start setting should you use?",
+    options: [
+      { textEn: "After Next", textMr: "After Next" },
+      { textEn: "With Previous", textMr: "With Previous" },
+      { textEn: "On Click", textMr: "On Click" },
+      { textEn: "After Previous", textMr: "After Previous" }
+    ],
+    correctIndex: 1
+  }
+];
+
+const day34ExamQuestions = [
+  {
+    questionEn:
+      "Which keyboard shortcut starts the presentation from the very first slide, regardless of which slide is currently selected?",
+    questionMr:
+      "कोणता कीबोर्ड शॉर्टकट, सध्या कोणतीही स्लाइड निवडलेली असली तरी, प्रेझेंटेशन पहिल्या स्लाइडपासून सुरू करतो?",
+    options: [
+      { textEn: "Ctrl + S", textMr: "Ctrl + S" },
+      { textEn: "Shift + F5", textMr: "Shift + F5" },
+      { textEn: "F5", textMr: "F5" },
+      { textEn: "Esc", textMr: "Esc" }
+    ],
+    correctIndex: 2
+  },
+  {
+    questionEn:
+      "If you are editing Slide 10 and want to preview the presentation starting specifically from Slide 10, which feature should you use?",
+    questionMr:
+      "तुम्ही Slide 10 एडिट करत आहात आणि प्रेझेंटेशनची झलक थेट Slide 10 पासून पाहायची आहे. कोणते फीचर वापराल?",
+    options: [
+      { textEn: "From Beginning", textMr: "From Beginning" },
+      { textEn: "Custom Slide Show", textMr: "Custom Slide Show" },
+      { textEn: "Rehearse Timings", textMr: "Rehearse Timings" },
+      { textEn: "From Current Slide", textMr: "From Current Slide" }
+    ],
+    correctIndex: 3
+  },
+  {
+    questionEn:
+      "You have a presentation with 20 slides, but for a specific meeting, you only want to show slides 1, 5, and 10 without deleting the others. What is the best tool for this?",
+    questionMr:
+      "तुमच्याकडे २० स्लाइडचे प्रेझेंटेशन आहे, पण एका मीटिंगसाठी फक्त स्लाइड 1, 5 आणि 10 दाखवायच्या आहेत (इतर स्लाइड्स डिलीट न करता). यासाठी कोणते साधन सर्वात योग्य आहे?",
+    options: [
+      { textEn: "Custom Slide Show", textMr: "Custom Slide Show" },
+      { textEn: "Hide Slide", textMr: "Hide Slide" },
+      { textEn: "Set Up Slide Show", textMr: "Set Up Slide Show" },
+      { textEn: "Rehearse Timings", textMr: "Rehearse Timings" }
+    ],
+    correctIndex: 0
+  },
+  {
+    questionEn:
+      "In the 'Set Up Slide Show' dialog, which option would you select to make the presentation repeat automatically after the last slide?",
+    questionMr:
+      "'Set Up Slide Show' डायलॉग मध्ये कोणता पर्याय निवडल्यावर शेवटची स्लाइड संपल्यानंतर प्रेझेंटेशन आपोआप पुन्हा सुरू होते?",
+    options: [
+      { textEn: "Show without narration", textMr: "Show without narration" },
+      { textEn: "Show without animation", textMr: "Show without animation" },
+      {
+        textEn: "Present in Window",
+        textMr: "Present in Window"
+      },
+      {
+        textEn: "Loop continuously until 'Esc'",
+        textMr: "Loop continuously until 'Esc'"
+      }
+    ],
+    correctIndex: 3
+  },
+  {
+    questionEn: "What happens when you apply the 'Hide Slide' feature to a slide?",
+    questionMr: "'Hide Slide' फीचर एखाद्या स्लाइडवर लावल्यावर काय होते?",
+    options: [
+      {
+        textEn:
+          "The slide remains in the file but is skipped during the presentation.",
+        textMr:
+          "स्लाइड फाइलमध्ये राहते पण स्लाइडशो दरम्यान ती स्किप होते (दाखवली जात नाही)."
+      },
+      {
+        textEn: "The slide is permanently deleted from the file.",
+        textMr: "ती स्लाइड फाइलमधून कायमची डिलीट होते."
+      },
+      {
+        textEn: "The slide appears black and white during the presentation.",
+        textMr: "स्लाइडशो दरम्यान ती स्लाइड काळ्या‑पांढऱ्या रंगात दिसते."
+      },
+      {
+        textEn: "The slide is moved to the end of the presentation.",
+        textMr: "ती स्लाइड प्रेझेंटेशनच्या शेवटी हलवली जाते."
+      }
+    ],
+    correctIndex: 0
+  },
+  {
+    questionEn:
+      "What is the primary purpose of the 'Rehearse Timings' feature?",
+    questionMr:
+      "'Rehearse Timings' फीचरचा मुख्य उपयोग काय आहे?",
+    options: [
+      { textEn: "To check for spelling errors.", textMr: "स्पेलिंगच्या चुका शोधण्यासाठी." },
+      {
+        textEn: "To record your voice over the slides.",
+        textMr: "स्लाइड्सवर आपला आवाज (व्हॉइसओव्हर) रेकॉर्ड करण्यासाठी."
+      },
+      {
+        textEn: "To record the time spent on each slide to automate advancement.",
+        textMr:
+          "प्रत्येक स्लाइडवर किती वेळ थांबतो ते रेकॉर्ड करून स्लाइड्स आपोआप पुढे जाण्यासाठी."
+      },
+      {
+        textEn: "To change the resolution of the slide show.",
+        textMr: "स्लाइडशोचे रिझॉल्यूशन बदलण्यासाठी."
+      }
+    ],
+    correctIndex: 2
+  },
+  {
+    questionEn:
+      "Which tool would you use to add a voiceover or audio commentary directly to your presentation?",
+    questionMr:
+      "प्रेझेंटेशनमध्ये थेट व्हॉइसओव्हर किंवा ऑडिओ कॉमेंटरी रेकॉर्ड करण्यासाठी कोणते साधन वापराल?",
+    options: [
+      { textEn: "Custom Slide Show", textMr: "Custom Slide Show" },
+      { textEn: "Rehearse Timings", textMr: "Rehearse Timings" },
+      { textEn: "Record Narration", textMr: "Record Narration" },
+      { textEn: "Hide Slide", textMr: "Hide Slide" }
+    ],
+    correctIndex: 2
+  },
+  {
+    questionEn:
+      "Which view allows the speaker to see notes and the upcoming slide on their screen while the audience only sees the current slide?",
+    questionMr:
+      "कोणत्या View मध्ये स्पीकरला आपल्या स्क्रीनवर Notes आणि पुढची स्लाइड दिसते, तर प्रेक्षकांना फक्त सध्याची स्लाइड दिसते?",
+    options: [
+      { textEn: "Slide Sorter View", textMr: "Slide Sorter View" },
+      { textEn: "Presenter View", textMr: "Presenter View" },
+      { textEn: "Normal View", textMr: "Normal View" },
+      { textEn: "Reading View", textMr: "Reading View" }
+    ],
+    correctIndex: 1
+  },
+  {
+    questionEn:
+      "In the Monitors group, what is the recommended setting for 'Resolution' for best compatibility?",
+    questionMr:
+      "Monitors गटामधील 'Resolution' सेटिंगमध्ये सर्वात जास्त compatible कोणता पर्याय ठेवणे सुचवले जाते?",
+    options: [
+      { textEn: "1920x1080", textMr: "1920x1080" },
+      { textEn: "Lowest Possible", textMr: "Lowest Possible" },
+      { textEn: "Use Current Resolution", textMr: "Use Current Resolution" },
+      { textEn: "640x480", textMr: "640x480" }
+    ],
+    correctIndex: 2
+  },
+  {
+    questionEn:
+      "Which key is universally used to exit a slide show and return to the PowerPoint editor?",
+    questionMr:
+      "स्लाइडशो बंद करून परत PowerPoint एडिटरमध्ये येण्यासाठी नेहमी कोणती key वापरतात?",
+    options: [
+      { textEn: "Esc", textMr: "Esc" },
+      { textEn: "Spacebar", textMr: "Spacebar" },
+      { textEn: "Enter", textMr: "Enter" },
+      { textEn: "F5", textMr: "F5" }
+    ],
+    correctIndex: 0
+  }
+];
+
+const day35ExamQuestions = [
+  {
+    questionEn:
+      "Which visual indicator does PowerPoint use to alert you of a potential spelling error in your text?",
+    questionMr:
+      "मजकुरात स्पेलिंगची शक्य तितकी चूक आहे हे दाखवण्यासाठी PowerPoint कोणता व्हिज्युअल इशारा वापरतो?",
+    options: [
+      { textEn: "A yellow highlight", textMr: "पिवळा हायलाइट" },
+      { textEn: "A red zigzag line", textMr: "लाल झिगझॅग रेषा" },
+      { textEn: "A blue double underline", textMr: "निळी डबल अंडरलाइन" },
+      { textEn: "A green wavy line", textMr: "हिरवी वेव्ही रेषा" }
+    ],
+    correctIndex: 1
+  },
+  {
+    questionEn:
+      "Which keyboard shortcut can you press to immediately launch the Spelling check feature?",
+    questionMr:
+      "Spelling Check लगेच सुरू करण्यासाठी कोणता कीबोर्ड शॉर्टकट दाबाल?",
+    options: [
+      { textEn: "Ctrl + S", textMr: "Ctrl + S" },
+      { textEn: "Alt + F4", textMr: "Alt + F4" },
+      { textEn: "F5", textMr: "F5" },
+      { textEn: "F7", textMr: "F7" }
+    ],
+    correctIndex: 3
+  },
+  {
+    questionEn:
+      "You want to find a word that has a similar meaning to 'happy' to vary your vocabulary. Which tool in the Review tab should you use?",
+    questionMr:
+      "शब्दसंग्रह बदलण्यासाठी तुम्हाला 'happy' या शब्दासारखा अर्थ असलेला दुसरा शब्द हवा आहे. Review टॅबमधील कोणते साधन वापराल?",
+    options: [
+      { textEn: "Spelling", textMr: "Spelling" },
+      { textEn: "Translate", textMr: "Translate" },
+      { textEn: "Thesaurus", textMr: "Thesaurus" },
+      { textEn: "Research", textMr: "Research" }
+    ],
+    correctIndex: 2
+  },
+  {
+    questionEn:
+      "What is a mandatory requirement for using the 'Translate' feature in PowerPoint?",
+    questionMr:
+      "PowerPoint मधील 'Translate' फीचर वापरण्यासाठी कोणती अट अनिवार्य आहे?",
+    options: [
+      { textEn: "You must save the file first.", textMr: "फाईल आधी सेव्ह केलेली असावी." },
+      {
+        textEn: "You must be in Slide Show mode.",
+        textMr: "तुम्ही Slide Show मोडमध्ये असणे आवश्यक आहे."
+      },
+      {
+        textEn: "You must select the entire slide.",
+        textMr: "संपूर्ण स्लाइड सिलेक्ट केलेली असावी."
+      },
+      {
+        textEn: "You must have an internet connection.",
+        textMr: "इंटरनेट कनेक्शन असणे आवश्यक आहे."
+      }
+    ],
+    correctIndex: 3
+  },
+  {
+    questionEn:
+      "You are reviewing a colleague's presentation and want to suggest a change without altering the actual slide content. Which feature should you use?",
+    questionMr:
+      "तुम्ही सहकाऱ्याचे प्रेझेंटेशन तपासत आहात आणि स्लाइडचा मूळ मजकूर न बदलता बदल सुचवायचा आहे. कोणते फीचर वापराल?",
+    options: [
+      { textEn: "Edit Slide", textMr: "Edit Slide" },
+      { textEn: "New Comment", textMr: "New Comment" },
+      { textEn: "Text Box", textMr: "Text Box" },
+      { textEn: "Protect Presentation", textMr: "Protect Presentation" }
+    ],
+    correctIndex: 1
+  },
+  {
+    questionEn:
+      "How can you temporarily hide the comment icons on your slides so you can see the clean design?",
+    questionMr:
+      "स्लाइडवरील Comment आयकॉन्स तात्पुरते लपवून स्वच्छ डिझाइन पाहायचे असल्यास काय कराल?",
+    options: [
+      {
+        textEn: "Use the 'Show/Hide Markup' toggle.",
+        textMr: "'Show/Hide Markup' टॉगल वापरा."
+      },
+      { textEn: "Close the Review tab.", textMr: "Review टॅब बंद करा." },
+      { textEn: "Delete all comments.", textMr: "सर्व Comments डिलीट करा." },
+      { textEn: "Turn off the computer.", textMr: "कॉम्प्युटर बंद करा." }
+    ],
+    correctIndex: 0
+  },
+  {
+    questionEn:
+      "Where exactly do you go to set a password for opening or modifying your PowerPoint file?",
+    questionMr:
+      "PowerPoint फाईल उघडण्यासाठी किंवा बदलण्यासाठी पासवर्ड सेट करण्यासाठी नेमके कुठे जाल?",
+    options: [
+      { textEn: "Insert > Security", textMr: "Insert > Security" },
+      { textEn: "Design > Format Background", textMr: "Design > Format Background" },
+      { textEn: "Review Tab > Protect Presentation", textMr: "Review > Protect Presentation" },
+      {
+        textEn: "Save As > Tools > General Options",
+        textMr: "Save As > Tools > General Options"
+      }
+    ],
+    correctIndex: 3
+  },
+  {
+    questionEn:
+      "If you set a 'Password to modify' but share the 'Password to open' with a user, what will their experience be if they don't know the modify password?",
+    questionMr:
+      "\"Password to modify\" सेट केले आहे आणि फक्त \"Password to open\" इतरांना दिला आहे. वापरकर्त्याला Modify पासवर्ड माहिती नसेल तर त्यांचा अनुभव कसा असेल?",
+    options: [
+      {
+        textEn: "They can edit and save changes normally.",
+        textMr: "ते फाईलमध्ये हवे तसे बदल करून सेव्ह करू शकतात."
+      },
+      {
+        textEn: "They cannot open the file at all.",
+        textMr: "ते फाईल अजिबात उघडू शकत नाहीत."
+      },
+      {
+        textEn: "The file will delete itself.",
+        textMr: "फाईल आपोआप डिलीट होईल."
+      },
+      {
+        textEn: "They can open the file as 'Read-Only'.",
+        textMr: "ते फाईल 'Read‑Only' मोडमध्ये उघडू शकतात."
+      }
+    ],
+    correctIndex: 3
+  },
+  {
+    questionEn:
+      "What is the function of the 'Add to Dictionary' option in the Spelling tool?",
+    questionMr:
+      "Spelling साधनामधील 'Add to Dictionary' या पर्यायाचे कार्य काय आहे?",
+    options: [
+      {
+        textEn: "It ignores the error just for this one session.",
+        textMr: "तो फक्त या सत्रासाठी चूक दुर्लक्षित करतो."
+      },
+      {
+        textEn: "It translates the word into another language.",
+        textMr: "तो शब्द इतर भाषेत अनुवादित करतो."
+      },
+      {
+        textEn:
+          "It adds the word to the internal database so it is never marked as an error again.",
+        textMr:
+          "तो शब्द इंटरनल डिक्शनरीमध्ये जोडतो, त्यामुळे पुढे तो चूक म्हणून दाखवला जात नाही."
+      },
+      {
+        textEn: "It corrects the spelling of the word automatically.",
+        textMr: "तो शब्दाचे स्पेलिंग आपोआप दुरुस्त करतो."
+      }
+    ],
+    correctIndex: 2
+  },
+  {
+    questionEn:
+      "Which button allows you to jump sequentially from one piece of feedback to the next in a presentation?",
+    questionMr:
+      "प्रेझेंटेशनमधील एका कमेंट/Feedback वरून पुढच्या कमेंटकडे क्रमाने जाण्यासाठी कोणते बटण वापरता?",
+    options: [
+      { textEn: "New Comment", textMr: "New Comment" },
+      { textEn: "Research", textMr: "Research" },
+      { textEn: "Show Markup", textMr: "Show Markup" },
+      { textEn: "Next Comment", textMr: "Next Comment" }
+    ],
+    correctIndex: 3
+  }
+];
+
 const ensureCourseDays = async () => {
+  await CourseDay.updateOne(
+    { dayNumber: 33 },
+    {
+      $set: {
+        "subsections.0.videoUrl":
+          "https://youtu.be/b0lMv8De0fs?si=bOD9MkSy3INNkjHx",
+        "subsections.1.contentEn": day33SectionTwoContentEn,
+        "subsections.1.contentMr": day33SectionTwoContentMr,
+        "exam.questions": day33ExamQuestions
+      }
+    }
+  );
+  await CourseDay.updateOne(
+    { dayNumber: 34 },
+    {
+      $set: {
+        "subsections.0.videoUrl":
+          "https://youtu.be/c4qhyp0TvnM?si=Qqtcobd33TCozYRT",
+        "subsections.1.contentEn": day34SectionTwoContentEn,
+        "subsections.1.contentMr": day34SectionTwoContentMr,
+        "exam.questions": day34ExamQuestions
+      }
+    }
+  );
+  await CourseDay.updateOne(
+    { dayNumber: 35 },
+    {
+      $set: {
+        "subsections.0.videoUrl":
+          "https://youtu.be/bW5Uzq_5fwQ?si=77BhdkcJsDyikviD",
+        "subsections.1.contentEn": day35SectionTwoContentEn,
+        "subsections.1.contentMr": day35SectionTwoContentMr,
+        "exam.questions": day35ExamQuestions
+      }
+    }
+  );
   const count = await CourseDay.countDocuments();
   if (count >= 50) {
     await CourseDay.updateOne(
@@ -3931,6 +5016,306 @@ const ensureCourseDays = async () => {
         }
       }
     );
+    // Day 31: MS PowerPoint Insert Tab – Section 1 (video), Section 2 (notes)
+    const day31Section2ContentEn =
+      "Computer Class Day 31: MS PowerPoint Insert Tab\n\nThis document provides detailed notes on the features and functions of the Insert Tab in MS PowerPoint as presented in the 'Power Point Part-3' tutorial by GULAB GURU.\n\n1. Introduction & Opening PowerPoint\n\nKeyboard Shortcut: Press Windows + R, type powerpnt, and press Enter to open MS PowerPoint. [00:00:41]\n\n2. Table Menu\n\nGrid Selection: Quickly select the number of columns and rows from the grid. [00:01:01]\n\nInsert Table: Manually enter the specific number of columns and rows. [00:01:48]\n\nDraw Table: Use a pencil tool to manually draw a custom table. [00:02:24]\n\nExcel Spreadsheet: Embed a functional Excel sheet directly into your PowerPoint slide. [00:02:45]\n\nPro Tip: To delete a table, select it and press Shift + Delete. [00:01:38]\n\n3. Images & Illustrations\n\nPictures: Insert images from your local computer. [00:04:01]\n\nFormat Tab (for pictures): Adjust brightness and contrast [00:05:14], recolor images or apply picture styles [00:05:29], crop and resize images [00:14:23].\n\nClip Art: Search and insert pre-made graphics from the built-in library. [00:15:18]\n\nPhoto Album: Insert multiple photos at once; each photo can automatically occupy a new slide. [00:16:41]\n\nShapes: Insert circles, squares, arrows, and other geometric forms. [00:19:00]\n\nSmartArt: Create visual representations of information such as lists, processes, and cycles. [00:20:06]\n\nYou can add text, change colors, and add bullets within SmartArt. [00:21:50]\n\nCharts: Insert data-driven charts (Column, Pie, Line, etc.) linked to an Excel data window. [00:23:05]\n\n4. Links & Text Features\n\nHyperlink: Link text or objects to other files, folders, or websites. [00:26:07]\n\nText Box: Draw areas to type text anywhere on the slide. [00:27:08]\n\nHeader & Footer: Add slide numbers, dates, or custom text to the top or bottom of slides. [00:27:40]\n\nWordArt: Insert stylized and decorative text with various effects. [00:28:35]\n\nSymbols: Insert special characters not found on the keyboard. [00:31:43]\n\nObject: Work with content from another application (like MS Word) while staying inside PowerPoint. [00:32:06]\n\n5. Media Clips\n\nMovie (Video): Insert video files into your presentation and set them to play automatically or on click. [00:33:01]\n\nSound (Audio): Add background music or voiceovers to your slides. [00:34:01]\n\nKey Shortcuts Mentioned\n\nRun Command: Win + R\n\nStart Slideshow: F5 [00:17:48]\n\nExit Slideshow: Esc [00:18:11]\n\nDelete Object: Shift + Delete.";
+    const day31Section2ContentMr =
+      "Computer Class Day 31: MS PowerPoint Insert Tab\n\nInsert Tab चे सविस्तर मार्गदर्शन (Power Point Part-3 – GULAB GURU).\n\n१. PowerPoint उघडणे: Windows + R -> powerpnt -> Enter [00:00:41].\n\n२. Table मेनू [00:01:01–00:02:45]\n\nGrid Selection – पटकन स्तंभ/ओळी निवडणे; Insert Table – कॉलम/रो संख्या हाताने देणे; Draw Table – पेन्सिलने कस्टम टेबल काढणे; Excel Spreadsheet – थेट Excel शीट एम्बेड करणे; Pro Tip: टेबल काढण्यासाठी Shift + Delete [00:01:38].\n\n३. Images & Illustrations [00:04:01–00:23:05]\n\nPictures – संगणकातून इमेज; Format Tab – Brightness/Contrast [00:05:14], Recolor/Styles [00:05:29], Crop/Resize [00:14:23]; Clip Art [00:15:18]; Photo Album – अनेक फोटो एकाच वेळी, प्रत्येक वेगळ्या स्लाइडवर [00:16:41]; Shapes [00:19:00]; SmartArt – लिस्ट/प्रोसेस/सायकलचे ग्राफिक्स, टेक्स्ट/कलर/बुलेट्स बदल [00:20:06–00:21:50]; Charts – Excel डेटा विंडोसह Column/Pie/Line चार्ट [00:23:05].\n\n४. Links आणि Text [00:26:07–00:32:06]\n\nHyperlink – फाइल/फोल्डर/वेबसाइट लिंक; Text Box [00:27:08]; Header & Footer – स्लाइड नंबर, तारीख, कस्टम मजकूर [00:27:40]; WordArt – स्टाईलाइज्ड टेक्स्ट [00:28:35]; Symbols – विशेष अक्षरे [00:31:43]; Object – दुसऱ्या प्रोग्रामचे कंटेंट (जसे Word) PowerPoint मध्येच वापरणे [00:32:06].\n\n५. Media Clips [00:33:01–00:34:01]\n\nMovie (Video) – व्हिडिओ इन्सर्ट करून Auto किंवा On Click प्ले; Sound (Audio) – बॅकग्राउंड म्युझिक किंवा व्हॉइसओव्हर.\n\nकीबोर्ड शॉर्टकट: Run – Win + R; Start Slideshow – F5 [00:17:48]; Exit – Esc [00:18:11]; Delete Object – Shift + Delete.";
+    await CourseDay.updateOne(
+      { dayNumber: 31 },
+      {
+        $set: {
+          contentEn: "",
+          contentMr: "",
+          subsections: [
+            {
+              titleEn: "Section 1",
+              titleMr: "भाग १",
+              contentEn: "",
+              contentMr: "",
+              videoUrl: "https://youtu.be/SBjz_M3DM_4?si=cHSM7H2a5way6V0E"
+            },
+            {
+              titleEn: "Section 2",
+              titleMr: "भाग २",
+              contentEn: day31Section2ContentEn,
+              contentMr: day31Section2ContentMr,
+              videoUrl: ""
+            }
+          ]
+        }
+      }
+    );
+    // Day 32: MS PowerPoint Design Tab – Section 1 (video), Section 2 (notes)
+    const day32Section2ContentEn =
+      "Computer Class Day 32: MS PowerPoint Design Tab\n\nThis document summarizes the features of the Design Tab in MS PowerPoint based on the Part-4 tutorial by GULAB GURU.\n\n1. Page Setup Group\n\nThis group allows you to manage the physical dimensions and orientation of your slides.\n\nPage Setup: Adjust overall slide settings. [00:01:40]\n\nSlide Size: By default, slides are often 4:3. For high-definition or YouTube videos, use 16:9.\n\nCustom Dimensions: You can manually set the width and height of slides.\n\nNumber Slides From: Change the starting slide number (for example, begin at 5 instead of 1). [00:03:03]\n\nSlide Orientation: Choose Portrait (vertical) or Landscape (horizontal – standard for most presentations). [00:03:43]\n\n2. Themes Group\n\nThemes provide a complete look for your presentation, including coordinated colors, fonts, and effects.\n\nApplying Themes: Hover over a theme to preview and click to apply it to all slides. [00:04:38]\n\nCustomizing Themes: [00:05:33]\n\n- Colors: Change the color palette of the current theme without changing its layout.\n- Fonts: Swap the font style across the entire presentation.\n- Effects: Adjust subtle visual styles (especially visible on 3D shapes/objects).\n\nManaging Themes: [00:06:50]\n\n- Browse for Themes: Open a theme file saved on your computer.\n- Save Current Theme: Export your customized design for reuse. [00:07:27]\n\nPro Tip – Different Themes for Different Slides: [00:11:23]\n\nBy default, a theme applies to all slides. To apply a theme only to one slide, right-click the theme thumbnail and choose \"Apply to Selected Slides.\"\n\n3. Background Group\n\nThis group controls the background of slides independently of the theme.\n\nBackground Styles: Choose from preset gradient or solid color backgrounds. [00:08:55]\n\nFormat Background: [00:09:43]\n\n- Solid Fill: Use a single color.\n- Gradient Fill: Blend multiple colors.\n- Picture or Texture Fill: Use an image from your computer or a built-in texture as the slide background.\n\nHide Background Graphics: If a theme includes decorative graphics (lines, patterns, logos) that you do not want, enable this option to hide them. [00:10:57]\n\nQuick Shortcuts\n\nOpen PowerPoint: Win + R -> type powerpnt. [00:00:34]\n\nQuick Access: Right-click the Theme gallery and select \"Add Gallery to Quick Access Toolbar\" for faster access. [00:13:01]";
+    const day32Section2ContentMr =
+      "Computer Class Day 32: MS PowerPoint Design Tab\n\nDesign Tab – Part 4 (GULAB GURU) सारांश.\n\n१. Page Setup Group [00:01:40–00:03:43]\n\nSlide Size (4:3, HD/YouTube साठी 16:9), कस्टम रुंदी/उंची, Number Slides From – स्लाइड नंबर कुठून सुरू होईल ते बदलणे [00:03:03]; Slide Orientation – Portrait (उभा) किंवा Landscape (आडवा, डीफॉल्ट) [00:03:43].\n\n२. Themes Group [00:04:38–00:07:27]\n\nप्रेझेंटेशनसाठी Colors, Fonts, Effects चे पूर्ण सेट.\n\nथीम लावणे – Hover करून प्रिव्ह्यू, क्लिक केल्यावर सर्व स्लाइडला लागू [00:04:38]. Colors/Fonts/Effects बदलून थीम कस्टमायझ [00:05:33]. Browse for Themes आणि Save Current Theme – स्वतःचा थीम सेव्ह/पुन्हा वापर [00:06:50–00:07:27].\n\nPro Tip: वेगवेगळ्या स्लाइडसाठी वेगवेगळे Themes – थीमवर Right-click करून \"Apply to Selected Slides\" [00:11:23].\n\n३. Background Group [00:08:55–00:10:57]\n\nBackground Styles – तयार ग्रेडियंट/सॉलिड शैली [00:08:55]. Format Background – Solid, Gradient, Picture/Texture Fill [00:09:43]. Hide Background Graphics – थीममधील सजावटी ग्राफिक्स (रेषा, पॅटर्न) लपवणे [00:10:57].\n\nशॉर्टकट्स: PowerPoint उघडणे – Win + R -> powerpnt [00:00:34]; Theme Gallery ला Quick Access Toolbar मध्ये Add करणे – Right-click -> Add Gallery to Quick Access Toolbar [00:13:01].";
+    await CourseDay.updateOne(
+      { dayNumber: 32 },
+      {
+        $set: {
+          contentEn: "",
+          contentMr: "",
+          subsections: [
+            {
+              titleEn: "Section 1",
+              titleMr: "भाग १",
+              contentEn: "",
+              contentMr: "",
+              videoUrl: "https://youtu.be/yXiXr6AsHf4?si=RFjk2TrROwu26w8n"
+            },
+            {
+              titleEn: "Section 2",
+              titleMr: "भाग २",
+              contentEn: day32Section2ContentEn,
+              contentMr: day32Section2ContentMr,
+              videoUrl: ""
+            }
+          ]
+        }
+      }
+    );
+    await CourseDay.updateOne(
+      { dayNumber: 31 },
+      {
+        $set: {
+          "exam.durationMinutes": 30,
+          "exam.questions": [
+            {
+              questionEn: "Which command should you type in the Run dialog box (Windows + R) to open MS PowerPoint?",
+              questionMr: "Windows + R Run डायलॉगमध्ये MS PowerPoint उघडण्यासाठी कोणती कमांड टाइप करावी?",
+              options: [
+                { textEn: "powerpoint", textMr: "powerpoint" },
+                { textEn: "openpowerpoint", textMr: "openpowerpoint" },
+                { textEn: "ppt", textMr: "ppt" },
+                { textEn: "powerpnt", textMr: "powerpnt" }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "You have selected a table in your slide and want to delete it completely. Which shortcut key combination should you use?",
+              questionMr: "स्लाइडमधील टेबल पूर्णपणे काढून टाकण्यासाठी कोणता शॉर्टकट वापरावा?",
+              options: [
+                { textEn: "Ctrl + Delete", textMr: "Ctrl + Delete" },
+                { textEn: "Shift + Delete", textMr: "Shift + Delete" },
+                { textEn: "Delete", textMr: "Delete" },
+                { textEn: "Alt + Backspace", textMr: "Alt + Backspace" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "Which feature would you use to import 50 holiday photos at once, creating a new slide for each photo automatically?",
+              questionMr: "५० सुट्टीतील फोटो एकाच वेळी इम्पोर्ट करून प्रत्येक फोटोसाठी स्वतंत्र स्लाइड तयार करण्यासाठी कोणते फीचर वापराल?",
+              options: [
+                { textEn: "Clip Art", textMr: "Clip Art" },
+                { textEn: "Insert Picture", textMr: "Insert Picture" },
+                { textEn: "SmartArt", textMr: "SmartArt" },
+                { textEn: "Photo Album", textMr: "Photo Album" }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "If you want to create a visual representation of a process cycle or a hierarchy list, which tool is best suited for this?",
+              questionMr: "प्रोसेस सायकल किंवा हायरार्की लिस्टचे दृश्य रूप तयार करण्यासाठी कोणते साधन सर्वात योग्य आहे?",
+              options: [
+                { textEn: "Chart", textMr: "Chart" },
+                { textEn: "Shapes", textMr: "Shapes" },
+                { textEn: "WordArt", textMr: "WordArt" },
+                { textEn: "SmartArt", textMr: "SmartArt" }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "Which feature allows you to embed a fully functional spreadsheet into your slide where you can use Excel formulas?",
+              questionMr: "कोणते फीचर स्लाइडमध्ये पूर्ण कार्यक्षम स्प्रेडशीट एम्बेड करण्यास परवानगी देते जिथे तुम्ही Excel सूत्रे वापरू शकता?",
+              options: [
+                { textEn: "Object -> Word Document", textMr: "Object -> Word Document" },
+                { textEn: "Draw Table", textMr: "Draw Table" },
+                { textEn: "Excel Spreadsheet", textMr: "Excel Spreadsheet" },
+                { textEn: "Insert Table", textMr: "Insert Table" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "You want to make a piece of text clickable so that it opens a specific website when clicked during the presentation. What should you use?",
+              questionMr: "प्रेझेंटेशनदरम्यान क्लिक केल्यावर विशिष्ट वेबसाइट उघडण्यासाठी मजकूर क्लिकेबल करायचा आहे. काय वापराल?",
+              options: [
+                { textEn: "Hyperlink", textMr: "Hyperlink" },
+                { textEn: "Header & Footer", textMr: "Header & Footer" },
+                { textEn: "Object", textMr: "Object" },
+                { textEn: "Action Button", textMr: "Action Button" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "Which keyboard shortcut allows you to start the slideshow from the beginning?",
+              questionMr: "स्लाइडशो सुरुवातीपासून सुरू करण्यासाठी कोणता कीबोर्ड शॉर्टकट वापराल?",
+              options: [
+                { textEn: "F5", textMr: "F5" },
+                { textEn: "Esc", textMr: "Esc" },
+                { textEn: "Ctrl + S", textMr: "Ctrl + S" },
+                { textEn: "Shift + F5", textMr: "Shift + F5" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "If you want to add background music that plays during your presentation, which option in the Media Clips group should you select?",
+              questionMr: "प्रेझेंटेशनदरम्यान वाजणारे बॅकग्राउंड म्युझिक जोडण्यासाठी Media Clips गटातील कोणता पर्याय निवडावा?",
+              options: [
+                { textEn: "Sound", textMr: "Sound" },
+                { textEn: "Clip Art", textMr: "Clip Art" },
+                { textEn: "Movie", textMr: "Movie" },
+                { textEn: "Symbol", textMr: "Symbol" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "Which 'Insert' tab feature would you use to place special characters like ©, ™, or mathematical operators that are not on your keyboard?",
+              questionMr: "'Insert' टॅबमधील कोणते फीचर ©, ™ किंवा कीबोर्डवर नसलेले गणितीय ऑपरेटर्ससारखी विशेष अक्षरे घालण्यासाठी वापराल?",
+              options: [
+                { textEn: "Symbol", textMr: "Symbol" },
+                { textEn: "Text Box", textMr: "Text Box" },
+                { textEn: "WordArt", textMr: "WordArt" },
+                { textEn: "SmartArt", textMr: "SmartArt" }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "What happens when you select a picture and click on the 'Format' tab that appears?",
+              questionMr: "चित्र निवडून दिसणाऱ्या 'Format' टॅबवर क्लिक केल्यावर काय करता येते?",
+              options: [
+                { textEn: "You can adjust brightness, contrast, and apply borders to the picture.", textMr: "तुम्ही चित्राचा ब्राइटनेस, कॉन्ट्रास्ट बदलू शकता आणि बॉर्डर लावू शकता." },
+                { textEn: "You can change the slide background.", textMr: "तुम्ही स्लाइडचा बॅकग्राउंड बदलू शकता." },
+                { textEn: "You can insert a new table.", textMr: "तुम्ही नवीन टेबल इन्सर्ट करू शकता." },
+                { textEn: "You can start the slideshow.", textMr: "तुम्ही स्लाइडशो सुरू करू शकता." }
+              ],
+              correctIndex: 0
+            }
+          ]
+        }
+      }
+    );
+    await CourseDay.updateOne(
+      { dayNumber: 32 },
+      {
+        $set: {
+          "exam.durationMinutes": 30,
+          "exam.questions": [
+            {
+              questionEn: "If you are creating a presentation specifically for a YouTube video or a modern wide-screen display, which slide size ratio should you select in Page Setup?",
+              questionMr: "जर तुम्ही YouTube व्हिडिओ किंवा आधुनिक वाइड-स्क्रीन डिस्प्ले साठी प्रेझेंटेशन तयार करत असाल, तर Page Setup मध्ये कोणते स्लाइड साईज रेशो निवडावे?",
+              options: [
+                { textEn: "1:1", textMr: "1:1" },
+                { textEn: "4:3", textMr: "4:3" },
+                { textEn: "16:9", textMr: "16:9" },
+                { textEn: "A4", textMr: "A4" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "You want your slides to appear vertically, like a sheet of paper, rather than the standard horizontal layout. Which option should you change?",
+              questionMr: "तुम्हाला स्लाइड्स कागदाच्या पानासारख्या उभ्या दिसाव्यात, नेहमीच्या आडव्या लेआउटऐवजी. कोणता पर्याय बदलाल?",
+              options: [
+                { textEn: "Slide Orientation -> Landscape", textMr: "Slide Orientation -> Landscape" },
+                { textEn: "Slide Orientation -> Portrait", textMr: "Slide Orientation -> Portrait" },
+                { textEn: "Slide Layout", textMr: "Slide Layout" },
+                { textEn: "Page Setup -> 16:9", textMr: "Page Setup -> 16:9" }
+              ],
+              correctIndex: 1
+            },
+            {
+              questionEn: "By default, clicking a Theme applies it to all slides. How do you apply a specific Theme to ONLY the currently selected slide?",
+              questionMr: "डीफॉल्टनुसार, थीमवर क्लिक केल्यावर ती सर्व स्लाइड्सला लागू होते. फक्त वर्तमान निवडलेल्या स्लाइडला थीम लावण्यासाठी काय कराल?",
+              options: [
+                { textEn: "Hold Ctrl and click the Theme", textMr: "Ctrl दाबून थीमवर क्लिक करा" },
+                { textEn: "Double-click the Theme", textMr: "थीमवर डबल-क्लिक करा" },
+                { textEn: "Go to Page Setup and select 'Current Slide'", textMr: "Page Setup मध्ये जाऊन 'Current Slide' निवडा" },
+                { textEn: "Right-click the Theme and select 'Apply to Selected Slides'", textMr: "थीमवर Right-click करून 'Apply to Selected Slides' निवडा" }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "You like the current Theme's layout but want to use your company's specific blue and grey colors instead of the default orange. What is the best way to do this without changing the whole theme?",
+              questionMr: "तुम्हाला सध्याच्या थीमचा लेआउट आवडतो पण डीफॉल्ट केशरी रंगाऐवजी कंपनीचे निळे आणि करडे रंग वापरायचे आहेत. संपूर्ण थीम न बदलता हे करण्याचा सर्वोत्तम मार्ग कोणता?",
+              options: [
+                { textEn: "Use the 'Colors' dropdown in the Themes group.", textMr: "Themes गटातील 'Colors' ड्रॉपडाऊन वापरा." },
+                { textEn: "Select a completely new Theme.", textMr: "पूर्णपणे नवीन थीम निवडा." },
+                { textEn: "Change the Background Style.", textMr: "Background Style बदला." },
+                { textEn: "Manually change the color of every text box and shape.", textMr: "प्रत्येक टेक्स्ट बॉक्स आणि शेपचा रंग हाताने बदला." }
+              ],
+              correctIndex: 0
+            },
+            {
+              questionEn: "Which feature allows you to use a personal photograph stored on your computer as the permanent background for your slides?",
+              questionMr: "तुमच्या संगणकावर साठवलेला वैयक्तिक फोटो स्लाइड्ससाठी कायमस्वरूपी बॅकग्राउंड म्हणून वापरण्यासाठी कोणते फीचर उपयोगी आहे?",
+              options: [
+                { textEn: "Page Setup -> Header/Footer", textMr: "Page Setup -> Header/Footer" },
+                { textEn: "Design -> Effects", textMr: "Design -> Effects" },
+                { textEn: "Format Background -> Picture or texture fill", textMr: "Format Background -> Picture or texture fill" },
+                { textEn: "Insert -> Picture", textMr: "Insert -> Picture" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "Your chosen Theme has decorative graphic lines in the background that interfere with your text. How can you remove them without changing the Theme?",
+              questionMr: "निवडलेल्या थीममध्ये मजकुरामागे त्रासदायक सजावटी रेषा आहेत. थीम न बदलता त्या कशा काढाल?",
+              options: [
+                { textEn: "Use the Eraser tool.", textMr: "Eraser साधन वापरा." },
+                { textEn: "Delete the slide and create a new one.", textMr: "स्लाइड डिलीट करून नवी तयार करा." },
+                { textEn: "Change the Background Style to white.", textMr: "Background Style पांढरा करा." },
+                { textEn: "Check the 'Hide Background Graphics' box.", textMr: "'Hide Background Graphics' बॉक्स चेक करा." }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "If you want your slide numbering to start at '5' instead of '1', where would you go to change this setting?",
+              questionMr: "स्लाइड नंबरिंग '1' ऐवजी '5' पासून सुरू करायची असल्यास, कोणत्या सेटिंगमध्ये जाल?",
+              options: [
+                { textEn: "Insert -> Slide Number", textMr: "Insert -> Slide Number" },
+                { textEn: "Home -> Numbering", textMr: "Home -> Numbering" },
+                { textEn: "Page Setup -> Number slides from", textMr: "Page Setup -> Number slides from" },
+                { textEn: "Design -> Slide Orientation", textMr: "Design -> Slide Orientation" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "You have customized a Theme with your favorite colors and fonts. How can you save it to reuse in future presentations?",
+              questionMr: "तुम्ही आवडते रंग आणि फॉंट वापरून थीम कस्टमायझ केली आहे. भविष्यात पुन्हा वापरण्यासाठी ती कशी सेव्ह कराल?",
+              options: [
+                { textEn: "Add to Quick Access Toolbar.", textMr: "Quick Access Toolbar मध्ये Add करा." },
+                { textEn: "Copy and Paste the slide into a new file.", textMr: "स्लाइड नवीन फाइलमध्ये Copy-Paste करा." },
+                { textEn: "Open the Themes dropdown and select 'Save Current Theme'.", textMr: "Themes ड्रॉपडाऊन उघडून 'Save Current Theme' निवडा." },
+                { textEn: "File -> Save As -> JPEG", textMr: "File -> Save As -> JPEG" }
+              ],
+              correctIndex: 2
+            },
+            {
+              questionEn: "What is the primary function of the 'Fonts' dropdown in the Themes group?",
+              questionMr: "Themes गटातील 'Fonts' ड्रॉपडाऊनचे मुख्य कार्य काय आहे?",
+              options: [
+                { textEn: "To change the font size of a single selected word.", textMr: "एखाद्या निवडलेल्या शब्दाचा फॉन्ट साईज बदलणे." },
+                { textEn: "To add a shadow effect to text.", textMr: "मजकुरावर सावली इफेक्ट लावणे." },
+                { textEn: "To highlight text in yellow.", textMr: "मजकूर पिवळ्या रंगात हायलाइट करणे." },
+                { textEn: "To change the heading and body fonts for the entire presentation at once.", textMr: "संपूर्ण प्रेझेंटेशनसाठी हेडिंग आणि बॉडी फॉन्ट एकाच वेळी बदलणे." }
+              ],
+              correctIndex: 3
+            },
+            {
+              questionEn: "Which of the following best describes the 'Background Styles' option?",
+              questionMr: "'Background Styles' पर्यायाचे सर्वोत्तम वर्णन खालीलपैकी कोणते?",
+              options: [
+                { textEn: "It changes the layout of text boxes.", textMr: "तो टेक्स्ट बॉक्सचे लेआउट बदलतो." },
+                { textEn: "It changes the orientation of the slide.", textMr: "तो स्लाइडची ओरिएंटेशन बदलतो." },
+                { textEn: "It adds clip art to the background.", textMr: "तो बॅकग्राउंडमध्ये क्लिप आर्ट घालतो." },
+                { textEn: "It provides pre-set variations of solid and gradient fills based on your theme colors.", textMr: "तो थीम रंगांवर आधारित सॉलिड आणि ग्रेडियंट फिल्सचे पूर्वनिर्धारित प्रकार देतो." }
+              ],
+              correctIndex: 3
+            }
+          ]
+        }
+      }
+    );
     await CourseDay.updateMany(
       { dayNumber: { $ne: 21 } },
       { $set: { "subsections.0.contentEn": "", "subsections.0.contentMr": "" } }
@@ -3994,21 +5379,35 @@ const ensureCourseDays = async () => {
                                                           ? "https://youtu.be/xZa8XWty_4o?si=bWXpSyOG2pNyX6u6"
                                                           : i === 27
                                                             ? "https://youtu.be/XWztQ4YeULw?si=j81-G8j7B_Lv4-Hs"
-                                                            : i === 28
-                                                              ? "https://youtu.be/DD7W8L2c8xA?si=L8pcQSmRqwolIetc"
-                                                              : i === 29
-                                                                ? "https://youtu.be/Yoq-nL2W2Gk?si=X0QJsvK58hgVL5eh"
-                                                                : i === 30
-                                                                  ? "https://youtu.be/5FHGhJnZxXw?si=u0DXnXYrX6i365IE"
+                                                    : i === 28
+                                                      ? "https://youtu.be/DD7W8L2c8xA?si=L8pcQSmRqwolIetc"
+                                                      : i === 29
+                                                        ? "https://youtu.be/Yoq-nL2W2Gk?si=X0QJsvK58hgVL5eh"
+                                                        : i === 30
+                                                          ? "https://youtu.be/5FHGhJnZxXw?si=u0DXnXYrX6i365IE"
+                                                          : i === 31
+                                                            ? "https://youtu.be/SBjz_M3DM_4?si=cHSM7H2a5way6V0E"
+                                                            : i === 32
+                                                              ? "https://youtu.be/yXiXr6AsHf4?si=RFjk2TrROwu26w8n"
+                                                              : i === 33
+                                                                ? "https://youtu.be/b0lMv8De0fs?si=bOD9MkSy3INNkjHx"
             : "";
     const sectionTwoContentEn =
       i === 2
         ? "Computer Class Day 2: Basic Operations & Customization\n\n1. Opening Programs & Applications [00:00:58]\n\nThere are multiple ways to open a program:\n\nDesktop Icons: Move the cursor to the icon and Double-Click (left mouse button).\n\nRight-Click Method: Right-click the icon and select Open from the menu.\n\nTaskbar: For apps pinned to the taskbar, a Single-Click is sufficient.\n\nStart Menu: Click the Start button (bottom-left), find the app in the list, and click to open.\n\nSearch Bar: Type the name of the program in the search bar to find and open it quickly.\n\n2. Window Management [00:01:23]\n\nEvery open program window has three essential buttons in the top-right corner:\n\nMinimize (-): Hides the window and sends it to the taskbar. Click the taskbar icon to bring it back.\n\nMaximize/Restore (Square): Expands the window to full screen. If already full screen, it becomes \"Restore Down\" to return to the previous size.\n\nClose (X): Exits the program.\n\nResizing: To manually resize, hover the cursor over the edge or corner of the window until it turns into a double-arrow, then click and drag.\n\n3. Creating Desktop Shortcuts [00:03:15]\n\nTo keep frequently used files or apps on the desktop:\n\nApps: Start Menu -> Right-click the app -> More -> Open File Location. In the folder that opens, right-click the file -> Send to -> Desktop (create shortcut).\n\nFolders: Right-click on the desktop -> New -> Shortcut -> Browse for the folder/file -> Finish.\n\n4. Managing Desktop Icons [00:04:56]\n\nIf system icons like \"This PC\" or \"Recycle Bin\" are missing:\n\nRight-click the desktop -> Personalize.\n\nGo to Themes -> Desktop icon settings.\n\nCheck the boxes for the icons you want to show and click OK.\n\nResizing Icons: Right-click desktop -> View -> Select Large, Medium, or Small icons.\n\n5. Creating Folders [00:05:36]\n\nFolders help organize files:\n\nRight-click on a blank area of the desktop -> New -> Folder.\n\nType a name and press Enter.\n\n6. The \"Refresh\" Myth [00:06:26]\n\nNote: Refreshing the desktop (Right-click -> Refresh) does not speed up your computer.\n\nIt is used to update the screen display to reflect recent changes (like a renamed file or a newly moved icon).\n\n7. Taskbar Customization [00:06:56]\n\nPinning Apps: Search for an app -> Right-click -> Pin to taskbar.\n\nMoving Taskbar: Right-click taskbar -> Taskbar settings. Under \"Taskbar location on screen,\" choose Left, Top, Right, or Bottom.\n\nChanging Color: Settings -> Personalization -> Colors. Choose a theme color and ensure \"Start, taskbar, and action center\" is checked (Note: Windows must be in Dark Mode for this to apply).\n\n8. Themes and Wallpapers [00:10:36]\n\nWallpaper: Right-click desktop -> Personalize -> Choose a picture or browse for your own.\n\nThemes: Go to Themes in the personalization menu to change the overall look (colors, background, and sounds) of Windows at once.\n\nSummary of Day 2: Focused on navigating the Windows interface and personalizing the workspace for better productivity."
-        : "[00:41] What You Will Learn Today\nThis is the first video of our computer training course. By the end of this lesson, you will know:\n- How to turn a computer on and off.\n- How to open programs and manage windows (minimize, maximize, close).\n- What the Start Menu and Taskbar are.\n- How to connect a laptop or computer to the internet.\n- The purpose of various Desktop Icons.\n\n[01:15] Hardware Introduction\nLet’s look at the computer setup:\na. UPS (Uninterruptible Power Supply): This is a battery backup. If the power goes out, the UPS provides temporary electricity so you can save your work. It also protects your PC from voltage fluctuations.\nb. Computer Cabinet (CPU Case): People often call this the \"CPU,\" but the CPU is actually a chip inside it. This cabinet houses the motherboard, RAM, hard disk, and power supply.\nc. Monitor: Also known as the display.\nd. Keyboard & Mouse: The mouse has a left button, a right button, and a scroll wheel for moving up and down on a page.\n\n[03:02] How to Start the Computer\na. Connect the UPS power cord to the wall socket and switch it on.\nb. Press the Power Button on the front of the UPS.\nc. Press the Power Button on the computer cabinet (the yellow button in this video).\nd. Turn on the Monitor power button.\ne. Wait for the \"booting\" process to finish until you see the home screen.\n\n[04:12] Understanding the Desktop\nThe first screen you see is the Desktop.\n- Icons: The small pictures on the left are shortcuts to programs like Chrome or folders. You can add or delete these.\n- Taskbar: The long bar at the bottom.\n- Start Button: The Windows icon on the bottom left. Clicking it opens the Start Menu.\n\n[05:48] Power Options\nInside the Start Menu, click the Power icon to see:\n- Sleep Mode: Turns off the display and uses very little power. Press any key to \"wake\" it up.\n- Shut Down: Completely turns off the computer.\n- Restart: Closes all apps and reboots the system. Note: Always save your data before restarting.\n\n[06:58] Search & Task View\n- Search Box: Located next to the Start button. Use it to find files, apps, or settings on your PC or the web.\n- Task View: Shows all currently open windows. You can also create a \"New Desktop\" here to organize different tasks.\n\n[08:28] System Tray & Internet\n- Hidden Icons: The small arrow shows background programs.\n- Battery: Shows your charge percentage.\n- Network/Internet: Click the globe/Wi‑Fi icon. Select your Wi‑Fi name, click Connect, enter your password, and click Next to access the internet.\n- Volume: A slider to adjust or mute your speakers.\n\n[11:03] Notification Area & Action Center\n- Notification Area: Shows system alerts.\n- Action Center: Contains quick settings like Battery Saver, Bluetooth, Night Light, and Screen Snip.\n- Brightness: Use the slider at the bottom of the Action Center to adjust the light level.\n\n[12:48] Conclusion & Homework\nThat’s it for Day 1! Rewatch this video if you need to clarify anything. In the next class, we will learn how to add/remove icons and pin apps to the taskbar.\nPractice Questions (Answer in the comments):\n- What is the technical name for the computer's home screen?\n- What do we call the button used to turn the computer on?\n- What is the bar at the bottom of the desktop called?\nGoodbye, and see you in the next class!";
+        : i === 33
+          ? day33SectionTwoContentEn
+          : i === 34
+            ? day34SectionTwoContentEn
+            : "[00:41] What You Will Learn Today\nThis is the first video of our computer training course. By the end of this lesson, you will know:\n- How to turn a computer on and off.\n- How to open programs and manage windows (minimize, maximize, close).\n- What the Start Menu and Taskbar are.\n- How to connect a laptop or computer to the internet.\n- The purpose of various Desktop Icons.\n\n[01:15] Hardware Introduction\nLet’s look at the computer setup:\na. UPS (Uninterruptible Power Supply): This is a battery backup. If the power goes out, the UPS provides temporary electricity so you can save your work. It also protects your PC from voltage fluctuations.\nb. Computer Cabinet (CPU Case): People often call this the \"CPU,\" but the CPU is actually a chip inside it. This cabinet houses the motherboard, RAM, hard disk, and power supply.\nc. Monitor: Also known as the display.\nd. Keyboard & Mouse: The mouse has a left button, a right button, and a scroll wheel for moving up and down on a page.\n\n[03:02] How to Start the Computer\na. Connect the UPS power cord to the wall socket and switch it on.\nb. Press the Power Button on the front of the UPS.\nc. Press the Power Button on the computer cabinet (the yellow button in this video).\nd. Turn on the Monitor power button.\ne. Wait for the \"booting\" process to finish until you see the home screen.\n\n[04:12] Understanding the Desktop\nThe first screen you see is the Desktop.\n- Icons: The small pictures on the left are shortcuts to programs like Chrome or folders. You can add or delete these.\n- Taskbar: The long bar at the bottom.\n- Start Button: The Windows icon on the bottom left. Clicking it opens the Start Menu.\n\n[05:48] Power Options\nInside the Start Menu, click the Power icon to see:\n- Sleep Mode: Turns off the display and uses very little power. Press any key to \"wake\" it up.\n- Shut Down: Completely turns off the computer.\n- Restart: Closes all apps and reboots the system. Note: Always save your data before restarting.\n\n[06:58] Search & Task View\n- Search Box: Located next to the Start button. Use it to find files, apps, or settings on your PC or the web.\n- Task View: Shows all currently open windows. You can also create a \"New Desktop\" here to organize different tasks.\n\n[08:28] System Tray & Internet\n- Hidden Icons: The small arrow shows background programs.\n- Battery: Shows your charge percentage.\n- Network/Internet: Click the globe/Wi‑Fi icon. Select your Wi‑Fi name, click Connect, enter your password, and click Next to access the internet.\n- Volume: A slider to adjust or mute your speakers.\n\n[11:03] Notification Area & Action Center\n- Notification Area: Shows system alerts.\n- Action Center: Contains quick settings like Battery Saver, Bluetooth, Night Light, and Screen Snip.\n- Brightness: Use the slider at the bottom of the Action Center to adjust the light level.\n\n[12:48] Conclusion & Homework\nThat’s it for Day 1! Rewatch this video if you need to clarify anything. In the next class, we will learn how to add/remove icons and pin apps to the taskbar.\nPractice Questions (Answer in the comments):\n- What is the technical name for the computer's home screen?\n- What do we call the button used to turn the computer on?\n- What is the bar at the bottom of the desktop called?\nGoodbye, and see you in the next class!";
     const sectionTwoContentMr =
       i === 2
         ? "Computer Class Day 2: Basic Operations & Customization\n\n१. प्रोग्राम आणि अॅप्स उघडणे [00:00:58]\n\nप्रोग्राम उघडण्यासाठी अनेक पद्धती आहेत:\n\nDesktop Icons: आयकॉनवर माऊस नेऊन डाव्या बटणाने Double‑Click करा.\n\nRight‑Click Method: आयकॉनवर Right‑Click करा आणि मेनू मधून Open निवडा.\n\nTaskbar: टास्कबारवर पिन केलेल्या अॅपसाठी Single‑Click पुरेसा आहे.\n\nStart Menu: खालच्या डावीकडे असलेला Start बटण क्लिक करा, यादीत अॅप शोधा आणि क्लिक करून उघडा.\n\nSearch Bar: शोध पट्टीत प्रोग्रामचे नाव टाइप करा आणि पटकन उघडा.\n\n२. Window Management [00:01:23]\n\nप्रत्येक उघडलेल्या विंडोच्या वरच्या उजव्या कोपऱ्यात तीन बटणे असतात:\n\nMinimize (-): विंडो लपवून टास्कबारवर पाठवते. टास्कबार आयकॉनवर क्लिक केल्यावर पुन्हा दिसते.\n\nMaximize/Restore (Square): विंडो पूर्ण स्क्रीन करते. आधीच पूर्ण स्क्रीन असेल तर Restore Down करून पूर्वीच्या आकारात आणते.\n\nClose (X): प्रोग्राम बंद करते.\n\nResizing: विंडोचा कडा/कोपरा धरून (डबल‑अॅरो दिसल्यावर) क्लिक करून ड्रॅग करा.\n\n३. Desktop Shortcuts तयार करणे [00:03:15]\n\nवारंवार वापरलेले फाइल/अॅप्स डेस्कटॉपवर ठेवण्यासाठी:\n\nApps: Start Menu -> अॅपवर Right‑Click -> More -> Open File Location. उघडलेल्या फोल्डरमध्ये फाइलवर Right‑Click -> Send to -> Desktop (create shortcut).\n\nFolders: डेस्कटॉपवर Right‑Click -> New -> Shortcut -> फोल्डर/फाइल Browse करा -> Finish.\n\n४. Desktop Icons व्यवस्थापन [00:04:56]\n\n\"This PC\" किंवा \"Recycle Bin\" असे सिस्टम आयकॉन्स दिसत नसतील तर:\n\nडेस्कटॉपवर Right‑Click -> Personalize.\n\nThemes -> Desktop icon settings.\n\nहवे असलेल्या आयकॉनचे बॉक्स निवडा आणि OK करा.\n\nResizing Icons: डेस्कटॉपवर Right‑Click -> View -> Large, Medium किंवा Small icons निवडा.\n\n५. Folders तयार करणे [00:05:36]\n\nफाइल्स व्यवस्थित ठेवण्यासाठी फोल्डर तयार करा:\n\nडेस्कटॉपवरील मोकळ्या जागेवर Right‑Click -> New -> Folder.\n\nनाव टाइप करा आणि Enter दाबा.\n\n६. \"Refresh\" बाबत गैरसमज [00:06:26]\n\nटीप: डेस्कटॉप Refresh केल्याने संगणक वेगवान होत नाही.\n\nतो फक्त स्क्रीनवरील बदल दाखवण्यासाठी वापरला जातो (उदा. फाइलचे नाव बदलले किंवा आयकॉन हलवले).\n\n७. Taskbar Customization [00:06:56]\n\nPinning Apps: अॅप शोधा -> Right‑Click -> Pin to taskbar.\n\nMoving Taskbar: टास्कबारवर Right‑Click -> Taskbar settings. \"Taskbar location on screen\" मध्ये Left/Top/Right/Bottom निवडा.\n\nChanging Color: Settings -> Personalization -> Colors. थीम कलर निवडा आणि \"Start, taskbar, and action center\" चेक करा (टीप: हे दिसण्यासाठी Windows Dark Mode मध्ये असणे आवश्यक आहे).\n\n८. Themes आणि Wallpapers [00:10:36]\n\nWallpaper: डेस्कटॉपवर Right‑Click -> Personalize -> चित्र निवडा किंवा Browse करा.\n\nThemes: Personalization मधील Themes मध्ये जाऊन एकाच वेळी रंग, बॅकग्राउंड आणि साऊंड्स बदलू शकता.\n\nDay 2 सारांश: Windows इंटरफेस वापरणे आणि कामासाठी सोयीचे कस्टमायझेशन करणे यावर लक्ष केंद्रित केले."
-        : "Computer Class Day #1: Basic Computer Course Script\n\nWhat You Will Learn Today\nThis is the first video of our computer training course. By the end of this lesson, you will know:\n- संगणक सुरू आणि बंद कसा करायचा.\n- प्रोग्राम कसे उघडायचे आणि विंडो मॅनेज कशी करायची.\n- Start Menu आणि Taskbar म्हणजे काय.\n- इंटरनेटशी कनेक्ट कसे व्हायचे.\n- Desktop Iconsचा उपयोग काय आहे.\n\nHardware Introduction\nचला संगणकाचा सेटअप पाहूया:\n1. UPS (Uninterruptible Power Supply): वीज गेली तरी काही काळ बॅकअप मिळतो आणि काम सेव्ह करता येते. तसेच व्होल्टेज बदलांपासून संरक्षण मिळते.\n2. Computer Cabinet (CPU Case): CPU चिप आत असते; या कॅबिनेटमध्ये मदरबोर्ड, RAM, हार्ड डिस्क आणि पॉवर सप्लाय असतो.\n3. Monitor: स्क्रीन/डिस्प्ले.\n4. Keyboard & Mouse: माऊसला left/right बटणे आणि scroll wheel असते.\n\nHow to Start the Computer\n1. UPSचा प्लग सॉकेटला लावून स्विच ऑन करा.\n2. UPSचा Power Button दाबा.\n3. CPU कॅबिनेटचा Power Button दाबा.\n4. मॉनिटरचा Power Button चालू करा.\n5. बूटिंग पूर्ण होईपर्यंत थांबा.\n\nUnderstanding the Desktop\nDesktop ही पहिली स्क्रीन आहे.\n- Icons: डावीकडील आयकॉन्स हे प्रोग्राम/फोल्डर शॉर्टकट्स आहेत.\n- Taskbar: खालील लांब पट्टी.\n- Start Button: डावीकडील Windows आयकॉन.\n\nPower Options\nStart Menu मध्ये Power आयकॉनवर क्लिक केल्यावर:\n- Sleep Mode: स्क्रीन बंद होते आणि कमी वीज वापरली जाते.\n- Shut Down: संगणक पूर्ण बंद होतो.\n- Restart: सिस्टम पुन्हा सुरू होते. (टिप: डेटा सेव्ह करूनच.)\n\nSearch & Task View\n- Search Box: Start बटणाजवळ; apps, files, settings शोधण्यासाठी.\n- Task View: उघडलेल्या विंडोज दाखवतो आणि New Desktop तयार करता येतो.\n\nSystem Tray & Internet\n- Hidden Icons: छोटा arrow लपलेले प्रोग्राम दाखवतो.\n- Battery: चार्ज टक्केवारी दाखवते.\n- Network/Internet: Wi‑Fi/ग्लोब आयकॉनवरून इंटरनेट कनेक्ट करा.\n- Volume: आवाज कमी‑जास्त करण्यासाठी.\n\nNotification Area & Action Center\n- Notification Area: सिस्टम अलर्ट्स दाखवतो.\n- Action Center: Battery Saver, Bluetooth, Night Light, Screen Snip यांसारखे Quick Settings.\n- Brightness: स्लायडरने स्क्रीनचा उजेड बदलता येतो.\n\nConclusion & Homework\nDay 1 इथे संपला! गरज असल्यास व्हिडिओ पुन्हा पहा. पुढच्या क्लासमध्ये आयकॉन्स add/remove आणि टास्कबारला pin करणे शिकू.\nसराव प्रश्न:\n- संगणकाच्या home screen ला काय म्हणतात?\n- संगणक सुरू करण्यासाठी कोणते बटण वापरतात?\n- डेस्कटॉपच्या खालच्या पट्टीला काय म्हणतात?\nपुढच्या क्लासमध्ये भेटू!";
+        : i === 33
+          ? day33SectionTwoContentMr
+          : i === 34
+            ? day34SectionTwoContentMr
+            : "Computer Class Day #1: Basic Computer Course Script\n\nWhat You Will Learn Today\nThis is the first video of our computer training course. By the end of this lesson, you will know:\n- संगणक सुरू आणि बंद कसा करायचा.\n- प्रोग्राम कसे उघडायचे आणि विंडो मॅनेज कशी करायची.\n- Start Menu आणि Taskbar म्हणजे काय.\n- इंटरनेटशी कनेक्ट कसे व्हायचे.\n- Desktop Iconsचा उपयोग काय आहे.\n\nHardware Introduction\nचला संगणकाचा सेटअप पाहूया:\n1. UPS (Uninterruptible Power Supply): वीज गेली तरी काही काळ बॅकअप मिळतो आणि काम सेव्ह करता येते. तसेच व्होल्टेज बदलांपासून संरक्षण मिळते.\n2. Computer Cabinet (CPU Case): CPU चिप आत असते; या कॅबिनेटमध्ये मदरबोर्ड, RAM, हार्ड डिस्क आणि पॉवर सप्लाय असतो.\n3. Monitor: स्क्रीन/डिस्प्ले.\n4. Keyboard & Mouse: माऊसला left/right बटणे आणि scroll wheel असते.\n\nHow to Start the Computer\n1. UPSचा प्लग सॉकेटला लावून स्विच ऑन करा.\n2. UPSचा Power Button दाबा.\n3. CPU कॅबिनेटचा Power Button दाबा.\n4. मॉनिटरचा Power Button चालू करा.\n5. बूटिंग पूर्ण होईपर्यंत थांबा.\n\nUnderstanding the Desktop\nDesktop ही पहिली स्क्रीन आहे.\n- Icons: डावीकडील आयकॉन्स हे प्रोग्राम/फोल्डर शॉर्टकट्स आहेत.\n- Taskbar: खालील लांब पट्टी.\n- Start Button: डावीकडील Windows आयकॉन.\n\nPower Options\nStart Menu मध्ये Power आयकॉनवर क्लिक केल्यावर:\n- Sleep Mode: स्क्रीन बंद होते आणि कमी वीज वापरली जाते.\n- Shut Down: संगणक पूर्ण बंद होतो.\n- Restart: सिस्टम पुन्हा सुरू होते. (टिप: डेटा सेव्ह करूनच.)\n\nSearch & Task View\n- Search Box: Start बटणाजवळ; apps, files, settings शोधण्यासाठी.\n- Task View: उघडलेल्या विंडोज दाखवतो आणि New Desktop तयार करता येतो.\n\nSystem Tray & Internet\n- Hidden Icons: छोटा arrow लपलेले प्रोग्राम दाखवतो.\n- Battery: चार्ज टक्केवारी दाखवते.\n- Network/Internet: Wi‑Fi/ग्लोब आयकॉनवरून इंटरनेट कनेक्ट करा.\n- Volume: आवाज कमी‑जास्त करण्यासाठी.\n\nNotification Area & Action Center\n- Notification Area: सिस्टम अलर्ट्स दाखवतो.\n- Action Center: Battery Saver, Bluetooth, Night Light, Screen Snip यांसारखे Quick Settings.\n- Brightness: स्लायडरने स्क्रीनचा उजेड बदलता येतो.\n\nConclusion & Homework\nDay 1 इथे संपला! गरज असल्यास व्हिडिओ पुन्हा पहा. पुढच्या क्लासमध्ये आयकॉन्स add/remove आणि टास्कबारला pin करणे शिकू.\nसराव प्रश्न:\n- संगणकाच्या home screen ला काय म्हणतात?\n- संगणक सुरू करण्यासाठी कोणते बटण वापरतात?\n- डेस्कटॉपच्या खालच्या पट्टीला काय म्हणतात?\nपुढच्या क्लासमध्ये भेटू!";
     days.push({
       dayNumber: i,
       videoUrl: "",
@@ -4029,22 +5428,41 @@ const ensureCourseDays = async () => {
           contentMr: sectionTwoContentMr
         }
       ],
-      exam: {
-        durationMinutes: 30,
-        questions: [
-          {
-            questionEn: "What is MS-CIT?",
-            questionMr: "MS-CIT म्हणजे काय?",
-            options: [
-              { textEn: "A computer literacy course", textMr: "कंप्यूटर साक्षरता कोर्स" },
-              { textEn: "A sports event", textMr: "क्रीडा कार्यक्रम" },
-              { textEn: "A music class", textMr: "संगीत वर्ग" },
-              { textEn: "A cooking course", textMr: "स्वयंपाक कोर्स" }
-            ],
-            correctIndex: 0
-          }
-        ]
-      }
+      exam:
+        i === 33
+          ? {
+              durationMinutes: 30,
+              questions: day33ExamQuestions
+            }
+          : i === 34
+            ? {
+                durationMinutes: 30,
+                questions: day34ExamQuestions
+              }
+            : i === 35
+              ? {
+                  durationMinutes: 30,
+                  questions: day35ExamQuestions
+                }
+              : {
+                  durationMinutes: 30,
+                  questions: [
+                    {
+                      questionEn: "What is MS-CIT?",
+                      questionMr: "MS-CIT म्हणजे काय?",
+                      options: [
+                        {
+                          textEn: "A computer literacy course",
+                          textMr: "कंप्यूटर साक्षरता कोर्स"
+                        },
+                        { textEn: "A sports event", textMr: "क्रीडा कार्यक्रम" },
+                        { textEn: "A music class", textMr: "संगीत वर्ग" },
+                        { textEn: "A cooking course", textMr: "स्वयंपाक कोर्स" }
+                      ],
+                      correctIndex: 0
+                    }
+                  ]
+                }
     });
   }
   await CourseDay.insertMany(days);

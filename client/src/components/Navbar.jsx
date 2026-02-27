@@ -15,7 +15,13 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const handleLanguageChange = (e) => {
-    i18n.changeLanguage(e.target.value);
+    const lang = e.target.value;
+    try {
+      window.localStorage.setItem("lang", lang);
+    } catch (_) {
+      // ignore
+    }
+    i18n.changeLanguage(lang);
   };
 
   return (
