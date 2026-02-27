@@ -9,22 +9,7 @@ import ExcelStatisticalFunctionsTable from "../components/ExcelStatisticalFuncti
 import HighlightCellRulesTable from "../components/HighlightCellRulesTable";
 import PowerPointKeyFeaturesTable from "../components/PowerPointKeyFeaturesTable";
 import api from "../api/api";
-
-// Default practical steps when not set in DB – Day 1: clear "how to" steps (can have 10+ steps)
-const DEFAULT_PRACTICAL_STEPS_BY_DAY = {
-  1: [
-    { stepNumber: 1, textEn: "Connect the UPS power cord to the wall socket and switch it on.", textMr: "UPS चा प्लग वॉल सॉकेटला लावा आणि स्विच ऑन करा." },
-    { stepNumber: 2, textEn: "Press the Power button on the front of the UPS.", textMr: "UPS च्या समोरच्या पॉवर बटणावर दाबा." },
-    { stepNumber: 3, textEn: "Press the Power button on the computer cabinet (CPU).", textMr: "संगणक कॅबिनेट (CPU) वरच्या पॉवर बटणावर दाबा." },
-    { stepNumber: 4, textEn: "Turn on the Monitor using its power button.", textMr: "मॉनिटरच्या पॉवर बटणाने मॉनिटर चालू करा." },
-    { stepNumber: 5, textEn: "Wait for the desktop (home screen) to appear after booting.", textMr: "बूटिंग संपेपर्यंत डेस्कटॉप (होम स्क्रीन) दिसेपर्यंत थांबा." },
-    { stepNumber: 6, textEn: "Click the Windows icon (Start button) at the bottom-left of the screen.", textMr: "स्क्रीनच्या खालच्या डाव्या कोपऱ्यात विंडोज आयकॉन (Start बटण) वर क्लिक करा." },
-    { stepNumber: 7, textEn: "In the Start menu, click the Power icon.", textMr: "Start मेनूमध्ये Power आयकॉनवर क्लिक करा." },
-    { stepNumber: 8, textEn: "Click 'Shut down' to turn off the computer completely.", textMr: "संगणक पूर्ण बंद करण्यासाठी 'Shut down' वर क्लिक करा." },
-    { stepNumber: 9, textEn: "Click the Search box next to the Start button.", textMr: "Start बटणाजवळच्या Search बॉक्सवर क्लिक करा." },
-    { stepNumber: 10, textEn: "Type the name of an app (e.g. Notepad) and press Enter to open it.", textMr: "अॅपचे नाव टाइप करा (उदा. Notepad) आणि उघडण्यासाठी Enter दाबा." }
-  ]
-};
+import { DEFAULT_PRACTICAL_STEPS_BY_DAY } from "../data/practicalStepsByDay";
 
 const getYoutubeEmbedUrl = (url) => {
   if (!url) return "";
@@ -441,7 +426,11 @@ const CourseDayPage = () => {
         <div className="mt-6 flex flex-wrap items-center gap-3">
           <button
             type="button"
-            onClick={() => setShowPracticalModal(true)}
+            onClick={() => {
+              const url = `${window.location.origin}/courses/${day.dayNumber}/practical-popup`;
+              const w = window.open(url, `PracticalDay${day.dayNumber}`, "width=380,height=700,scrollbars=yes,resizable=yes,left=100,top=100");
+              if (!w) setShowPracticalModal(true);
+            }}
             className="rounded bg-amber-500 px-4 py-2 text-sm font-medium text-white hover:bg-amber-600"
           >
             Practical
@@ -466,15 +455,23 @@ const CourseDayPage = () => {
           const defaultForDay = DEFAULT_PRACTICAL_STEPS_BY_DAY[dayNum];
           const stepsList = (defaultForDay?.length) ? defaultForDay : (day.practicalSteps?.length ? day.practicalSteps : []);
           return (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" onClick={() => setShowPracticalModal(false)}>
-              <div className="max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-lg bg-white p-6 shadow-xl" onClick={(e) => e.stopPropagation()}>
-                <h3 className="text-xl font-semibold text-gray-900">Day {day.dayNumber} – Practical</h3>
-                <p className="mt-1 text-sm text-gray-600">Complete each step on your PC, then click the step to mark it done.</p>
-                {stepsList.length === 0 ? (
-                  <p className="mt-4 text-gray-500">No practical steps for this day yet.</p>
-                ) : (
-                  <ul className="mt-4 space-y-3">
-                    {stepsList.map((step, index) => {
+            <>
+              {/* No overlay: main area stays usable so you can scroll, read, and use Settings/Files/Word/Excel/PPT while the steps panel stays on the right */}
+              <div className="fixed right-0 top-0 bottom-0 z-50 w-full max-w-[320px] flex flex-col rounded-l-xl border-l border-gray-200 bg-white shadow-2xl">
+                <div className="flex items-center justify-between border-b border-gray-100 p-3">
+                  <h3 className="text-base font-semibold text-gray-900">Day {day.dayNumber} – Practical</h3>
+                  <button type="button" onClick={() => setShowPracticalModal(false)} className="rounded p-1.5 text-gray-500 hover:bg-gray-100 hover:text-gray-700" aria-label="Close">✕</button>
+                </div>
+                <p className="px-3 pt-2 text-xs text-gray-600">
+                  {isMr
+                    ? "प्रत्येक पायरी PC वर करा (Settings, Files, Word, Excel, PPT इ.). हा पॅनेल येथेच राहतो—उर्वरित स्क्रीनवर पायऱ्या करा, नंतर पूर्ण म्हणून टॅप करा."
+                    : "Do each step on your PC (Settings, Files, Word, Excel, PPT, etc.). This panel stays here—use the rest of the screen to perform the steps, then tap to mark done."}
+                </p>
+                <ul className="flex-1 overflow-y-auto p-3 space-y-2">
+                  {stepsList.length === 0 ? (
+                    <li className="text-sm text-gray-500">No practical steps for this day yet.</li>
+                  ) : (
+                    stepsList.map((step, index) => {
                       const completed = practicalCompletedSteps[index] === true;
                       return (
                         <li key={step.stepNumber}>
@@ -489,31 +486,33 @@ const CourseDayPage = () => {
                               setPracticalCompletedSteps(next);
                               api.put(`/courses/days/${day.dayNumber}/practical-completion`, { completedSteps: next }).catch(() => {});
                             }}
-                            className={`flex w-full items-center gap-3 rounded-lg border-2 px-4 py-3 text-left text-sm transition ${
+                            className={`flex w-full items-center gap-2 rounded-lg border-2 px-3 py-2.5 text-left text-sm transition ${
                               completed
                                 ? "border-green-500 bg-green-50 text-green-800"
                                 : "border-gray-200 bg-white text-gray-800 hover:border-amber-300 hover:bg-amber-50"
                             }`}
                           >
-                            <span className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full font-semibold ${completed ? "bg-green-500 text-white" : "bg-gray-200 text-gray-600"}`}>
+                            <span className={`flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full text-xs font-semibold ${completed ? "bg-green-500 text-white" : "bg-gray-200 text-gray-600"}`}>
                               {completed ? "✓" : step.stepNumber}
                             </span>
-                            <span>{isMr && step.textMr ? step.textMr : step.textEn}</span>
+                            <span className="flex-1">{isMr && step.textMr ? step.textMr : step.textEn}</span>
                           </button>
                         </li>
                       );
-                    })}
-                  </ul>
-                )}
-                <button
-                  type="button"
-                  onClick={() => setShowPracticalModal(false)}
-                  className="mt-6 w-full rounded bg-gray-200 px-4 py-2 text-sm font-medium text-gray-800 hover:bg-gray-300"
-                >
-                  Close
-                </button>
+                    })
+                  )}
+                </ul>
+                <div className="border-t border-gray-100 p-3">
+                  <button
+                    type="button"
+                    onClick={() => setShowPracticalModal(false)}
+                    className="w-full rounded-lg bg-gray-200 px-3 py-2 text-sm font-medium text-gray-800 hover:bg-gray-300"
+                  >
+                    Close
+                  </button>
+                </div>
               </div>
-            </div>
+            </>
           );
         })()}
           </>

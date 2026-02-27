@@ -9,6 +9,7 @@ import CompleteProfilePage from "./pages/CompleteProfilePage";
 import DashboardPage from "./pages/DashboardPage";
 import ProfilePage from "./pages/ProfilePage";
 import CourseDayPage from "./pages/CourseDayPage";
+import PracticalPopupPage from "./pages/PracticalPopupPage";
 import ExamPage from "./pages/ExamPage";
 import AdminDashboardPage from "./pages/AdminDashboardPage";
 import StudentHomePage from "./pages/StudentHomePage";
@@ -71,6 +72,14 @@ const AppRoutes = () => (
       element={
         <ProtectedRoute>
           <CourseDayPage />
+        </ProtectedRoute>
+      }
+    />
+    <Route
+      path="/courses/:dayNumber/practical-popup"
+      element={
+        <ProtectedRoute>
+          <PracticalPopupPage />
         </ProtectedRoute>
       }
     />
